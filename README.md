@@ -1,9 +1,12 @@
 # weird little apps
 
-Source for [weirdlittleapps.com](https://weirdlittleapps.com), a showcase of interesting
-small-scale apps, some of them built with AI agents.
+Source for [weirdlittleapps.com](https://weirdlittleapps.com). Apps built with purpose.
+Tiny by design. Made with love.
 
 Built with [Astro](https://astro.build) and deployed to GitHub Pages.
+
+**Status:** live at [weirdlittleapps.com](https://weirdlittleapps.com) as a work-in-progress
+page. The app directory comes next.
 
 ## The look
 

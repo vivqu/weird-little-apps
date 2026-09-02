@@ -109,18 +109,18 @@ Repo facts: `vivqu/weird-little-apps`, public, no commits yet, `gh` CLI authenti
    - Jobs: `build` (checkout → `withastro/action@v3`) then `deploy` (`actions/deploy-pages@v4`, environment `github-pages`).
    - Concurrency group `pages` so overlapping pushes cancel.
 5. ✅ **Verify locally**: `npm install && npm run build`, confirm `dist/index.html` and `dist/CNAME` exist.
-6. **First commit + push to `main`.** This triggers the workflow; expect it to succeed at build but Pages won't serve until step 7.
-7. **GitHub repo settings → Pages** (can be done via `gh api`):
+6. ✅ **First commit + push to `main`.** This triggers the workflow; expect it to succeed at build but Pages won't serve until step 7.
+7. ✅ **GitHub repo settings → Pages** (can be done via `gh api`):
    - Source: **GitHub Actions** (`build_type: workflow`), not "deploy from branch".
    - Custom domain: `weirdlittleapps.com`. The CNAME file sets this too, but setting it explicitly avoids a race on the first deploy.
    - Leave "Enforce HTTPS" off until the certificate is issued (it's greyed out until DNS resolves).
-8. **DNS at the registrar** (only step that can't be done from this repo — needs whoever controls the zone):
+8. ✅ **DNS at the registrar** (only step that can't be done from this repo — needs whoever controls the zone):
    - Apex `weirdlittleapps.com` → four `A` records: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
    - Optional IPv6 `AAAA`: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`.
    - `www` → `CNAME` to `vivqu.github.io` (GitHub will redirect www → apex).
    - Remove any existing A/AAAA/ALIAS records for the apex that point elsewhere (registrar parking pages are the usual culprit).
-9. **Wait for propagation, then check** (`dig weirdlittleapps.com +short` should show the four IPs; GitHub's Pages settings shows "DNS check successful").
-10. **Turn on "Enforce HTTPS"** once GitHub has provisioned the Let's Encrypt cert (usually minutes to an hour after DNS is right). Confirm `curl -I https://weirdlittleapps.com` returns 200 and `http://` redirects.
+9. ✅ **Wait for propagation, then check** (`dig weirdlittleapps.com +short` should show the four IPs; GitHub's Pages settings shows "DNS check successful").
+10. ⏳ **Turn on "Enforce HTTPS"** once GitHub has provisioned the Let's Encrypt cert (usually minutes to an hour after DNS is right). Confirm `curl -I https://weirdlittleapps.com` returns 200 and `http://` redirects.
 11. **Optional hardening**: verify the domain at the account level (GitHub → Settings → Pages → "Add a domain") so nobody else can claim it if the repo is ever renamed or deleted.
 
 ### Done when
@@ -128,23 +128,24 @@ Repo facts: `vivqu/weird-little-apps`, public, no commits yet, `gh` CLI authenti
 - `https://weirdlittleapps.com` and `https://www.weirdlittleapps.com` both show the WIP page over HTTPS.
 - Pushing to `main` redeploys automatically with no manual steps.
 
-### Current state (checked 2026-09-02)
+### Current state (updated 2026-09-02, evening)
 
-- DNS is hosted at **Namecheap** (nameservers `dns1/dns2.registrar-servers.com`), so step 8 is done in Namecheap → Domain List → Manage → Advanced DNS.
-- Apex currently has one `A` record → `192.64.119.251` (Namecheap parking page). **Replace** it with the four GitHub `A` records.
-- `www` currently `CNAME` → `parkingpage.namecheap.com`. **Replace** with `CNAME` → `vivqu.github.io`.
-- `MX` records point at Namecheap email forwarding (`eforward*.registrar-servers.com`). **Leave these alone**; GitHub Pages doesn't touch mail.
-- No `AAAA` records exist; adding GitHub's is optional.
-- GitHub Pages is **not yet enabled** on the repo (API returns 404). Step 7 creates it.
+- **Live at http://weirdlittleapps.com.** Both the apex and `www` are served by GitHub Pages; `www` and `vivqu.github.io/weird-little-apps` 301 to the apex.
+- **DNS done** at Namecheap: four GitHub `A` records on `@`, `www` CNAME → `vivqu.github.io`. The Namecheap email-forwarding `MX` records were left in place.
+- **GitHub Pages** is enabled with source = GitHub Actions and custom domain = `weirdlittleapps.com`. GitHub's domain health check passes for both hosts.
+- **HTTPS pending.** Port 443 answers but with GitHub's generic `*.github.io` certificate until the domain cert is issued. `https_enforced` stays off until then. Once `.https_certificate.state` is `approved`, set `https_enforced: true` via `gh api -X PUT repos/vivqu/weird-little-apps/pages -F https_enforced=true` and confirm `http://` redirects.
+- **Gotcha seen today:** connectivity from this Mac to GitHub's Pages IPs (185.199.108–111.153) was flaky for ~20 minutes while `github.com` itself worked. If the site "isn't loading", check with `gh api repos/vivqu/weird-little-apps/pages/health` (`is_served_by_pages`) before assuming a config problem.
 
-Namecheap gotchas: the record editor calls the apex `@`; TTL "Automatic" is fine; make sure any "URL Redirect Record" for `@` or `www` is deleted, since it silently overrides A/CNAME records.
+## Milestones
 
-## Milestones (draft)
+0. ⏳ Domain + WIP page — everything done except "Enforce HTTPS", which is waiting on GitHub's certificate. See Milestone 0 above.
+1. ✅ Pick framework (Astro), scaffold, commit.
+2. Define YAML schema + 2–3 sample apps (fields sketched in Decision 2; add `why`).
+3. Index page: grid of app cards. Reuse the window/sticker/sticky-note vocabulary from the WIP page.
+4. ✅ Visual identity — landed on the WIP page (see `CLAUDE.md` → Style direction). Extract tokens to a shared layout when page 2 arrives.
+5. ✅ Deploy + DNS (GitHub Actions → Pages, Namecheap DNS).
+6. Nice-to-haves: per-app pages, tags, RSS feed, OG images, a guestbook.
 
-0. Domain + WIP page (see Milestone 0 above).
-1. ~~Pick framework~~ (Astro), scaffold project, commit — folded into Milestone 0.
-2. Define YAML schema + 2–3 sample apps.
-3. Index page: grid of app cards.
-4. Styling / visual identity.
-5. Deploy + DNS.
-6. Nice-to-haves: per-app pages, tags, RSS feed, OG images.
+## Decision 4: Visual identity
+
+**Status: DECIDED (2026-09-02).** Small-web, hand-placed, paper-not-glass. Aqua graph-paper ground, peach window, indigo ink, one accent per object. Full description and hex values live in `CLAUDE.md` under "Style direction"; the mood summary is in `README.md` under "The look". Light only, no dark mode.
