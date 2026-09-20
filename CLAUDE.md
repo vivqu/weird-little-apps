@@ -3,7 +3,7 @@
 Static site for weirdlittleapps.com: a YAML-driven showcase of small, strange apps.
 Astro, no client JS by default, deployed to GitHub Pages via GitHub Actions.
 
-See `.claude/PLAN.md` for decisions, milestones, and what's next. Keep it updated as work lands.
+See `.claude/PLAN.md` for the current architecture and what's next. Keep it updated as work lands.
 
 ## Commands
 
@@ -17,14 +17,14 @@ npm run screenshot   # build, then screenshot / into screenshots/index.png
 
 ## Workflow
 
-- **Plan first, in `.claude/PLAN.md`.** Decisions go there with a date and a one-line why. Tick off milestone steps as they're done.
+- **Plan first, in `.claude/PLAN.md`.** It describes the current architecture and what's next, not history; when something changes, rewrite the affected section. Detailed specs for the item in progress live next to it (currently `.claude/registry-plan.md`).
 - **Always report the dev server URL.** After starting or restarting `npm run dev`, tell the user the address from the "Dev server running at ..." line (normally http://localhost:4321). If you stop a server, say so.
 - **The user commits.** Don't run `git commit` or `git push` unless asked. Leave the working tree in a state that's ready to commit.
 - **Verify visually with Playwright, not the Chrome extension.** Use `node scripts/screenshot.mjs` (see below) and read the PNG. It's faster, headless, and doesn't touch the user's browser. Only reach for `claude-in-chrome` when a page needs the user's logged-in session (e.g. a private Kinopio board).
 - **Astro 7 servers are daemons.** `astro dev` and `astro preview` detach and keep running; a second invocation reuses the existing one and ignores `--port`. Stop them with `npx astro dev stop` / `npx astro preview stop` (or `pkill -f astro`). The screenshot script serves `dist/` itself for this reason.
 - **Stale dev CSS.** The dev server can keep serving an old `<style>` block after an edit (HTML updates, CSS doesn't). If a style change doesn't appear, restart with `npx astro dev stop && npx astro dev` before debugging the CSS, and tell the user to hard-refresh.
 - **Content is config.** Adding an app must never require code changes; it's one YAML file plus an optional screenshot. If a feature would break that, rethink it.
-- **Keep it small.** No integrations, frameworks, or client JS unless a milestone actually needs them.
+- **Keep it small.** No integrations, frameworks, or client JS unless the plan actually calls for them.
 - **No third-party requests at runtime.** Fonts are self-hosted in `public/fonts/` and preloaded with `font-display: block` so text never flashes in a fallback face. Don't add Google Fonts `<link>`s back.
 
 ## Screenshots
@@ -75,7 +75,8 @@ Tokens live in `:root` in `src/pages/index.astro` for now; extract to a shared l
 ## Layout
 
 ```
-.claude/PLAN.md                 plan + decisions
+.claude/PLAN.md                 architecture + roadmap
+.claude/registry-plan.md        spec for the registry scaffold (in progress)
 .github/workflows/deploy.yml    build with withastro/action, publish with deploy-pages
 astro.config.mjs                site: https://weirdlittleapps.com, static output
 public/                         copied verbatim: CNAME (custom domain), favicon.svg, robots.txt

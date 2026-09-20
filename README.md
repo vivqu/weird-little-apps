@@ -43,6 +43,6 @@ npm run screenshot # build, then screenshot / into screenshots/ (needs: npx play
 ├── public/                        # copied to dist/ as-is (CNAME, favicon, fonts, robots.txt)
 ├── scripts/screenshot.mjs         # Playwright screenshot helper
 ├── src/pages/                     # one .astro file per route
-├── .claude/PLAN.md                # project plan and decisions
+├── .claude/PLAN.md                # architecture and roadmap
 └── CLAUDE.md                      # working conventions for AI agents (and humans)
 ```
