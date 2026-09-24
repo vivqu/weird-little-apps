@@ -39,7 +39,7 @@ npm run screenshot # build, then screenshot / into screenshots/ (needs: npx play
 
 Make a folder `src/content/apps/<id>/` with an `index.yaml` and up to four screenshots. The folder
 name is the URL. The build validates the entry and tells you what's missing. Field reference:
-`.claude/registry-plan.md`; screenshot rules: `UPLOAD.md`.
+`src/content/README.md`; screenshot rules: `UPLOAD.md`.
 
 ## Project layout
 

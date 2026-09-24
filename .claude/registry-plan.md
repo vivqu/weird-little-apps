@@ -52,6 +52,8 @@ src/content/site.yaml           site-wide copy and status (the `site` collection
 
 ### Fields
 
+The reference for writing entries is `src/content/README.md`; this is the spec it follows.
+
 Required:
 
 | Field | Type | Notes |

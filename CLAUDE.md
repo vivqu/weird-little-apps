@@ -20,7 +20,7 @@ node scripts/bezel.mjs src/content/apps/<id>/*.jpg   # does a phone-shaped image
 
 ## Adding an app
 
-One folder, `src/content/apps/<id>/`, holding `index.yaml` and up to four screenshots. The folder name is the URL (`/apps/<id>/`). Fields, with an example: `.claude/registry-plan.md` → Fields. How to capture and flag screenshots: `UPLOAD.md`. The build validates the entry and fails with the file and field named if something is off; it also logs entries without a screenshot. Order, accession numbers and phone-vs-browser framing are derived, never written.
+One folder, `src/content/apps/<id>/`, holding `index.yaml` and up to four screenshots. The folder name is the URL (`/apps/<id>/`). Field reference with an example: `src/content/README.md`. How to capture and flag screenshots: `UPLOAD.md`. The build validates the entry and fails with the file and field named if something is off; it also logs entries without a screenshot. Order, accession numbers and phone-vs-browser framing are derived, never written.
 
 ## Workflow
 
@@ -93,6 +93,7 @@ public/fonts/                   self-hosted woff2 (Instrument Serif, IBM Plex Mo
 scripts/screenshot.mjs          playwright screenshot helper
 scripts/bezel.mjs               heuristic: does a phone-shaped image already contain a rendered device?
 src/content.config.ts           the `apps` and `site` collections and their schemas
+src/content/README.md           field reference for index.yaml and site.yaml
 src/content/site.yaml           site-wide copy and status: name, subtitle, lede, motto, the post, the about page's status / next lines
 src/content/apps/<id>/          one app: index.yaml + screenshots
 src/lib/apps.ts                 the collection in index order with derived fields, pagination, display helpers
