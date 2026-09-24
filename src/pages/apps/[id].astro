@@ -61,23 +61,23 @@ const visit = visitLabel(app);
               </span>
             </a>
           </div>
-          <div class="capline">
+          <div class="below">
             <div class="caps">
               {shots.map((s, j) => (
                 <p class="cap">{many && <><b>{j + 1} of {shots.length}</b> · </>}{s.caption}</p>
               ))}
             </div>
+            {many && (
+              <div class="thumbs">
+                {shots.map((s, j) => (
+                  <label for={pickId(j)} class:list={{ tall: s.tall, bare: s.bezel }}>
+                    <Image class="cover" src={s.image} alt="" width={200} />
+                  </label>
+                ))}
+              </div>
+            )}
             <a class="visit" href={app.url}>{visit}</a>
           </div>
-          {many && (
-            <div class="thumbs">
-              {shots.map((s, j) => (
-                <label for={pickId(j)} class:list={{ tall: s.tall, bare: s.bezel }}>
-                  <Image class="cover" src={s.image} alt="" width={200} />
-                </label>
-              ))}
-            </div>
-          )}
         </div>
       ) : (
         <div class="noshot">
@@ -91,20 +91,20 @@ const visit = visitLabel(app);
     </div>
 
     <article class="label">
+      <p class="date">{fmtCreated(app.created)} · {app.form_factor.join(', ')}</p>
+      <h1>{nameParts(app.name).map((part, i) => <>{i > 0 && <wbr />}{part}</>)}</h1>
       <p class="maker">
         {app.by.map((p, i) => (
           <>{i > 0 && ' & '}{p.url ? <a href={p.url}>{p.name}</a> : p.name}</>
         ))}
       </p>
-      <h1>{nameParts(app.name).map((part, i) => <>{i > 0 && <wbr />}{part}</>)}</h1>
-      <p class="date">{fmtCreated(app.created)} · {app.form_factor.join(', ')}</p>
       <p class="tagline">{app.tagline}</p>
       {app.quotes?.length ? (
         <section>
           <h2>maker’s words</h2>
           {app.quotes.map((q) => (
             <blockquote>
-              <p>{q.text}</p>
+              {q.text.trim().split(/\n+/).map((line) => <p>{line}</p>)}
               <footer>{q.by ?? app.by[0].name}{q.date && `, ${fmtDate(q.date)}`} · <a href={q.url}>source</a></footer>
             </blockquote>
           ))}

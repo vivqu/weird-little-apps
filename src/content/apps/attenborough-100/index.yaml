@@ -1,14 +1,38 @@
 name: Attenborough at 100
-tagline: david attenborough’s life’s work, searchable.
+tagline: seventy years of attenborough in one search box. type an animal, a habitat or a place and get the episodes.
 url: https://attenborough-100.vercel.app/
 form_factor: web
-by: Soph Warnes
-why: somebody needed to know which episode had the lyrebird, and indexed about 5,000 episodes to find out.
-collected: 2026-08-10
+by:
+  - name: Soph Warnes
+    url: https://www.sophiewarnes.com/
+why: the best kind of hyperfixation.
+collected: 2026-07-20
 
-created: 2026
+created: 2026-05-15
+quotes:
+  - text: |
+      I was annoyed that I couldn't find a database of David Attenborough documentaries where I could search for a specific episode by topic.
+
+      So I made it.
+    url: https://x.com/SophWarnes/status/2055248265881223382
+recs:
+  - { title: 'Rest with a receipt', url: https://www.densediscovery.com/issues/392, by: Dense Discovery, date: 2026-06-08 }
+  - { title: 'A searchable archive of the almost 5000 TV episodes that naturalist David Attenborough has worked on', url: https://kottke.org/26/06/0049156-a-searchable-archive-of-the-al, by: Jason Kottke, date: 2026-06-17 }
+
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a strip of wildlife photos above a search box
     caption: around 5,000 episodes across 90 series
     taken: 2026-09-20
+  - image: ./explore-visually.png
+    alt: a scatter plot of 4,895 episodes from 1954 to 2024, rating against year, each dot coloured by topic
+    caption: data-viz on the episodes
+    taken: 2026-09-24
+  - image: ./episode-detail.png
+    alt: a pop-up for the nature episode holy cow, a grey cow in front of a blue doorway, with its imdb rating, synopsis and where to stream it
+    caption: data-viz on the episodes
+    taken: 2026-09-24
+  - image: ./dogs-search.png
+    alt: a search for dogs returning 246 episodes as a grid of thumbnails, from dogs the early years to can dogs talk
+    caption: search for any animals
+    taken: 2026-09-24

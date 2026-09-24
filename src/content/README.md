@@ -47,6 +47,7 @@ Optional:
   - a bare url (labelled from its hostname; `x.com` → "twitter") or `{ label, url }`
 - `quotes`: the maker's own words, a list of `{ text, url, by, date }`
   - copy the text exactly; `url` is where it came from
+  - for line breaks write it as a block (`text: |`); each line becomes its own paragraph
   - `by` defaults to the first maker; `date` is optional
   - use these instead of embeds
 - `recs`: where other people recommended or wrote about the app, shown as a list under the maker's words

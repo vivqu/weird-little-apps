@@ -154,7 +154,12 @@ main { max-width: 72rem; margin: 0 auto; }
 .detail .mat:has(.pick.panel:checked) .frame { padding: 2px; border-width: 0; border-radius: 0.8rem; background: var(--rule); }
 .detail .mat:has(.pick.panel:checked) .screen { border: 0; border-radius: calc(0.8rem - 2px); }
 .detail .mat:has(.pick.panel:checked) .screen::after { opacity: 0; transition-delay: 0s; }
-.detail .capline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3rem; margin-top: 0.5rem; font-size: 0.78rem; }
+/* under the frame: caption line with the visit button on its right, thumbnails beneath. On a phone the
+   button moves under the thumbnails (see the 48rem query), so it's last in the markup and pulled up here */
+.detail .below { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem; margin-top: 0.5rem; }
+.detail .caps { min-height: 3rem; display: flex; align-items: center; font-size: 0.78rem; }
+.detail .below .visit { grid-column: 2; grid-row: 1; justify-self: end; }
+.detail .below .thumbs { grid-column: 1 / -1; }
 .detail .cap b { font-weight: 500; white-space: nowrap; }
 .detail .thumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 0.6rem; }
 .detail .thumbs label { width: 5.2rem; border: 2px solid var(--rule); border-radius: 3px; overflow: hidden; cursor: pointer; opacity: 0.6; transition: opacity .15s, transform .15s; }
@@ -178,10 +183,11 @@ main { max-width: 72rem; margin: 0 auto; }
 .detail .why p { margin: 0; }
 /* the museum label */
 .label { width: min(100%, 38rem); background: var(--paper-2); border: 2px solid var(--rule); box-shadow: 6px 6px 0 var(--shadow); padding: 1.6rem 1.6rem 1.2rem; }
-.label .maker { margin: 0; font-weight: 500; }
+.label .maker { margin: 0 0 2.2rem; font-weight: 500; }
 .label h1 { font: italic 400 clamp(2rem, 5vw, 3rem)/1 var(--serif); margin: 0.2rem 0 0.4rem; overflow-wrap: anywhere; }
-.label .date { margin: 0 0 1rem; color: var(--ink-muted); font-size: 0.8rem; }
-.label .links { margin: 1.2rem 0 0; font-size: 0.82rem; color: var(--ink-muted); }
+.label .date { margin: 0; color: var(--ink-muted); font-size: 0.8rem; }
+.label .links { margin: 2.6rem 0 0; font-size: 0.82rem; color: var(--ink-muted); } /* sits just above the credit rule */
+.label .links + .credit { margin-top: 0.9rem; }
 .label .recs ul { list-style: none; margin: 0; padding: 0; font-size: 0.82rem; color: var(--ink-muted); }
 .label .recs li { margin: 0 0 0.3rem; padding-left: 1.1rem; text-indent: -1.1rem; }
 .label .recs li::before { content: '→'; display: inline-block; width: 1.1rem; text-indent: 0; color: var(--riso-blue); }
@@ -193,7 +199,7 @@ main { max-width: 72rem; margin: 0 auto; }
 .label blockquote { margin: 0; padding-left: 0.9rem; border-left: 3px solid var(--tape); }
 .label blockquote + blockquote { margin-top: 0.9rem; }
 .label blockquote footer { font-size: 0.76rem; color: var(--ink-muted); }
-.label .credit { margin: 1.4rem 0 0; padding-top: 0.8rem; border-top: 1.5px dashed var(--ink-muted); font-size: 0.76rem; color: var(--ink-muted); }
+.label .credit { margin: 2.6rem 0 0; padding-top: 1rem; border-top: 1.5px dashed var(--ink-muted); font-size: 0.76rem; color: var(--ink-muted); }
 
 /* footer: a short rule, only a little wider than the words, like the one under "register of holdings" */
 footer.site { width: max-content; max-width: 100%; margin: 4rem auto 0; padding: 0.9rem 1.2rem 0; border-top: 1.5px dashed var(--ink-muted); text-align: center; font-size: 0.8rem; letter-spacing: 0.06em; }
@@ -259,7 +265,8 @@ footer.site a:hover { color: var(--riso-blue); }
   .about .doodle.squiggle { display: none; }
   .about .note { margin: 4.5rem auto 0; }
   .wall { grid-template-columns: 1fr; }
-  .detail .capline { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
+  .detail .below { grid-template-columns: 1fr; row-gap: 0.2rem; }
+  .detail .below .visit { grid-column: 1; grid-row: auto; margin-top: 1.1rem; }
   .detail .thumbs label { width: 4.2rem; }
   .detail .thumbs label.tall { width: 1.6rem; }
   .detail .mat { --pw: 36%; }
@@ -269,11 +276,10 @@ footer.site a:hover { color: var(--riso-blue); }
   header.site { margin: 1.4rem auto 2.2rem; row-gap: 1.9rem; } /* breathing room between the subtitle and what follows */
   header.site .pager { margin-inline: auto; } /* detail page: newer / older centred under the title */
   header.site .side { align-items: flex-start; }
-  /* detail: the screenshot box runs edge to edge and sits level, so the capture gets every pixel */
-  .detail .hero { width: auto; justify-self: stretch; margin-inline: -1.25rem; }
-  .detail .mat { padding: 0.8rem 0.8rem 1rem; border-inline: 0; box-shadow: 0 6px 0 var(--shadow); transform: none; }
-  /* the note sits clear below the mat, not over the thumbnails */
-  .detail .why { margin: 0 1.25rem 0 0; justify-self: end; }
+  /* detail: the mat keeps the page margins and sits level */
+  .detail .mat { padding: 0.8rem 0.8rem 2.2rem; box-shadow: 5px 5px 0 var(--shadow); transform: none; }
+  /* the note hangs off the mat's bottom edge, just clear of the thumbnails */
+  .detail .why { margin: -2.1rem 1.1rem 0 0; justify-self: end; }
   /* paginator fits: first / last shrink to their arrows */
   .pager { max-width: 100%; flex-wrap: nowrap; font-size: 0.76rem; }
   .pager > * { padding: 0.5rem 0.55rem; }
@@ -287,3 +293,7 @@ footer.site a:hover { color: var(--riso-blue); }
   .ledger .acc, .ledger .date, .ledger .form { display: none; }
   .ledger .who { grid-column: -2; color: var(--ink-muted); }
 }
+
+/* no screenshot: the note sits below the "no picture yet" card instead of on a mat corner that isn't there */
+.detail.bare .hero { display: grid; justify-items: center; gap: 2.8rem; }
+.detail.bare .why { position: static; margin: 0; justify-self: end; }
