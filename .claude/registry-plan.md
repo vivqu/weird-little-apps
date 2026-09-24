@@ -1,25 +1,22 @@
-# Registry plan: initial scaffold
+# Registry: schema, index and detail pages
 
-The current roadmap item in `PLAN.md`. Scope:
-
-1. A YAML schema and seed entries.
-2. A paginated index of apps.
-3. A detail page per app, with previous / next.
+**Built 2026-09-24.** All steps in this file are done; it stays as the spec the pages implement and the
+record of the decisions taken while building. Roadmap: `PLAN.md`.
 
 Out of scope (see `PLAN.md` → "After the registry scaffold"): search, other browse modes, maker profiles, exhibits, tags.
 
-**State:** one page (`src/pages/index.astro`), no content collection, no shared layout. Astro 7.2.10, zod 4.
-**Scale:** 5-10 apps at launch, thousands eventually. Test at 8, 100 and 2,000.
-
 ## Pages
 
-| Page | URL | Contents |
-|---|---|---|
-| Index | `/apps`, `/apps/page/N` | all apps, `collected` descending then id, 24 per page. Pagination: first / previous / "page 3 of 84" / next / last |
-| Detail | `/apps/<id>` | all fields for one app; previous / next in index order; link back to the index page containing it |
-| Home | `/` | unchanged, except the "next: directory of apps" line links to `/apps` |
+| Page | URL | File | Contents |
+|---|---|---|---|
+| Index | `/`, `/page/N/` | `src/pages/[...page].astro` | the screenshot wall: all apps, `collected` descending then id, 24 per page, 3 across. Pagination: first / previous / "page 1 of 2" / next / last |
+| Compact view | `/compact/`, `/compact/page/N/` | `src/pages/compact/[...page].astro` | the same list as a text-only printout ("register of holdings"); reached from the expanded / compact switch in the header |
+| Detail | `/apps/<id>/` | `src/pages/apps/[id].astro` | one app; newer / position / older in index order; the wordmark links back to the index page containing it |
+| About | `/about/` | `src/pages/about.astro` | the original work-in-progress page's design (window, admission ticket, motto sticky note) telling the origin; linked from the footer on every page ("est. 2026 · about") |
 
-`page` is a reserved app id.
+`/page/1/` and `/compact/page/1/` redirect to their roots (`redirects` in `astro.config.mjs`). Internal links carry a trailing slash, which is the URL GitHub Pages serves (`build.format: 'directory'`), so no redirect hop.
+
+`page`, `compact`, `about` and `apps` are reserved app ids (`generateId` in `src/content.config.ts` rejects them).
 
 ## Part 1: Schema
 
@@ -28,26 +25,29 @@ Out of scope (see `PLAN.md` → "After the registry scaffold"): search, other br
 1. **Start small.** The schema holds only what the index and detail pages display. Add a field when a design iteration needs it and the data exists for most apps. New fields are always optional, so existing YAML never changes. Candidates: `PLAN.md`.
 2. Required fields must be fillable in two minutes by someone new to the repo.
 3. `form_factor` is the only enum. Everything else is free text.
-4. Anything computable (order, numbering) is derived, never hand-maintained. Display order comes from `collected`; alphabetical is the alternative.
-5. We take and store our own screenshots at collection time. No hotlinked images. Entries for dead apps are kept.
+4. Anything computable (order, numbering, whether a screenshot is phone-shaped) is derived, never hand-maintained. Display order comes from `collected`.
+5. We take and store our own screenshots at collection time. No hotlinked images. Entries for dead apps are kept. Exception: apps listed in a store use the store listing's own images, downloaded into the entry (`UPLOAD.md`).
 6. No software metadata: license, version, releases, price, star counts.
 
 ### Files
 
 ```
-src/content.config.ts
+src/content.config.ts           the collection and its zod schema
 src/content/apps/<id>/
   index.yaml
-  screenshot-1.png
+  screenshot-1.jpg              up to 4; jpg, png or gif
+src/lib/apps.ts                 the collection as the pages see it: order, accession numbers, shot kinds, pagination, display helpers
+src/lib/fixtures.ts             WLA_FIXTURES padding
 ```
 
-- The id is the app's folder name, set via `generateId`, so parent folders can be reorganised without changing URLs.
+- The id is the app's folder name (`generateId`), so parent folders can be reorganised without changing URLs. The glob pattern is `*/index.{yaml,yml}`: one entry per folder, directly under `src/content/apps/`.
 - No `slug` field: Astro treats `data.slug` as an id override.
-- **Screenshots live in the repo for now and move to remote hosting (CDN or object storage) when size requires it.**
-  - Starting budget, unmeasured: up to 4 per app, 1600px wide max, ~150 KB each. Step 1.2 replaces these with measured numbers.
-  - Two limits apply: originals count against the git repo; Astro's optimized output counts against the GitHub Pages site limit (1 GB as documented; re-check). 2,000 apps at the starting budget is ~1.2 GB of originals.
-  - Migration must not require hand edits: a script rewrites `image` paths to URLs, and the schema accepts either.
-  - Host on our own domain, to keep the no-third-party-requests rule.
+- **Screenshots live in the repo** and move to remote hosting on our own domain when size requires it. Measured 2026-09-24 with the 43 seed apps (58 images):
+  - Originals: 7.3 MB, avg 125 KB. Browser captures are 1280×800 JPEG; store images 600×1300.
+  - Published: every image becomes webp. Full size (detail page) avg 67 KB for browser captures, 37 KB for phone; the 720px index cover avg 25 KB; 200px thumbnail avg 9 KB. **~100 KB published per screenshot**, so 2,000 apps × 2 screenshots ≈ 400 MB on Pages (limit 1 GB) and ≈ 500 MB of originals in git. Revisit hosting around 1,000 apps, as `PLAN.md` says.
+  - Unreferenced originals are pruned from `dist/_astro/` by the inline `prune-images` integration in `astro.config.mjs` (Astro copies collection images into the output as well as the variants and doesn't know to delete them; without the hook the site was twice the size).
+  - Animated GIFs come through as animated webp (frames, loop and delays kept); verified with a 2-frame test.
+  - Migration must not require hand edits: a script would rewrite `image` paths to URLs, and the schema would accept either.
 
 ### Fields
 
@@ -57,8 +57,8 @@ Required:
 |---|---|---|
 | `name` | string | |
 | `tagline` | string, ≤ 140 chars | one sentence. The most important field on the index |
-| `url` | URL | primary destination: live site, store page, repo, or video |
-| `form_factor` | enum or list of enum | `website, web app, ios app, android app, mac app, windows app, command line, browser extension, bot, hardware, other`. List multiple forms, primary first. `website` = read or look at; `web app` = do things in; default to `web app`. Values are display strings. Name is provisional |
+| `url` | URL | primary destination: live site, store page, repo, or video. The visit button's label is derived from its host ("open in App Store ↗", "open in Google Play ↗", "view on GitHub ↗", "open in Chrome Web Store ↗", else "visit ↗") |
+| `form_factor` | enum or list of enum | `website, ios app, android app, mac app, windows app, command line, browser extension, bot, hardware, other`. List multiple forms, primary first. Anything that runs in a browser tab is `website`. Values are display strings |
 | `by` | person or list of persons | maker(s) |
 | `why` | string, 1-3 sentences | curator's note, first person: why it was collected |
 | `collected` | date | date added. Drives order and accession number. Never backdate after publishing |
@@ -67,15 +67,19 @@ Optional:
 
 | Field | Type | Notes |
 |---|---|---|
-| `description` | string, 1-2 paragraphs | factual background, third person. Plain text |
-| `created` | year, `"YYYY-MM"`, or date | when it was made. Often unknown |
-| `curator` | person | defaults to Vivian in the schema; omit in YAML |
+| `created` | year, `"YYYY-MM"`, or date | when it was made. Often unknown. Shown as "2025", "may 2026" or "12 may 2026"; "date unknown" if absent |
+| `curator` | person | defaults to Vivian Qu in the schema; omit in YAML |
+| `links` | list of links | secondary links, shown on the label as "also: label ↗ · label ↗". A link is a URL string (labelled from its hostname at build time; `x.com` → "twitter") or `{label, url}` |
 | `quotes` | list of `{text, url, by?, date?}` | the maker's own words. `by` defaults to the first maker |
-| `screenshots` | list of `{image, alt, caption?, taken?}` | `image`: `image()` path, still or GIF. `alt` required. `taken`: capture date. First item is the index cover. Expected for every app; the schema allows none, and the build lists apps without one |
+| `screenshots` | list of `{image, alt, caption?, taken?, bezel?, panel?}` | `image`: path relative to the entry, still or GIF. `alt` required. `taken`: capture date. First item is the index cover. Expected for every app; the schema allows none, and the build lists apps without one. `bezel` / `panel`: see `UPLOAD.md`; only meaningful on phone-shaped images |
 
-**Person:** a name string, or `{name, url?, links?}`. `links` items are a URL string or `{label, url}`; a bare URL is labelled from its hostname at build time (`x.com` → "twitter", otherwise the domain). Full URLs, not handles, so a new platform needs no schema change.
+**Person:** a name string, or `{name, url?}`. Shown as the name, linked when `url` is present.
 
-**Quotes replace embeds.** A tweet embed is a third-party script and disappears with the tweet. Store the text, attribution and source URL. Works for any platform.
+**Derived, never written:** whether a screenshot is phone-shaped (`tall`: height / width > 1.6), the accession number, the index position, the domain in a tile's title bar, the visit label, link labels.
+
+**Quotes replace embeds.** A tweet embed is a third-party script and disappears with the tweet. Store the text, attribution and source URL.
+
+**Dropped while reconciling with the final UI (2.2):** `description` (never shown), person-level `links` (never shown; app-level `links` replaced them).
 
 ### Example
 
@@ -84,76 +88,62 @@ Optional:
 name: Pocket Metronome
 tagline: a metronome that fits in a browser tab.
 url: https://example.com/pocket-metronome
-form_factor: [web app, ios app]
+form_factor: [website, ios app]
 by:
   - name: Example Maker
     url: https://example.com
-    links:
-      - https://github.com/example
-      - { label: newsletter, url: https://example.com/news }
-why: |
-  i keep this open in a tab whenever i practice. it does one thing and has no settings.
+why: i keep this open in a tab whenever i practice. it does one thing and has no settings.
 collected: 2026-09-20
 
-description: |
-  Built in a weekend by a piano teacher. A tempo dial and a start button.
 created: 2024
+links:
+  - https://github.com/example/pocket-metronome
+  - { label: newsletter, url: https://example.com/news }
 quotes:
   - text: "<exact words, copied from the source>"
     url: https://example.com/post
     date: 2024-06-01
 screenshots:
-  - image: ./screenshot-1.png
+  - image: ./screenshot-1.jpg
     alt: a large tempo dial set to 96 bpm above a single start button
     caption: the whole app
     taken: 2026-09-20
 ```
 
-### Implementation notes
+### Implementation notes (verified by the build)
 
-From the Astro docs and the installed source. **Not yet verified by a build.**
-
-- Config: `src/content.config.ts`. `defineCollection` from `astro:content`, `glob` from `astro/loaders`, `z` from `astro/zod`. zod 4: `z.url()`.
-- Loader: `glob({ pattern: '**/*.{yaml,yml}', base: './src/content/apps', generateId })`. `base` is relative to the project root. `generateId` returns the entry's folder name and rejects `page`.
-- Schema is a function: `({ image }) => z.object({...})`. `image()` paths resolve relative to the entry file; files must be under `src/`. Documented for Markdown frontmatter only; YAML uses the same code path (step 1.2 confirms).
-- Animated GIFs may not survive optimization; if not, serve them unoptimized.
-- YAML dates: `2026-08-04` → Date, `2024` → number, `2024-06` → string. Use `z.coerce.date()` for `collected` and `taken`; `created` is a union, normalised in one helper.
-- Normalise `form_factor` and `by` to arrays with a transform. `curator` uses `.default()`.
-- Pagination: `paginate()` in `getStaticPaths`. If `/apps/page/N` collides with `/apps/<id>`, move pagination to `/page/N`.
-- Schema errors fail `astro build`, naming the file and field. No other validation tooling.
-- Dev server may not pick up edits to entries in subfolders (withastro/astro #17991, unverified). Fix: `npx astro dev stop && npx astro dev`.
+- Config: `src/content.config.ts`. `defineCollection` from `astro:content`, `glob` from `astro/loaders`, `z` from `astro/zod` (zod 4: `z.url()`; `.default()` returns its value without parsing, so defaults are given in output shape).
+- YAML is parsed by js-yaml: `2026-08-04` → Date, `2024` → number, `2024-06` → string. `collected`, `taken` and quote dates use `z.coerce.date()`; `created` is a union formatted by `fmtCreated`.
+- `image()` works from YAML entries exactly as from Markdown frontmatter. At query time an image is `ImageMetadata` (`src`, `width`, `height`, `format`) with no filesystem path, which is why `bezel` is a hand flag rather than detected at build time (`scripts/bezel.mjs` runs the heuristic when adding an entry).
+- Pagination is hand-rolled (`paginate()` in `src/lib/apps.ts`) because Astro's `paginate()` can't put page 1 at `/` and the rest at `/page/N`. The routes are rest params: `[...page].astro` with `page` undefined or `page/N`.
+- Fixtures: `WLA_FIXTURES=2000 npm run build` pads the collection at query time (`import.meta.env.WLA_FIXTURES`); nothing is written to disk. Fixture covers borrow real screenshots; a fifth have none. Measured 2026-09-24: 2,169 pages in 1.5 s (images cached), index page 14 KB of HTML, first / last / newer / older correct at both ends.
+- Schema errors fail `astro build` with exit 1, naming the file and each bad field. No other validation tooling.
+- Dev server may not pick up edits to entries in subfolders. Fix: `npx astro dev stop && npx astro dev`.
 - Docs: https://docs.astro.build/en/guides/content-collections/ · https://docs.astro.build/en/reference/content-loader-reference/ · https://docs.astro.build/en/guides/images/ · https://docs.astro.build/en/guides/routing/
 
 ### Steps
 
-- [ ] 1.1 `src/content.config.ts` with the `apps` collection.
-- [ ] 1.2 Verify `image()` from a YAML entry: build one entry with a screenshot and confirm an optimized image is emitted. Test a GIF. Record original and `dist/` sizes for 3-4 real captures; set the screenshot budget from them.
-- [ ] 1.3 Seed entries from Vivian's list, with our own screenshots. Include edge cases: no screenshot, hardware or bot, very long name, two makers, multiple form factors.
-- [ ] 1.4 Fixtures: `WLA_FIXTURES=2000 npm run build` pads the collection at query time, never on disk. Vary name length and `form_factor`; omit screenshots on some.
-- [ ] 1.5 `npm run check` and `npm run build` pass. A broken YAML fails the build with a readable error.
+- [x] 1.1 `src/content.config.ts` with the `apps` collection.
+- [x] 1.2 `image()` from YAML verified; GIF verified; sizes measured (above).
+- [x] 1.3 43 seed entries generated from the prototype's data (taglines and `why` notes are drafts for Vivian to rewrite; several makers are "maker unknown"). Edge cases present: hardware (avian-visitors), very long name (a-pint-near-me), two makers (grug, in-the-weights), multiple form factors (pi-fyi, talktyl), snake_case name (has_not_been_viewed_much). None lacks a screenshot; fixtures cover that.
+- [x] 1.4 Fixtures.
+- [x] 1.5 `npm run check` and `npm run build` pass (`@astrojs/check` + `typescript` added as dev dependencies); a broken YAML fails the build readably.
 
 ## Part 2: Index and detail pages
 
-### Design brief
+### Design
 
-**UI is mocked in Claude Design before any page code is written.** Pages are built once, from the chosen mock.
+**Decided and built.** The UI was mocked as a clickable prototype (2026-09-20/21, ~50 rounds of comments) and the pages were ported from it; the prototype source (`mocks/`) was deleted once they matched (2026-09-24). The commentable prototype remains at https://claude.ai/artifact/HekHRU75TE2AwN9hbrvgDG (private Artifact, version 50) as the design record. The stylesheet `src/styles/site.css` is the prototype's CSS; the frame construction, phone morph and bezel handling took several rounds to get right, so change them with care.
 
-Follow the style direction in `CLAUDE.md`. Mock at desktop and 390px.
+**The design, in words** (exact values are in `site.css`):
 
-- **Index styles to mock.** Each is one page of up to 24 apps in `collected` order; pagination is the same for all. Mock each with and without cover images, in two states: 8 apps, and a full page of 24 (page N of 84).
-
-  | Style | Layout | Reference | Risk |
-  |---|---|---|---|
-  | Card catalog | index cards, text-led: accession number, name, tagline, maker, form factor; small taped-on image if present | Everest Pipkin's tools list, Robin Sloan's lab | plain if the cards carry too little |
-  | Ledger | one dense list as a single paper object (receipt, printout, checkout card): one row per app | 512kb.club, Low-tech Magazine archive | thin at 8 rows; no room for images |
-  | Shelf | grid of objects, one per app, image or icon led; fallback graphic if no image | 100r.co projects, neal.fun, wholeearth.info | depends on every app having usable art |
-  | Screenshot wall | image-led tiles in small window frames, name and tagline beneath | itch.io, Neocities browse | apps without screenshots look second-class |
-  | Programme guide | printed TV listings: rows grouped by `form_factor` as channels, apps as slots | hypertext.tv | groups are uneven; reads empty at 8 |
-  | Desk | objects placed at varied angles and offsets, positions derived from the id | Space Jam 1996, windows93 | 24 per page is near its limit; needs a stacked layout at 390px |
-
-  Pick one as the index. The others stay candidates for a later front page (`PLAN.md`).
-- **Pagination:** first / previous / position / next / last. Never a full list of page numbers.
-- **Detail page:** screenshots (cover, then the rest with captions) beside a museum-style label, plus previous / next / back to index. Mock the fullest and the barest seed entry.
+- **Ground:** pale aqua `#d3f0f1` with a faint teal dot grid (24px), hard shadows `#6fbcc0`.
+- **Header, every page:** wordmark (3.4rem, "little" with the hand-drawn azure underline, lime star and azure squiggle hanging off it) over the subtitle "purveyors of fine apps". Right side: on the index, the expanded / compact switch (small azure pills) with "43 apps · newest first" under it; on a detail page, the newer / position / older pager. On a phone the right side stacks under the subtitle, left-aligned, with the detail pager centred.
+- **Footer, every page except about:** a short centred dashed rule, then "est. 2026 · about" (plain underline).
+- **Index (wall):** 3 tiles across (2 on a tablet, 1 on a phone), 24 per page. A tile is a retro window (2px indigo frame built as an indigo block with the title bar and capture inset 2px; title bar shows the app's domain without `www.`) holding the cover cropped from the top at 16:10, tilted a degree or so, hard shadow; below it the name (serif), tagline and "by maker". A phone-shaped cover gets a drawn phone (thin outline, peach body, pill at the top) instead of a window; a store marketing panel gets a thin bordered image; a capture that already contains a device is shown bare. Hover: the tile rises 1px and its shadow deepens one shade. Pagination strip at the bottom is level (only screenshots tilt); on a phone "first" / "last" collapse to their arrows.
+- **Compact view:** one paper printout with sprocket-hole strips down both sides, headed "REGISTER OF HOLDINGS" over a short dashed rule and "page N of M · date range" in muted ink. One row per app: accession number, name over tagline, maker, form, date collected. No thumbnails. Mint row stripes.
+- **Detail page:** stacked. The cover sits in one static frame on a plain paper mat, centred; with several screenshots, thumbnails under the frame pick the capture (labels for hidden radio buttons, so no JS) and the image cross-fades while the frame morphs between window, phone and bare as the capture's kind requires; left / right arrow keys also page (the page's only JS, inline, optional). Caption line "N of M · caption" left, visit button right. The curator's note is a tilted sticky note on the mat's edge. Below: the museum label (maker, name, date · form, tagline, optional "also: website ↗" secondary links, maker's words as a quote, credit line and accession number). On a phone the mat runs edge to edge and sits level, and the note drops below it.
+- **About page:** the original home page's design (window with `weirdlittleapps.com/about` in its title bar, wordmark, subtitle, lede, admission-free ticket, star and squiggle, motto sticky note with "read the post") with a short origin text and a quote from the post styled like maker's words. Copy is a draft.
 
 Detail label contents. Non-field values are derived at build time:
 
@@ -162,31 +152,25 @@ Detail label contents. Non-field values are derived at build time:
 | maker, title, date | `by`, `name`, `created` ("date unknown" if absent) |
 | form | `form_factor`, joined |
 | credit line | "collected by `curator`, `collected` year" |
-| accession number | `YYYY.NNNN`: `collected` year + order within that year, ties broken by id |
-| background | `description` |
+| accession number | `YYYY.NNNN`: `collected` year + order of collection within that year, ties broken by id |
 | curator's note | `why`; visible without scrolling on desktop |
 | maker's words | `quotes` |
-
-References: see the end of this file.
+| secondary links | `links`, as "also: label ↗" |
 
 ### Steps
 
-- [ ] 2.1 **Finalize the UI.** In Claude Design, using the seed entries: mock the six index styles, narrow to one, then mock pagination and the detail page to match it. Update `PLAN.md` → Architecture with the chosen design. No page code before this.
-- [ ] 2.2 Reconcile the schema with the final UI: add fields it needs, drop fields it never shows. Update seed entries.
-- [ ] 2.3 Shared base layout: fonts, tokens, background.
-- [ ] 2.4 Index with `paginate()`. Confirm there is no route collision with the detail route.
-- [ ] 2.5 Detail page: `src/pages/apps/[id].astro`.
-- [ ] 2.6 Link home to `/apps`.
-- [ ] 2.7 At 2,000 fixtures: build time, index page weight, pagination and previous / next correct at both ends.
-- [ ] 2.8 Screenshot `/apps`, `/apps/page/2` and a detail page (desktop and mobile); compare with the mocks. Update `PLAN.md` → Architecture and Roadmap.
-
-## Blocked on
-
-- Vivian's starter list of apps (step 1.3).
+- [x] 2.1 Finalize the UI (prototype).
+- [x] 2.2 Schema reconciled: `links` added, `bezel` / `panel` hints added, `tall` derived, `description` and person `links` dropped, rule 5 amended for store images.
+- [x] 2.3 Shared layout (`src/layouts/Base.astro`, `src/styles/site.css`, `src/components/`); the old `index.astro` became `/about`.
+- [x] 2.4 Index and compact view with pagination.
+- [x] 2.5 Detail page.
+- [x] 2.6 Arrow-key paging.
+- [x] 2.7 2,000-fixture build measured.
+- [x] 2.8 Screenshots compared with the prototype on desktop and mobile; `mocks/` deleted.
 
 ## References
 
-Design input for the mocks. Assessed from fetched page text, not viewed rendered. All loaded when fetched unless flagged.
+Design input for the prototype. Assessed from fetched page text, not viewed rendered.
 
 | Site | Relevant for | Notes |
 |---|---|---|

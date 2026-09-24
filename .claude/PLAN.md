@@ -27,19 +27,22 @@ For the content model: every entry should answer *why does this exist* and *what
 
 ## Architecture
 
-**Stack.** Astro 7, static output, no integrations. Node 22 (`.nvmrc`). Playwright is a dev dependency used only by `scripts/screenshot.mjs`.
+**Stack.** Astro 7, static output, no third-party integrations. Node 22 (`.nvmrc`). Dev dependencies: Playwright (only for `scripts/screenshot.mjs`), `@astrojs/check` + `typescript` (only for `npm run check`).
 
-**Content.** One folder per app: `src/content/apps/<id>/index.yaml` plus our own screenshots. A single Astro content collection validates every entry against a zod schema at build time; an invalid entry fails the build. Spec: `.claude/registry-plan.md`. Not built yet.
+**Content.** One folder per app: `src/content/apps/<id>/index.yaml` plus our own screenshots. A single Astro content collection (`src/content.config.ts`) validates every entry against a zod schema at build time; an invalid entry fails the build. `src/lib/apps.ts` derives everything the schema leaves out (index order, accession numbers, phone-shaped screenshots, pagination) and `WLA_FIXTURES=2000 npm run build` pads it with filler for stress tests. Spec and measurements: `.claude/registry-plan.md`. Screenshot rules: `UPLOAD.md`.
 
 **Routes.**
 
-| Route | Status | Contents |
-|---|---|---|
-| `/` | live | "work in progress" page |
-| `/apps`, `/apps/page/N` | planned | paginated index of all apps |
-| `/apps/<id>` | planned | detail page per app |
+| Route | Contents |
+|---|---|
+| `/`, `/page/N/` | the index: a screenshot wall, 24 apps a page, newest first |
+| `/compact/`, `/compact/page/N/` | the same list as a text-only printout |
+| `/apps/<id>/` | detail page per app, with newer / older |
+| `/about/` | origin story, in the original work-in-progress page's design (copy is a draft) |
 
-**Visual identity.** Defined in `CLAUDE.md` → Style direction. Light only. Fonts self-hosted in `public/fonts/`. Design tokens are in `:root` in `src/pages/index.astro` and move to a shared layout when a second page is built. New page UI is mocked in Claude Design before it is coded.
+Pages are `src/pages/*.astro` on `src/layouts/Base.astro`, with the header, footer, pager, view switch and wall tile in `src/components/`. Images go through `astro:assets` (`<Image>`): every screenshot is served as webp at the size each place needs, and an inline integration in `astro.config.mjs` prunes the unreferenced originals from `dist/`. The detail page carries the site's only client JS (eight inline lines: arrow keys page through screenshots; the thumbnails work without it).
+
+**Visual identity.** Defined in `CLAUDE.md` → Style direction. Light only. Fonts self-hosted in `public/fonts/`. Design tokens are in `:root` in `src/styles/site.css`, which is the prototype's stylesheet ported as is. The design record is the commentable prototype linked from `.claude/registry-plan.md`.
 
 **Hosting.** GitHub Pages. Every push to `main` runs `.github/workflows/deploy.yml`: `withastro/action` builds, `actions/deploy-pages` publishes. Pages source is "GitHub Actions". Repo: `vivqu/weird-little-apps` (public).
 
@@ -52,7 +55,7 @@ For the content model: every entry should answer *why does this exist* and *what
 
 ## Roadmap
 
-1. **Now: registry scaffold.** Schema and seed apps, then a paginated index and a detail page. Spec and steps: `.claude/registry-plan.md`. Blocked on Vivian's starter list of apps.
+1. **Now: content.** The registry scaffold shipped 2026-09-24 with 43 seed apps whose taglines and curator's notes are drafts from the prototype, several makers unverified ("maker unknown"), and `collected` dates spread one a day backwards from 2026-09-20 by the seed script. Rewrite the copy, fix the makers, then deploy. The about page copy is also a draft.
 2. **Next:** the items under "After the registry scaffold".
 3. **Also wanted:** OG images, a guestbook.
 
@@ -69,7 +72,7 @@ Out of scope for `.claude/registry-plan.md`. The collection is expected to reach
 - **Entry-drafting tool.** Writing entries limits how fast the collection grows. Input: a URL. Output: a draft `index.yaml` (name, tagline, `form_factor`, maker and links, candidate quotes), screenshots taken with Playwright within the size budget, and a Wayback Machine capture. The curator writes `why` and reviews the rest. The tool never drafts `why`.
 - **Link checking.** Before ~200 apps. A scheduled job updates one standing issue and writes to a separate status file, not the hand-written YAML. It never blocks PRs. It flags candidates for `status: gone`; a person decides.
 - **Contributions.** A `CONTRIBUTING` note and a PR template containing a commented YAML block to paste. The Astro build on PRs validates the schema. Add `submitted_by` if submitter and curator ever differ.
-- **Files and hosting at scale.** At ~1,000 apps, shard `src/content/apps/` by year collected. Ids come from the app's own folder name, so URLs don't change. GitHub's web UI stops listing a directory past 1,000 entries. Screenshots are the size risk: GitHub Pages has a published-site size limit (1 GB as documented; re-check), so plan to move images out of the repo around then. Measure build time with 2,000 fixture entries beforehand; image optimization is the slow step and is cached between builds.
+- **Files and hosting at scale.** At ~1,000 apps, shard `src/content/apps/` by year collected (the glob pattern becomes `*/*/index.yaml`; ids come from the app's own folder name, so URLs don't change). GitHub's web UI stops listing a directory past 1,000 entries. Screenshots are the size risk: about 100 KB published per screenshot after optimization (measured, `.claude/registry-plan.md`) against GitHub Pages' 1 GB site limit (as documented; re-check), so plan to move images out of the repo around then. A 2,000-app build takes seconds once images are cached; a cold build re-optimizes every image (~10 ms each).
 - **Fields to add later.** The scaffold schema has twelve fields by design. Add a field when a design iteration needs it and the data exists for most apps. All are optional, so existing YAML doesn't change.
   - Likely first: `made_with` (`[swift, claude code]`; records agent involvement per app), `status` (`alive` / `napping` / `gone`, with `gone_since`) when the first collected app dies, `archive_url` (a Wayback Machine capture, saved at collection time), `tags` once something links from them.
   - Links: `source`, `writeup`, and `links: [{label, url}]` for anything else. Named fields, not one typed array.
