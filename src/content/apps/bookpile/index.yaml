@@ -1,13 +1,38 @@
 name: Bookpile
-tagline: the book you want, somewhere close by.
+tagline: for readers who know what they want. an isbn goes in; the nearest bookshops and libraries come out.
 url: https://bookpile.org/
 form_factor: web
-by: maker unknown
-why: the opposite of one-click ordering. it gives me a list of places to walk into.
+created: 2026-05-26
+links:
+  - { label: source code, url: https://codeberg.org/bitboxer/bookpile }
+by: 
+  - name: Bodo Tasche
+    url: https://codeberg.org/bitboxer
+why: dead simple and effective. shows local independent bookshops first.
 collected: 2026-07-15
+
+quotes:
+  - text: You already know what you want to read. You shouldn't need a recommendation engine or a marketplace to find it. You need a door to walk through. [...] No affiliate links. No tracking cookies. No price comparisons.
+    url: https://bookpile.org/about
+
+recs:
+  - { title: Bookpile, url: https://maurice-renck.de/en/blog/2026/bookpile, by: Maurice Renck, date: 2026-05-28 }
+  - { title: 'Rest with a receipt', url: https://www.densediscovery.com/issues/392, by: Dense Discovery, date: 2026-06-08 }
 
 screenshots:
   - image: ./screenshot-1.jpg
     alt: a large headline reading the book you want, somewhere close by, with an isbn field
     caption: an isbn is the only thing it asks for
     taken: 2026-09-20
+  - image: ./screenshot-2.png
+    alt: the page for a psalm for the wild-built, its cover beside the blurb, and below it a list of bookstores near london starting with daunt books and foyles
+    caption: book detail
+    taken: 2026-09-24
+  - image: ./screenshot-3.png
+    alt: the libraries tab for the same book, headed borrow it, don't buy it, listing worldcat, open library and inventaire with search links
+    caption: library list
+    taken: 2026-09-24
+  - image: ./screenshot-4.png
+    alt: the book tracking tab, seven services from the storygraph to goodreads, each with a track link to add the book to your shelf
+    caption: tracking list
+    taken: 2026-09-24

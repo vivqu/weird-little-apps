@@ -99,9 +99,6 @@ const visit = visitLabel(app);
       <h1>{nameParts(app.name).map((part, i) => <>{i > 0 && <wbr />}{part}</>)}</h1>
       <p class="date">{fmtCreated(app.created)} · {app.form_factor.join(', ')}</p>
       <p class="tagline">{app.tagline}</p>
-      {app.links?.length ? (
-        <p class="links">also: {app.links.map((l, i) => <>{i > 0 && ' · '}<a href={l.url}>{l.label} ↗</a></>)}</p>
-      ) : null}
       {app.quotes?.length ? (
         <section>
           <h2>maker’s words</h2>
@@ -113,7 +110,20 @@ const visit = visitLabel(app);
           ))}
         </section>
       ) : null}
-      <p class="credit">collected by {app.curator.name}, {app.collected.getUTCFullYear()}<br />no. {app.accession}</p>
+      {app.recs?.length ? (
+        <section class="recs">
+          <h2>recs</h2>
+          <ul>
+            {app.recs.map((r) => (
+              <li><a href={r.url}>{r.title}</a>{r.by && ` · ${r.by}`}{r.date && ` (${fmtDate(r.date)})`}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+      {app.links?.length ? (
+        <p class="links">also: {app.links.map((l, i) => <>{i > 0 && ' · '}<a href={l.url}>{l.label} ↗</a></>)}</p>
+      ) : null}
+      <p class="credit">collected by {app.curator.name}<br />no. {app.accession}</p>
     </article>
   </main>
   <SiteFooter />

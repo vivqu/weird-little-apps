@@ -59,11 +59,11 @@ Required:
 | Field | Type | Notes |
 |---|---|---|
 | `name` | string | |
-| `tagline` | string, ≤ 140 chars | one sentence. The most important field on the index |
+| `tagline` | string, ≤ 140 chars | one sentence. The most important field on the index. Voice: the museum label, restrained and explanatory with a hint of amusement, distilled from the maker's words |
 | `url` | URL | primary destination: live site, store page, repo, or video. The visit button's label is derived from its host ("open in App Store ↗", "open in Google Play ↗", "view on GitHub ↗", "open in Chrome Web Store ↗", else "visit ↗") |
 | `form_factor` | enum or list of enum | `web, ios, android, mac, windows, cli, extension, bot, hardware, other`. List multiple forms, primary first. Anything that runs in a browser tab is `web`. Values are display strings |
 | `by` | person or list of persons | maker(s) |
-| `why` | string, 1-3 sentences | curator's note, first person: why it was collected |
+| `why` | string, 1-3 sentences | curator's note, first person: why it was collected. Voice: punchy, opinionated, snarky; the contrast with the tagline is deliberate |
 | `collected` | date | date added. Drives order and accession number. Never backdate after publishing |
 
 Optional:
@@ -74,6 +74,7 @@ Optional:
 | `curator` | person | defaults to Vivian Qu in the schema; omit in YAML |
 | `links` | list of links | secondary links, shown on the label as "also: label ↗ · label ↗". A link is a URL string (labelled from its hostname at build time; `x.com` → "twitter") or `{label, url}` |
 | `quotes` | list of `{text, url, by?, date?}` | the maker's own words. `by` defaults to the first maker |
+| `recs` | list of `{title, url, by?, date?}` (or bare URLs) | where other people recommended or wrote about the app, listed under the maker's words |
 | `screenshots` | list of `{image, alt, caption?, taken?, bezel?, panel?}` | `image`: path relative to the entry, still or GIF. `alt` required. `taken`: capture date. First item is the index cover. Expected for every app; the schema allows none, and the build lists apps without one. `bezel` / `panel`: see `UPLOAD.md`; only meaningful on phone-shaped images |
 
 **Person:** a name string, or `{name, url?}`. Shown as the name, linked when `url` is present.
@@ -100,7 +101,7 @@ collected: 2026-09-20
 
 created: 2024
 links:
-  - https://github.com/example/pocket-metronome
+  - { label: source code, url: https://github.com/example/pocket-metronome }
   - { label: newsletter, url: https://example.com/news }
 quotes:
   - text: "<exact words, copied from the source>"
@@ -154,10 +155,11 @@ Detail label contents. Non-field values are derived at build time:
 |---|---|
 | maker, title, date | `by`, `name`, `created` ("date unknown" if absent) |
 | form | `form_factor`, joined |
-| credit line | "collected by `curator`, `collected` year" |
+| credit line | "collected by `curator`" (the year is in the accession number) |
 | accession number | `YYYY.NNNN`: `collected` year + order of collection within that year, ties broken by id |
 | curator's note | `why`; visible without scrolling on desktop |
 | maker's words | `quotes` |
+| recs | `recs`, as "→ title · by (date)" |
 | secondary links | `links`, as "also: label ↗" |
 
 ### Steps

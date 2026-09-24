@@ -18,6 +18,7 @@ Required:
 - `name`: the app's name, as its maker writes it
 - `tagline`: one lowercase sentence, 140 characters or fewer
   - shown on the index; the most important field
+  - voice: the curator's label. Explain what the thing is and does, plainly, with a hint of amusement; distil it from the maker's own words where you can. No jokes at the app's expense, no hype
 - `url`: where the visit button goes
   - the live site, store page, repo, or a video
   - the button's label follows the host: `apps.apple.com` → "open in App Store ↗", `play.google.com` → "open in Google Play ↗", `github.com` → "view on GitHub ↗", `chromewebstore.google.com` → "open in Chrome Web Store ↗", anything else → "visit ↗"
@@ -29,6 +30,7 @@ Required:
   - a name, or `{ name, url }` to link it
 - `why`: the curator's note, 1–3 sentences, first person: why it was collected
   - shown on a sticky note on the detail page
+  - voice: the curator off duty. Punchy, opinionated, a little snarky; the reaction, not the explanation. This is where the personality goes
 - `collected`: the date it was added, `2026-09-20`
   - sets the index order (newest first; same-day ties by id) and the accession number
   - a timestamp (`2026-09-20T14:30:00Z`) works if the order within a day matters
@@ -41,11 +43,14 @@ Optional:
   - shown as "2024", "jun 2024" or "1 jun 2024"; "date unknown" when absent
 - `curator`: defaults to Vivian Qu; omit
 - `links`: secondary links, shown as "also: label ↗ · label ↗"
+  - for open source: `- { label: source code, url: https://github.com/someone/app }`
   - a bare url (labelled from its hostname; `x.com` → "twitter") or `{ label, url }`
 - `quotes`: the maker's own words, a list of `{ text, url, by, date }`
   - copy the text exactly; `url` is where it came from
   - `by` defaults to the first maker; `date` is optional
   - use these instead of embeds
+- `recs`: where other people recommended or wrote about the app, shown as a list under the maker's words
+  - `{ title, url, by, date }`; `by` and `date` are optional. A bare url is titled from its hostname
 - `screenshots`: up to four, each with:
   - `image`: `./screenshot-1.jpg`, relative to this file
   - `alt`: what is visible, for someone who can't see it (required)
@@ -76,12 +81,14 @@ collected: 2026-09-20
 
 created: 2024
 links:
-  - https://github.com/example/pocket-metronome
+  - { label: source code, url: https://github.com/example/pocket-metronome }
   - { label: newsletter, url: https://example.com/news }
 quotes:
   - text: "<exact words, copied from the source>"
     url: https://example.com/post
     date: 2024-06-01
+recs:
+  - { title: Pocket Metronome, url: https://example.org/blog/pocket-metronome, by: A Blogger, date: 2024-07-02 }
 screenshots:
   - image: ./screenshot-1.jpg
     alt: a large tempo dial set to 96 bpm above a single start button

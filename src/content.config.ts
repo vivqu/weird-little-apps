@@ -29,6 +29,11 @@ const link = z
   .union([z.url(), z.object({ label: z.string().min(1), url: z.url() })])
   .transform((l) => (typeof l === 'string' ? { label: labelFor(l), url: l } : l));
 
+// recs: writing about the app by other people. A bare url (titled from its hostname) or {title, url, by?, date?}
+const rec = z
+  .union([z.url(), z.object({ title: z.string().min(1), url: z.url(), by: z.string().optional(), date: z.coerce.date().optional() })])
+  .transform((r) => (typeof r === 'string' ? { title: labelFor(r), url: r } : r));
+
 const apps = defineCollection({
   loader: glob({
     pattern: '*/index.{yaml,yml}',
@@ -54,6 +59,7 @@ const apps = defineCollection({
       created: z.union([z.number().int(), z.string().regex(/^\d{4}(-\d{2})?$/), z.date()]).optional(),
       curator: person.default({ name: 'Vivian Qu' }),
       links: z.array(link).optional(),
+      recs: z.array(rec).optional(),
       quotes: z
         .array(z.object({ text: z.string().min(1), url: z.url(), by: z.string().optional(), date: z.coerce.date().optional() }))
         .optional(),

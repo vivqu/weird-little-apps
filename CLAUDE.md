@@ -29,6 +29,7 @@ One folder, `src/content/apps/<id>/`, holding `index.yaml` and up to four screen
 - **The user commits.** Don't run `git commit` or `git push` unless asked. Leave the working tree in a state that's ready to commit.
 - **Verify visually with Playwright, not the Chrome extension.** Use `node scripts/screenshot.mjs` (see below) and read the PNG. It's faster, headless, and doesn't touch the user's browser. Only reach for `claude-in-chrome` when a page needs the user's logged-in session (e.g. a private Kinopio board).
 - **Astro 7 servers are daemons.** `astro dev` and `astro preview` detach and keep running; a second invocation reuses the existing one and ignores `--port`. Stop them with `npx astro dev stop` / `npx astro preview stop` (or `pkill -f astro`). The screenshot script serves `dist/` itself for this reason.
+- **Stale dev content.** After changing `src/content.config.ts` (a new field, a new collection), the running dev server keeps its old parsed entries and new fields don't show up. Fix: `npx astro dev stop && rm -f .astro/data-store.json && npx astro dev`. The build is unaffected.
 - **Stale dev CSS.** The dev server can keep serving an old `<style>` block after an edit (HTML updates, CSS doesn't). If a style change doesn't appear, restart with `npx astro dev stop && npx astro dev` before debugging the CSS, and tell the user to hard-refresh.
 - **Content is config.** Adding an app must never require code changes; it's one YAML file plus an optional screenshot. If a feature would break that, rethink it. Site-wide words (subtitle, lede, motto, the about page's status and next lines) live in `src/content/site.yaml`, not in templates.
 - **Keep it small.** No third-party integrations, frameworks, or client JS unless the plan actually calls for them. The only client JS is eight inline lines on the detail page (arrow-key paging), and the only integration is the inline image-pruning hook in `astro.config.mjs`.
@@ -67,6 +68,7 @@ rather than in a design tool.
 - **A few spot colors, used flat.** Solid fills on stickers and underlines. Colors are assigned to objects, not to hierarchy.
 - **Doodles in the margins.** Stars, squiggles, arrows. Hand-drawn strokes, a little wobbly, placed where someone was idly drawing around the content.
 - **Lowercase, plain-spoken copy.** Status lines, shop signs, "est. 2026." The voice is a person keeping a homepage, not a company launching a product.
+- **Two voices per app.** The `tagline` is the museum label: restrained, explanatory, a hint of amusement, distilled from the maker's own words. The `why` is the curator's sticky note: punchy, opinionated, vivacious. Keep them distinct; the contrast is the point.
 - **Light and bright.** Nearly every reference is a light page. Dark mode isn't part of the vocabulary.
 
 ### How to apply it here
