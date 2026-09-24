@@ -1,7 +1,7 @@
 name: PI.FYI
 tagline: people recommending things they love, like the old internet did.
 url: https://www.pi.fyi/
-form_factor: [website, ios app]
+form_factor: [web, ios]
 by: Perfectly Imperfect
 why: the biggest thing in the collection, and still weird. recommendations with no algorithm behind them.
 collected: 2026-09-05

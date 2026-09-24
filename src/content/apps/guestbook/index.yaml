@@ -1,7 +1,7 @@
 name: Ky’s guestbook
 tagline: leave a note, a poem or some ascii art on a paper card.
 url: https://ky.fyi/guestbook
-form_factor: website
+form_factor: web
 by:
   - name: Ky Decker
     url: https://ky.fyi

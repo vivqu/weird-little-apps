@@ -1,7 +1,7 @@
 name: In the Weights
 tagline: type a name and see how strongly the ai models remember it.
 url: https://intheweights.com/
-form_factor: website
+form_factor: web
 by:
   - Thomas Dimson
   - Joey Flynn

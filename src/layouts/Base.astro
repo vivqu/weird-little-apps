@@ -2,13 +2,17 @@
 // The document shell: head, fonts, the shared stylesheet. Pages add the site header and footer
 // themselves (the about page has neither).
 import '../styles/site.css';
+import { getSite } from '../lib/site';
 
 interface Props {
-  title: string;
+  /** the page's own part of the title; the site name is appended */
+  title?: string;
   description?: string;
   class?: string;
 }
-const { title, description = 'a collection of small, strange software, picked by hand.', class: cls } = Astro.props;
+const site = await getSite();
+const { title, description = site.description, class: cls } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : site.name;
 ---
 
 <!doctype html>
@@ -16,7 +20,7 @@ const { title, description = 'a collection of small, strange software, picked by
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

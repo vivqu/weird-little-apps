@@ -30,7 +30,7 @@ One folder, `src/content/apps/<id>/`, holding `index.yaml` and up to four screen
 - **Verify visually with Playwright, not the Chrome extension.** Use `node scripts/screenshot.mjs` (see below) and read the PNG. It's faster, headless, and doesn't touch the user's browser. Only reach for `claude-in-chrome` when a page needs the user's logged-in session (e.g. a private Kinopio board).
 - **Astro 7 servers are daemons.** `astro dev` and `astro preview` detach and keep running; a second invocation reuses the existing one and ignores `--port`. Stop them with `npx astro dev stop` / `npx astro preview stop` (or `pkill -f astro`). The screenshot script serves `dist/` itself for this reason.
 - **Stale dev CSS.** The dev server can keep serving an old `<style>` block after an edit (HTML updates, CSS doesn't). If a style change doesn't appear, restart with `npx astro dev stop && npx astro dev` before debugging the CSS, and tell the user to hard-refresh.
-- **Content is config.** Adding an app must never require code changes; it's one YAML file plus an optional screenshot. If a feature would break that, rethink it.
+- **Content is config.** Adding an app must never require code changes; it's one YAML file plus an optional screenshot. If a feature would break that, rethink it. Site-wide words (subtitle, lede, motto, the about page's status and next lines) live in `src/content/site.yaml`, not in templates.
 - **Keep it small.** No third-party integrations, frameworks, or client JS unless the plan actually calls for them. The only client JS is eight inline lines on the detail page (arrow-key paging), and the only integration is the inline image-pruning hook in `astro.config.mjs`.
 - **No third-party requests at runtime.** Fonts are self-hosted in `public/fonts/` and preloaded with `font-display: block` so text never flashes in a fallback face. Don't add Google Fonts `<link>`s back.
 
@@ -92,9 +92,11 @@ public/                         copied verbatim: CNAME (custom domain), favicon.
 public/fonts/                   self-hosted woff2 (Instrument Serif, IBM Plex Mono); preloaded, font-display: block
 scripts/screenshot.mjs          playwright screenshot helper
 scripts/bezel.mjs               heuristic: does a phone-shaped image already contain a rendered device?
-src/content.config.ts           the `apps` collection and its schema
+src/content.config.ts           the `apps` and `site` collections and their schemas
+src/content/site.yaml           site-wide copy and status: name, subtitle, lede, motto, the post, the about page's status / next lines
 src/content/apps/<id>/          one app: index.yaml + screenshots
 src/lib/apps.ts                 the collection in index order with derived fields, pagination, display helpers
+src/lib/site.ts                 getSite(): site.yaml as the pages see it
 src/lib/fixtures.ts             WLA_FIXTURES filler
 src/layouts/Base.astro          document shell (head, fonts, stylesheet)
 src/styles/site.css             the one stylesheet; tokens in :root

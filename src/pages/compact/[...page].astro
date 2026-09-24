@@ -21,10 +21,10 @@ interface Props {
 }
 const { page, total } = Astro.props;
 const { items } = page;
-const range = `${fmtDate(items[0].collected)} to ${fmtDate(items[items.length - 1].collected)}`;
+const range = items.length ? `${fmtDate(items[0].collected)} to ${fmtDate(items[items.length - 1].collected)}` : 'nothing yet';
 ---
 
-<Base title={`compact${page.n > 1 ? ` · page ${page.n}` : ''} · weird little apps`}>
+<Base title={`compact${page.n > 1 ? ` · page ${page.n}` : ''}`}>
   <SiteHeader>
     <ViewSwitch view="compact" page={page.n} {total} />
   </SiteHeader>

@@ -1,7 +1,7 @@
 name: Every train, a note
 tagline: a jazz combo played in real time by every nyc subway train.
 url: https://www.trainjazz.com/
-form_factor: website
+form_factor: web
 by:
   - name: Joshua Wolk
     url: https://www.joshuawolk.com

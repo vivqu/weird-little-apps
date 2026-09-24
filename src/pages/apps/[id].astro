@@ -30,7 +30,7 @@ const pickId = (j: number) => `pick-${j + 1}`;
 const visit = visitLabel(app);
 ---
 
-<Base title={`${app.name} · weird little apps`} description={app.tagline}>
+<Base title={app.name} description={app.tagline}>
   <SiteHeader home={pageHref(pageOf(app))}>
     <nav class="pager around" aria-label="previous and next app">
       {newer ? <a rel="prev" href={`/apps/${newer.id}/`} title={newer.name}>‹ newer</a> : <span class="off">‹ newest</span>}

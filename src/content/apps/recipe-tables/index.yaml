@@ -1,7 +1,7 @@
 name: RecipeTables
 tagline: any recipe, converted to a table you can cook from.
 url: https://recipetables.com/
-form_factor: website
+form_factor: web
 by: maker unknown
 why: it deletes the grandmother anecdote and gives you the cooking for engineers grid. less scrolling, more cooking.
 collected: 2026-08-20

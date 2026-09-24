@@ -21,10 +21,9 @@ interface Props {
   total: number;
 }
 const { page, total } = Astro.props;
-const title = page.n === 1 ? 'weird little apps' : `page ${page.n} · weird little apps`;
 ---
 
-<Base {title}>
+<Base title={page.n === 1 ? undefined : `page ${page.n}`}>
   <SiteHeader>
     <ViewSwitch view="expanded" page={page.n} {total} />
   </SiteHeader>

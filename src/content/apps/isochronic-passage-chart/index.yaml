@@ -1,7 +1,7 @@
 name: Isochronic Passage Chart for Travellers
 tagline: how far you can travel in a day, drawn as an 1881 lithograph.
 url: https://isochronic-passage-chart.netlify.app/#lon
-form_factor: website
+form_factor: web
 by:
   - name: Ethan Mollick
     url: https://www.oneusefulthing.org

@@ -29,7 +29,7 @@ For the content model: every entry should answer *why does this exist* and *what
 
 **Stack.** Astro 7, static output, no third-party integrations. Node 22 (`.nvmrc`). Dev dependencies: Playwright (only for `scripts/screenshot.mjs`), `@astrojs/check` + `typescript` (only for `npm run check`).
 
-**Content.** One folder per app: `src/content/apps/<id>/index.yaml` plus our own screenshots. A single Astro content collection (`src/content.config.ts`) validates every entry against a zod schema at build time; an invalid entry fails the build. `src/lib/apps.ts` derives everything the schema leaves out (index order, accession numbers, phone-shaped screenshots, pagination) and `WLA_FIXTURES=2000 npm run build` pads it with filler for stress tests. Spec and measurements: `.claude/registry-plan.md`. Screenshot rules: `UPLOAD.md`.
+**Content.** One folder per app: `src/content/apps/<id>/index.yaml` plus our own screenshots. A single Astro content collection (`src/content.config.ts`) validates every entry against a zod schema at build time; an invalid entry fails the build. `src/lib/apps.ts` derives everything the schema leaves out (index order, accession numbers, phone-shaped screenshots, pagination) and `WLA_FIXTURES=2000 npm run build` pads it with filler for stress tests. Spec and measurements: `.claude/registry-plan.md`. Screenshot rules: `UPLOAD.md`. Site-wide copy (name, subtitle, lede, motto, the post, the about page's status and next lines) is a second one-entry collection, `src/content/site.yaml`, read through `getSite()`; `{apps}` in the status line becomes "43 apps", linked to the index.
 
 **Routes.**
 

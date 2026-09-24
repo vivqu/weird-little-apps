@@ -1,7 +1,7 @@
 name: Clueless Closet
 tagline: jessie’s real wardrobe, browsable like cher’s closet computer.
 url: https://jessiechar.com/closet
-form_factor: website
+form_factor: web
 by:
   - name: Jessie Char
     url: https://jessiechar.com

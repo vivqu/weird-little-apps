@@ -1,15 +1,18 @@
 ---
 // The origin story, in the original home page's design: a window, an admission ticket, the motto
-// on a sticky note. Copy is a draft.
+// on a sticky note. The words come from src/content/site.yaml.
 import Base from '../layouts/Base.astro';
 import Doodles from '../components/Doodles.astro';
 import { getApps } from '../lib/apps';
+import { getSite } from '../lib/site';
 
 const apps = await getApps();
-const post = 'https://vivqu.substack.com/p/making-space-for-weirdness-and-fun';
+const site = await getSite();
+// "{apps}" in the status becomes "43 apps", linked to the index
+const [before, after] = site.status.split('{apps}');
 ---
 
-<Base title="about · weird little apps" description="Apps built with purpose. Tiny by design. Made with love." class="s-about">
+<Base title="about" description={site.lede} class="s-about">
   <main class="about">
     <div class="frame">
       <Doodles />
@@ -20,19 +23,12 @@ const post = 'https://vivqu.substack.com/p/making-space-for-weirdness-and-fun';
         </header>
         <div class="content">
           <h1><a href="/">weird <em>little</em> apps</a></h1>
-          <p class="eyebrow">purveyors of fine apps <span class="nowrap">· est. 2026</span></p>
-          <p class="lede">Apps built with purpose. Tiny by design. Made with love.</p>
-          <div class="story">
-            <p>this is a collection of small, strange software: apps made for one specific need, sometimes for one specific person, that would never have survived a planning meeting.</p>
-            <blockquote>
-              <p>I want to showcase more of the fun and creativity that right now is getting lost in the noise of the Internet.</p>
-              <footer>Vivian Qu, <a href={post}>making space for weirdness and fun</a>, 3 aug 2026</footer>
-            </blockquote>
-            <p>every app here is picked by hand, with a note on why. nothing is ranked.</p>
-          </div>
+          <p class="eyebrow">{site.subtitle} <span class="nowrap">· est. {site.established}</span></p>
+          <p class="lede">{site.lede}</p>
           <dl class="now">
-            <dt>collected by</dt><dd>vivian qu</dd>
-            <dt>so far</dt><dd><a class="wavy" href="/">{apps.length.toLocaleString('en')} apps</a>, newest first</dd>
+            <dt>status</dt>
+            <dd class="cursor">{before}{after !== undefined && <a href="/">{apps.length.toLocaleString('en')} apps</a>}{after}</dd>
+            {site.next && <><dt>next</dt><dd>{site.next}</dd></>}
           </dl>
         </div>
       </section>
@@ -40,7 +36,7 @@ const post = 'https://vivqu.substack.com/p/making-space-for-weirdness-and-fun';
     </div>
     <footer class="note">
       <span class="tape" aria-hidden="true"></span>
-      <p class="motto"><q>Make the weird thing. The right people will find it.</q><a class="wavy" href={post}>read the post</a></p>
+      <p class="motto"><q>{site.motto}</q><a class="wavy" href={site.post}>read the post</a></p>
     </footer>
   </main>
 </Base>

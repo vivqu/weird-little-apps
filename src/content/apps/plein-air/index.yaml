@@ -1,7 +1,7 @@
 name: Plein Air
 tagline: 'a painting for right now: the weather and the hour where you are, as a canvas.'
 url: https://art.joonas.wtf/
-form_factor: website
+form_factor: web
 by:
   - name: Joonas
     url: https://joonas.wtf

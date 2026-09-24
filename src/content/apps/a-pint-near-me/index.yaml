@@ -1,7 +1,7 @@
 name: 'A Pint Near Me: UK Pub Finder & Pub Density Map'
 tagline: nearly 50,000 pubs, and which constituency has the most per person.
 url: https://knowwhereconsulting.co.uk/maps/pubs/
-form_factor: website
+form_factor: web
 by:
   - name: Know Where Consulting
     url: https://knowwhereconsulting.co.uk

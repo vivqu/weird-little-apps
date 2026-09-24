@@ -1,7 +1,7 @@
 name: WHEN
 tagline: a timeline of the future, according to prediction markets.
 url: https://when.val.run/
-form_factor: website
+form_factor: web
 by: Charlie
 why: a calendar where every entry is a bet. i check what is supposed to happen next week.
 collected: 2026-08-25

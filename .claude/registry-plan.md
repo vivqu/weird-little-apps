@@ -38,6 +38,7 @@ src/content/apps/<id>/
   screenshot-1.jpg              up to 4; jpg, png or gif
 src/lib/apps.ts                 the collection as the pages see it: order, accession numbers, shot kinds, pagination, display helpers
 src/lib/fixtures.ts             WLA_FIXTURES padding
+src/content/site.yaml           site-wide copy and status (the `site` collection; schema in content.config.ts), read via src/lib/site.ts
 ```
 
 - The id is the app's folder name (`generateId`), so parent folders can be reorganised without changing URLs. The glob pattern is `*/index.{yaml,yml}`: one entry per folder, directly under `src/content/apps/`.
@@ -58,7 +59,7 @@ Required:
 | `name` | string | |
 | `tagline` | string, ≤ 140 chars | one sentence. The most important field on the index |
 | `url` | URL | primary destination: live site, store page, repo, or video. The visit button's label is derived from its host ("open in App Store ↗", "open in Google Play ↗", "view on GitHub ↗", "open in Chrome Web Store ↗", else "visit ↗") |
-| `form_factor` | enum or list of enum | `website, ios app, android app, mac app, windows app, command line, browser extension, bot, hardware, other`. List multiple forms, primary first. Anything that runs in a browser tab is `website`. Values are display strings |
+| `form_factor` | enum or list of enum | `web, ios, android, mac, windows, cli, extension, bot, hardware, other`. List multiple forms, primary first. Anything that runs in a browser tab is `web`. Values are display strings |
 | `by` | person or list of persons | maker(s) |
 | `why` | string, 1-3 sentences | curator's note, first person: why it was collected |
 | `collected` | date | date added. Drives order and accession number. Never backdate after publishing |
@@ -88,7 +89,7 @@ Optional:
 name: Pocket Metronome
 tagline: a metronome that fits in a browser tab.
 url: https://example.com/pocket-metronome
-form_factor: [website, ios app]
+form_factor: [web, ios]
 by:
   - name: Example Maker
     url: https://example.com

@@ -14,7 +14,7 @@ const TAG = [
   'a button. press it. that is the app.', 'keeps count so you do not have to.',
 ];
 const MAKER = ['Example Maker', 'A. Tinkerer', 'Sam Placeholder', 'R. Fixture', 'Kit & Pat Sample', 'Dana Lorem', 'Io Mockwell'];
-const FORMS = ['website', 'website', 'website', 'website', 'ios app', 'mac app', 'command line', 'browser extension', 'bot', 'hardware', 'android app'] as const;
+const FORMS = ['web', 'web', 'web', 'web', 'ios', 'mac', 'cli', 'extension', 'bot', 'hardware', 'android'] as const;
 
 function hash(s: string) {
   let h = 2166136261;
@@ -36,7 +36,7 @@ export function makeFixtures(real: Entry[], total: number): Entry[] {
     if (used.has(id)) continue;
     used.add(id);
     const form = FORMS[(h >>> 9) % FORMS.length];
-    const url = form === 'ios app' ? `https://apps.apple.com/app/${id}` : form === 'android app' ? `https://play.google.com/store/apps/${id}` : form === 'command line' ? `https://github.com/example/${id}` : `https://example.com/${id}`;
+    const url = form === 'ios' ? `https://apps.apple.com/app/${id}` : form === 'android' ? `https://play.google.com/store/apps/${id}` : form === 'cli' ? `https://github.com/example/${id}` : `https://example.com/${id}`;
     const cover = covers[(h >>> 15) % covers.length];
     out.push({
       id,
@@ -44,7 +44,7 @@ export function makeFixtures(real: Entry[], total: number): Entry[] {
       data: {
         name, url,
         tagline: TAG[(h >>> 13) % TAG.length],
-        form_factor: (h >>> 3) % 9 === 0 ? [form, 'ios app'] : [form],
+        form_factor: (h >>> 3) % 9 === 0 ? [form, 'ios'] : [form],
         by: [{ name: MAKER[(h >>> 17) % MAKER.length] }],
         why: 'placeholder curator’s note. one to three sentences, first person, about why this was collected.',
         collected: new Date(Date.UTC(2026, 7, 1) - i * 36e5 * 19), // roughly one every 19 hours, going back

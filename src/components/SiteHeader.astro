@@ -2,18 +2,20 @@
 // Every page but about: the wordmark with its doodles over the subtitle, and a slot on the right
 // (the view switch on the index, the newer / older pager on a detail page).
 import Doodles from './Doodles.astro';
+import { getSite } from '../lib/site';
 
 interface Props {
   /** where the wordmark goes: the index page the visitor came from */
   home?: string;
 }
 const { home = '/' } = Astro.props;
+const site = await getSite();
 ---
 
 <header class="site">
   <div class="brand">
     <span class="mark"><a class="wordmark" href={home}>weird <em>little</em> apps</a><Doodles /></span>
-    <p>purveyors of fine apps</p>
+    <p>{site.subtitle}</p>
   </div>
   <slot />
 </header>

@@ -6,8 +6,8 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 export const FORM_FACTORS = [
-  'website', 'ios app', 'android app', 'mac app', 'windows app',
-  'command line', 'browser extension', 'bot', 'hardware', 'other',
+  'web', 'ios', 'android', 'mac', 'windows',
+  'cli', 'extension', 'bot', 'hardware', 'other',
 ] as const;
 
 // ids that would collide with the index routes if detail pages ever moved to the root
@@ -75,4 +75,20 @@ const apps = defineCollection({
     }),
 });
 
-export const collections = { apps };
+// Site-wide copy and status: one file, src/content/site.yaml. Read it with getSite() from src/lib/site.ts.
+const site = defineCollection({
+  loader: glob({ pattern: 'site.{yaml,yml}', base: './src/content' }),
+  schema: z.object({
+    name: z.string().min(1),
+    subtitle: z.string().min(1),
+    established: z.number().int(),
+    lede: z.string().min(1),
+    description: z.string().min(1),
+    post: z.url(),
+    motto: z.string().min(1),
+    status: z.string().min(1),
+    next: z.string().optional(),
+  }),
+});
+
+export const collections = { apps, site };

@@ -1,7 +1,7 @@
 name: Infinite Mac
 tagline: every classic mac os, running in your browser.
 url: https://infinitemac.org/
-form_factor: website
+form_factor: web
 by:
   - name: Mihai Parparita
     url: https://persistent.info

@@ -1,7 +1,7 @@
 name: Avian Visitors
 tagline: a live collage of every bird that passes your window.
 url: https://theodore.net/projects/AvianVisitors/
-form_factor: [hardware, website]
+form_factor: [hardware, web]
 by:
   - name: Teddy Warner
     url: https://theodore.net

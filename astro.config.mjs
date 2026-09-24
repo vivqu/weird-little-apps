@@ -7,8 +7,10 @@ import { join } from 'node:path';
 // the optimized variants, and Astro only prunes originals it knows the source path of (not the
 // case for collection images). Delete any image in dist/_astro/ that no page or stylesheet refers
 // to, so the published site holds the webp variants only.
+/** @param {{ dir: URL, logger: import('astro').AstroIntegrationLogger }} options */
 async function pruneUnreferencedImages({ dir, logger }) {
   const root = dir.pathname;
+  /** @type {string[]} */
   const files = await readdir(root, { recursive: true });
   const text = await Promise.all(files.filter((f) => /\.(html|css|js|xml)$/.test(f)).map((f) => readFile(join(root, f), 'utf8')));
   const referenced = text.join('\n');

@@ -1,0 +1,14 @@
+# Site-wide copy and status. The pages read this; edit here rather than in the templates.
+name: weird little apps
+subtitle: purveyors of fine apps
+established: 2026
+lede: Apps built with purpose. Tiny by design. Made with love.
+description: a hand-picked collection of small, strange software.
+
+# the post the site grew out of, and its motto (on the about page's sticky note)
+post: https://vivqu.substack.com/p/making-space-for-weirdness-and-fun
+motto: Make the weird thing. The right people will find it.
+
+# the status block on the about page; {apps} becomes "43 apps", linked to the index
+status: collected {apps}
+next: add filtering and tagging
