@@ -1,0 +1,36 @@
+name: grug
+tagline: every sunrise, one small wisdom. maybe draw feeling. that all.
+url: https://apps.apple.com/app/grug/id6751649802
+form_factor: ios app
+by:
+  - name: Jip van der Velde
+    url: https://x.com/jipvandervelde
+  - name: Ocho
+    url: https://www.grug.so/
+why: no login. no cloud. no tracking. it won an apple design award by refusing to be more than it is.
+collected: 2026-09-13
+
+created: 2025
+quotes:
+  - text: make unreasonable little things and see if the world cares
+    url: https://x.com/jipvandervelde/status/2062258773264408583
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a hand-drawn sunrise above four lines of grug wisdom
+    caption: sun rise every day
+    taken: 2026-09-20
+  - image: ./screenshot-2.jpg
+    alt: app store screenshot two
+    caption: today wisdom
+    taken: 2026-09-20
+    bezel: true
+  - image: ./screenshot-3.jpg
+    alt: app store screenshot three
+    caption: draw grug dream on wisdom
+    taken: 2026-09-20
+    bezel: true
+  - image: ./screenshot-4.jpg
+    alt: app store screenshot four
+    caption: widget show wisdom on cave
+    taken: 2026-09-20
+    bezel: true

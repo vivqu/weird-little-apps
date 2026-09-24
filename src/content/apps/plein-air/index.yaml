@@ -1,0 +1,15 @@
+name: Plein Air
+tagline: 'a painting for right now: the weather and the hour where you are, as a canvas.'
+url: https://art.joonas.wtf/
+form_factor: website
+by:
+  - name: Joonas
+    url: https://joonas.wtf
+why: a weather app that gives you no advice at all. it just stands next to you and looks at the sky.
+collected: 2026-09-12
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a painted sky for new york, overcast, mid-morning
+    caption: new york, overcast, 10:45
+    taken: 2026-09-20

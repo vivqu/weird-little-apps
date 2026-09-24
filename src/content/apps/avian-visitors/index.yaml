@@ -1,0 +1,16 @@
+name: Avian Visitors
+tagline: a live collage of every bird that passes your window.
+url: https://theodore.net/projects/AvianVisitors/
+form_factor: [hardware, website]
+by:
+  - name: Teddy Warner
+    url: https://theodore.net
+why: an afternoon project that turned a window into a guestbook for birds.
+collected: 2026-08-16
+
+created: 2026-05
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a project writeup with a framed display of illustrated birds on a desk
+    caption: the writeup
+    taken: 2026-09-20

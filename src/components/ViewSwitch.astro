@@ -1,0 +1,22 @@
+---
+// The index header's right side: the expanded / compact switch with the count under it.
+import { pageHref } from '../lib/apps';
+
+interface Props {
+  view: 'expanded' | 'compact';
+  page: number;
+  total: number;
+}
+const { view, page, total } = Astro.props;
+const views = [
+  ['expanded', pageHref(page)],
+  ['compact', pageHref(page, '/compact')],
+] as const;
+---
+
+<div class="side">
+  <nav class="viewswitch" aria-label="view">
+    {views.map(([label, href]) => (label === view ? <b aria-current="true">{label}</b> : <a href={href}>{label}</a>))}
+  </nav>
+  <p class="count">{total.toLocaleString('en')} apps · newest first</p>
+</div>

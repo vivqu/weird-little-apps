@@ -1,0 +1,285 @@
+/* Site stylesheet. Ported from the design prototype (mocks/mock.css, final 2026-09-21); copy rules
+   from there rather than re-deriving them. Light only: there is no dark variant. */
+@font-face { font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; font-display: block; src: url('/fonts/InstrumentSerif-400.woff2') format('woff2'); }
+@font-face { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-display: block; src: url('/fonts/InstrumentSerif-400-italic.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: block; src: url('/fonts/IBMPlexMono-400.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: block; src: url('/fonts/IBMPlexMono-500.woff2') format('woff2'); }
+
+:root {
+  /* ground + paper: pale aqua with a faint dot grid; the window is a whisper of peach */
+  --paper: #d3f0f1; --paper-2: #fffaf7; --bar: #fff0e8; --grid: rgba(20, 110, 118, 0.18);
+  /* ink is indigo, never black; shadows are deep aqua, never grey */
+  --ink: #2b2d6b; --ink-muted: #7379ad; --rule: #2b2d6b; --shadow: #6fbcc0; --shadow-hover: #4aa3a8; --tape: #c3c8ff;
+  /* riso accents, each belonging to one object */
+  --riso-blue: #3d9be6; --riso-pink: #ffa8ca; --riso-yellow: #ffe45c; --riso-mint: #aaf0d2; --riso-sky: #9fd8f8; --riso-lime: #b5ee5a; --note: #fff6ae;
+  --serif: 'Instrument Serif', 'Iowan Old Style', 'Times New Roman', serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { overflow-x: clip; } /* rotated objects must not widen the page */
+body {
+  margin: 0; padding: 0 1.25rem 4rem; color: var(--ink); font: 14px/1.5 var(--mono);
+  background-color: var(--paper);
+  background-image: radial-gradient(var(--grid) 1.2px, transparent 1.6px);
+  background-size: 24px 24px;
+}
+a { color: inherit; }
+ol { list-style: none; margin: 0; padding: 0; }
+.name { font-family: var(--serif); font-size: 1.5rem; line-height: 1.05; display: block; overflow-wrap: break-word; }
+.tagline, .who, .acc { display: block; }
+.who, .acc { color: var(--ink-muted); font-size: 0.78rem; }
+.tape { position: absolute; width: 4rem; height: 1.1rem; background: color-mix(in srgb, var(--tape) 78%, transparent); border-left: 1px dashed rgba(43,45,107,.35); border-right: 1px dashed rgba(43,45,107,.35); }
+
+/* header: the wordmark with its doodles, the subtitle, and whatever the page puts on the right */
+header.site { max-width: 72rem; margin: 2rem auto 3.2rem; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 2rem; }
+header.site .mark { position: relative; display: inline-block; } /* doodles hang off the wordmark itself */
+.doodle { position: absolute; pointer-events: none; }
+.doodle.star { left: calc(100% + 0.2rem); top: -1.3rem; width: 2.7rem; color: var(--riso-lime); transform: rotate(-18deg); }
+.doodle.squiggle { left: calc(100% + 0.7rem); bottom: 0.25rem; width: 5rem; color: #6cc3f0; transform: rotate(-10deg); }
+.nowrap { white-space: nowrap; }
+header.site .brand p { margin: 1.1rem 0 0; }
+.wordmark { font: 400 3.4rem/1 var(--serif); text-decoration: none; position: relative; isolation: isolate; letter-spacing: -0.01em; }
+.wordmark em { font-style: italic; color: var(--riso-blue); position: relative; }
+/* the hand-drawn underline: a rounded, slightly tilted bar behind the word */
+.wordmark em::after { content: ''; position: absolute; left: -2%; right: -2%; bottom: 0.02em; height: 0.18em; background: var(--riso-sky); z-index: -1; transform: rotate(-1.2deg); border-radius: 999px; }
+header.site .side { display: flex; flex-direction: column; align-items: flex-end; gap: 1.1rem; } /* same gap as title to subtitle; both columns share a bottom line */
+header.site .pager { margin: 0; font-size: 0.78rem; }
+header.site p { margin: 0; color: var(--ink); font-size: 0.8rem; letter-spacing: 0.06em; }
+main { max-width: 72rem; margin: 0 auto; }
+
+/* expanded / compact switch: small paper pills */
+.viewswitch { display: flex; align-items: center; gap: 0.35rem; font-size: 0.7rem; }
+.viewswitch a, .viewswitch b { padding: 0.12rem 0.6rem; border: 1.5px solid var(--rule); border-radius: 99px; background: var(--paper-2); font-weight: 400; text-decoration: none; }
+.viewswitch b { background: var(--riso-sky); box-shadow: 2px 2px 0 var(--shadow); font-weight: 500; }
+.viewswitch a:hover { background: color-mix(in srgb, var(--riso-sky) 45%, var(--paper-2)); }
+
+/* covers */
+.cover { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; background: var(--bar); }
+.none { display: grid; place-items: center; background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(43,45,107,.07) 6px 7px), var(--paper-2); color: var(--ink-muted); font-size: 0.72rem; letter-spacing: 0.08em; text-align: center; }
+
+/* pager: a strip of paper with perforations between the stubs. level: only screenshots sit at an angle */
+.pager { max-width: max-content; margin: 3.5rem auto 0; display: flex; flex-wrap: wrap; justify-content: center; background: var(--paper-2); border: 2px solid var(--rule); border-radius: 4px; box-shadow: 4px 4px 0 var(--shadow); font-size: 0.82rem; }
+.pager > * { padding: 0.55rem 0.9rem; text-decoration: none; border-left: 2px dashed var(--ink-muted); }
+.pager > :first-child { border-left: 0; }
+.pager a:hover { background: var(--riso-sky); }
+.pager b { font-weight: 500; background: var(--bar); }
+.pager .off { color: var(--ink-muted); opacity: 0.55; }
+.pager.around a, .pager.around .off { max-width: 18rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* compact view: a paper printout with sprocket-hole strips down both sides */
+.ledger { display: flex; max-width: 62rem; margin: 0 auto; border: 2px solid var(--rule); box-shadow: 6px 6px 0 var(--shadow); background: var(--paper-2); transform: rotate(-0.3deg); }
+.ledger .feed { flex: 0 0 1.6rem; background: radial-gradient(circle, var(--paper) 0 0.3rem, var(--rule) 0.3rem 0.4rem, transparent 0.42rem) center top / 1.6rem 1.5rem repeat-y; border-right: 1.5px dashed var(--ink-muted); }
+.ledger .feed:last-child { border-right: 0; border-left: 1.5px dashed var(--ink-muted); }
+.ledger .sheet { flex: 1; min-width: 0; padding: 1.4rem 1.2rem; }
+.ledger .head, .ledger .tail { text-align: center; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.75rem; margin: 0 0 1rem; }
+.ledger .head b { display: block; font-weight: 500; font-size: 0.85rem; letter-spacing: 0.16em; }
+.ledger .head span { display: block; width: max-content; max-width: 100%; margin: 0.45rem auto 0; padding-top: 0.45rem; border-top: 1.5px dashed var(--ink-muted); font-size: 0.7rem; color: var(--ink-muted); }
+.ledger .tail { margin: 1.2rem 0 0; color: var(--ink-muted); }
+.ledger li:nth-child(odd) { background: rgba(170, 240, 210, 0.35); }
+.ledger li a { display: grid; grid-template-columns: 5.2rem 1fr 9rem 7rem 6.5rem; gap: 0 0.9rem; align-items: center; padding: 0.4rem 0.5rem; text-decoration: none; border-bottom: 1px dotted var(--ink-muted); font-size: 0.78rem; }
+.ledger li a:hover { background: var(--riso-sky); }
+.ledger .name { font-size: 1.25rem; }
+.ledger .name, .ledger .tagline { display: block; }
+.ledger .acc { color: var(--ink); }
+.ledger .date { text-align: right; color: var(--ink-muted); }
+
+/* screenshot wall: the mini window (2px ink ring built as an indigo block with the bar and capture inset) */
+.miniwin { display: block; padding: 2px; border-radius: 5px; overflow: hidden; box-shadow: 4px 4px 0 var(--shadow); background: var(--rule); }
+.miniwin .bar { border-radius: 3px 3px 0 0; display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.45rem; border-bottom: 2px solid var(--rule); font-size: 0.68rem; background: repeating-linear-gradient(180deg, transparent 0 3px, color-mix(in srgb, var(--rule) 22%, transparent) 3px 4px), var(--bar); }
+.miniwin > .cover { border-radius: 0 0 3px 3px; }
+.miniwin .bar i { width: 0.5rem; height: 0.5rem; border: 1.5px solid var(--rule); border-radius: 50%; background: var(--riso-pink); }
+.miniwin .bar i:nth-child(2) { background: var(--riso-yellow); }
+.miniwin .bar i:nth-child(3) { background: var(--riso-mint); }
+.miniwin .bar em { flex: 1; font-style: normal; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: var(--bar); margin: 0 0.3rem; }
+/* a phone app's tile is a phone, standing in the same space a window would take */
+.wall .phonebox { display: grid; place-items: center; aspect-ratio: 16 / 11.3; margin-bottom: 1.3rem; }
+.wall .phone { position: relative; display: block; width: 32%; aspect-ratio: 9 / 19.5; padding: 0.18rem; border: 2px solid var(--rule); border-radius: 1.15rem; background: var(--bar); box-shadow: 4px 4px 0 var(--shadow); transform: rotate(2deg); transition: translate .25s ease, box-shadow .25s ease; }
+.wall .phone::before { content: ''; position: absolute; z-index: 1; top: 0.5rem; left: 50%; width: 30%; height: 0.36rem; translate: -50% 0; border-radius: 99px; background: var(--ink); }
+.wall .phone .cover { width: 100%; height: 100%; aspect-ratio: auto; border: 1.5px solid var(--rule); border-radius: 0.9rem; }
+/* the capture already contains a rendered device: shown bare, its white ground melted into the page */
+.wall .phone.bare { width: auto; height: 100%; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; overflow: hidden; }
+.wall .phone.bare::before { content: none; }
+.wall .phone.bare .cover { object-fit: contain; border-radius: 0; mix-blend-mode: multiply; transform: scale(1.12); }
+.wall a:hover .phone.bare { box-shadow: none; }
+/* a store marketing panel (headline + device on a full-bleed colour): no drawn phone, just a thin ink edge */
+.wall .phone.panel { width: auto; height: 100%; padding: 2px; border: 0; border-radius: 0.5rem; overflow: hidden; background: var(--rule); }
+.wall .phone.panel::before { content: none; }
+.wall .phone.panel .cover { border: 0; border-radius: calc(0.5rem - 2px); }
+.wall a:hover .phone { translate: 0 -1px; box-shadow: 4px 4px 0 var(--shadow-hover); }
+/* three across; frames keep browser proportions (16:10) */
+.wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem 2.2rem; }
+.wall a { display: block; text-decoration: none; }
+.wall .miniwin { margin-bottom: 1.3rem; transition: translate .25s ease, box-shadow .25s ease; }
+.wall li:nth-child(odd) .miniwin { transform: rotate(-1deg); }
+.wall li:nth-child(3n) .miniwin { transform: rotate(1.2deg); }
+.wall a:hover .miniwin { translate: 0 -1px; box-shadow: 4px 4px 0 var(--shadow-hover); }
+.wall .name { font-size: 1.7rem; }
+.wall .tagline { font-size: 0.9rem; margin: 0.3rem 0; }
+
+/* detail: the cover is the centrepiece, mounted on a paper mat so a busy capture reads as one
+   contained object; the curator's note is stuck to its corner; the label follows */
+.detail { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; justify-items: center; }
+.detail .hero { position: relative; width: min(100%, 46rem); }
+.detail .mat { position: relative; padding: 1.3rem; background: var(--paper-2); border: 2px solid var(--rule); box-shadow: 8px 8px 0 var(--shadow); transform: rotate(-0.5deg); }
+.detail .pick { position: absolute; opacity: 0; pointer-events: none; }
+/* the stage never changes size; the frame inside it is one static object that changes shape */
+.detail .mat { --pw: 31%; } /* phone width: a 9:19.5 body filling the stage height */
+.detail .stage { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 16 / 10.7; }
+.detail .frame { display: flex; flex-direction: column; width: 100%; height: 100%; overflow: hidden; padding: 2px; border: 0 solid var(--rule); border-radius: 5px; background: var(--rule); text-decoration: none; transition: width .35s ease, border-radius .35s ease, padding .35s ease; }
+.detail .frame .bar { border-radius: 3px 3px 0 0; position: relative; flex: none; display: flex; align-items: center; gap: 0.25rem; height: 1.6rem; padding: 0 0.5rem; border-bottom: 2px solid var(--rule); font-size: 0.7rem; background: repeating-linear-gradient(180deg, transparent 0 3px, color-mix(in srgb, var(--rule) 22%, transparent) 3px 4px), var(--bar); transition: height .35s ease; }
+.detail .frame .bar i { width: 0.5rem; height: 0.5rem; border: 1.5px solid var(--rule); border-radius: 50%; background: var(--riso-pink); transition: opacity .2s; }
+.detail .frame .bar i:nth-child(2) { background: var(--riso-yellow); }
+.detail .frame .bar i:nth-child(3) { background: var(--riso-mint); }
+.detail .frame .bar em { flex: 1; font-style: normal; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: var(--bar); margin: 0 0.3rem; transition: opacity .2s; }
+.detail .screen::after { content: ''; position: absolute; z-index: 1; top: 0.7rem; left: 50%; width: 30%; height: 1.05rem; translate: -50% 0; border-radius: 99px; background: var(--ink); opacity: 0; transition: opacity .2s; }
+.detail .screen { position: relative; flex: 1; min-height: 0; overflow: hidden; border-radius: 0 0 3px 3px; transition: border-radius .35s ease; }
+.detail .screen .cover { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; opacity: 0; transition: opacity .3s ease; }
+.detail .caps .cap { display: none; margin: 0; }
+.detail .mat:has(.pick:nth-of-type(1):checked) :is(.screen .cover:nth-child(1), .cap:nth-child(1)),
+.detail .mat:has(.pick:nth-of-type(2):checked) :is(.screen .cover:nth-child(2), .cap:nth-child(2)),
+.detail .mat:has(.pick:nth-of-type(3):checked) :is(.screen .cover:nth-child(3), .cap:nth-child(3)),
+.detail .mat:has(.pick:nth-of-type(4):checked) :is(.screen .cover:nth-child(4), .cap:nth-child(4)) { opacity: 1; display: block; }
+/* phone-shaped capture picked: same frame, new shape (same 2px ink line and peach body, just phone-shaped) */
+.detail .mat:has(.pick.tall:checked) .frame { width: var(--pw); border-width: 2px; border-radius: 2.6rem; padding: 0.3rem; background: var(--bar); }
+.detail .mat:has(.pick.tall:checked) .bar { height: 0; border-bottom-width: 0; background: none; overflow: hidden; }
+.detail .mat:has(.pick.tall:checked) .bar :is(i, em) { opacity: 0; }
+.detail .mat:has(.pick.tall:checked) .screen::after { opacity: 1; transition-delay: .25s; }
+.detail .mat:has(.pick.tall:checked) .screen { border: 2px solid var(--rule); border-radius: 2.25rem; }
+/* the capture already contains a rendered device: drop our frame and let its own bezel show.
+   multiply melts the image's white ground into the paper mat */
+.detail .mat:has(.pick.bare:checked) .frame { padding: 0; border-color: transparent; border-radius: 0; background: none; }
+.detail .mat:has(.pick.bare:checked) .screen { border: 0; border-radius: 0; }
+.detail .mat:has(.pick.bare:checked) .screen::after { opacity: 0; transition-delay: 0s; }
+.detail .mat:has(.pick.bare:checked) .screen .cover { object-fit: contain; mix-blend-mode: multiply; transform: scale(1.08); /* trims the listing image's empty margin and edge lines */ }
+.detail .mat:has(.pick.panel:checked) .frame { padding: 2px; border-width: 0; border-radius: 0.8rem; background: var(--rule); }
+.detail .mat:has(.pick.panel:checked) .screen { border: 0; border-radius: calc(0.8rem - 2px); }
+.detail .mat:has(.pick.panel:checked) .screen::after { opacity: 0; transition-delay: 0s; }
+.detail .capline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3rem; margin-top: 0.5rem; font-size: 0.78rem; }
+.detail .cap b { font-weight: 500; white-space: nowrap; }
+.detail .thumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 0.6rem; }
+.detail .thumbs label { width: 5.2rem; border: 2px solid var(--rule); border-radius: 3px; overflow: hidden; cursor: pointer; opacity: 0.6; transition: opacity .15s, transform .15s; }
+.detail .thumbs label:hover { opacity: 1; transform: translateY(-2px); }
+.detail .thumbs label.tall { width: 1.9rem; border-radius: 0.4rem; }
+.detail .thumbs label.tall .cover { aspect-ratio: 9 / 19.5; }
+.detail .thumbs label.bare { border-color: transparent; border-radius: 0.5rem; }
+.detail .thumbs label.bare .cover { mix-blend-mode: multiply; transform: scale(1.42); transform-origin: 50% 42%; }
+.detail .mat:has(.pick:nth-of-type(1):checked) .thumbs label:nth-child(1),
+.detail .mat:has(.pick:nth-of-type(2):checked) .thumbs label:nth-child(2),
+.detail .mat:has(.pick:nth-of-type(3):checked) .thumbs label:nth-child(3),
+.detail .mat:has(.pick:nth-of-type(4):checked) .thumbs label:nth-child(4) { opacity: 1; box-shadow: 3px 3px 0 var(--shadow); }
+.detail .visit { white-space: nowrap; padding: 0.45rem 1.1rem; border: 2px solid var(--rule); border-radius: 99px; background: var(--riso-sky); box-shadow: 3px 3px 0 var(--shadow); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+.detail .visit:hover { background: var(--riso-blue); color: var(--paper-2); }
+.detail .noshot { position: relative; max-width: 22rem; margin: 1rem auto; padding: 2.5rem 1.5rem; text-align: center; border: 2px dashed var(--ink); background: color-mix(in srgb, var(--paper-2) 60%, transparent); transform: rotate(-2deg); }
+.detail .noshot .tape { top: -0.6rem; left: 50%; margin-left: -2rem; transform: rotate(3deg); }
+.detail .noshot .visit { position: absolute; left: 50%; bottom: -1.3rem; translate: -50% 0; transform: rotate(-1.5deg); }
+.detail .why { position: absolute; right: -11.5rem; bottom: 9.5rem; width: 14rem; z-index: 2; padding: 1.2rem 1rem 0.8rem; background: var(--note); box-shadow: 4px 5px 0 var(--shadow); transform: rotate(2.5deg); font-size: 0.85rem; }
+.detail .why .tape { top: -0.55rem; left: 50%; margin-left: -2rem; transform: rotate(-3deg); }
+.detail .why h2 { font: 500 0.72rem var(--mono); letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 0.4rem; }
+.detail .why p { margin: 0; }
+/* the museum label */
+.label { width: min(100%, 38rem); background: var(--paper-2); border: 2px solid var(--rule); box-shadow: 6px 6px 0 var(--shadow); padding: 1.6rem 1.6rem 1.2rem; }
+.label .maker { margin: 0; font-weight: 500; }
+.label h1 { font: italic 400 clamp(2rem, 5vw, 3rem)/1 var(--serif); margin: 0.2rem 0 0.4rem; overflow-wrap: anywhere; }
+.label .date { margin: 0 0 1rem; color: var(--ink-muted); font-size: 0.8rem; }
+.label .links { margin: 0 0 1rem; font-size: 0.82rem; color: var(--ink-muted); }
+.label .links a { color: var(--ink); }
+.label .tagline { margin: 0 0 1.1rem; }
+.label h2 { font: 500 0.72rem var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin: 1.4rem 0 0.4rem; }
+.label p { margin: 0 0 0.6rem; }
+.label blockquote { margin: 0; padding-left: 0.9rem; border-left: 3px solid var(--tape); }
+.label blockquote footer { font-size: 0.76rem; color: var(--ink-muted); }
+.label .credit { margin: 1.4rem 0 0; padding-top: 0.8rem; border-top: 1.5px dashed var(--ink-muted); font-size: 0.76rem; color: var(--ink-muted); }
+
+/* footer: a short rule, only a little wider than the words, like the one under "register of holdings" */
+footer.site { width: max-content; max-width: 100%; margin: 4rem auto 0; padding: 0.9rem 1.2rem 0; border-top: 1.5px dashed var(--ink-muted); text-align: center; font-size: 0.8rem; letter-spacing: 0.06em; }
+footer.site a:hover { color: var(--riso-blue); }
+
+/* smooth sine-wave underline for text links (the browser's `wavy` renders as a zigzag) */
+.wavy { --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='4' viewBox='0 0 12 4'%3E%3Cpath d='M0 2C2 0 4 0 6 2S10 4 12 2' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E"); position: relative; color: inherit; text-decoration: none; white-space: nowrap; }
+.wavy::after { content: ''; position: absolute; left: 0; right: 0; bottom: -0.3em; height: 4px; background: currentColor; -webkit-mask: var(--wave) repeat-x left center / 12px 4px; mask: var(--wave) repeat-x left center / 12px 4px; }
+.wavy:hover { color: var(--riso-blue); }
+
+/* about: the original home page's objects (window, admission ticket, motto sticky note), new words */
+.s-about { display: grid; place-items: center; min-height: 100vh; padding-block: 4rem; font-size: 15px; line-height: 1.55; }
+.about { width: min(100%, 36rem); }
+.about .frame { position: relative; }
+.about .window { position: relative; z-index: 1; overflow: hidden; background: var(--paper-2); border: 2px solid var(--rule); border-radius: 6px; box-shadow: 6px 6px 0 var(--shadow); }
+.about .titlebar { display: flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.7rem; border-bottom: 2px solid var(--rule); font-size: 0.8rem; letter-spacing: 0.02em; background: repeating-linear-gradient(180deg, transparent 0 3px, color-mix(in srgb, var(--rule) 22%, transparent) 3px 4px), var(--bar); }
+.about .dots { display: flex; gap: 0.3rem; }
+.about .dots i { width: 0.7rem; height: 0.7rem; border: 2px solid var(--rule); border-radius: 50%; background: var(--riso-pink); }
+.about .dots i:nth-child(2) { background: var(--riso-yellow); }
+.about .dots i:nth-child(3) { background: var(--riso-mint); }
+.about .titlebar .name { font: 400 0.8rem/1.55 var(--mono); flex: 1; text-align: center; background: var(--bar); padding: 0 0.5rem; margin: 0 0.5rem; }
+.about .content { padding: 1.75rem 1.75rem 1.5rem; }
+.about .eyebrow { margin: 0 0 1.1rem; font-size: 0.78rem; letter-spacing: 0.14em; color: var(--ink-muted); }
+.about h1 { font: 400 clamp(2.6rem, 9vw, 4rem)/0.98 var(--serif); letter-spacing: -0.01em; margin: 0 0 0.9rem; position: relative; isolation: isolate; }
+.about h1 a { text-decoration: none; }
+.about h1 em { font-style: italic; color: var(--riso-blue); position: relative; }
+.about h1 em::after { content: ''; position: absolute; left: -2%; right: -2%; bottom: 0.02em; height: 0.18em; background: var(--riso-sky); z-index: -1; transform: rotate(-1.2deg); border-radius: 999px; }
+.about .lede { margin: 0 0 1.25rem; }
+.about .story blockquote { margin: 0 0 1.1rem; padding-left: 0.9rem; border-left: 3px solid var(--tape); }
+.about .story blockquote p { margin: 0 0 0.4rem; font-size: 0.95rem; }
+.about .story blockquote footer { font-size: 0.76rem; color: var(--ink-muted); }
+.about .story p { margin: 0 0 1rem; font-size: 0.9rem; }
+.about .now { display: grid; grid-template-columns: auto 1fr; gap: 0.35rem 0.8rem; margin: 0.4rem 0 0; padding: 0.9rem 0 0; border-top: 1.5px dashed var(--ink-muted); font-size: 0.82rem; color: var(--ink-muted); }
+.about .now dt::after { content: ':'; }
+.about .now dd { margin: 0; color: var(--ink); }
+.about .doodle.star { left: -5.2rem; top: -3.6rem; width: 2.9rem; }
+.about .doodle.squiggle { left: 12rem; bottom: -4.6rem; width: 5.5rem; transform: rotate(-14deg); }
+/* the admission ticket with its torn edge: a wavy tear along the right, drawn with a mask so the
+   tear is a real edge (it hangs over the grid) */
+.about .sticker.new { --tooth: 0.5rem; --pitch: calc(100% / 2.5);
+  --tear: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%208%2016'%20preserveAspectRatio='none'><path%20d='M0%200H4C7%202.7%207%205.3%204%208S1%2013.3%204%2016H0Z'%20fill='%23000'/></svg>");
+  --mask: linear-gradient(#000 0 0) left / calc(100% - var(--tooth) + 1px) 100% no-repeat, var(--tear) right / var(--tooth) var(--pitch) repeat-y;
+  position: absolute; z-index: 2; bottom: -2.3rem; left: 1.4rem; transform: rotate(-3deg); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+.about .sticker.new::before { content: ''; position: absolute; inset: 0; transform: translate(3px, 3px); background: var(--shadow); z-index: -1; -webkit-mask: var(--mask); mask: var(--mask); }
+.about .sticker.new .face { position: relative; display: block; padding: 0.8rem calc(0.85rem + var(--tooth)) 0.8rem 0.95rem; background-color: var(--riso-pink); border: 2px solid var(--rule); border-right: 0; border-radius: 3px 0 0 3px; -webkit-mask: var(--mask); mask: var(--mask); }
+.about .sticker.new .star { margin-left: 0.55em; letter-spacing: 0; }
+/* ink wave under a pink wave shifted in by 2px, so only a stroke remains visible */
+.about .sticker.new .face::after { content: ''; position: absolute; inset: 0; pointer-events: none; background:
+  url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%208%2016'%20preserveAspectRatio='none'><path%20d='M0%200H4C7%202.7%207%205.3%204%208S1%2013.3%204%2016H0Z'%20fill='%23ffa8ca'/></svg>") right 2px center / var(--tooth) var(--pitch) repeat-y,
+  url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%208%2016'%20preserveAspectRatio='none'><path%20d='M0%200H4C7%202.7%207%205.3%204%208S1%2013.3%204%2016H0Z'%20fill='%232b2d6b'/></svg>") right 0 center / var(--tooth) var(--pitch) repeat-y; }
+.about .note { position: relative; z-index: 2; width: min(100%, 11rem); aspect-ratio: 1; display: flex; flex-direction: column; margin: 1.8rem 0.6rem 0 auto; padding: 1.4rem 1rem 0.95rem; background: var(--note); font-size: 0.85rem; transform: rotate(-2deg); box-shadow: 5px 6px 0 var(--shadow); }
+.about .note .tape { top: -0.7rem; left: 50%; width: 5.5rem; height: 1.4rem; transform: translateX(-50%) rotate(2deg); }
+.about .motto { margin: 0; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+.about .motto q { display: block; quotes: '\201C' '\201D'; line-height: 1.5; }
+.about .motto a { align-self: flex-end; font-size: 0.78rem; color: #5f64a3; }
+
+@media (max-width: 72rem) {
+  .detail .hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .detail .why { position: relative; right: auto; bottom: auto; justify-self: end; margin: -3.2rem 0.5rem 0 0; }
+}
+@media (max-width: 64rem) and (min-width: 48.01rem) { .wall { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 48rem) {
+  .about .doodle.star { left: -0.3rem; top: -3.2rem; width: 2.4rem; }
+  .about .doodle.squiggle { display: none; }
+  .about .note { margin: 4.5rem auto 0; }
+  .wall { grid-template-columns: 1fr; }
+  .detail .capline { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
+  .detail .thumbs label { width: 4.2rem; }
+  .detail .thumbs label.tall { width: 1.6rem; }
+  .detail .mat { --pw: 36%; }
+  .detail .mat:has(.pick.tall:checked) .frame { border-radius: 1.5rem; padding: 0.2rem; }
+  .detail .mat:has(.pick.tall:checked) .screen { border-radius: 1.25rem; }
+  .detail .screen::after { top: 0.4rem; height: 0.6rem; }
+  header.site { margin: 1.4rem auto 2.2rem; row-gap: 1.9rem; } /* breathing room between the subtitle and what follows */
+  header.site .pager { margin-inline: auto; } /* detail page: newer / older centred under the title */
+  header.site .side { align-items: flex-start; }
+  /* detail: the screenshot box runs edge to edge and sits level, so the capture gets every pixel */
+  .detail .hero { width: auto; justify-self: stretch; margin-inline: -1.25rem; }
+  .detail .mat { padding: 0.8rem 0.8rem 1rem; border-inline: 0; box-shadow: 0 6px 0 var(--shadow); transform: none; }
+  /* the note sits clear below the mat, not over the thumbnails */
+  .detail .why { margin: 0 1.25rem 0 0; justify-self: end; }
+  /* paginator fits: first / last shrink to their arrows */
+  .pager { max-width: 100%; flex-wrap: nowrap; font-size: 0.76rem; }
+  .pager > * { padding: 0.5rem 0.55rem; }
+  .pager .w { display: none; }
+  .doodle.star { left: calc(100% + 0.1rem); top: -0.95rem; width: 1.9rem; }
+  .doodle.squiggle { display: none; }
+  .wordmark { font-size: 2.5rem; }
+  .ledger .feed { flex-basis: 0.9rem; background-size: 0.9rem 1.5rem; }
+  .ledger .sheet { padding: 1rem 0.6rem; }
+  .ledger li a { grid-template-columns: 1fr auto; gap: 0.1rem 0.6rem; }
+  .ledger .acc, .ledger .date, .ledger .form { display: none; }
+  .ledger .who { grid-column: -2; color: var(--ink-muted); }
+}

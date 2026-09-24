@@ -1,0 +1,15 @@
+name: 'A Pint Near Me: UK Pub Finder & Pub Density Map'
+tagline: nearly 50,000 pubs, and which constituency has the most per person.
+url: https://knowwhereconsulting.co.uk/maps/pubs/
+form_factor: website
+by:
+  - name: Know Where Consulting
+    url: https://knowwhereconsulting.co.uk
+why: a serious gis consultancy answering the only question that matters. cities of london and westminster wins, by a lot.
+collected: 2026-09-09
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a map of the uk shaded by pubs per 10,000 people
+    caption: pubs per 10,000 population
+    taken: 2026-09-20

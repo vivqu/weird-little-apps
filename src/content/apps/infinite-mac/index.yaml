@@ -1,0 +1,15 @@
+name: Infinite Mac
+tagline: every classic mac os, running in your browser.
+url: https://infinitemac.org/
+form_factor: website
+by:
+  - name: Mihai Parparita
+    url: https://persistent.info
+why: system 1.0 boots faster in a tab than my laptop wakes up. a museum where you can touch everything.
+collected: 2026-08-19
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a classic macintosh screen showing system 1.0 from 1984
+    caption: '1984'
+    taken: 2026-09-20

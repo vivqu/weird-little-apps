@@ -1,0 +1,13 @@
+name: Giant Pumpkin Statistics and Grower Resource
+tagline: the genetics and rankings of 50,593 giant pumpkins.
+url: https://tools.pumpkinfanatic.com/index.php
+form_factor: website
+by: Pumpkin Fanatic
+why: you can trace the family tree of a 2,907 pound pumpkin. software made by and for exactly one community.
+collected: 2026-09-02
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: an orange page listing the ten biggest pumpkins on record
+    caption: top 10 biggest pumpkins
+    taken: 2026-09-20

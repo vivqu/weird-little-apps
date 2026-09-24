@@ -1,0 +1,13 @@
+name: Vibe Directory
+tagline: vibe-coded apps and experiments from across the five boroughs.
+url: https://obviously.nyc/vibe-directory
+form_factor: website
+by: Obviously NYC
+why: a sibling collection, scoped to one city. a typeface drawn from donald judd’s kitchen shelf is entry 002.
+collected: 2026-09-15
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a numbered list of new york projects under a dark chrome banner
+    caption: a living directory of independent builders
+    taken: 2026-09-20

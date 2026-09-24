@@ -1,0 +1,13 @@
+name: Nature this week
+tagline: what nature is doing around you, this week of the year.
+url: https://naturethisweek.com/
+form_factor: website
+by: maker unknown
+why: it told me the newts were on the move and i went outside to check. they were.
+collected: 2026-08-13
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a species filter list beside a small map
+    caption: 9,929 events for 3,763 species
+    taken: 2026-09-20

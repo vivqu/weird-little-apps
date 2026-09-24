@@ -1,0 +1,15 @@
+name: Eigendrum
+tagline: draw any shape and hear it as a real drum.
+url: https://eigendrum.com/
+form_factor: website
+by:
+  - name: Basel Ashraf
+    url: https://baselashraf.com
+why: it solves the actual physics of your doodle. a star sounds different from a blob, and now i know how.
+collected: 2026-09-01
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a red circular drumhead with vibration rings and a table of frequencies
+    caption: a circle, vibrating
+    taken: 2026-09-20

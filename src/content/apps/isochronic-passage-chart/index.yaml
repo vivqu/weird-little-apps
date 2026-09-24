@@ -1,0 +1,19 @@
+name: Isochronic Passage Chart for Travellers
+tagline: how far you can travel in a day, drawn as an 1881 lithograph.
+url: https://isochronic-passage-chart.netlify.app/#lon
+form_factor: website
+by:
+  - name: Ethan Mollick
+    url: https://www.oneusefulthing.org
+why: a very long name for a very specific map, which is exactly the energy i am collecting.
+collected: 2026-08-09
+
+created: 2026
+links:
+  - label: writeup
+    url: https://www.oneusefulthing.org/p/what-it-feels-like-to-work-with-mythos
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a hand-tinted world map shaded by travel time from london
+    caption: from london, eighth edition
+    taken: 2026-09-20

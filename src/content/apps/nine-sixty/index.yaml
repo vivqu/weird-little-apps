@@ -1,0 +1,13 @@
+name: '960'
+tagline: a short book about the 960 months in a life, and how many you have left.
+url: https://ninehundredsixty.com/
+form_factor: website
+by: Pascal Finette
+why: a book that is also a website that is also a grid of dots you can count. eight chapters, free.
+collected: 2026-09-17
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a grid of red and grey dots above the number 960
+    caption: have you counted what’s left?
+    taken: 2026-09-20

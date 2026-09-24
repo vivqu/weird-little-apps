@@ -1,0 +1,13 @@
+name: debloat.dev
+tagline: open-source replacements for bloated vendor software.
+url: https://debloat.dev/
+form_factor: website
+by: maker unknown
+why: a directory of ways to make your mouse work without a 400 mb app. looks like 2004 on purpose.
+collected: 2026-08-21
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a dense old-web directory with banner ads and category lists
+    caption: replace the junk
+    taken: 2026-09-20

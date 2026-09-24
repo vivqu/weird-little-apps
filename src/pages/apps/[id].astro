@@ -1,0 +1,133 @@
+---
+// One app. All screenshots share one static frame on the paper mat: hidden radio buttons pick the
+// capture (the thumbnails are their labels), the image cross-fades inside the frame, and the frame
+// morphs between window, phone and bare as the picked capture requires. No JS needed; the arrow
+// keys are a courtesy.
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { getApps, pageHref, pageOf, fmtDate, fmtCreated, host, visitLabel, nameParts, type App } from '../../lib/apps';
+
+export async function getStaticPaths() {
+  const apps = await getApps();
+  return apps.map((app, i) => ({
+    params: { id: app.id },
+    props: { app, newer: apps[i - 1], older: apps[i + 1], total: apps.length },
+  }));
+}
+
+interface Props {
+  app: App;
+  newer?: App;
+  older?: App;
+  total: number;
+}
+const { app, newer, older, total } = Astro.props;
+const { shots } = app;
+const many = shots.length > 1;
+const pickId = (j: number) => `pick-${j + 1}`;
+const visit = visitLabel(app);
+---
+
+<Base title={`${app.name} · weird little apps`} description={app.tagline}>
+  <SiteHeader home={pageHref(pageOf(app))}>
+    <nav class="pager around" aria-label="previous and next app">
+      {newer ? <a rel="prev" href={`/apps/${newer.id}/`} title={newer.name}>‹ newer</a> : <span class="off">‹ newest</span>}
+      <b>{(app.index + 1).toLocaleString('en')} of {total.toLocaleString('en')}</b>
+      {older ? <a rel="next" href={`/apps/${older.id}/`} title={older.name}>older ›</a> : <span class="off">first ever ›</span>}
+    </nav>
+  </SiteHeader>
+
+  <main class:list={['detail', { bare: !shots.length }]}>
+    <div class="hero">
+      {shots.length ? (
+        <div class="mat">
+          {shots.map((s, j) => (
+            <input
+              class:list={['pick', { tall: s.tall, bare: s.bezel, panel: s.panel }]}
+              type="radio"
+              name="shot"
+              id={pickId(j)}
+              checked={j === 0}
+              aria-label={`screenshot ${j + 1} of ${shots.length}`}
+            />
+          ))}
+          <div class="stage">
+            <a class="frame" href={app.url}>
+              <span class="bar"><i></i><i></i><i></i><em>{host(app)}</em></span>
+              <span class="screen">
+                {shots.map((s, j) => <Image class="cover" src={s.image} alt={s.alt} loading={j === 0 ? 'eager' : 'lazy'} />)}
+              </span>
+            </a>
+          </div>
+          <div class="capline">
+            <div class="caps">
+              {shots.map((s, j) => (
+                <p class="cap">{many && <><b>{j + 1} of {shots.length}</b> · </>}{s.caption}</p>
+              ))}
+            </div>
+            <a class="visit" href={app.url}>{visit}</a>
+          </div>
+          {many && (
+            <div class="thumbs">
+              {shots.map((s, j) => (
+                <label for={pickId(j)} class:list={{ tall: s.tall, bare: s.bezel }}>
+                  <Image class="cover" src={s.image} alt="" width={200} />
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div class="noshot">
+          <i class="tape"></i>
+          <p>no picture yet.</p>
+          <p>go and look at the real thing ↓</p>
+          <a class="visit" href={app.url}>{visit}</a>
+        </div>
+      )}
+      <aside class="why"><i class="tape"></i><h2>curator’s note</h2><p>{app.why}</p></aside>
+    </div>
+
+    <article class="label">
+      <p class="maker">
+        {app.by.map((p, i) => (
+          <>{i > 0 && ' & '}{p.url ? <a href={p.url}>{p.name}</a> : p.name}</>
+        ))}
+      </p>
+      <h1>{nameParts(app.name).map((part, i) => <>{i > 0 && <wbr />}{part}</>)}</h1>
+      <p class="date">{fmtCreated(app.created)} · {app.form_factor.join(', ')}</p>
+      <p class="tagline">{app.tagline}</p>
+      {app.links?.length ? (
+        <p class="links">also: {app.links.map((l, i) => <>{i > 0 && ' · '}<a href={l.url}>{l.label} ↗</a></>)}</p>
+      ) : null}
+      {app.quotes?.length ? (
+        <section>
+          <h2>maker’s words</h2>
+          {app.quotes.map((q) => (
+            <blockquote>
+              <p>{q.text}</p>
+              <footer>{q.by ?? app.by[0].name}{q.date && `, ${fmtDate(q.date)}`} · <a href={q.url}>source</a></footer>
+            </blockquote>
+          ))}
+        </section>
+      ) : null}
+      <p class="credit">collected by {app.curator.name}, {app.collected.getUTCFullYear()}<br />no. {app.accession}</p>
+    </article>
+  </main>
+  <SiteFooter />
+
+  {many && (
+    <script is:inline>
+      /* left / right arrows page through the screenshots (the thumbnails work without this) */
+      addEventListener('keydown', (e) => {
+        if ((e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') || e.metaKey || e.ctrlKey || e.altKey) return;
+        const picks = [...document.querySelectorAll('.pick')];
+        e.preventDefault();
+        const i = picks.findIndex((p) => p.checked) + (e.key === 'ArrowRight' ? 1 : -1);
+        picks[(i + picks.length) % picks.length].checked = true;
+      });
+    </script>
+  )}
+</Base>

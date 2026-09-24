@@ -1,0 +1,13 @@
+name: Bookpile
+tagline: the book you want, somewhere close by.
+url: https://bookpile.org/
+form_factor: website
+by: maker unknown
+why: the opposite of one-click ordering. it gives me a list of places to walk into.
+collected: 2026-08-12
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a large headline reading the book you want, somewhere close by, with an isbn field
+    caption: an isbn is the only thing it asks for
+    taken: 2026-09-20

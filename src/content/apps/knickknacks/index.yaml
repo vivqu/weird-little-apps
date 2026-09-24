@@ -1,0 +1,14 @@
+name: Knick-Knacks
+tagline: 'the internet’s #1 guide to bootleg knicks merch.'
+url: https://knickknacks.nyc/
+form_factor: website
+by: a knicks fan
+why: est. 1999 (it was not). a fan site with marquees, made for one playoff run, with complete commitment.
+collected: 2026-08-15
+
+created: 2026
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a black and orange geocities-style page of bootleg t-shirts
+    caption: we goin’ to the finals
+    taken: 2026-09-20

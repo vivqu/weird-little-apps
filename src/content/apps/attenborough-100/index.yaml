@@ -1,0 +1,14 @@
+name: Attenborough at 100
+tagline: david attenborough’s life’s work, searchable.
+url: https://attenborough-100.vercel.app/
+form_factor: website
+by: Soph Warnes
+why: somebody needed to know which episode had the lyrebird, and indexed about 5,000 episodes to find out.
+collected: 2026-08-10
+
+created: 2026
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a strip of wildlife photos above a search box
+    caption: around 5,000 episodes across 90 series
+    taken: 2026-09-20

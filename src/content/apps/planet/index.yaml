@@ -1,0 +1,15 @@
+name: A Planet That Plays Chopin
+tagline: a newly found minor planet, locked four against three with neptune.
+url: https://www.joshuawolk.com/planet
+form_factor: website
+by:
+  - name: Joshua Wolk
+    url: https://www.joshuawolk.com
+why: he found a new minor planet and the first thing he did was make it play music. correct priorities.
+collected: 2026-08-28
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: orbits of the outer planets with one long red orbit around them
+    caption: meet minor planet 2015 BA643
+    taken: 2026-09-20

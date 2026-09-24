@@ -1,0 +1,15 @@
+name: In the Weights
+tagline: type a name and see how strongly the ai models remember it.
+url: https://intheweights.com/
+form_factor: website
+by:
+  - Thomas Dimson
+  - Joey Flynn
+why: vanity search for a new era. i am barely in there, which is a relief.
+collected: 2026-09-10
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a name field above a leaderboard of today’s heavyweights
+    caption: today’s heavyweights
+    taken: 2026-09-20

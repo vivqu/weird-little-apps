@@ -1,0 +1,33 @@
+name: Cat Collector
+tagline: pokemon go, but for the real cats on your street.
+url: https://apps.apple.com/us/app/cat-collector-catch-real-cats/id6783591388
+form_factor: ios app
+by: Nftstory
+why: the bakery cat, the parking-lot cat, the stray on your morning walk. you notice a cat, the cat goes in your collection.
+collected: 2026-08-17
+
+created: 2026
+links:
+  - label: website
+    url: https://catcollector.app/
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: app store image 1 for cat collector
+    caption: catch real life cats
+    taken: 2026-09-20
+    panel: true
+  - image: ./screenshot-2.jpg
+    alt: app store image 2 for cat collector
+    caption: snap any cat
+    taken: 2026-09-20
+    panel: true
+  - image: ./screenshot-3.jpg
+    alt: app store image 3 for cat collector
+    caption: your cat map
+    taken: 2026-09-20
+    panel: true
+  - image: ./screenshot-4.jpg
+    alt: app store image 4 for cat collector
+    caption: just cats
+    taken: 2026-09-20
+    panel: true

@@ -1,0 +1,21 @@
+---
+// Pagination strip under the index: first / previous / "page N of M" / next / last.
+import { pageHref } from '../lib/apps';
+
+interface Props {
+  page: number;
+  pages: number;
+  /** '' for the wall, '/compact' for the compact view */
+  base?: string;
+}
+const { page, pages, base = '' } = Astro.props;
+const to = (n: number) => (n >= 1 && n <= pages && n !== page ? pageHref(n, base) : undefined);
+---
+
+<nav class="pager" aria-label="pagination">
+  {to(1) ? <a href={to(1)} aria-label="first page">« <span class="w">first</span></a> : <span class="off">« <span class="w">first</span></span>}
+  {to(page - 1) ? <a href={to(page - 1)} rel="prev">‹ previous</a> : <span class="off">‹ previous</span>}
+  <b>page {page} of {pages}</b>
+  {to(page + 1) ? <a href={to(page + 1)} rel="next">next ›</a> : <span class="off">next ›</span>}
+  {to(pages) ? <a href={to(pages)} aria-label="last page"><span class="w">last</span> »</a> : <span class="off"><span class="w">last</span> »</span>}
+</nav>

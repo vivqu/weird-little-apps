@@ -1,0 +1,38 @@
+---
+// The index: the screenshot wall, 24 apps a page, at / and /page/N.
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ViewSwitch from '../components/ViewSwitch.astro';
+import Pager from '../components/Pager.astro';
+import Tile from '../components/Tile.astro';
+import { getApps, paginate, type Page } from '../lib/apps';
+
+export async function getStaticPaths() {
+  const apps = await getApps();
+  return paginate(apps).map((page) => ({
+    params: { page: page.n === 1 ? undefined : `page/${page.n}` },
+    props: { page, total: apps.length },
+  }));
+}
+
+interface Props {
+  page: Page;
+  total: number;
+}
+const { page, total } = Astro.props;
+const title = page.n === 1 ? 'weird little apps' : `page ${page.n} · weird little apps`;
+---
+
+<Base {title}>
+  <SiteHeader>
+    <ViewSwitch view="expanded" page={page.n} {total} />
+  </SiteHeader>
+  <main class="index">
+    <ol class="wall">
+      {page.items.map((app) => <Tile {app} />)}
+    </ol>
+  </main>
+  <Pager page={page.n} pages={page.pages} />
+  <SiteFooter />
+</Base>

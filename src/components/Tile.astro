@@ -1,0 +1,36 @@
+---
+// One tile on the screenshot wall: the cover in a mini window (or a drawn phone, or bare, as the
+// capture requires), then name, tagline and maker.
+import { Image } from 'astro:assets';
+import { domain, makers, nameParts, type App } from '../lib/apps';
+
+interface Props {
+  app: App;
+}
+const { app } = Astro.props;
+const shot = app.shots[0];
+---
+
+<li>
+  <a href={`/apps/${app.id}/`}>
+    {shot?.tall ? (
+      <span class="phonebox">
+        <span class:list={['phone', { bare: shot.bezel, panel: shot.panel }]}>
+          <Image class="cover" src={shot.image} alt={shot.alt} width={320} />
+        </span>
+      </span>
+    ) : (
+      <span class="miniwin">
+        <span class="bar"><i></i><i></i><i></i><em>{domain(app)}</em></span>
+        {shot ? (
+          <Image class="cover" src={shot.image} alt={shot.alt} width={720} />
+        ) : (
+          <span class="cover none" role="img" aria-label="no picture yet"><span>no picture yet</span></span>
+        )}
+      </span>
+    )}
+    <span class="name">{nameParts(app.name).map((part, i) => <>{i > 0 && <wbr />}{part}</>)}</span>
+    <span class="tagline">{app.tagline}</span>
+    <span class="who">by {makers(app)}</span>
+  </a>
+</li>

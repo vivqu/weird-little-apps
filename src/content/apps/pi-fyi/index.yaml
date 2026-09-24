@@ -1,0 +1,13 @@
+name: PI.FYI
+tagline: people recommending things they love, like the old internet did.
+url: https://www.pi.fyi/
+form_factor: [website, ios app]
+by: Perfectly Imperfect
+why: the biggest thing in the collection, and still weird. recommendations with no algorithm behind them.
+collected: 2026-09-05
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: pi.fyi landing page asking if you miss the old internet
+    caption: do you miss the old internet?
+    taken: 2026-09-20

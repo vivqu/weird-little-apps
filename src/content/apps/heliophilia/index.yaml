@@ -1,0 +1,30 @@
+name: Heliophilia
+tagline: how much daylight today, and how it compares to yesterday.
+url: https://apps.apple.com/us/app/heliophilia-daylight-tracker/id6780423397
+form_factor: ios app
+by: Ioannis Ampelas
+why: for people who notice the light. i open it in november when the afternoons start disappearing.
+collected: 2026-08-14
+
+created: 2026
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: app store image 1 for heliophilia
+    caption: made for people who love the sun
+    taken: 2026-09-20
+    panel: true
+  - image: ./screenshot-2.jpg
+    alt: app store image 2 for heliophilia
+    caption: daylight tracker
+    taken: 2026-09-20
+    panel: true
+  - image: ./screenshot-3.jpg
+    alt: app store image 3 for heliophilia
+    caption: light at a glance
+    taken: 2026-09-20
+    panel: true
+  - image: ./screenshot-4.jpg
+    alt: app store image 4 for heliophilia
+    caption: end the day gently
+    taken: 2026-09-20
+    panel: true

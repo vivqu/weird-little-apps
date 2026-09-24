@@ -1,0 +1,15 @@
+name: Every train, a note
+tagline: a jazz combo played in real time by every nyc subway train.
+url: https://www.trainjazz.com/
+form_factor: website
+by:
+  - name: Joshua Wolk
+    url: https://www.joshuawolk.com
+why: at 3 a.m. the silences grow longer. the most beautiful use of a transit feed i have seen.
+collected: 2026-08-29
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: the subway map drawn in thin lines with a few coloured dots for trains
+    caption: 800 trains, give or take
+    taken: 2026-09-20

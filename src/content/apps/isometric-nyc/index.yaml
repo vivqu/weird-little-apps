@@ -1,0 +1,15 @@
+name: Isometric NYC
+tagline: all of new york city as one enormous pixel-art map.
+url: https://cannoneyed.com/isometric-nyc/
+form_factor: website
+by:
+  - name: Andy Coenen
+    url: https://cannoneyed.com
+why: simcity 2000, except it is the real city and you can find your own building.
+collected: 2026-08-18
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a dense isometric pixel-art view of manhattan blocks
+    caption: midtown, roughly
+    taken: 2026-09-20

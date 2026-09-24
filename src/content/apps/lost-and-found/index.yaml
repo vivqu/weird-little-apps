@@ -1,0 +1,30 @@
+name: Lost and Found
+tagline: thousands of accidental portraits of things people left behind at stadiums and airports.
+url: https://walzr.com/lost-and-found
+form_factor: website
+by:
+  - name: Riley Walz
+    url: https://walzr.com
+why: a single glove, a retainer, a birthday card. nobody composed these photos and they are better for it.
+collected: 2026-09-20
+
+quotes:
+  - text: 'Hundreds of places use one software tool for managing lost items, and I scraped their archives: thousands of accidental portraits of lost stuff.'
+    url: https://walzr.com/lost-and-found
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a grid of staff photos of lost items, each labelled with a venue
+    caption: the wall, september 2026
+    taken: 2026-09-20
+  - image: ./screenshot-2.jpg
+    alt: 'further down the wall: more lost phones, keys and books'
+    caption: further down. it does not end.
+    taken: 2026-09-20
+  - image: ./screenshot-3.jpg
+    alt: deeper in the archive of lost items
+    caption: somewhere around the four hundredth lost thing
+    taken: 2026-09-20
+  - image: ./screenshot-4.jpg
+    alt: the same wall on a phone, two columns wide
+    caption: on a phone
+    taken: 2026-09-20

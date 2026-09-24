@@ -1,0 +1,13 @@
+name: Reading Maps
+tagline: journeys from fiction, drawn on the real world.
+url: https://readingmaps.com/maps
+form_factor: website
+by: maker unknown
+why: moby-dick as a route you could actually sail. a watercolour atlas for people who read with a finger on the map.
+collected: 2026-09-04
+
+screenshots:
+  - image: ./screenshot-1.jpg
+    alt: a watercolour world map beside a list of novels and their routes
+    caption: all routes
+    taken: 2026-09-20

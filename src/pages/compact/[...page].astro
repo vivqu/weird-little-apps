@@ -1,0 +1,59 @@
+---
+// The compact view: the same list as a text-only printout, at /compact and /compact/page/N.
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import ViewSwitch from '../../components/ViewSwitch.astro';
+import Pager from '../../components/Pager.astro';
+import { getApps, paginate, fmtDate, makers, nameParts, type Page } from '../../lib/apps';
+
+export async function getStaticPaths() {
+  const apps = await getApps();
+  return paginate(apps, '/compact').map((page) => ({
+    params: { page: page.n === 1 ? undefined : `page/${page.n}` },
+    props: { page, total: apps.length },
+  }));
+}
+
+interface Props {
+  page: Page;
+  total: number;
+}
+const { page, total } = Astro.props;
+const { items } = page;
+const range = `${fmtDate(items[0].collected)} to ${fmtDate(items[items.length - 1].collected)}`;
+---
+
+<Base title={`compact${page.n > 1 ? ` · page ${page.n}` : ''} · weird little apps`}>
+  <SiteHeader>
+    <ViewSwitch view="compact" page={page.n} {total} />
+  </SiteHeader>
+  <main class="index">
+    <div class="ledger">
+      <div class="feed"></div>
+      <div class="sheet">
+        <p class="head"><b>register of holdings</b><span>page {page.n} of {page.pages} · {range}</span></p>
+        <ol>
+          {items.map((a) => (
+            <li>
+              <a href={`/apps/${a.id}/`}>
+                <span class="acc">{a.accession}</span>
+                <span class="what">
+                  <b class="name">{nameParts(a.name).map((part, i) => <>{i > 0 && <wbr />}{part}</>)}</b>
+                  <span class="tagline">{a.tagline}</span>
+                </span>
+                <span class="who">{makers(a)}</span>
+                <span class="form">{a.form_factor.join(', ')}</span>
+                <span class="date">{fmtDate(a.collected)}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+        <p class="tail">*** {items.length} items · thank you · come again ***</p>
+      </div>
+      <div class="feed"></div>
+    </div>
+  </main>
+  <Pager page={page.n} pages={page.pages} base="/compact" />
+  <SiteFooter />
+</Base>
