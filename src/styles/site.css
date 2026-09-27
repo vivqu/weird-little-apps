@@ -199,6 +199,9 @@ main { max-width: 72rem; margin: 0 auto; }
 .label blockquote { margin: 0; padding-left: 0.9rem; border-left: 3px solid var(--tape); }
 .label blockquote + blockquote { margin-top: 0.9rem; }
 .label blockquote footer { font-size: 0.76rem; color: var(--ink-muted); }
+/* an embedded post: the provider's script swaps the blockquote for its iframe, so the gap lives on the iframe too */
+.label iframe { display: block; max-width: 100%; }
+.label :is(iframe + iframe, blockquote + iframe, iframe + blockquote) { margin-top: 1.5rem; }
 .label .credit { margin: 2.6rem 0 0; padding-top: 1rem; border-top: 1.5px dashed var(--ink-muted); font-size: 0.76rem; color: var(--ink-muted); }
 
 /* footer: a short rule, only a little wider than the words, like the one under "register of holdings" */

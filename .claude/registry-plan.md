@@ -82,7 +82,7 @@ Optional:
 
 **Derived, never written:** whether a screenshot is phone-shaped (`tall`: height / width > 1.6), the accession number, the index position, the domain in a tile's title bar, the visit label, link labels.
 
-**Quotes replace embeds.** A tweet embed is a third-party script and disappears with the tweet. Store the text, attribution and source URL.
+**Quotes carry embeds.** Every quote stores the text, attribution and source URL, so nothing disappears with the post. A quote with `embed: true` (decided 2026-09-27) is additionally shown as the post itself: the blockquote carries the provider's class and data attributes, the provider's script (Threads `embed.js`, X `widgets.js`) is loaded on that page only, and it swaps the blockquote for its iframe. Without the script the quote reads as written; the script is only loaded above the phone breakpoint (48rem) because the cards can't reflow narrower than about 500px. Supported hosts: threads.com / threads.net, x.com / twitter.com; any other host with `embed: true` fails the build.
 
 **Dropped while reconciling with the final UI (2.2):** `description` (never shown), person-level `links` (never shown; app-level `links` replaced them).
 

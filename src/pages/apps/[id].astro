@@ -7,7 +7,7 @@ import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import { getApps, pageHref, pageOf, fmtDate, fmtCreated, host, visitLabel, nameParts, type App } from '../../lib/apps';
+import { getApps, pageHref, pageOf, fmtDate, fmtCreated, host, visitLabel, nameParts, embedFor, type App } from '../../lib/apps';
 
 export async function getStaticPaths() {
   const apps = await getApps();
@@ -28,6 +28,10 @@ const { shots } = app;
 const many = shots.length > 1;
 const pickId = (j: number) => `pick-${j + 1}`;
 const visit = visitLabel(app);
+// an embedded quote's blockquote needs an id (the provider's script finds it by id to remove it once
+// its iframe is ready) and an inline width (the script copies the inline style onto the iframe)
+const embeds = (app.quotes ?? []).map((q) => embedFor(app, q));
+const embedScripts = [...new Set(embeds.flatMap((e) => (e ? [e.script] : [])))];
 ---
 
 <Base title={app.name} description={app.tagline}>
@@ -102,8 +106,8 @@ const visit = visitLabel(app);
       {app.quotes?.length ? (
         <section>
           <h2>maker’s words</h2>
-          {app.quotes.map((q) => (
-            <blockquote>
+          {app.quotes.map((q, i) => (
+            <blockquote class={embeds[i]?.cls} id={embeds[i] && `embed-${i + 1}`} style={embeds[i] && 'width: 100%; max-width: 540px'} {...embeds[i]?.attrs}>
               {q.text.trim().split(/\n+/).map((line) => <p>{line}</p>)}
               <footer>{q.by ?? app.by[0].name}{q.date && `, ${fmtDate(q.date)}`} · <a href={q.url}>source</a></footer>
             </blockquote>
@@ -128,6 +132,14 @@ const visit = visitLabel(app);
   </main>
   <SiteFooter />
 
+  {embedScripts.length > 0 && (
+    <script is:inline define:vars={{ embedScripts }}>
+      /* post embeds only above the phone layout (48rem, as in site.css): the cards can't reflow
+         narrower than ~500px, so on a phone the quote stays as text */
+      if (matchMedia('(min-width: 48.01rem)').matches)
+        for (const src of embedScripts) document.body.append(Object.assign(document.createElement('script'), { src, async: true }));
+    </script>
+  )}
   {many && (
     <script is:inline>
       /* left / right arrows page through the screenshots (the thumbnails work without this) */

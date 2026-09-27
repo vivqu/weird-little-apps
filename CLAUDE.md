@@ -32,8 +32,8 @@ One folder, `src/content/apps/<id>/`, holding `index.yaml` and up to four screen
 - **Stale dev content.** After changing `src/content.config.ts` (a new field, a new collection), the running dev server keeps its old parsed entries and new fields don't show up. Fix: `npx astro dev stop && rm -f .astro/data-store.json && npx astro dev`. The build is unaffected.
 - **Stale dev CSS.** The dev server can keep serving an old `<style>` block after an edit (HTML updates, CSS doesn't). If a style change doesn't appear, restart with `npx astro dev stop && npx astro dev` before debugging the CSS, and tell the user to hard-refresh.
 - **Content is config.** Adding an app must never require code changes; it's one YAML file plus an optional screenshot. If a feature would break that, rethink it. Site-wide words (subtitle, lede, motto, the about page's status and next lines) live in `src/content/site.yaml`, not in templates.
-- **Keep it small.** No third-party integrations, frameworks, or client JS unless the plan actually calls for them. The only client JS is eight inline lines on the detail page (arrow-key paging), and the only integration is the inline image-pruning hook in `astro.config.mjs`.
-- **No third-party requests at runtime.** Fonts are self-hosted in `public/fonts/` and preloaded with `font-display: block` so text never flashes in a fallback face. Don't add Google Fonts `<link>`s back.
+- **Keep it small.** No third-party integrations, frameworks, or client JS unless the plan actually calls for them. The only client JS is eight inline lines on the detail page (arrow-key paging), and the only integration is the inline image-pruning hook in `astro.config.mjs`. The one exception is post embeds: a quote with `embed: true` loads the Threads or X embed script on that detail page only, above the phone breakpoint, with the quote text as the fallback.
+- **No third-party requests at runtime.** Fonts are self-hosted in `public/fonts/` and preloaded with `font-display: block` so text never flashes in a fallback face. Don't add Google Fonts `<link>`s back. Post embeds (above) are the only exception.
 
 ## Screenshots
 

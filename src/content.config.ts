@@ -63,7 +63,16 @@ const apps = defineCollection({
       links: z.array(link).optional(),
       recs: z.array(rec).optional(),
       quotes: z
-        .array(z.object({ text: z.string().min(1), url: z.url(), by: z.string().optional(), date: z.coerce.date().optional() }))
+        .array(
+          z.object({
+            text: z.string().min(1),
+            url: z.url(),
+            by: z.string().optional(),
+            date: z.coerce.date().optional(),
+            // show the post itself (Threads or X) via the provider's embed script; the text stays as the fallback
+            embed: z.boolean().optional(),
+          }),
+        )
         .optional(),
       screenshots: z
         .array(

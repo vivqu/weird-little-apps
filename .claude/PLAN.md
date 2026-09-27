@@ -22,7 +22,7 @@ For the content model: every entry should answer *why does this exist* and *what
 
 - Static output, deployable to any static host.
 - Adding an app means adding one YAML file plus screenshots. No code changes.
-- Small, fast, no client JS by default.
+- Small, fast, no client JS by default. The one third-party script is a post embed on a detail page whose entry asks for it (`embed: true` on a quote).
 - Maintainable by an AI agent: predictable file layout, schema-validated content, one build command.
 
 ## Architecture

@@ -105,5 +105,19 @@ export const visitLabel = (a: App) => {
   return label + ' ↗';
 };
 
+// a quote with `embed: true` is shown as the post itself. The provider's script swaps our
+// blockquote for its iframe; without it the quote stays as written. Only these two are known.
+export type Embed = { cls: string; attrs: Record<string, string>; script: string };
+const EMBEDS: [RegExp, (url: string) => Embed][] = [
+  [/(^|\.)threads\.(com|net)$/, (url) => ({ cls: 'text-post-media', attrs: { 'data-text-post-permalink': url, 'data-text-post-version': '0' }, script: 'https://www.threads.com/embed.js' })],
+  [/(^|\.)(x|twitter)\.com$/, () => ({ cls: 'twitter-tweet', attrs: {}, script: 'https://platform.twitter.com/widgets.js' })],
+];
+export const embedFor = (a: App, q: { url: string; embed?: boolean }): Embed | undefined => {
+  if (!q.embed) return;
+  const hit = EMBEDS.find(([re]) => re.test(new URL(q.url).hostname));
+  if (!hit) throw new Error(`${a.id}: embed: true needs a Threads or X post url, got ${q.url}`);
+  return hit[1](q.url);
+};
+
 /** snake_case names get a break opportunity after each underscore */
 export const nameParts = (name: string) => name.split(/(?<=_)/);
