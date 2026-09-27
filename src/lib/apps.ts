@@ -91,14 +91,19 @@ export const domain = (a: App) => new URL(a.url).hostname.replace(/^www\./, '');
 /** `url` without scheme or trailing slash: the title bar on the detail page */
 export const host = (a: App) => a.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
-// the visit button's label comes from where the url points, so entries never spell it out
-const STORES: [RegExp, string][] = [
-  [/(^|\.)apps\.apple\.com$/, 'open in App Store'],
-  [/(^|\.)play\.google\.com$/, 'open in Google Play'],
+// the visit button's label comes from where the url points, so entries never spell it out.
+// with a `price`, a store label becomes "$2.99 on the App Store"; anywhere else, "visit · $2.99"
+const STORES: [RegExp, string, string?][] = [
+  [/(^|\.)apps\.apple\.com$/, 'open in App Store', 'the App Store'],
+  [/(^|\.)play\.google\.com$/, 'open in Google Play', 'Google Play'],
   [/(^|\.)github\.com$/, 'view on GitHub'],
-  [/(^|\.)chromewebstore\.google\.com$/, 'open in Chrome Web Store'],
+  [/(^|\.)chromewebstore\.google\.com$/, 'open in Chrome Web Store', 'the Chrome Web Store'],
 ];
-export const visitLabel = (a: App) => (STORES.find(([re]) => re.test(new URL(a.url).hostname))?.[1] ?? 'visit') + ' ↗';
+export const visitLabel = (a: App) => {
+  const store = STORES.find(([re]) => re.test(new URL(a.url).hostname));
+  const label = !a.price ? (store?.[1] ?? 'visit') : store?.[2] ? `${a.price} on ${store[2]}` : `visit · ${a.price}`;
+  return label + ' ↗';
+};
 
 /** snake_case names get a break opportunity after each underscore */
 export const nameParts = (name: string) => name.split(/(?<=_)/);

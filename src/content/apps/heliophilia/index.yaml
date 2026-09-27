@@ -2,29 +2,39 @@ name: Heliophilia
 tagline: how much daylight today, and how it compares to yesterday.
 url: https://apps.apple.com/us/app/heliophilia-daylight-tracker/id6780423397
 form_factor: ios
-by: Ioannis Ampelas
+by: 
+  - name: Yannis Abelas
+    url: https://www.threads.com/@yannisabelas
 why: for people who notice the light. i open it in november when the afternoons start disappearing.
-collected: 2026-08-14
+collected: 2026-08-01
 
 created: 2026
+price: $2.99
+quotes:
+  - text: "Shipped my first app ever today 🎉 A small iOS app that tracks daylight and lets you log a daily gratitude. Nothing revolutionary, but it's mine and I built it from scratch. If you're into sunlight, slow mornings, or just curious what a product designer builds when left unsupervised, give it a try!"
+    url: https://www.threads.com/@yannisabelas/post/DafYwfKmbhj
+    date: 2026-07-07
+  - text: "I'm literally building my app, and promoting it on Threads between diaper changes and playing with my daughter. 😅 If I can do it, you can do it too!"
+    url: https://www.threads.com/@yannisabelas/post/Da5i2DkCJdd
+    date: 2026-07-17
+  - text: |
+      The sky of the Heliophilia app is actually different per climate around the world. Each gradient has been carefully crafted to represent the sky for a specific location and time of the day. With the next update I am introducing an additional climate: Mediterranean. Plus making the rest a bit more accurate. Small details that make the app feel more real.
+    url: https://www.threads.com/@yannisabelas/post/DbSonXDl_SA
+    date: 2026-07-27
 screenshots:
-  - image: ./screenshot-1.jpg
-    alt: app store image 1 for heliophilia
+  - image: ./title.jpg
+    alt: a welcome screen on a sky-blue gradient, with a glowing white loop and a dictionary definition of heliophilia
     caption: made for people who love the sun
+    taken: 2026-09-27
+  - image: ./onboarding-1.jpg
+    alt: a sunrise-coloured onboarding screen titled sunlight tracking, with nested daylight curves and a tag reading +2 min of daylight today
+    caption: helpful explainers
     taken: 2026-09-20
-    panel: true
-  - image: ./screenshot-2.jpg
-    alt: app store image 2 for heliophilia
-    caption: daylight tracker
+  - image: ./london.jpg
+    alt: the main screen for london, 4 min less daylight than yesterday, with sunrise and sunset times and a solstice-to-solstice curve marking today
+    caption: the afternoons are going
     taken: 2026-09-20
-    panel: true
-  - image: ./screenshot-3.jpg
-    alt: app store image 3 for heliophilia
-    caption: light at a glance
-    taken: 2026-09-20
-    panel: true
-  - image: ./screenshot-4.jpg
-    alt: app store image 4 for heliophilia
+  - image: ./gratitude.jpg
+    alt: a dark sheet titled today's gratitude, with a text box reading that i can try out heliophilia and a save button
     caption: end the day gently
     taken: 2026-09-20
-    panel: true

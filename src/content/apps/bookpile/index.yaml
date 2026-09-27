@@ -26,13 +26,13 @@ screenshots:
     taken: 2026-09-20
   - image: ./screenshot-2.png
     alt: the page for a psalm for the wild-built, its cover beside the blurb, and below it a list of bookstores near london starting with daunt books and foyles
-    caption: book detail
+    caption: find your next book
     taken: 2026-09-24
   - image: ./screenshot-3.png
     alt: the libraries tab for the same book, headed borrow it, don't buy it, listing worldcat, open library and inventaire with search links
-    caption: library list
+    caption: borrow it, don't buy it
     taken: 2026-09-24
   - image: ./screenshot-4.png
     alt: the book tracking tab, seven services from the storygraph to goodreads, each with a track link to add the book to your shelf
-    caption: tracking list
+    caption: track in your fav app
     taken: 2026-09-24

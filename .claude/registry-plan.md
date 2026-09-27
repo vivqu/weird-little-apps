@@ -27,7 +27,7 @@ Out of scope (see `PLAN.md` → "After the registry scaffold"): search, other br
 3. `form_factor` is the only enum. Everything else is free text.
 4. Anything computable (order, numbering, whether a screenshot is phone-shaped) is derived, never hand-maintained. Display order comes from `collected`.
 5. We take and store our own screenshots at collection time. No hotlinked images. Entries for dead apps are kept. Exception: apps listed in a store use the store listing's own images, downloaded into the entry (`UPLOAD.md`).
-6. No software metadata: license, version, releases, price, star counts.
+6. No software metadata: license, version, releases, star counts. The one exception is `price`, and only because it belongs on the visit button ("$2.99 on the App Store ↗"): a paid app should say so before you tap.
 
 ### Files
 
@@ -72,6 +72,7 @@ Optional:
 |---|---|---|
 | `created` | year, `"YYYY-MM"`, or date | when it was made. Often unknown. Shown as "2025", "may 2026" or "12 may 2026"; "date unknown" if absent |
 | `curator` | person | defaults to Vivian Qu in the schema; omit in YAML |
+| `price` | string | what it costs, as shown (`$2.99`). Store labels become "$2.99 on the App Store ↗" / "$2.99 on Google Play ↗" / "$2.99 on the Chrome Web Store ↗"; other urls "visit · $2.99 ↗". Omit when free |
 | `links` | list of links | secondary links, shown on the label as "also: label ↗ · label ↗". A link is a URL string (labelled from its hostname at build time; `x.com` → "twitter") or `{label, url}` |
 | `quotes` | list of `{text, url, by?, date?}` | the maker's own words. `by` defaults to the first maker |
 | `recs` | list of `{title, url, by?, date?}` (or bare URLs) | where other people recommended or wrote about the app, listed under the maker's words |
@@ -143,7 +144,7 @@ screenshots:
 
 - **Ground:** pale aqua `#d3f0f1` with a faint teal dot grid (24px), hard shadows `#6fbcc0`.
 - **Header, every page:** wordmark (3.4rem, "little" with the hand-drawn azure underline, lime star and azure squiggle hanging off it) over the subtitle "purveyors of fine apps". Right side: on the index, the expanded / compact switch (small azure pills) with "43 apps · newest first" under it; on a detail page, the newer / position / older pager. On a phone the right side stacks under the subtitle, left-aligned, with the detail pager centred.
-- **Footer, every page except about:** a short centred dashed rule, then "est. 2026 · about" (plain underline).
+- **Footer, every page except about:** a short centred dashed rule, then "est. 2026 · made with ♥ by vivian qu · about" (plain underlines; the name links to vivqu.com, from `site.yaml`).
 - **Index (wall):** 3 tiles across (2 on a tablet, 1 on a phone), 24 per page. A tile is a retro window (2px indigo frame built as an indigo block with the title bar and capture inset 2px; title bar shows the app's domain without `www.`) holding the cover cropped from the top at 16:10, tilted a degree or so, hard shadow; below it the name (serif), tagline and "by maker". A phone-shaped cover gets a drawn phone (thin outline, peach body, pill at the top) instead of a window; a store marketing panel gets a thin bordered image; a capture that already contains a device is shown bare. Hover: the tile rises 1px and its shadow deepens one shade. Pagination strip at the bottom is level (only screenshots tilt); on a phone "first" / "last" collapse to their arrows.
 - **Compact view:** one paper printout with sprocket-hole strips down both sides, headed "REGISTER OF HOLDINGS" over a short dashed rule and "page N of M · date range" in muted ink. One row per app: accession number, name over tagline, maker, form, date collected. No thumbnails. Mint row stripes.
 - **Detail page:** stacked. The cover sits in one static frame on a plain paper mat, centred; with several screenshots, thumbnails under the frame pick the capture (labels for hidden radio buttons, so no JS) and the image cross-fades while the frame morphs between window, phone and bare as the capture's kind requires; left / right arrow keys also page (the page's only JS, inline, optional). Caption line "N of M · caption" left, visit button right. The curator's note is a tilted sticky note on the mat's edge. Below: the museum label (maker, name, date · form, tagline, optional "also: website ↗" secondary links, maker's words as a quote, credit line and accession number). On a phone the mat keeps the page margins and sits level, the visit button moves under the thumbnails, and the note hangs off the mat's bottom edge (changed from the prototype's edge-to-edge mat, 2026-09-24).

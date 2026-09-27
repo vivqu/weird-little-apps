@@ -2,13 +2,28 @@ name: Knick-Knacks
 tagline: 'the internet’s #1 guide to bootleg knicks merch.'
 url: https://knickknacks.nyc/
 form_factor: web
-by: a knicks fan
-why: est. 1999 (it was not). a fan site with marquees, made for one playoff run, with complete commitment.
+by: 
+  - name: KC
+    url: https://x.com/CaseyWheelerCT
+why: makes me wish I was in NYC during the finals run. Knicks in 5!
 collected: 2026-06-20
 
 created: 2026
+quotes:
+  - text: |
+      I ❤ bootleg Knicks merch. With the NBA Finals here I've been seeing so many cool designs online every day. This is my little corner of the web to keep track of it all.
+      All shirt donations for the webmaster are welcome & appreciated. Let's Go Knicks!
+    url: https://knickknacks.nyc/
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./top-screen.jpg
     alt: a black and orange geocities-style page of bootleg t-shirts
     caption: we goin’ to the finals
     taken: 2026-09-20
+  - image: ./update.png
+    alt: a windows 95-style alert box over the shop, in which the webmaster announces the unlicensed merch is coming down
+    caption: getting cancelled by the man T_T
+    taken: 2026-09-27
+  - image: ./about.png
+    alt: the site's blog on a starry black background, a single welcome post beside a sidebar of quick links and a fan of the week
+    caption: for the best drip
+    taken: 2026-09-27

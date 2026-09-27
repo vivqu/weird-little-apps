@@ -58,6 +58,8 @@ const apps = defineCollection({
       // yaml gives `2024` as a number, `2024-06` as a string and `2024-06-01` as a Date
       created: z.union([z.number().int(), z.string().regex(/^\d{4}(-\d{2})?$/), z.date()]).optional(),
       curator: person.default({ name: 'Vivian Qu' }),
+      // shown on the visit button as written: "$2.99", "£1.49", "free trial"; omit when free
+      price: z.string().min(1).optional(),
       links: z.array(link).optional(),
       recs: z.array(rec).optional(),
       quotes: z
@@ -88,6 +90,7 @@ const site = defineCollection({
     name: z.string().min(1),
     subtitle: z.string().min(1),
     established: z.number().int(),
+    by: z.object({ name: z.string().min(1), url: z.url().optional() }),
     lede: z.string().min(1),
     description: z.string().min(1),
     post: z.url(),

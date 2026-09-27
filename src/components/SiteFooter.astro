@@ -4,4 +4,4 @@ import { getSite } from '../lib/site';
 const site = await getSite();
 ---
 
-<footer class="site">est. {site.established} <span aria-hidden="true">·</span> <a href="/about/">about</a></footer>
+<footer class="site">est. {site.established} <span aria-hidden="true">·</span> made with <span class="heart">♥</span> by {site.by.url ? <a href={site.by.url}>{site.by.name}</a> : site.by.name} <span aria-hidden="true">·</span> <a href="/about/">about</a></footer>

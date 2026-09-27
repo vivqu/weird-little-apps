@@ -42,6 +42,9 @@ Optional:
   - a year `2024`, a month `2024-06`, or a date `2024-06-01`
   - shown as "2024", "jun 2024" or "1 jun 2024"; "date unknown" when absent
 - `curator`: defaults to Vivian Qu; omit
+- `price`: what it costs, written as shown: `$2.99`, `£1.49`
+  - changes the visit button: `$2.99 on the App Store ↗`, `$2.99 on Google Play ↗`; for any other url, `visit · $2.99 ↗`
+  - omit when free
 - `links`: secondary links, shown as "also: label ↗ · label ↗"
   - for open source: `- { label: source code, url: https://github.com/someone/app }`
   - a bare url (labelled from its hostname; `x.com` → "twitter") or `{ label, url }`
@@ -104,6 +107,7 @@ The simplest valid entry is the seven required fields with `by: someone` and `fo
 - `name`: the site name, used in page titles
 - `subtitle`: the line under the wordmark on every page
 - `established`: the year in "est. 2026"
+- `by`: who made the site, `{ name, url }`; the footer's "made with ♥ by" link
 - `lede`: the one-line description on the about page
 - `description`: the default meta description
 - `post`: the post the site grew out of ("read the post" on the about page)
