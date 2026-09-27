@@ -134,9 +134,9 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e ? [e.script] : [])))];
 
   {embedScripts.length > 0 && (
     <script is:inline define:vars={{ embedScripts }}>
-      /* post embeds only above the phone layout (48rem, as in site.css): the cards can't reflow
-         narrower than ~500px, so on a phone the quote stays as text */
-      if (matchMedia('(min-width: 48.01rem)').matches)
+      /* post embeds only from 616px (38.5rem) up: below that the label squeezes the card under
+         its 540px and the Threads header overlaps itself, so the quote stays as text */
+      if (matchMedia('(min-width: 38.5rem)').matches)
         for (const src of embedScripts) document.body.append(Object.assign(document.createElement('script'), { src, async: true }));
     </script>
   )}

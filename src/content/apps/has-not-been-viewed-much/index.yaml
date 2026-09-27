@@ -1,19 +1,29 @@
 name: has_not_been_viewed_much
-tagline: artworks at the art institute of chicago that almost nobody has looked at.
+tagline: infrequently viewed artwork from the Art Institute of Chicago's API.
 url: https://iamwillwang.com/notes/has-not-been-viewed-much
 form_factor: web
 by:
   - name: Will Wang
     url: https://iamwillwang.com
-why: a boolean in a museum api, turned into a small act of kindness toward lonely paintings.
-collected: 2026-08-11
+why: I love hidden gems, this helps surface what hasn't been looked at much.
+collected: 2026-08-02
 
-created: 2026-04
+created: 2026-04-14
 quotes:
   - text: 'Of course, that still begs the question: what are these artworks? Why aren’t they being viewed?'
     url: https://iamwillwang.com/notes/has-not-been-viewed-much
+recs:
+  - { title: "Hacker News: front page, #9", url: https://news.ycombinator.com/item?id=48799155, date: 2026-07-05 }
 screenshots:
   - image: ./screenshot-1.jpg
     alt: a short essay followed by a rarely viewed print
     caption: viewed fewer than 200 times since 2010
     taken: 2026-09-20
+  - image: ./screenshot-2.jpg
+    alt: the end of the essay, then a vasari pen-and-ink study of an allegory of florence, with a refresh button under it
+    caption: refresh for new art
+    taken: 2026-09-27
+  - image: ./screenshot-3.jpg
+    alt: the same page after a refresh, now showing a hiroshige woodblock print of nihonbashi bridge under snow, with mount fuji behind
+    caption: hiroshige, fewer than 200 views
+    taken: 2026-09-27

@@ -54,7 +54,8 @@ main { max-width: 72rem; margin: 0 auto; }
 .viewswitch a:hover { background: color-mix(in srgb, var(--riso-sky) 45%, var(--paper-2)); }
 
 /* covers */
-.cover { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; background: var(--bar); }
+/* a capture wider than 16:10 keeps its left edge (that's where sidebars and menus live) and loses the right */
+.cover { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: left top; background: var(--bar); }
 .none { display: grid; place-items: center; background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(43,45,107,.07) 6px 7px), var(--paper-2); color: var(--ink-muted); font-size: 0.72rem; letter-spacing: 0.08em; text-align: center; }
 
 /* pager: a strip of paper with perforations between the stubs. level: only screenshots sit at an angle */

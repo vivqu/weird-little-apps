@@ -9,7 +9,7 @@ Every screenshot is one of two kinds, and the kind decides the frame it is shown
 
 | Kind | What it is | Shown as |
 |---|---|---|
-| Browser | a wide capture of a website | a retro browser window: title bar with the app's domain, capture cropped from the top |
+| Browser | a wide capture of a website | a retro browser window: title bar with the app's domain, capture cropped from the top left |
 | Mobile | a phone-shaped image of an iOS or Android app | a phone: our drawn iPhone-style frame, or the image on its own if it already contains a device |
 
 The first screenshot in an entry is the cover. It appears on the index (screenshot wall) and as the
@@ -20,7 +20,7 @@ opening image on the detail page. Up to 4 screenshots per app.
 - **We take our own.** Capture at 1280x800, 1x, JPEG, with headless Playwright (`chromium.launch()`, a 1280x800 context, `page.goto(url, { waitUntil: 'networkidle' })`, `page.screenshot({ type: 'jpeg', quality: 80 })`; `scripts/screenshot.mjs` is the same idea pointed at our own site).
 - **Show the app, not a popup.** Dismiss cookie banners, consent walls and "about" dialogs before capturing. Wait for slow pages to finish loading (Plein Air paints for a few seconds first).
 - **Capture the thing that makes it odd.** The default is the top of the page. If the interesting part is further down or after a click, capture that instead, and use the other slots for the rest.
-- **Shown cropped.** The window frame is 16:10 and crops from the top, so keep what matters in the upper part of the capture.
+- **Shown cropped.** The window frame is 16:10 and crops from the top left, so keep what matters in the upper part of the capture. A wider capture (a Retina screenshot is usually 1.75:1) keeps its left edge, where sidebars and menus tend to be, and loses the right.
 - **Title bar text is derived**, never written: the domain of `url` without `www.` on the index (`walzr.com`), domain plus path on the detail page.
 - A phone-width capture of a website (390px wide) counts as a mobile screenshot and gets the phone frame.
 
