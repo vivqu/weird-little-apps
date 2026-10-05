@@ -1,13 +1,22 @@
 name: Nature this week
-tagline: what nature is doing around you, this week of the year.
+tagline: notice what is happening outdoors right now around you
 url: https://naturethisweek.com/
 form_factor: web
-by: maker unknown
-why: it told me the newts were on the move and i went outside to check. they were.
+by: Johanna Langner
+why: i love that this combines nature and seasonal patterns to encourage people to appreciate their local wildlife! 
 collected: 2026-08-13
 
+created: 2026-03-29
 screenshots:
-  - image: ./screenshot-1.jpg
-    alt: a species filter list beside a small map
-    caption: 9,929 events for 3,763 species
+  - image: ./sanfrancisco-1.jpg
+    alt: the explore page for san francisco, with a filters column of animal groups on the left, a card headed juvenile bobcats are learning to hunt and dispersing with a photo of two kittens in a tree, and on the right a map of california, a night-time weather strip and a tally of 9,958 events for 3,772 species
+    caption: what's happening near san francisco
     taken: 2026-09-20
+  - image: ./sanfrancisco-2.jpg
+    alt: further down the san francisco feed, a card headed cougars are abandoning kills to scavenging black bears, with a photo of a cougar on red rock, a paragraph explaining why, and like, share and flag icons, with the next card about male sea otters starting below
+    caption: one card per thing happening this week
+    taken: 2026-10-05
+  - image: ./london.jpg
+    alt: the same page for london, with a card headed small whites are basking in the sun and a photo of a white butterfly on yellow flowers, the map on the right zoomed to the british isles and a sunny weather strip reading 21 degrees
+    caption: the same week, seen from london
+    taken: 2026-10-05
