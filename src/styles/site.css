@@ -123,10 +123,13 @@ main { max-width: 72rem; margin: 0 auto; }
 .detail .hero { position: relative; width: min(100%, 46rem); }
 .detail .mat { position: relative; padding: 1.3rem; background: var(--paper-2); border: 2px solid var(--rule); box-shadow: 8px 8px 0 var(--shadow); transform: rotate(-0.5deg); }
 .detail .pick { position: absolute; opacity: 0; pointer-events: none; }
-/* the stage never changes size; the frame inside it is one static object that changes shape */
-.detail .mat { --pw: 31%; } /* phone width: a 9:19.5 body filling the stage height */
-.detail .stage { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 16 / 10.7; }
-.detail .frame { display: flex; flex-direction: column; width: 100%; height: 100%; overflow: hidden; padding: 2px; border: 0 solid var(--rule); border-radius: 5px; background: var(--rule); text-decoration: none; transition: width .35s ease, border-radius .35s ease, padding .35s ease; }
+/* the stage never changes size; the frame inside it is one static object that changes shape.
+   its height comes from a sizer: the app's own capture shape (--shot, set on the mat from the image's
+   dimensions) plus the title bar and the frame's 2px edges, so a landscape capture fits the screen exactly */
+.detail .mat { --pw: 31%; --shot: 1.6; } /* phone width: a 9:19.5 body filling the stage height */
+.detail .stage { position: relative; display: grid; grid-template-columns: 100%; place-items: center; width: 100%; }
+.detail .stage::before { content: ''; grid-area: 1 / 1; width: 100%; padding-top: calc(100% / var(--shot) + 1.6rem + 4px); }
+.detail .frame { grid-area: 1 / 1; display: flex; flex-direction: column; width: 100%; height: 100%; overflow: hidden; padding: 2px; border: 0 solid var(--rule); border-radius: 5px; background: var(--rule); text-decoration: none; transition: width .35s ease, border-radius .35s ease, padding .35s ease; }
 .detail .frame .bar { border-radius: 3px 3px 0 0; position: relative; flex: none; display: flex; align-items: center; gap: 0.25rem; height: 1.6rem; padding: 0 0.5rem; border-bottom: 2px solid var(--rule); font-size: 0.7rem; background: repeating-linear-gradient(180deg, transparent 0 3px, color-mix(in srgb, var(--rule) 22%, transparent) 3px 4px), var(--bar); transition: height .35s ease; }
 .detail .frame .bar i { width: 0.5rem; height: 0.5rem; border: 1.5px solid var(--rule); border-radius: 50%; background: var(--riso-pink); transition: opacity .2s; }
 .detail .frame .bar i:nth-child(2) { background: var(--riso-yellow); }
@@ -166,6 +169,7 @@ main { max-width: 72rem; margin: 0 auto; }
 .detail .thumbs label { width: 5.2rem; border: 2px solid var(--rule); border-radius: 3px; overflow: hidden; cursor: pointer; opacity: 0.6; transition: opacity .15s, transform .15s; }
 .detail .thumbs label:hover { opacity: 1; transform: translateY(-2px); }
 .detail .thumbs label.tall { width: 1.9rem; border-radius: 0.4rem; }
+.detail .thumbs label:not(.tall) .cover { aspect-ratio: var(--shot); }
 .detail .thumbs label.tall .cover { aspect-ratio: 9 / 19.5; }
 .detail .thumbs label.bare { border-color: transparent; border-radius: 0.5rem; }
 .detail .thumbs label.bare .cover { mix-blend-mode: multiply; transform: scale(1.42); transform-origin: 50% 42%; }

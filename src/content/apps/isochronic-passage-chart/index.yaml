@@ -1,19 +1,46 @@
 name: Isochronic Passage Chart for Travellers
-tagline: how far you can travel in a day, drawn as an 1881 lithograph.
-url: https://isochronic-passage-chart.netlify.app/#lon
+tagline: the distance you can travel in a given length of time
+url: https://isochronic-passage-chart.netlify.app/
 form_factor: web
 by:
   - name: Ethan Mollick
     url: https://www.oneusefulthing.org
-why: a very long name for a very specific map, which is exactly the energy i am collecting.
+why: building mapping tools to benchmark new AI models
 collected: 2026-08-09
 
-created: 2026
+created: 2026-06-09
 links:
   - label: writeup
     url: https://www.oneusefulthing.org/p/what-it-feels-like-to-work-with-mythos
+  - label: a similar project
+    url: https://proforhan.github.io/isochronic-maps/
+
+quotes:
+  - text: |-
+      I decided to try it on Fable using Claude Code with this prompt:
+
+      i want you to build a fully researched and beautiful isochronic map that lets me pick various cities and see real isochronic lines based on real data. I want the design to be unique. You should take into account airports (and travel time to and from airports) trains, walking, driving. The data does not need to be live but should be real based on your research and data. You can start with a few cities but more general is better, this should be an entirely new project.
+    url: https://www.oneusefulthing.org/p/what-it-feels-like-to-work-with-mythos
+
+recs:
+  - { title: 'Ethan Mollick: What it feels like to work with Mythos', url: https://www.reddit.com/r/singularity/comments/1u1c8tg/ethan_mollick_what_it_feels_like_to_work_with/, by: r/singularity, date: 2026-06-09 }
+  - { title: "Anthropic's Fable 5 can make weirdly fun video games with the click of a button", url: https://techcrunch.com/2026/06/09/anthropics-fable-5-can-make-weirdly-fun-video-games-with-the-click-of-a-button/, by: Lucas Ropek for TechCrunch, date: 2026-06-09 }
+  - { title: 'Mollick and Mythos (well, Fable): a civilian review', url: https://www.forbes.com/sites/johnwerner/2026/06/29/mollick-and-mythos-well-fable--a-civilian-review/, by: John Werner for Forbes, date: 2026-06-29 }
+
 screenshots:
-  - image: ./screenshot-1.jpg
-    alt: a hand-tinted world map shaded by travel time from london
-    caption: from london, eighth edition
+  - image: ./landing.jpg
+    alt: a hand-tinted world map centred on new york and shaded by hours of travel from it, with a legend from within 1 hour to beyond 48
+    caption: travel times from london as an 1881 map
     taken: 2026-09-20
+  - image: ./distance.jpg
+    alt: the london chart with a point near syktyvkar clicked, opening a card that totals 15 h 53 and lists each leg, from the gatwick express to the onward road
+    caption: click anywhere for the itinerary
+    taken: 2026-09-27
+  - image: ./tokyo.jpg
+    alt: the same map recentred on tokyo, with reims in france picked out as a 20 h 38 journey by monorail, a haneda to charles de gaulle flight, and road
+    caption: from tokyo, twenty hours to reims
+    taken: 2026-09-27
+  - image: ./original-reference.jpg
+    alt: francis galton's 1881 plate as a scanned print inside the same frame, the world shaded in days from london, europe green and australia brown
+    caption: the original, 1881
+    taken: 2026-09-27

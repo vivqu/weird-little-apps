@@ -28,6 +28,10 @@ const { shots } = app;
 const many = shots.length > 1;
 const pickId = (j: number) => `pick-${j + 1}`;
 const visit = visitLabel(app);
+// the window frame takes the shape of the app's own browser captures (the first landscape one), so a
+// Retina capture isn't cropped to 16:10; clamped so an odd capture can't make the frame a strip or a square
+const wide = shots.find((s) => !s.tall);
+const shot = wide ? Math.min(2, Math.max(4 / 3, wide.image.width / wide.image.height)) : 1.6;
 // an embedded quote's blockquote needs an id (the provider's script finds it by id to remove it once
 // its iframe is ready) and an inline width (the script copies the inline style onto the iframe)
 const embeds = (app.quotes ?? []).map((q) => embedFor(app, q));
@@ -46,7 +50,7 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e ? [e.script] : [])))];
   <main class:list={['detail', { bare: !shots.length }]}>
     <div class="hero">
       {shots.length ? (
-        <div class="mat">
+        <div class="mat" style={`--shot: ${shot.toFixed(4)}`}>
           {shots.map((s, j) => (
             <input
               class:list={['pick', { tall: s.tall, bare: s.bezel, panel: s.panel }]}
