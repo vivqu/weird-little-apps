@@ -5,11 +5,46 @@ form_factor: web
 by:
   - name: Andy Coenen
     url: https://cannoneyed.com
-why: simcity 2000, except it is the real city and you can find your own building.
+why: i love the idea of finding my own apartment in pixel rendition! alas, i live in london.
 collected: 2026-08-18
 
+created: 2026-01
+links:
+  - label: writeup
+    url: https://cannoneyed.com/projects/isometric-nyc
+  - label: source code
+    url: https://github.com/cannoneyed/isometric-nyc
+
+quotes:
+  - text: Growing up, I played a lot of video games, and my favorites were world building games like SimCity 2000 and Rollercoaster Tycoon. As a core millennial rapidly approaching middle age, I’m a sucker for the nostalgic vibes of those late 90s / early 2000s games. As I stared out at the city, I couldn’t help but imagine what it would look like in the style of those childhood memories.
+    url: https://cannoneyed.com/projects/isometric-nyc
+  - text: I switched back and forth a lot between Claude Code, Gemini CLI, and Cursor (using both Opus 4.5 and Gemini 3 Pro) and as far as I’m concerned they all worked pretty well.
+    url: https://cannoneyed.com/projects/isometric-nyc
+  - text: |-
+      I wanted to share something I built over the last few weeks: isometric.nyc is a massive isometric pixel art map of NYC, built with nano banana and coding agents.
+
+      I didn't write a single line of code.
+    url: https://x.com/_coenen/status/2014359718697799989
+    date: 2026-01-22
+    embed: true
+
+recs:
+  - { title: 'Show HN: isometric.nyc – giant isometric pixel art map of NYC', url: https://news.ycombinator.com/item?id=46721802, by: Hacker News, date: 2026-01-22 }
+  - { title: Software engineer creates isometric city map of NYC, using AI, url: https://www.pcgamer.com/software/ai/software-engineer-creates-classic-simcity-style-map-of-nyc-and-argues-that-ai-is-good-for-creatives-actually/, by: Jess Kinghorn for PC Gamer, date: 2026-01-23 }
+  - { title: "'Isometric NYC' creates a bird's-eye view of New York using pixel art", url: https://gigazine.net/gsc_news/en/20260123-isometric-nyc/, by: Gigazine, date: 2026-01-23 }
+  - { title: isometric-nyc, url: https://rogerwong.me/2026/02/isometric-nyc, by: Roger Wong, date: 2026-02-06 }
+  - { title: An Interactive Isometric Pixel Art Map of New York City, url: https://laughingsquid.com/isometric-nyc-map/, by: Lori Dorn for Laughing Squid, date: 2026-02-26 }
+
 screenshots:
-  - image: ./screenshot-1.jpg
-    alt: a dense isometric pixel-art view of manhattan blocks
+  - image: ./landing.jpg
+    alt: midtown manhattan as isometric pixel art, hundreds of blocky towers around the green rectangle of bryant park, in a window with a blue title bar and a minimap in the corner
     caption: midtown, roughly
     taken: 2026-09-20
+  - image: ./winter.jpg
+    alt: the same midtown towers under snow, every rooftop white and flakes falling over a blue-grey city
+    caption: winter mode
+    taken: 2026-10-22
+  - image: ./zoomed-out.jpg
+    alt: zoomed out to the whole of manhattan, central park a green strip at the top, the east river cutting across to queens on the right
+    caption: zoomed out view of manhattan
+    taken: 2026-10-22
