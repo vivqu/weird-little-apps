@@ -52,7 +52,7 @@ Optional:
   - copy the text exactly; `url` is where it came from
   - for line breaks write it as a block (`text: |`); each line becomes its own paragraph
   - `by` defaults to the first maker; `date` is optional
-  - `embed: true` shows the post itself instead of the text, for a Threads or X post url; the text stays as the fallback when the provider's script doesn't load, and on viewports under 616px, where the cards don't fit. This is the site's one third-party script, loaded only on that page
+  - `embed: true` shows the post itself instead of the text, for a Threads or X post url; the text stays as the fallback when the provider's script doesn't load, and on viewports under 616px, where the cards don't fit. This is the site's one third-party script, loaded only on that page. For a YouTube video url it shows the player instead (a plain iframe, no script, at every width); the text becomes the player's accessible title
 - `recs`: where other people recommended or wrote about the app, shown as a list under the maker's words
   - `{ title, url, by, date }`; `by` and `date` are optional. A bare url is titled from its hostname
 - `screenshots`: up to four, each with:

@@ -69,7 +69,7 @@ const apps = defineCollection({
             url: z.url(),
             by: z.string().optional(),
             date: z.coerce.date().optional(),
-            // show the post itself (Threads or X) via the provider's embed script; the text stays as the fallback
+            // show the post itself (Threads or X, via the provider's script; the text stays as the fallback) or the video (YouTube; the text is the player's title)
             embed: z.boolean().optional(),
           }),
         )

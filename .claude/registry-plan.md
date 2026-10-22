@@ -130,7 +130,7 @@ screenshots:
 
 - [x] 1.1 `src/content.config.ts` with the `apps` collection.
 - [x] 1.2 `image()` from YAML verified; GIF verified; sizes measured (above).
-- [x] 1.3 43 seed entries generated from the prototype's data (taglines and `why` notes are drafts for Vivian to rewrite; several makers are "maker unknown"). Edge cases present: hardware (avian-visitors), very long name (a-pint-near-me), two makers (grug, in-the-weights), multiple form factors (pi-fyi, talktyl), snake_case name (has_not_been_viewed_much). None lacks a screenshot; fixtures cover that.
+- [x] 1.3 43 seed entries generated from the prototype's data (taglines and `why` notes are drafts for Vivian to rewrite; several makers are "maker unknown"). Edge cases present: hardware (apartment-birds), very long name (a-pint-near-me), two makers (grug, in-the-weights), multiple form factors (pi-fyi, talktyl), snake_case name (has_not_been_viewed_much). None lacks a screenshot; fixtures cover that.
 - [x] 1.4 Fixtures.
 - [x] 1.5 `npm run check` and `npm run build` pass (`@astrojs/check` + `typescript` added as dev dependencies); a broken YAML fails the build readably.
 

@@ -1,0 +1,52 @@
+name: Apartment Birds
+tagline: a live collage of every bird that passes your window.
+url: https://bird.onethreenine.net/
+form_factor: [hardware, web]
+by:
+  - name: Teddy Warner
+    url: https://theodore.net
+why: so impressed by the hardware, art, and packing algorithm of an afternoon project!
+collected: 2026-08-16
+
+created: 2026-05
+links:
+  - label: writeup
+    url: https://theodore.net/projects/AvianVisitors/
+  - label: source code
+    url: https://github.com/Twarner491/AvianVisitors
+  - label: a fork
+    url: https://birds.williampeng.com/
+
+recs:
+  - { title: Avian Visitors, url: https://news.ycombinator.com/item?id=48343424, by: Hacker News, date: 2026-05-31 }
+  - { title: $80 DIY bird listening device creates painterly collages of avian visitors, by: Boing Boing, url: https://boingboing.net/2026/05/31/80-diy-bird.html, date: 2026-05-31 }
+
+quotes:
+  - text: I was initally planning on leaving this as a ‘true’ personal project of sorts. I love a good project writeup of course, but frankly I thought this was too quick an afternoon project to warrant any more documentation than a tweet. Twitter thought otherwise...
+    url: https://theodore.net/projects/AvianVisitors/
+  - text: i mounted a tiny microphone on my apartment balcony to listen for any birds passing by and built a site to collage them as they're heard
+    url: https://x.com/WarnerTeddy/status/2060018688645115964
+    date: 2026-05-28
+    embed: true
+  - text: Track all the birds passing by your window!
+    url: https://www.youtube.com/watch?v=CbiBXiwDwCE
+    embed: true
+
+
+screenshots:
+  - image: ./landing.jpg
+    alt: a pale page headed apartment birds, heard recently, with a dozen vintage field-guide illustrations scattered in a loose collage, each with a handwritten label, from a large american crow and house finch in the middle to a cooper's hawk, anna's hummingbird and bushtit around them, and a 1h to all time range switch in the corner
+    caption: heard in the last 24 hours
+    taken: 2026-10-05
+  - image: ./all-birds.jpg
+    alt: the same collage with the range set to all time, now some sixty small bird illustrations packed into a cloud, from gulls and ducks to warblers and woodpeckers
+    caption: every bird the window has ever heard
+    taken: 2026-10-05
+  - image: ./stats.jpg
+    alt: the stats view, a chart of twelve species as dotted bars with their first detection time underneath, beside tables for detections by period, top species led by american crow with 18, and first detections with hutton's vireo added today
+    caption: the stats tab, with a life list
+    taken: 2026-10-05
+  - image: ./atlas.jpg
+    alt: the avian atlas, each species drawn as a postage stamp in a different style, from a rainbow-striped hutton's vireo and a bold black-and-white bushtit to a checkerboard american crow and a red house finch repeat
+    caption: one stamp per species
+    taken: 2026-10-05

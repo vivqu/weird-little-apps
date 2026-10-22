@@ -35,7 +35,7 @@ const shot = wide ? Math.min(2, Math.max(4 / 3, wide.image.width / wide.image.he
 // an embedded quote's blockquote needs an id (the provider's script finds it by id to remove it once
 // its iframe is ready) and an inline width (the script copies the inline style onto the iframe)
 const embeds = (app.quotes ?? []).map((q) => embedFor(app, q));
-const embedScripts = [...new Set(embeds.flatMap((e) => (e ? [e.script] : [])))];
+const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.script] : [])))];
 ---
 
 <Base title={app.name} description={app.tagline}>
@@ -110,12 +110,18 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e ? [e.script] : [])))];
       {app.quotes?.length ? (
         <section>
           <h2>maker’s words</h2>
-          {app.quotes.map((q, i) => (
-            <blockquote class={embeds[i]?.cls} id={embeds[i] && `embed-${i + 1}`} style={embeds[i] && 'width: 100%; max-width: 540px'} {...embeds[i]?.attrs}>
-              {q.text.trim().split(/\n+/).map((line) => <p>{line}</p>)}
-              <footer>{q.by ?? app.by[0].name}{q.date && `, ${fmtDate(q.date)}`} · <a href={q.url}>source</a></footer>
-            </blockquote>
-          ))}
+          {app.quotes.map((q, i) => {
+            const e = embeds[i];
+            if (e && 'iframe' in e)
+              return <iframe class="video" src={e.iframe} title={q.text} loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>;
+            const post = e && 'script' in e ? e : undefined;
+            return (
+              <blockquote class={post?.cls} id={post && `embed-${i + 1}`} style={post && 'width: 100%; max-width: 540px'} {...post?.attrs}>
+                {q.text.trim().split(/\n+/).map((line) => <p>{line}</p>)}
+                <footer>{q.by ?? app.by[0].name}{q.date && `, ${fmtDate(q.date)}`} · <a href={q.url}>source</a></footer>
+              </blockquote>
+            );
+          })}
         </section>
       ) : null}
       {app.recs?.length ? (
