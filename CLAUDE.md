@@ -16,11 +16,13 @@ npm run check        # type-check .astro files
 npm run screenshot   # build, then screenshot / into screenshots/index.png
 WLA_FIXTURES=2000 npm run build   # pad the collection with filler for a stress test (nothing written to disk)
 node scripts/bezel.mjs src/content/apps/<id>/*.jpg   # does a phone-shaped image already contain a device? (see UPLOAD.md)
+node scripts/shrink.mjs src/content/apps/<id>        # compress an entry's screenshots to 1x JPEGs and repoint index.yaml (see .claude/new-app.md)
+node scripts/screenshot.mjs /apps/<id> --all         # after a build: screenshot every capture in the frame and check it's centred
 ```
 
 ## Adding an app
 
-One folder, `src/content/apps/<id>/`, holding `index.yaml` and up to four screenshots. The folder name is the URL (`/apps/<id>/`). Field reference with an example: `src/content/README.md`. How to capture and flag screenshots: `UPLOAD.md`. The build validates the entry and fails with the file and field named if something is off; it also logs entries without a screenshot. Order, accession numbers and phone-vs-browser framing are derived, never written.
+The step-by-step (screenshots, compression, alt text, research, created date, frame check) is `.claude/new-app.md`. One folder, `src/content/apps/<id>/`, holding `index.yaml` and up to four screenshots. The folder name is the URL (`/apps/<id>/`). Field reference with an example: `src/content/README.md`. How to capture and flag screenshots: `UPLOAD.md`. The build validates the entry and fails with the file and field named if something is off; it also logs entries without a screenshot. Order, accession numbers and phone-vs-browser framing are derived, never written.
 
 ## Workflow
 
@@ -46,6 +48,7 @@ node scripts/screenshot.mjs --dark          # dark color scheme
 node scripts/screenshot.mjs --mobile        # 390x844 viewport
 node scripts/screenshot.mjs /apps/foo       # another route
 node scripts/screenshot.mjs --url http://localhost:4321   # use an already-running server
+node scripts/screenshot.mjs /apps/foo --all   # also one shot of the mat per capture, with an inside / centred check
 ```
 
 Always check desktop and mobile after a visual change (there is no dark mode). `screenshots/` is gitignored.
@@ -94,6 +97,7 @@ public/                         copied verbatim: CNAME (custom domain), favicon.
 public/fonts/                   self-hosted woff2 (Instrument Serif, IBM Plex Mono); preloaded, font-display: block
 scripts/screenshot.mjs          playwright screenshot helper
 scripts/bezel.mjs               heuristic: does a phone-shaped image already contain a rendered device?
+scripts/shrink.mjs              compress an entry's screenshots for storage (1512 / 804 wide JPEGs), repoint index.yaml
 src/content.config.ts           the `apps` and `site` collections and their schemas
 src/content/README.md           field reference for index.yaml and site.yaml
 src/content/site.yaml           site-wide copy and status: name, subtitle, lede, motto, the post, the about page's status / next lines

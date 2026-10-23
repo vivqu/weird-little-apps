@@ -1,5 +1,7 @@
-// Usage: node scripts/screenshot.mjs [path] [--dark] [--mobile] [--out file.png] [--url http://host:port]
+// Usage: node scripts/screenshot.mjs [path] [--dark] [--mobile] [--all] [--out file.png] [--url http://host:port]
 // Serves dist/ from an in-process static server (run `npm run build` first), unless --url is given.
+// --all, on a detail page, also clicks through every thumbnail: one screenshot of the mat per capture
+// (<out>-1.png, -2.png, ...) and a line per capture saying whether the frame sits inside the stage, centred.
 // Note: we deliberately do NOT spawn `astro preview`. In Astro 7 it daemonizes and reuses any
 // running instance regardless of --port, which makes screenshots hit stale builds.
 import { chromium } from 'playwright';
@@ -51,7 +53,25 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   await page.goto(url + path, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
   await page.screenshot({ path: out, fullPage: true });
+  console.log(out);
+  if (flag('--all')) {
+    const labels = page.locator('.thumbs label');
+    const n = await labels.count();
+    if (!n) console.log('--all: no thumbnails on this page (one capture, or not a detail page)');
+    for (let i = 0; i < n; i++) {
+      await labels.nth(i).click();
+      await page.waitForTimeout(600); // the frame morphs over .35s and the cover fades over .3s
+      const f = await page.locator('.frame').boundingBox();
+      const s = await page.locator('.stage').boundingBox();
+      const file = out.replace(/\.png$/, `-${i + 1}.png`);
+      await page.locator('.mat').screenshot({ path: file });
+      const r = (v) => Math.round(v);
+      const gaps = [f.x - s.x, s.x + s.width - f.x - f.width, f.y - s.y, s.y + s.height - f.y - f.height];
+      const inside = gaps.every((g) => g >= -1);
+      const centred = Math.abs(gaps[0] - gaps[1]) <= 2 && Math.abs(gaps[2] - gaps[3]) <= 2;
+      console.log(`${file}  frame ${r(f.width)}x${r(f.height)} in stage ${r(s.width)}x${r(s.height)}${inside ? '' : '  NOT INSIDE THE STAGE'}${centred ? '' : '  OFF-CENTRE'}`);
+    }
+  }
   await browser.close();
   server?.close();
-  console.log(out);
 }
