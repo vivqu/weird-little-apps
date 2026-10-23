@@ -7,7 +7,7 @@ import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import { getApps, pageHref, pageOf, fmtDate, fmtCreated, host, visitLabel, nameParts, embedFor, type App } from '../../lib/apps';
+import { getApps, pageHref, pageOf, fmtDate, fmtCreated, host, visits, alsoLinks, nameParts, embedFor, type App } from '../../lib/apps';
 
 export async function getStaticPaths() {
   const apps = await getApps();
@@ -27,7 +27,8 @@ const { app, newer, older, total } = Astro.props;
 const { shots } = app;
 const many = shots.length > 1;
 const pickId = (j: number) => `pick-${j + 1}`;
-const visit = visitLabel(app);
+const buttons = visits(app); // `url`, plus any store listing among the links
+const also = alsoLinks(app);
 // the window frame takes the shape of the app's own browser captures (the first landscape one), so a
 // Retina capture isn't cropped to 16:10; clamped so an odd capture can't make the frame a strip or a square
 const ratio = (s: (typeof shots)[number]) => Math.min(2, Math.max(4 / 3, s.image.width / s.image.height));
@@ -90,7 +91,7 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.
                 ))}
               </div>
             )}
-            <a class="visit" href={app.url}>{visit}</a>
+            <span class="visits">{buttons.map((b) => <a class="visit" href={b.href}>{b.label}</a>)}</span>
           </div>
         </div>
       ) : (
@@ -98,7 +99,7 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.
           <i class="tape"></i>
           <p>no picture yet.</p>
           <p>go and look at the real thing ↓</p>
-          <a class="visit" href={app.url}>{visit}</a>
+          <span class="visits">{buttons.map((b) => <a class="visit" href={b.href}>{b.label}</a>)}</span>
         </div>
       )}
       <aside class="why"><i class="tape"></i><h2>curator’s note</h2><p>{app.why}</p></aside>
@@ -141,8 +142,8 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.
           </ul>
         </section>
       ) : null}
-      {app.links?.length ? (
-        <p class="links">also: {app.links.map((l, i) => <>{i > 0 && ' · '}<a href={l.url}>{l.label} ↗</a></>)}</p>
+      {also.length ? (
+        <p class="links">also: {also.map((l, i) => <>{i > 0 && ' · '}<a href={l.url}>{l.label} ↗</a></>)}</p>
       ) : null}
       <p class="credit">collected by {app.curator.name}<br />no. {app.accession}</p>
     </article>

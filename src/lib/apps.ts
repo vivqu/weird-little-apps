@@ -101,17 +101,27 @@ export const host = (a: App) => a.url.replace(/^https?:\/\//, '').replace(/\/$/,
 
 // the visit button's label comes from where the url points, so entries never spell it out.
 // with a `price`, a store label becomes "$2.99 on the App Store"; anywhere else, "visit · $2.99"
-const STORES: [RegExp, string, string?][] = [
-  [/(^|\.)apps\.apple\.com$/, 'open in App Store', 'the App Store'],
-  [/(^|\.)play\.google\.com$/, 'open in Google Play', 'Google Play'],
+// [host, label on its own, name after a price, short label when it shares the row with another store button]
+const STORES: [RegExp, string, string?, string?][] = [
+  [/(^|\.)apps\.apple\.com$/, 'open in App Store', 'the App Store', 'app store'],
+  [/(^|\.)play\.google\.com$/, 'open in Google Play', 'Google Play', 'play store'],
   [/(^|\.)github\.com$/, 'view on GitHub'],
-  [/(^|\.)chromewebstore\.google\.com$/, 'open in Chrome Web Store', 'the Chrome Web Store'],
+  [/(^|\.)chromewebstore\.google\.com$/, 'open in Chrome Web Store', 'the Chrome Web Store', 'chrome web store'],
 ];
-export const visitLabel = (a: App) => {
-  const store = STORES.find(([re]) => re.test(new URL(a.url).hostname));
-  const label = !a.price ? (store?.[1] ?? 'visit') : store?.[2] ? `${a.price} on ${store[2]}` : `visit · ${a.price}`;
+export const visitLabel = (a: App, url = a.url, short = false) => {
+  const store = STORES.find(([re]) => re.test(new URL(url).hostname));
+  const label = short && store?.[3] ? store[3] : !a.price ? (store?.[1] ?? 'visit') : store?.[2] ? `${a.price} on ${store[2]}` : `visit · ${a.price}`;
   return label + ' ↗';
 };
+// the visit buttons: `url`, then any link to an app store (the same app listed elsewhere). Every other link stays under
+// "also". Two or more buttons use the short labels ("app store", "play store") so they fit on one line
+const APP_STORE = /(^|\.)(apps\.apple\.com|play\.google\.com|chromewebstore\.google\.com)$/;
+const isStoreLink = (url: string) => APP_STORE.test(new URL(url).hostname);
+export const visits = (a: App) => {
+  const hrefs = [a.url, ...(a.links ?? []).map((l) => l.url).filter((u) => u !== a.url && isStoreLink(u))];
+  return hrefs.map((href) => ({ href, label: visitLabel(a, href, hrefs.length > 1) }));
+};
+export const alsoLinks = (a: App) => (a.links ?? []).filter((l) => l.url === a.url || !isStoreLink(l.url));
 
 // a quote with `embed: true` is shown as the post itself. For Threads and X the provider's script
 // swaps our blockquote for its iframe; without it the quote stays as written. A YouTube url is an

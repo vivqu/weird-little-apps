@@ -20,7 +20,7 @@ Required:
 - `tagline`: one lowercase sentence, 140 characters or fewer, no trailing period. Hand-written by the curator; agents don't touch it
   - shown on the index; the most important field
   - voice: the curator's label. Explain what the thing is and does, plainly, with a hint of amusement; distil it from the maker's own words where you can. No jokes at the app's expense, no hype
-- `url`: where the visit button goes
+- `url`: where the visit button goes. A link to another app store among `links` (the same app on Google Play, say) becomes a second button next to it rather than an "also" link; with two buttons the labels shorten to "app store" / "play store"
   - the live site, store page, repo, or a video
   - the button's label follows the host: `apps.apple.com` → "open in App Store ↗", `play.google.com` → "open in Google Play ↗", `github.com` → "view on GitHub ↗", `chromewebstore.google.com` → "open in Chrome Web Store ↗", anything else → "visit ↗"
   - the index tile's title bar shows this url's domain
