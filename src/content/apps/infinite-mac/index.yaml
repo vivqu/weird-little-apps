@@ -1,15 +1,54 @@
 name: Infinite Mac
-tagline: every classic mac os, running in your browser.
+tagline: run every classic mac OS in your browser.
 url: https://infinitemac.org/
 form_factor: web
 by:
   - name: Mihai Parparita
     url: https://persistent.info
-why: system 1.0 boots faster in a tab than my laptop wakes up. a museum where you can touch everything.
+why: we can emulate old game ROMs, why not classic macs?
 collected: 2026-08-19
 
+created: 2021-06
+links:
+  - label: writeup
+    url: https://blog.persistent.info/2022/03/blog-post.html
+  - label: all the blog posts
+    url: https://blog.persistent.info/search/label/Infinite%20Mac
+  - label: source code
+    url: https://github.com/mihaip/infinite-mac
+  - label: a similar project for PCs
+    url: https://www.pcjs.org/
+
+quotes:
+  - text: It’s a golden age of emulation. Between increasing CPU power, WebAssembly, and retrocomputing being so popular The New York Times is covering it, it’s never been easier to relive your 80s/90s/2000s nostalgia.
+    url: https://blog.persistent.info/2022/03/blog-post.html
+    date: 2022-03-31
+  - text: Infinite Mac has a new home at infinitemac.org. Using a new Emscripten port of Mini vMac, it is now able to run almost every notable version of Mac OS, from 1984’s System 1.0 to 2000’s Mac OS 9.0.4.
+    url: https://blog.persistent.info/2023/03/infinitemac-dot-org.html
+    date: 2023-03-28
+
+recs:
+  - { title: Infinite Mac, url: https://news.ycombinator.com/item?id=31168646, by: Hacker News, date: 2022-04-26 }
+  - { title: Take the very first Mac for a full test drive with this amazing emulator, url: https://www.macworld.com/article/1675940/infinte-mac-system-1-mac-os-emulator-browser.html, by: Roman Loyola for Macworld, date: 2023-03-29 }
+  - { title: A Website Full of Web-Based Mac Emulators, url: https://blog.alexseifert.com/2024/05/12/a-website-full-of-web-based-mac-emulators/, by: Alex Seifert, date: 2024-05-12 }
+  - { title: 'InfiniteMac: A Browser-Based Journey into classic MacOS and NeXTStep Operating Systems', url: https://eshop.macsales.com/blog/97134-infinitemac-a-browser-based-journey-into-classic-macos-and-nextstep-operating-systems/, by: Krishna Sadasivam for OWC, date: 2025-02-21 }
+  - { title: Run every version of Classic Mac OS in your browser, url: https://www.cultofmac.com/how-to/infinite-mac, by: D. Griffin Jones for Cult of Mac, date: 2025-03-17 }
+  - { title: Infinite Mac OS X, url: https://news.ycombinator.com/item?id=44323719, by: Hacker News, date: 2025-06-20 }
+
 screenshots:
-  - image: ./screenshot-1.jpg
-    alt: a classic macintosh screen showing system 1.0 from 1984
+  - image: ./landing.jpg
+    alt: the infinitemac.org home page, a short blurb about running any classic mac os in a browser, then a timeline starting at 1984 with system 1.0 drawn as a beige compact mac with a run button
     caption: '1984'
-    taken: 2026-09-20
+    taken: 2026-10-23
+  - image: ./later-os.jpg
+    alt: further down the timeline, system 2.0 and 2.1 under 1985 and system 3.0 under 1986, each a beige mac with its release notes on screen
+    caption: later years
+    taken: 2026-10-22
+  - image: ./desktop.jpg
+    alt: system 1.0 booted inside a drawn beige mac, a grey dithered desktop with the apple menu bar, a system disk, a welcome file and the trash
+    caption: booted
+    taken: 2026-10-22
+  - image: ./floppies.jpg
+    alt: the floppies drawer slid up over the running mac, listing disk images to mount under developer, education and games, from macintosh pascal to dark castle
+    caption: load various floppies
+    taken: 2026-10-22
