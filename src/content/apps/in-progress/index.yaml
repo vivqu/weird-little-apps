@@ -5,6 +5,7 @@ form_factor: web
 by: maker unknown
 why: built on the theory that doing anything every week for a year is bound to change something. i believe it.
 collected: 2026-09-03
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

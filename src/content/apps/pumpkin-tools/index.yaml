@@ -5,6 +5,7 @@ form_factor: web
 by: Pumpkin Fanatic
 why: you can trace the family tree of a 2,907 pound pumpkin. software made by and for exactly one community.
 collected: 2026-09-02
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

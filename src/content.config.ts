@@ -60,6 +60,8 @@ const apps = defineCollection({
       curator: person.default({ name: 'Vivian Qu' }),
       // shown on the visit button as written: "$2.99", "£1.49", "free trial"; omit when free
       price: z.string().min(1).optional(),
+      // not reviewed yet: left out of the build, except in `astro dev` or a build with WLA_SHOW_HIDDEN=1 (never on CI)
+      hidden: z.boolean().optional(),
       links: z.array(link).optional(),
       recs: z.array(rec).optional(),
       quotes: z

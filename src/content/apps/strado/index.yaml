@@ -5,6 +5,7 @@ form_factor: web
 by: maker unknown
 why: trastevere gets an a-minus. no opinions, no sponsored listings, just somebody who really likes walking.
 collected: 2026-09-07
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

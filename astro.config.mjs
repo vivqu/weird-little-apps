@@ -28,6 +28,8 @@ export default defineConfig({
   site: 'https://weirdlittleapps.com',
   // Apex custom domain on GitHub Pages: no `base` needed.
   output: 'static',
+  // a build that includes hidden entries goes to its own folder, so dist/ is always the production site (and `npm run preview` serves that)
+  outDir: process.env.WLA_SHOW_HIDDEN ? './dist-dev' : './dist',
   // page 1 of each index lives at its root
   redirects: { '/page/1': '/', '/compact/page/1': '/compact' },
   integrations: [{ name: 'prune-images', hooks: { 'astro:build:done': pruneUnreferencedImages } }],

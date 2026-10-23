@@ -5,6 +5,7 @@ form_factor: web
 by: maker unknown
 why: 193 tiny utilities and not one of them wants my email. the name is the whole manifesto.
 collected: 2026-08-31
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

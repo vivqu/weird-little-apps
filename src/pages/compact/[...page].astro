@@ -35,9 +35,9 @@ const range = items.length ? `${fmtDate(items[0].collected)} to ${fmtDate(items[
         <p class="head"><b>register of holdings</b><span>page {page.n} of {page.pages} · {range}</span></p>
         <ol>
           {items.map((a) => (
-            <li>
+            <li class:list={{ hidden: a.hidden }}>
               <a href={`/apps/${a.id}/`}>
-                <span class="acc">{a.accession}</span>
+                <span class="acc">{a.accession}{a.hidden && <i class="draft">hidden</i>}</span>
                 <span class="what">
                   <b class="name">{nameParts(a.name).map((part, i) => <>{i > 0 && <wbr />}{part}</>)}</b>
                   <span class="tagline">{a.tagline}</span>

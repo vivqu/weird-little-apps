@@ -5,6 +5,7 @@ form_factor: web
 by: maker unknown
 why: i missed wandering the aisles more than i missed the films. this gives the aisles back.
 collected: 2026-08-27
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

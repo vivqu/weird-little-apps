@@ -55,11 +55,14 @@ first-party post (launch post, Show HN, tweet) → oldest coverage. Say which.
 
 ## 5. Check the frames (agent)
 
-`npm run build && node scripts/screenshot.mjs /apps/<id> --all` (plus `--mobile` once). `--all` clicks every thumbnail,
+`npm run build && node scripts/screenshot.mjs /apps/<id> --all` (plus `--mobile` once). A hidden entry: `WLA_SHOW_HIDDEN=1 npm run build`
+then add `--dist dist-dev`; dist/ stays the production build. `--all` clicks every thumbnail,
 saves `…-N.png` per capture and flags `NOT INSIDE THE STAGE` / `OFF-CENTRE`. Read the PNGs: nothing cropped, phone narrow and
 centred, wider capture letterboxed. Check the index tile once (`node scripts/screenshot.mjs /`).
 
 ## 6. Before handing back
+
+- Reviewed and ready to publish: remove `hidden: true`. Leave it on anything still unreviewed.
 
 - `git status`: old screenshots deleted, no stray PNGs, nothing outside the entry folder unless the task was code.
 - Links resolve (`curl -sI`). `url` is the live app, not the writeup.

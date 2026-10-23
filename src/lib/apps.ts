@@ -25,17 +25,23 @@ export function deriveShot(s: Entry['screenshots'][number]): Shot {
   return { ...s, tall, bezel: tall && s.bezel, panel: tall && s.panel };
 }
 
-// index order: newest first, ties by id. Accession numbers count up from the oldest.
-export function arrange(entries: { id: string; data: Entry }[]): App[] {
-  const apps = entries
+// `hidden: true` entries are left out of the build. The dev server shows them (marked), as does a local build with
+// WLA_SHOW_HIDDEN=1; a CI build never does, so a hidden entry can't reach production by accident.
+export const showingHidden = import.meta.env.DEV || (!!import.meta.env.WLA_SHOW_HIDDEN && !process.env.CI && !process.env.GITHUB_ACTIONS);
+
+// index order: newest first, ties by id. Accession numbers count up from the oldest, over every entry including
+// hidden ones, so a number doesn't change when its entry is unhidden.
+export function arrange(entries: { id: string; data: Entry }[], showHidden = showingHidden): App[] {
+  const all = entries
     .map(({ id, data: { screenshots, ...data } }) => ({ ...data, id, shots: screenshots.map(deriveShot), accession: '', index: 0 }))
     .sort((a, b) => b.collected.getTime() - a.collected.getTime() || a.id.localeCompare(b.id));
   const byYear: Record<number, number> = {};
-  for (const a of [...apps].reverse()) {
+  for (const a of [...all].reverse()) {
     const y = a.collected.getUTCFullYear();
     byYear[y] = (byYear[y] ?? 0) + 1;
     a.accession = `${y}.${String(byYear[y]).padStart(4, '0')}`;
   }
+  const apps = showHidden ? all : all.filter((a) => !a.hidden);
   apps.forEach((a, i) => (a.index = i));
   return apps;
 }
@@ -48,6 +54,8 @@ export function getApps(): Promise<App[]> {
     const apps = arrange([...entries, ...makeFixtures(entries, fixtures)]);
     const bare = apps.filter((a) => !a.shots.length);
     if (bare.length) console.log(`[apps] ${bare.length} without a screenshot: ${bare.map((a) => a.id).join(', ')}`);
+    const hidden = entries.filter((e) => e.data.hidden).length;
+    if (hidden) console.log(`[apps] ${hidden} hidden ${showingHidden ? '(shown: dev / WLA_SHOW_HIDDEN)' : '(left out of this build)'}`);
     return apps;
   })());
 }

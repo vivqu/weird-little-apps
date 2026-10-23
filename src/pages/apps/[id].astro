@@ -104,7 +104,8 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.
       <aside class="why"><i class="tape"></i><h2>curator’s note</h2><p>{app.why}</p></aside>
     </div>
 
-    <article class="label">
+    <article class:list={['label', { hidden: app.hidden }]}>
+      {app.hidden && <i class="draft">hidden · not in the published site</i>}
       <p class="date">{fmtCreated(app.created)} · {app.form_factor.join(', ')}</p>
       <h1>{nameParts(app.name).map((part, i) => <>{i > 0 && <wbr />}{part}</>)}</h1>
       <p class="maker">

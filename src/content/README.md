@@ -16,6 +16,7 @@ src/content/
 Required:
 
 - `name`: the app's name, as its maker writes it
+- `hidden: true`: not reviewed yet. Left out of the build (and of the counts and accession pages), except on the dev server or a local `WLA_SHOW_HIDDEN=1 npm run build`; CI builds never include it. Accession numbers are assigned over all entries, so unhiding doesn't renumber anything
 - `tagline`: one lowercase sentence, 140 characters or fewer, no trailing period. Hand-written by the curator; agents don't touch it
   - shown on the index; the most important field
   - voice: the curator's label. Explain what the thing is and does, plainly, with a hint of amusement; distil it from the maker's own words where you can. No jokes at the app's expense, no hype

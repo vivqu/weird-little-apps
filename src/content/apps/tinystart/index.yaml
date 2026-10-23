@@ -5,6 +5,7 @@ form_factor: mac
 by: Niléane
 why: five euros, once, for a launcher that does four things and says which ones it will never do.
 collected: 2026-09-14
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

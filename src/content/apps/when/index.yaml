@@ -5,6 +5,7 @@ form_factor: web
 by: Charlie
 why: a calendar where every entry is a bet. i check what is supposed to happen next week.
 collected: 2026-08-25
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

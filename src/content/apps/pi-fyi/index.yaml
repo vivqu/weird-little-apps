@@ -5,6 +5,7 @@ form_factor: [web, ios]
 by: Perfectly Imperfect
 why: the biggest thing in the collection, and still weird. recommendations with no algorithm behind them.
 collected: 2026-09-05
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

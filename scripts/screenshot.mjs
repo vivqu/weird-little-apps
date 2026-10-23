@@ -1,5 +1,6 @@
-// Usage: node scripts/screenshot.mjs [path] [--dark] [--mobile] [--all] [--out file.png] [--url http://host:port]
-// Serves dist/ from an in-process static server (run `npm run build` first), unless --url is given.
+// Usage: node scripts/screenshot.mjs [path] [--dark] [--mobile] [--all] [--out file.png] [--url http://host:port] [--dist dir]
+// Serves dist/ from an in-process static server (run `npm run build` first), unless --url is given. --dist dist-dev
+// serves the build that includes hidden entries (`WLA_SHOW_HIDDEN=1 npm run build` writes there).
 // --all, on a detail page, also clicks through every thumbnail: one screenshot of the mat per capture
 // (<out>-1.png, -2.png, ...) and a line per capture saying whether the frame sits inside the stage, centred.
 // Note: we deliberately do NOT spawn `astro preview`. In Astro 7 it daemonizes and reuses any
@@ -41,7 +42,7 @@ export async function serveDist(dir = 'dist') {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   let server;
-  if (!url) ({ server, url } = await serveDist());
+  if (!url) ({ server, url } = await serveDist(opt('--dist', 'dist')));
   await mkdir('screenshots', { recursive: true });
   const browser = await chromium.launch();
   const ctx = await browser.newContext({

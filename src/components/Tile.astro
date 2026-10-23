@@ -9,15 +9,20 @@ interface Props {
 }
 const { app } = Astro.props;
 const shot = app.shots[0];
+// hand-placed: each phone leans its own way, picked from the app's id so it keeps its lean wherever it lands on the wall
+const TILTS = [2, -2.5, 3.5, -1.5, 2.5, -3, 1.5, -2];
+const tilt = TILTS[[...app.id].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 9973, 7) % TILTS.length];
 ---
 
-<li>
+<li class:list={{ hidden: app.hidden }}>
   <a href={`/apps/${app.id}/`}>
+    {app.hidden && !shot?.tall && <i class="draft">hidden</i>}
     {shot?.tall ? (
       <span class="phonebox">
-        <span class:list={['phone', { bare: shot.bezel, panel: shot.panel }]}>
+        <span class:list={['phone', { bare: shot.bezel, panel: shot.panel }]} style={`--tilt: ${tilt}deg`}>
           <Image class="cover" src={shot.image} alt={shot.alt} width={320} />
         </span>
+        {app.hidden && <i class="draft">hidden</i>}
       </span>
     ) : (
       <span class="miniwin">

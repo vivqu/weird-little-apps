@@ -5,6 +5,7 @@ form_factor: web
 by: Obviously NYC
 why: a sibling collection, scoped to one city. a typeface drawn from donald judd’s kitchen shelf is entry 002.
 collected: 2026-09-15
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

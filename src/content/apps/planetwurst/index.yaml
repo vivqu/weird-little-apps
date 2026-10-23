@@ -5,6 +5,7 @@ form_factor: web
 by: maker unknown
 why: 111 sausages from 51 countries, written up with total sincerity. bierwurst contains no beer. now you know.
 collected: 2026-09-08
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

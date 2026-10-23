@@ -5,6 +5,7 @@ form_factor: web
 by: Sami Smith
 why: scissors, a cutting mat, and a 2012 issue of nintendo power. the scraps stay off the print.
 collected: 2026-09-18
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

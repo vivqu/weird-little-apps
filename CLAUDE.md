@@ -15,6 +15,7 @@ npm run preview      # serve dist/ locally
 npm run check        # type-check .astro files
 npm run screenshot   # build, then screenshot / into screenshots/index.png
 WLA_FIXTURES=2000 npm run build   # pad the collection with filler for a stress test (nothing written to disk)
+WLA_SHOW_HIDDEN=1 npm run build   # include `hidden: true` entries, as the dev server always does; builds into dist-dev/ so dist/ stays production (CI ignores this)
 node scripts/bezel.mjs src/content/apps/<id>/*.jpg   # does a phone-shaped image already contain a device? (see UPLOAD.md)
 node scripts/capture.mjs <id> [--stale]              # take the landing screenshot (1512x860 at 2x, shrunk to 1512 JPEG), matching hand captures
 node scripts/shrink.mjs src/content/apps/<id>        # compress an entry's screenshots to 1x JPEGs and repoint index.yaml (see .claude/new-app.md)
@@ -23,7 +24,7 @@ node scripts/screenshot.mjs /apps/<id> --all         # after a build: screenshot
 
 ## Adding an app
 
-The step-by-step (screenshots, compression, alt text, research, created date, frame check) is `.claude/new-app.md`. One folder, `src/content/apps/<id>/`, holding `index.yaml` and up to four screenshots. The folder name is the URL (`/apps/<id>/`). Field reference with an example: `src/content/README.md`. How to capture and flag screenshots: `UPLOAD.md`. The build validates the entry and fails with the file and field named if something is off; it also logs entries without a screenshot. Order, accession numbers and phone-vs-browser framing are derived, never written.
+The step-by-step (screenshots, compression, alt text, research, created date, frame check) is `.claude/new-app.md`. One folder, `src/content/apps/<id>/`, holding `index.yaml` and up to four screenshots. The folder name is the URL (`/apps/<id>/`). Field reference with an example: `src/content/README.md`. How to capture and flag screenshots: `UPLOAD.md`. The build validates the entry and fails with the file and field named if something is off; it also logs entries without a screenshot. Order, accession numbers and phone-vs-browser framing are derived, never written. An entry with `hidden: true` is kept out of production builds but shown, tagged, on the dev server; unreviewed imports carry it until the curator has been through them.
 
 ## Workflow
 
@@ -50,6 +51,7 @@ node scripts/screenshot.mjs --mobile        # 390x844 viewport
 node scripts/screenshot.mjs /apps/foo       # another route
 node scripts/screenshot.mjs --url http://localhost:4321   # use an already-running server
 node scripts/screenshot.mjs /apps/foo --all   # also one shot of the mat per capture, with an inside / centred check
+node scripts/screenshot.mjs /apps/foo --dist dist-dev   # screenshot a hidden entry from the WLA_SHOW_HIDDEN build
 ```
 
 Always check desktop and mobile after a visual change (there is no dark mode). `screenshots/` is gitignored.

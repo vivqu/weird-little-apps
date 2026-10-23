@@ -7,6 +7,7 @@ by:
     url: https://joonas.wtf
 why: a weather app that gives you no advice at all. it just stands next to you and looks at the sky.
 collected: 2026-09-12
+hidden: true
 
 screenshots:
   - image: ./landing.jpg

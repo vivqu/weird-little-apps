@@ -7,7 +7,7 @@
 // or narrower is left alone, so running it twice is safe.
 import sharp from 'sharp';
 import { readdir, stat, readFile, writeFile, unlink, rename } from 'node:fs/promises';
-import { join, extname, basename, resolve } from 'node:path';
+import { join, basename, resolve } from 'node:path';
 
 const args = process.argv.slice(2);
 const flag = (name) => args.includes(name);
