@@ -1,5 +1,5 @@
 name: Clueless Closet
-tagline: jessie’s real wardrobe, browsable like cher’s closet computer.
+tagline: jessie’s real wardrobe, browsable like cher’s closet computer
 url: https://jessiechar.com/closet
 form_factor: web
 by:
@@ -9,7 +9,7 @@ why: the 1995 fantasy, finally built, for an audience of one person and her actu
 collected: 2026-08-22
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a leopard-print interface with tops, bottoms and shoes on rewind and forward controls
     caption: browse · dress me
-    taken: 2026-09-20
+    taken: 2026-10-23

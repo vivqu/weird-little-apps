@@ -1,5 +1,5 @@
 name: TinyStart
-tagline: a tiny launcher for your mac. yes, emoji are essential.
+tagline: a tiny launcher for your mac. yes, emoji are essential
 url: https://tinystart.app/
 form_factor: mac
 by: Niléane
@@ -7,7 +7,7 @@ why: five euros, once, for a launcher that does four things and says which ones 
 collected: 2026-09-14
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a purple page with the tinystart icon and a search launcher window
     caption: fast and focused on the essentials
-    taken: 2026-09-20
+    taken: 2026-10-23

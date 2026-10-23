@@ -1,5 +1,5 @@
 name: INKDRUM
-tagline: a risograph print shop in your browser, misregistration included.
+tagline: a risograph print shop in your browser, misregistration included
 url: https://www.inkdrum.app/
 form_factor: web
 by: Jackson Greathouse Fall
@@ -7,7 +7,7 @@ why: real riso inks, paper stocks and wobble. misprints are part of the fun, whi
 collected: 2026-09-19
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a sunset poster being separated into yellow, pink, blue and black ink drums
     caption: four drums loaded
-    taken: 2026-09-20
+    taken: 2026-10-23

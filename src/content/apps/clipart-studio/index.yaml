@@ -1,5 +1,5 @@
 name: clipart.studio
-tagline: cut up old magazines from the internet archive and collage them.
+tagline: cut up old magazines from the internet archive and collage them
 url: https://clipart.studio/
 form_factor: web
 by: Sami Smith
@@ -7,7 +7,7 @@ why: scissors, a cutting mat, and a 2012 issue of nintendo power. the scraps sta
 collected: 2026-09-18
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a green cutting mat with a blank page and a rack of magazine covers
     caption: the cutting mat
-    taken: 2026-09-20
+    taken: 2026-10-23

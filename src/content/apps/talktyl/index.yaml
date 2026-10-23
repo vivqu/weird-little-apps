@@ -1,5 +1,5 @@
 name: ttyl
-tagline: send a voice message to your future self.
+tagline: send a voice message to your future self
 url: https://www.talktyl.com/
 form_factor: [web, ios]
 by: Off-Trail Studio
@@ -8,7 +8,7 @@ collected: 2026-08-23
 
 created: 2025
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a record button and a return date picker, with a small mailbox doodle
     caption: what is worth a rewind today?
-    taken: 2026-09-20
+    taken: 2026-10-23

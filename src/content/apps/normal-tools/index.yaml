@@ -1,5 +1,5 @@
 name: Normal Tools
-tagline: open a tool, do the thing, leave.
+tagline: open a tool, do the thing, leave
 url: https://www.normaltools.com/
 form_factor: web
 by: maker unknown
@@ -7,7 +7,7 @@ why: 193 tiny utilities and not one of them wants my email. the name is the whol
 collected: 2026-08-31
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a plain index of small online tools
     caption: normal tools for normal tasks
-    taken: 2026-09-20
+    taken: 2026-10-23

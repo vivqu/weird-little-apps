@@ -32,8 +32,12 @@ const visit = visitLabel(app);
 // Retina capture isn't cropped to 16:10; clamped so an odd capture can't make the frame a strip or a square
 const ratio = (s: (typeof shots)[number]) => Math.min(2, Math.max(4 / 3, s.image.width / s.image.height));
 const wide = shots.find((s) => !s.tall);
-const shot = wide ? ratio(wide) : 1.6; // sizes the stage; every landscape capture's own ratio then fits inside it, centred
-const matVars = [`--shot: ${shot.toFixed(4)}`, ...shots.map((s, j) => `--r${j + 1}: ${(s.tall ? shot : ratio(s)).toFixed(4)}`)].join('; ');
+const shot = wide ? ratio(wide) : 1.6; // the first landscape capture sizes the stage
+// a capture within 5% of the stage's shape uses the stage's shape (hand-taken Retina captures vary by a line or two, and a
+// frame that resizes between them is distracting; the cover's object-fit: cover absorbs the sliver). A real difference
+// (a 16:10 capture next to 1.76:1 ones) still gets its own shape, fitted inside the stage and centred
+const frameRatio = (s: (typeof shots)[number]) => (s.tall || Math.abs(ratio(s) / shot - 1) < 0.05 ? shot : ratio(s));
+const matVars = [`--shot: ${shot.toFixed(4)}`, ...shots.map((s, j) => `--r${j + 1}: ${frameRatio(s).toFixed(4)}`)].join('; ');
 // an embedded quote's blockquote needs an id (the provider's script finds it by id to remove it once
 // its iframe is ready) and an inline width (the script copies the inline style onto the iframe)
 const embeds = (app.quotes ?? []).map((q) => embedFor(app, q));
@@ -80,7 +84,7 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.
             {many && (
               <div class="thumbs">
                 {shots.map((s, j) => (
-                  <label for={pickId(j)} class:list={{ tall: s.tall, bare: s.bezel }} style={!s.tall && `--r: ${ratio(s).toFixed(4)}`}>
+                  <label for={pickId(j)} class:list={{ tall: s.tall, bare: s.bezel }} style={!s.tall && `--r: ${frameRatio(s).toFixed(4)}`}>
                     <Image class="cover" src={s.image} alt="" width={200} />
                   </label>
                 ))}

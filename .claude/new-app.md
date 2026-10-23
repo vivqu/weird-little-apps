@@ -1,14 +1,18 @@
 # Adding or updating an app
 
 One entry in `src/content/apps/<id>/`. Step 1 is the human's; 2-6 are the agent's, in order. Fields: `src/content/README.md`.
-Screenshot rules: `UPLOAD.md`. The user commits.
+Screenshot rules: `UPLOAD.md`. The user commits. **Never edit `tagline` or `why`**: they are hand-curated. Only the human
+changes them.
 
-## 1. Screenshots (human)
+## 1. Screenshots (human, or `node scripts/capture.mjs <id>` for the landing shot)
 
-- Same dimensions within an app. The stage is sized by the first landscape capture; a differently shaped one is letterboxed.
+- Hand captures: Retina MacBook browser content area (3024x~1720). `capture.mjs` produces the same shape (1512x860 at 2x),
+  so mixing the two is fine.
+- Same dimensions within an app. The first landscape capture sizes the frame; others within 5% share it exactly, anything
+  further off is letterboxed inside it.
 - Raw phone screens get the drawn phone automatically. `panel: true` only for store marketing images; `bezel: true` only when
   the image contains a rendered device (`node scripts/bezel.mjs <images>`).
-- Index tile crops 16:10 from the top left.
+- Index tile is 1512:860; a capture of another shape is cropped from the top left.
 
 ## 2. Compress and describe (agent)
 

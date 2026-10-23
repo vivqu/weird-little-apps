@@ -1,5 +1,5 @@
 name: Strado
-tagline: what is within a ten-minute walk, for every neighbourhood in 50 european cities.
+tagline: what is within a ten-minute walk, for every neighbourhood in 50 european cities
 url: https://strado.info/
 form_factor: web
 by: maker unknown
@@ -7,7 +7,7 @@ why: trastevere gets an a-minus. no opinions, no sponsored listings, just somebo
 collected: 2026-09-07
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: strado home page showing a neighbourhood score card
     caption: daily life score
-    taken: 2026-09-20
+    taken: 2026-10-23

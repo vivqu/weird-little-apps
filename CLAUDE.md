@@ -16,6 +16,7 @@ npm run check        # type-check .astro files
 npm run screenshot   # build, then screenshot / into screenshots/index.png
 WLA_FIXTURES=2000 npm run build   # pad the collection with filler for a stress test (nothing written to disk)
 node scripts/bezel.mjs src/content/apps/<id>/*.jpg   # does a phone-shaped image already contain a device? (see UPLOAD.md)
+node scripts/capture.mjs <id> [--stale]              # take the landing screenshot (1512x860 at 2x, shrunk to 1512 JPEG), matching hand captures
 node scripts/shrink.mjs src/content/apps/<id>        # compress an entry's screenshots to 1x JPEGs and repoint index.yaml (see .claude/new-app.md)
 node scripts/screenshot.mjs /apps/<id> --all         # after a build: screenshot every capture in the frame and check it's centred
 ```
@@ -97,6 +98,7 @@ public/                         copied verbatim: CNAME (custom domain), favicon.
 public/fonts/                   self-hosted woff2 (Instrument Serif, IBM Plex Mono); preloaded, font-display: block
 scripts/screenshot.mjs          playwright screenshot helper
 scripts/bezel.mjs               heuristic: does a phone-shaped image already contain a rendered device?
+scripts/capture.mjs             playwright landing capture of an entry's url at the hand-capture size (1512x860 @2x → 1512 JPEG)
 scripts/shrink.mjs              compress an entry's screenshots for storage (1512 / 804 wide JPEGs), repoint index.yaml
 src/content.config.ts           the `apps` and `site` collections and their schemas
 src/content/README.md           field reference for index.yaml and site.yaml

@@ -1,5 +1,5 @@
 name: WHEN
-tagline: a timeline of the future, according to prediction markets.
+tagline: a timeline of the future, according to prediction markets
 url: https://when.val.run/
 form_factor: web
 by: Charlie
@@ -7,7 +7,7 @@ why: a calendar where every entry is a bet. i check what is supposed to happen n
 collected: 2026-08-25
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a vertical timeline starting at today with forecast events
     caption: today, and then everything after
-    taken: 2026-09-20
+    taken: 2026-10-23

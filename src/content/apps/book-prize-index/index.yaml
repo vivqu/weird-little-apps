@@ -1,5 +1,5 @@
 name: The Book Prize Index
-tagline: every nonfiction book prize and the books that won them, searchable.
+tagline: every nonfiction book prize and the books that won them, searchable
 url: https://book-prize-index.vercel.app/
 form_factor: web
 by: maker unknown
@@ -7,7 +7,7 @@ why: someone wanted to know what wins prizes and ended up cataloguing thousands 
 collected: 2026-08-30
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a search page with subjects and prizes listed beneath
     caption: browse by subject or prize
-    taken: 2026-09-20
+    taken: 2026-10-23

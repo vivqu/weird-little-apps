@@ -1,5 +1,5 @@
 name: Eigendrum
-tagline: draw any shape and hear it as a real drum.
+tagline: draw any shape and hear it as a real drum
 url: https://eigendrum.com/
 form_factor: web
 by:
@@ -9,7 +9,7 @@ why: it solves the actual physics of your doodle. a star sounds different from a
 collected: 2026-09-01
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a red circular drumhead with vibration rings and a table of frequencies
     caption: a circle, vibrating
-    taken: 2026-09-20
+    taken: 2026-10-23

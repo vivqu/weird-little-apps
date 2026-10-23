@@ -1,5 +1,5 @@
 name: Make My Drive Fun
-tagline: oddities and roadside detours along your next drive.
+tagline: oddities and roadside detours along your next drive
 url: https://makemydrivefun.com/
 form_factor: web
 by: maker unknown
@@ -7,7 +7,7 @@ why: the scenic-ish route. it assumes the point of a drive is the giant ball of 
 collected: 2026-08-26
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a route planner beside a map of the united states
     caption: there is always something strange just off the highway
-    taken: 2026-09-20
+    taken: 2026-10-23

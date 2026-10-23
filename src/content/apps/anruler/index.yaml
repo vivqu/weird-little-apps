@@ -1,5 +1,5 @@
 name: anruler
-tagline: your screen, but it is a ruler.
+tagline: your screen, but it is a ruler
 url: https://anruler.com/
 form_factor: web
 by: maker unknown
@@ -7,7 +7,7 @@ why: i needed to measure a screw and did not own a ruler. now i sort of do.
 collected: 2026-09-06
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: an on-screen ruler marked in centimetres and inches
     caption: actual size, once calibrated
-    taken: 2026-09-20
+    taken: 2026-10-23

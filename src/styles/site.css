@@ -54,8 +54,9 @@ main { max-width: 72rem; margin: 0 auto; }
 .viewswitch a:hover { background: color-mix(in srgb, var(--riso-sky) 45%, var(--paper-2)); }
 
 /* covers */
-/* a capture wider than 16:10 keeps its left edge (that's where sidebars and menus live) and loses the right */
-.cover { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: left top; background: var(--bar); }
+/* the tile is the shape of a Retina browser capture (1512x860, see UPLOAD.md); a capture of another shape keeps its top-left
+   corner (that's where sidebars and menus live) and loses the right or bottom edge */
+.cover { display: block; width: 100%; height: auto; aspect-ratio: 1512 / 860; object-fit: cover; object-position: left top; background: var(--bar); }
 .none { display: grid; place-items: center; background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(43,45,107,.07) 6px 7px), var(--paper-2); color: var(--ink-muted); font-size: 0.72rem; letter-spacing: 0.08em; text-align: center; }
 
 /* pager: a strip of paper with perforations between the stubs. level: only screenshots sit at an angle */
@@ -93,8 +94,8 @@ main { max-width: 72rem; margin: 0 auto; }
 .miniwin .bar i:nth-child(3) { background: var(--riso-mint); }
 .miniwin .bar em { flex: 1; font-style: normal; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: var(--bar); margin: 0 0.3rem; }
 /* a phone app's tile is a phone, standing in the same space a window would take */
-.wall .phonebox { display: grid; place-items: center; aspect-ratio: 16 / 11.3; margin-bottom: 1.3rem; }
-.wall .phone { position: relative; display: block; width: 32%; aspect-ratio: 9 / 19.5; padding: 0.18rem; border: 2px solid var(--rule); border-radius: 1.15rem; background: var(--bar); box-shadow: 4px 4px 0 var(--shadow); transform: rotate(2deg); transition: translate .25s ease, box-shadow .25s ease; }
+.wall .phonebox { display: grid; place-items: center; aspect-ratio: 16 / 10.4; margin-bottom: 1.3rem; } /* the height of a window tile: cover + title bar */
+.wall .phone { position: relative; display: block; width: 29%; aspect-ratio: 9 / 19.5; /* 29% x 19.5/9 fits the phonebox height */ padding: 0.18rem; border: 2px solid var(--rule); border-radius: 1.15rem; background: var(--bar); box-shadow: 4px 4px 0 var(--shadow); transform: rotate(2deg); transition: translate .25s ease, box-shadow .25s ease; }
 .wall .phone::before { content: ''; position: absolute; z-index: 1; top: 0.5rem; left: 50%; width: 30%; height: 0.36rem; translate: -50% 0; border-radius: 99px; background: var(--ink); }
 .wall .phone .cover { width: 100%; height: 100%; aspect-ratio: auto; border: 1.5px solid var(--rule); border-radius: 0.9rem; }
 /* the capture already contains a rendered device: shown bare, its white ground melted into the page */
@@ -107,7 +108,7 @@ main { max-width: 72rem; margin: 0 auto; }
 .wall .phone.panel::before { content: none; }
 .wall .phone.panel .cover { border: 0; border-radius: calc(0.5rem - 2px); }
 .wall a:hover .phone { translate: 0 -1px; box-shadow: 4px 4px 0 var(--shadow-hover); }
-/* three across; frames keep browser proportions (16:10) */
+/* three across; frames keep browser proportions (1512:860) */
 .wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem 2.2rem; }
 .wall a { display: block; text-decoration: none; }
 .wall .miniwin { margin-bottom: 1.3rem; transition: translate .25s ease, box-shadow .25s ease; }

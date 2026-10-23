@@ -16,7 +16,7 @@ src/content/
 Required:
 
 - `name`: the app's name, as its maker writes it
-- `tagline`: one lowercase sentence, 140 characters or fewer
+- `tagline`: one lowercase sentence, 140 characters or fewer, no trailing period
   - shown on the index; the most important field
   - voice: the curator's label. Explain what the thing is and does, plainly, with a hint of amusement; distil it from the maker's own words where you can. No jokes at the app's expense, no hype
 - `url`: where the visit button goes
@@ -74,7 +74,7 @@ Example:
 
 ```yaml
 name: Pocket Metronome
-tagline: a metronome that fits in a browser tab.
+tagline: a metronome that fits in a browser tab
 url: https://example.com/pocket-metronome
 form_factor: [web, ios]
 by:

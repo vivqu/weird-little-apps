@@ -1,5 +1,5 @@
 name: RecipeTables
-tagline: any recipe, converted to a table you can cook from.
+tagline: any recipe, converted to a table you can cook from
 url: https://recipetables.com/
 form_factor: web
 by: maker unknown
@@ -7,7 +7,7 @@ why: it deletes the grandmother anecdote and gives you the cooking for engineers
 collected: 2026-08-20
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a long recipe blog post next to the same recipe as a compact table
     caption: before and after
-    taken: 2026-09-20
+    taken: 2026-10-23

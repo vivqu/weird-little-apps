@@ -1,5 +1,5 @@
 name: Uncovered
-tagline: read first pages blind. no cover, no name, no hype.
+tagline: read first pages blind. no cover, no name, no hype
 url: https://uncovered.ink/
 form_factor: web
 by: maker unknown
@@ -7,7 +7,7 @@ why: i fell for a book i would never have picked up. that is the entire pitch an
 collected: 2026-09-11
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: uncovered home page with an anonymous first page of a novel
     caption: an opening, author hidden
-    taken: 2026-09-20
+    taken: 2026-10-23

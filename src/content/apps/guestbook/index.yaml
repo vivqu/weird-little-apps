@@ -1,5 +1,5 @@
 name: Ky’s guestbook
-tagline: leave a note, a poem or some ascii art on a paper card.
+tagline: leave a note, a poem or some ascii art on a paper card
 url: https://ky.fyi/guestbook
 form_factor: web
 by:
@@ -9,7 +9,7 @@ why: a guestbook, in 2026, full of strangers being kind. the cat stickers are de
 collected: 2026-09-16
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: handwritten-style notes on torn paper cards with heart stickers
     caption: sites like this remind me of the positive power of the internet
-    taken: 2026-09-20
+    taken: 2026-10-23

@@ -1,5 +1,5 @@
 name: Vibe Directory
-tagline: vibe-coded apps and experiments from across the five boroughs.
+tagline: vibe-coded apps and experiments from across the five boroughs
 url: https://obviously.nyc/vibe-directory
 form_factor: web
 by: Obviously NYC
@@ -7,7 +7,7 @@ why: a sibling collection, scoped to one city. a typeface drawn from donald judd
 collected: 2026-09-15
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a numbered list of new york projects under a dark chrome banner
     caption: a living directory of independent builders
-    taken: 2026-09-20
+    taken: 2026-10-23

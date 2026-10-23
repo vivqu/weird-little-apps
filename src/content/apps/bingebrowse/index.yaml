@@ -1,5 +1,5 @@
 name: BingeBrowse
-tagline: your streaming services as a walkable 3d video store.
+tagline: your streaming services as a walkable 3d video store
 url: https://bingebrowse.net/
 form_factor: web
 by: maker unknown
@@ -7,7 +7,7 @@ why: i missed wandering the aisles more than i missed the films. this gives the 
 collected: 2026-08-27
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a neon video store sign in front of shelves of film covers
     caption: your video store
-    taken: 2026-09-20
+    taken: 2026-10-23

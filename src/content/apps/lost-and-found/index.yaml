@@ -1,5 +1,5 @@
 name: Lost and Found
-tagline: thousands of accidental portraits of things people left behind at stadiums and airports.
+tagline: thousands of accidental portraits of things people left behind at stadiums and airports
 url: https://walzr.com/lost-and-found
 form_factor: web
 by:
@@ -12,10 +12,10 @@ quotes:
   - text: 'Hundreds of places use one software tool for managing lost items, and I scraped their archives: thousands of accidental portraits of lost stuff.'
     url: https://walzr.com/lost-and-found
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a grid of staff photos of lost items, each labelled with a venue
     caption: the wall, september 2026
-    taken: 2026-09-20
+    taken: 2026-10-23
   - image: ./screenshot-2.jpg
     alt: 'further down the wall: more lost phones, keys and books'
     caption: further down. it does not end.

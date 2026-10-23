@@ -1,5 +1,5 @@
 name: in progress works
-tagline: a weekly journal and gentle accountability club for side projects.
+tagline: a weekly journal and gentle accountability club for side projects
 url: https://www.inprogress.works/
 form_factor: web
 by: maker unknown
@@ -7,7 +7,7 @@ why: built on the theory that doing anything every week for a year is bound to c
 collected: 2026-09-03
 
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./landing.jpg
     alt: a grid of weekly updates from people making things
     caption: what people made this week
-    taken: 2026-09-20
+    taken: 2026-10-23
