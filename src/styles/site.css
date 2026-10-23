@@ -95,7 +95,7 @@ main { max-width: 72rem; margin: 0 auto; }
 .miniwin .bar em { flex: 1; font-style: normal; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: var(--bar); margin: 0 0.3rem; }
 /* a phone app's tile is a phone, standing in the same space a window would take */
 .wall .phonebox { display: grid; place-items: center; aspect-ratio: 16 / 10.4; margin-bottom: 1.3rem; } /* the height of a window tile: cover + title bar */
-.wall .phone { position: relative; display: block; width: 29%; aspect-ratio: 9 / 19.5; /* 29% x 19.5/9 fits the phonebox height */ padding: 0.18rem; border: 2px solid var(--rule); border-radius: 1.15rem; background: var(--bar); box-shadow: 4px 4px 0 var(--shadow); transform: rotate(2deg); transition: translate .25s ease, box-shadow .25s ease; }
+.wall .phone { --pp: calc(0.18rem + 2px); position: relative; display: block; box-sizing: content-box; width: calc(29% - 2 * var(--pp)); aspect-ratio: 9 / 19.5; /* the screen is 9:19.5; the body (padding + border) sits outside it, and 29% fits the phonebox height */ padding: 0.18rem; border: 2px solid var(--rule); border-radius: 1.15rem; background: var(--bar); box-shadow: 4px 4px 0 var(--shadow); transform: rotate(2deg); transition: translate .25s ease, box-shadow .25s ease; }
 .wall .phone::before { content: ''; position: absolute; z-index: 1; top: 0.5rem; left: 50%; width: 30%; height: 0.36rem; translate: -50% 0; border-radius: 99px; background: var(--ink); }
 .wall .phone .cover { width: 100%; height: 100%; aspect-ratio: auto; border: 1.5px solid var(--rule); border-radius: 0.9rem; }
 /* the capture already contains a rendered device: shown bare, its white ground melted into the page */
@@ -104,7 +104,7 @@ main { max-width: 72rem; margin: 0 auto; }
 .wall .phone.bare .cover { object-fit: contain; border-radius: 0; mix-blend-mode: multiply; transform: scale(1.12); }
 .wall a:hover .phone.bare { box-shadow: none; }
 /* a store marketing panel (headline + device on a full-bleed colour): no drawn phone, just a thin ink edge */
-.wall .phone.panel { width: auto; height: 100%; padding: 2px; border: 0; border-radius: 0.5rem; overflow: hidden; background: var(--rule); }
+.wall .phone.panel { width: auto; height: calc(100% - 4px); padding: 2px; /* content-box like the phone: the 9:19.5 ratio is the image's */ border: 0; border-radius: 0.5rem; overflow: hidden; background: var(--rule); }
 .wall .phone.panel::before { content: none; }
 .wall .phone.panel .cover { border: 0; border-radius: calc(0.5rem - 2px); }
 .wall a:hover .phone { translate: 0 -1px; box-shadow: 4px 4px 0 var(--shadow-hover); }
@@ -127,7 +127,7 @@ main { max-width: 72rem; margin: 0 auto; }
 /* the stage never changes size; the frame inside it is one static object that changes shape.
    its height comes from a sizer: the app's own capture shape (--shot, set on the mat from the image's
    dimensions) plus the title bar and the frame's 2px edges, so a landscape capture fits the screen exactly */
-.detail .mat { --pw: 31%; --shot: 1.6; } /* phone width: a 9:19.5 body filling the stage height */
+.detail .mat { --shot: 1.6; }
 .detail .stage { position: relative; display: grid; grid-template-columns: 100%; place-items: center; width: 100%; container-type: inline-size; }
 .detail .stage::before { content: ''; grid-area: 1 / 1; width: 100%; padding-top: calc(100% / var(--shot) + 1.6rem + 4px); }
 /* the frame takes the picked capture's own shape (--r, one per shot, set on the mat from the image's dimensions):
@@ -151,7 +151,8 @@ main { max-width: 72rem; margin: 0 auto; }
 .detail .mat:has(.pick:nth-of-type(3):checked) :is(.screen .cover:nth-child(3), .cap:nth-child(3)),
 .detail .mat:has(.pick:nth-of-type(4):checked) :is(.screen .cover:nth-child(4), .cap:nth-child(4)) { opacity: 1; display: block; }
 /* phone-shaped capture picked: same frame, new shape (same 2px ink line and peach body, just phone-shaped) */
-.detail .mat:has(.pick.tall:checked) .frame { width: var(--pw); height: 100%; border-width: 2px; border-radius: 2.6rem; padding: 0.3rem; background: var(--bar); }
+/* the phone fills the stage's height; its screen is 9:19.5 and the body (padding + border) sits outside it, so the width follows */
+.detail .mat:has(.pick.tall:checked) .frame { --pp: calc(0.3rem + 2px); box-sizing: content-box; width: auto; height: calc(100cqw / var(--shot) + 1.6rem + 4px - 2 * var(--pp)); /* the stage's height (see .stage::before), in definite units so the grid row can't grow */ aspect-ratio: 9 / 19.5; border-width: 2px; border-radius: 2.6rem; padding: 0.3rem; background: var(--bar); }
 .detail .mat:has(.pick.tall:checked) .bar { height: 0; border-bottom-width: 0; background: none; overflow: hidden; }
 .detail .mat:has(.pick.tall:checked) .bar :is(i, em) { opacity: 0; }
 .detail .mat:has(.pick.tall:checked) .screen::after { opacity: 1; transition-delay: .25s; }
@@ -289,8 +290,7 @@ footer.site .heart { color: var(--riso-pink); }
   .detail .below .visit { grid-column: 1; grid-row: auto; margin-top: 1.1rem; }
   .detail .thumbs label { width: 4.2rem; }
   .detail .thumbs label.tall { width: 1.6rem; }
-  .detail .mat { --pw: 36%; }
-  .detail .mat:has(.pick.tall:checked) .frame { border-radius: 1.5rem; padding: 0.2rem; }
+  .detail .mat:has(.pick.tall:checked) .frame { --pp: calc(0.2rem + 2px); border-radius: 1.5rem; padding: 0.2rem; }
   .detail .mat:has(.pick.tall:checked) .screen { border-radius: 1.25rem; }
   .detail .screen::after { top: 0.4rem; height: 0.6rem; }
   header.site { margin: 1.4rem auto 2.2rem; row-gap: 1.9rem; } /* breathing room between the subtitle and what follows */
