@@ -16,7 +16,7 @@ src/content/
 Required:
 
 - `name`: the app's name, as its maker writes it
-- `tagline`: one lowercase sentence, 140 characters or fewer, no trailing period
+- `tagline`: one lowercase sentence, 140 characters or fewer, no trailing period. Hand-written by the curator; agents don't touch it
   - shown on the index; the most important field
   - voice: the curator's label. Explain what the thing is and does, plainly, with a hint of amusement; distil it from the maker's own words where you can. No jokes at the app's expense, no hype
 - `url`: where the visit button goes
@@ -28,7 +28,7 @@ Required:
   - anything that runs in a browser tab is `web`
 - `by`: the maker, or a list of makers
   - a name, or `{ name, url }` to link it
-- `why`: the curator's note, 1–3 sentences, first person: why it was collected
+- `why`: the curator's note, 1–3 sentences, first person: why it was collected. Hand-written by the curator; agents don't touch it
   - shown on a sticky note on the detail page
   - voice: the curator off duty. Punchy, opinionated, a little snarky; the reaction, not the explanation. This is where the personality goes
 - `collected`: the date it was added, `2026-09-20`

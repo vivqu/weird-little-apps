@@ -72,7 +72,7 @@ rather than in a design tool.
 - **A few spot colors, used flat.** Solid fills on stickers and underlines. Colors are assigned to objects, not to hierarchy.
 - **Doodles in the margins.** Stars, squiggles, arrows. Hand-drawn strokes, a little wobbly, placed where someone was idly drawing around the content.
 - **Lowercase, plain-spoken copy.** Status lines, shop signs, "est. 2026." The voice is a person keeping a homepage, not a company launching a product.
-- **Two voices per app.** The `tagline` is the museum label: restrained, explanatory, a hint of amusement, distilled from the maker's own words. The `why` is the curator's sticky note: punchy, opinionated, vivacious. Keep them distinct; the contrast is the point.
+- **Two voices per app.** The `tagline` is the museum label: restrained, explanatory, a hint of amusement, distilled from the maker's own words. The `why` is the curator's sticky note: punchy, opinionated, vivacious. Keep them distinct; the contrast is the point. **Both are hand-written by the curator and off limits to agents**: never draft, rewrite, trim or "fix" a `tagline` or `why`, even for punctuation, unless the user asks for that specific edit.
 - **Light and bright.** Nearly every reference is a light page. Dark mode isn't part of the vocabulary.
 
 ### How to apply it here
