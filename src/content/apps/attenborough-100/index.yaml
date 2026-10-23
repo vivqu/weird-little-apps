@@ -23,16 +23,16 @@ screenshots:
   - image: ./landing.jpg
     alt: a strip of wildlife photos above a search box
     caption: a lifetime of episodes
-    taken: 2026-09-20
-  - image: ./explore-visually.png
+    taken: 2026-10-23
+  - image: ./explore-visually.jpg
     alt: a scatter plot of 4,895 episodes from 1954 to 2024, rating against year, each dot coloured by topic
     caption: graphed for the nerds
     taken: 2026-09-24
-  - image: ./dogs-search.png
+  - image: ./dogs-search.jpg
     alt: a search for dogs returning 246 episodes as a grid of thumbnails, from dogs the early years to can dogs talk
     caption: search for man's best friend
     taken: 2026-09-24
-  - image: ./episode-detail.png
+  - image: ./episode-detail.jpg
     alt: a pop-up for the nature episode holy cow, a grey cow in front of a blue doorway, with its imdb rating, synopsis and where to stream it
     caption: find where to watch
     taken: 2026-09-24

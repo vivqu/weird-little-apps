@@ -37,9 +37,9 @@ recs:
 
 screenshots:
   - image: ./landing.jpg
-    alt: midtown manhattan as isometric pixel art, hundreds of blocky towers around the green rectangle of bryant park, in a window with a blue title bar and a minimap in the corner
-    caption: midtown, roughly
-    taken: 2026-09-20
+    alt: a few blocks of manhattan as isometric pixel art, a long red-brick apartment complex and a cluster of cross-shaped brick towers among trees, mid-rise blocks all around, in a window with a blue title bar
+    caption: somewhere in manhattan
+    taken: 2026-10-23
   - image: ./winter.jpg
     alt: the same midtown towers under snow, every rooftop white and flakes falling over a blue-grey city
     caption: winter mode

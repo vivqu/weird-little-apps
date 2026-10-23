@@ -30,7 +30,7 @@ recs:
 screenshots:
   - image: ./landing.jpg
     alt: a hand-tinted world map centred on new york and shaded by hours of travel from it, with a legend from within 1 hour to beyond 48
-    caption: travel times from london as an 1881 map
+    caption: travel times from new york as an 1881 map
     taken: 2026-09-20
   - image: ./distance.jpg
     alt: the london chart with a point near syktyvkar clicked, opening a card that totals 15 h 53 and lists each leg, from the gatwick express to the onward road
