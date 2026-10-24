@@ -9,6 +9,7 @@ why: as someone who suffers through dreary British winters, this is such a nice 
 collected: 2026-08-01
 
 created: 2026-07-07
+tags: [vibe-coded, cursor, swift]
 price: $2.99
 quotes:
   - text: "Well, that was fast! From Figma to Xcode in a few hours. I think this is insane considering the amount of time these things take in companies. 🤯"
@@ -19,6 +20,9 @@ quotes:
     url: https://www.threads.com/@yannisabelas/post/Da5i2DkCJdd
     date: 2026-07-17
     embed: true
+  - text: Heliophilia started as a personal project to test AI-assisted development with Cursor. What surprised me was how fast things moved. From zero Swift experience to App Store in a matter of weeks.
+    url: https://www.producthunt.com/products/helophilia-daylight-tracker
+    date: 2026-07-23
   - text: |
       The sky of the Heliophilia app is actually different per climate around the world. Each gradient has been carefully crafted to represent the sky for a specific location and time of the day. With the next update I am introducing an additional climate: Mediterranean. Plus making the rest a bit more accurate. Small details that make the app feel more real.
     url: https://www.threads.com/@yannisabelas/post/DbSonXDl_SA

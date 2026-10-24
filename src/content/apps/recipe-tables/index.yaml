@@ -9,9 +9,11 @@ why: recipes designed for engineers 🔧
 collected: 2026-08-20
 
 created: 2026-07-28
+tags: [vibe-coded, next-js]
 links:
   - { label: writeup, url: https://recipetables.com/why }
   - { label: the original format, url: https://www.cookingforengineers.com/ }
+  - { label: launch post, url: https://www.linkedin.com/feed/update/urn:li:activity:7491066450485428224/ }
 quotes:
   - text: i can’t believe someone solved recipe design decades ago and everyone just decided to ignore it
     url: https://x.com/juanbuis/status/2082162851553398821

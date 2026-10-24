@@ -9,6 +9,7 @@ why: we can emulate old game ROMs, why not classic macs?
 collected: 2026-08-19
 
 created: 2021-06
+tags: [react, webassembly]
 links:
   - label: writeup
     url: https://blog.persistent.info/2022/03/blog-post.html

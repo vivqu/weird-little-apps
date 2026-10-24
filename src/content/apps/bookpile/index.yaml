@@ -4,6 +4,7 @@ url: https://bookpile.org/
 form_factor: web
 created: 2026-05-26
 links:
+  - { label: writeup, url: https://bitboxer.de/2026/05/29/bookpile/ }
   - { label: source code, url: https://codeberg.org/bitboxer/bookpile }
 by: 
   - name: Bodo Tasche

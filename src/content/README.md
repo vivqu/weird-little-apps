@@ -46,8 +46,9 @@ Optional:
 - `price`: what it costs, written as shown: `$2.99`, `£1.49`
   - changes the visit button: `$2.99 on the App Store ↗`, `$2.99 on Google Play ↗`; for any other url, `visit · $2.99 ↗`
   - omit when free
-- `tags`: lowercase slugs for filtering later: `[cursor, react-native]`
+- `tags`: lowercase slugs for filtering later: `[vibe-coded, cursor, claude, claude-opus-4-5, next-js]`
   - dashes between words, no spaces or capitals; the build rejects anything else
+  - keep them high-level: `vibe-coded` when the maker says so, the agent (`cursor`), the model family (`claude`, `gemini`) plus the exact model when the writeup names one (`claude-opus-4-5`, `gemini-3-pro`, dots as dashes), and the one main framework (`next-js`, `react-native`, `swift`)
   - what it was built with, or a theme. Collected now, shown nowhere yet; a tag page and filter come once a few apps share one
 - `links`: secondary links, shown as "also: label ↗ · label ↗"
   - for open source: `- { label: source code, url: https://github.com/someone/app }`

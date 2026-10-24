@@ -1,6 +1,6 @@
 # Adding or updating an app
 
-One entry in `src/content/apps/<id>/`. Step 1 is the human's; 2-6 are the agent's, in order. Fields: `src/content/README.md`.
+One entry in `src/content/apps/<id>/`. Step 1 is the human's; 2-7 are the agent's, in order. Fields: `src/content/README.md`.
 Screenshot rules: `UPLOAD.md`. The user commits. **Never edit `tagline` or `why`**: they are hand-curated. Only the human
 changes them.
 
@@ -38,7 +38,7 @@ Fill `links`, `quotes`, `recs`:
   Embeds render blank headless; check in a real browser.
 - Coverage → `recs: { title, url, by, date }`, `by` = the outlet only ("The Verge", never "Author for The Verge"). Oldest first; undated ones last. HN threads, press, personal blogs. Skip link-only
   posts.
-- Facts with no field (models used, etc.) go in as a maker's quote, not a new field.
+- Facts with no field (models used, etc.) go in as a maker's quote, not a new field; tags come last, step 7.
 
 Fetching (WebFetch is blocked for most of these):
 
@@ -67,3 +67,17 @@ centred, wider capture letterboxed. Check the index tile once (`node scripts/scr
 - `git status`: old screenshots deleted, no stray PNGs, nothing outside the entry folder unless the task was code.
 - Links resolve (`curl -sI`). `url` is the live app, not the writeup.
 - Report sizes before/after, anything guessed (slug titles, dates), anything to eyeball in a real browser.
+
+## 7. Tags (agent, last)
+
+Scan what the entry now links to for `tags` (conventions in `src/content/README.md`): the maker's writeup, a methodology /
+about / "how it was built" page (look for one even if nothing links it yet: `/methodology`, `/about`, `/why`, `/faq`), the
+README and language stats of the source repo, the launch post, and the page's own markup for the framework.
+
+- Only what a source says. `vibe-coded` needs the maker saying so (an agent wrote it, "vibecoded", "I didn't write a line");
+  a model tag needs the model named; a framework tag needs the repo, writeup or markup to show it.
+- Keep it high-level: `vibe-coded`, the agent (`cursor`), the model family (`claude`, `gemini`), the exact model when
+  named (`claude-opus-4-5`), the one main framework (`next-js`, `swift`). No libraries, no databases, no languages.
+- Nothing citable → no `tags` line. Never infer from the maker's other work or the era.
+- Found a methodology / about page on the way? Add it to `links` as `how it was built` / `how it works`.
+- Report each tag with the sentence or file it came from.

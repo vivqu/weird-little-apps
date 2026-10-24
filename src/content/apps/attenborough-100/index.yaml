@@ -9,6 +9,9 @@ why: the best kind of hyperfixation.
 collected: 2026-07-20
 
 created: 2026-05-15
+tags: [vibe-coded, claude, next-js]
+links:
+  - { label: how it was built, url: https://attenborough-100.vercel.app/methodology }
 quotes:
   - text: |
       I was annoyed that I couldn't find a database of David Attenborough documentaries where I could search for a specific episode by topic.
