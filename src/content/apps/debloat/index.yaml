@@ -1,14 +1,33 @@
 name: debloat.dev
-tagline: open-source replacements for bloated vendor software
+tagline: marketplace for open-source software alternatives
 url: https://debloat.dev/
 form_factor: web
-by: maker unknown
-why: a directory of ways to make your mouse work without a 400 mb app. looks like 2004 on purpose.
+by:
+  - name: Ryan Vogel
+    url: https://ryan.ceo
+why: "that classic ebay ux is :chefskiss:"
 collected: 2026-08-21
-hidden: true
 
+created: 2026-08-22
+quotes:
+  - text: a marketplace of open-source replacements for bloated vendor software. every listing is a forum. publish what you build or find.
+    url: https://debloat.dev/about
+recs:
+  - { title: A website for debloated open source alternatives, url: https://news.ycombinator.com/item?id=49410362, by: Hacker News, date: 2026-08-23 }
 screenshots:
   - image: ./landing.jpg
-    alt: a dense old-web directory with banner ads and category lists
+    alt: the home page styled like a 2004 web directory, with a google-coloured logo, two fake banner ads, a categories sidebar, a featured dell-powermanager listing and a newest table of projects and the vendor software they replace
     caption: replace the junk
     taken: 2026-10-23
+  - image: ./top-rated.jpg
+    alt: the top rated table with openwrt and zigbee2mqtt at five stars, each row naming the vendor software it replaces, its license and its post count
+    caption: top rated
+    taken: 2026-10-24
+  - image: ./search.jpg
+    alt: search results for video, five projects including gyroflow and immich, above a footer with no tracking, no cookies and ssr badges
+    caption: search for video software
+    taken: 2026-10-24
+  - image: ./phone-link.jpg
+    alt: the gsconnect listing as a table of what it replaces, its repo, license, platform and category, above a discussion of 17 anonymous posts
+    caption: detail page
+    taken: 2026-10-24
