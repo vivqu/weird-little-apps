@@ -101,6 +101,7 @@ export const host = (a: App) => a.url.replace(/^https?:\/\//, '').replace(/\/$/,
 
 // the visit button's label comes from where the url points, so entries never spell it out.
 // with a `price`, a store label becomes "$2.99 on the App Store"; anywhere else, "visit · $2.99"
+// when it shares the row with a store button, the plain url's label is "website" (a place, like "app store")
 // [host, label on its own, name after a price, short label when it shares the row with another store button]
 const STORES: [RegExp, string, string?, string?][] = [
   [/(^|\.)apps\.apple\.com$/, 'open in App Store', 'the App Store', 'app store'],
@@ -110,11 +111,12 @@ const STORES: [RegExp, string, string?, string?][] = [
 ];
 export const visitLabel = (a: App, url = a.url, short = false) => {
   const store = STORES.find(([re]) => re.test(new URL(url).hostname));
-  const label = short && store?.[3] ? store[3] : !a.price ? (store?.[1] ?? 'visit') : store?.[2] ? `${a.price} on ${store[2]}` : `visit · ${a.price}`;
+  const plain = short ? 'website' : 'visit';
+  const label = short && store?.[3] ? store[3] : !a.price ? (store?.[1] ?? plain) : store?.[2] ? `${a.price} on ${store[2]}` : `${plain} · ${a.price}`;
   return label + ' ↗';
 };
 // the visit buttons: `url`, then any link to an app store (the same app listed elsewhere). Every other link stays under
-// "also". Two or more buttons use the short labels ("app store", "play store") so they fit on one line
+// "also". Two or more buttons use the short labels ("website", "app store", "play store") so they fit on one line
 const APP_STORE = /(^|\.)(apps\.apple\.com|play\.google\.com|chromewebstore\.google\.com)$/;
 const isStoreLink = (url: string) => APP_STORE.test(new URL(url).hostname);
 export const visits = (a: App) => {

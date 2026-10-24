@@ -20,7 +20,7 @@ Required:
 - `tagline`: one lowercase sentence, 140 characters or fewer, no trailing period. Hand-written by the curator; agents don't touch it
   - shown on the index; the most important field
   - voice: the curator's label. Explain what the thing is and does, plainly, with a hint of amusement; distil it from the maker's own words where you can. No jokes at the app's expense, no hype
-- `url`: where the visit button goes. A link to another app store among `links` (the same app on Google Play, say) becomes a second button next to it rather than an "also" link; with two buttons the labels shorten to "app store" / "play store"
+- `url`: where the visit button goes. A link to another app store among `links` (the same app on Google Play, say) becomes a second button next to it rather than an "also" link; with two buttons the labels shorten to "website" / "app store" / "play store"
   - the live site, store page, repo, or a video
   - the button's label follows the host: `apps.apple.com` → "open in App Store ↗", `play.google.com` → "open in Google Play ↗", `github.com` → "view on GitHub ↗", `chromewebstore.google.com` → "open in Chrome Web Store ↗", anything else → "visit ↗"
   - the index tile's title bar shows this url's domain
@@ -46,6 +46,9 @@ Optional:
 - `price`: what it costs, written as shown: `$2.99`, `£1.49`
   - changes the visit button: `$2.99 on the App Store ↗`, `$2.99 on Google Play ↗`; for any other url, `visit · $2.99 ↗`
   - omit when free
+- `tags`: lowercase slugs for filtering later: `[cursor, react-native]`
+  - dashes between words, no spaces or capitals; the build rejects anything else
+  - what it was built with, or a theme. Collected now, shown nowhere yet; a tag page and filter come once a few apps share one
 - `links`: secondary links, shown as "also: label ↗ · label ↗"
   - for open source: `- { label: source code, url: https://github.com/someone/app }`
   - a bare url (labelled from its hostname; `x.com` → "twitter") or `{ label, url }`

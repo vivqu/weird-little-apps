@@ -2,14 +2,39 @@ name: ttyl
 tagline: send a voice message to your future self
 url: https://www.talktyl.com/
 form_factor: [web, ios]
-by: Off-Trail Studio
-why: you record a thing and it comes back at a random point in the future. a time capsule with no lid to pry open.
+by:
+  - name: Robinson Greig
+    url: https://www.robinsongreig.com/
+  - Jeremy Finch
+why: i don't use voice notes often but this charming site really makes a good case for it
 collected: 2026-08-23
-hidden: true
 
-created: 2025
+created: 2025-02
+tags: [cursor, react-native, next-js]
+links:
+  - { label: app store, url: https://apps.apple.com/us/app/ttyl-audio-journal/id6740067250 }
+  - { label: writeup, url: https://www.robinsongreig.com/work/ttyl }
+  - { label: journal prompts, url: https://www.talktyl.com/prompts }
+  - { label: all the blog posts, url: https://www.talktyl.com/blog }
+quotes:
+  - text: My friend Jeremy and I were kicking ideas back and forth. We came up with an idea for an audio time capsule where recordings are returned to your future self. We built a series of prototypes and finally launched a version to the general public. Now available on both web and iOS, our pilot users have completed nearly 200 recordings in just the first few weeks.
+    url: https://www.robinsongreig.com/work/ttyl
+recs:
+  - { title: 30+ Vibe coding examples to inspire your next AI project, url: https://www.ziplines.com/blog/vibe-coding-examples, by: Ziplines, date: 2026-09-09 }
 screenshots:
   - image: ./landing.jpg
-    alt: a record button and a return date picker, with a small mailbox doodle
-    caption: what is worth a rewind today?
+    alt: the headline send a voice note to your future self beside a pixel mailbox, a start recording panel asking what's worth a rewind today, and a return date of 9 days drawn from a magic 8-ball
+    caption: what's worth a rewind today
     taken: 2026-10-23
+  - image: ./bottom.jpg
+    alt: the bottom of the page, a download on the app store badge, three faq questions including is this some sneaky ai thing, and a stay in the loop email box
+    caption: bottom of the page
+    taken: 2026-10-24
+  - image: ./recording.jpg
+    alt: a recording in progress at ten seconds with a pixel microphone and a stop hand sign, the return date dimmed at 12 days
+    caption: recording
+    taken: 2026-10-24
+  - image: ./random.jpg
+    alt: the return date's range popover set to at least 1 week and at most 1 month, open over a recording at eleven seconds
+    caption: let the site pick a date
+    taken: 2026-10-24

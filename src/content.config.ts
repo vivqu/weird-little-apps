@@ -62,6 +62,9 @@ const apps = defineCollection({
       price: z.string().min(1).optional(),
       // not reviewed yet: left out of the build, except in `astro dev` or a build with WLA_SHOW_HIDDEN=1 (never on CI)
       hidden: z.boolean().optional(),
+      // lowercase slugs for filtering later (tools it was built with, themes): `react-native`, not `react native`.
+      // collected now, not shown anywhere yet
+      tags: z.array(z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'a lowercase slug, dashes between words')).optional(),
       links: z.array(link).optional(),
       recs: z.array(rec).optional(),
       quotes: z
