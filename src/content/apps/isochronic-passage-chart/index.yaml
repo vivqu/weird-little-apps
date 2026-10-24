@@ -24,8 +24,8 @@ quotes:
 
 recs:
   - { title: 'Ethan Mollick: What it feels like to work with Mythos', url: https://www.reddit.com/r/singularity/comments/1u1c8tg/ethan_mollick_what_it_feels_like_to_work_with/, by: r/singularity, date: 2026-06-09 }
-  - { title: "Anthropic's Fable 5 can make weirdly fun video games with the click of a button", url: https://techcrunch.com/2026/06/09/anthropics-fable-5-can-make-weirdly-fun-video-games-with-the-click-of-a-button/, by: Lucas Ropek for TechCrunch, date: 2026-06-09 }
-  - { title: 'Mollick and Mythos (well, Fable): a civilian review', url: https://www.forbes.com/sites/johnwerner/2026/06/29/mollick-and-mythos-well-fable--a-civilian-review/, by: John Werner for Forbes, date: 2026-06-29 }
+  - { title: "Anthropic's Fable 5 can make weirdly fun video games with the click of a button", url: https://techcrunch.com/2026/06/09/anthropics-fable-5-can-make-weirdly-fun-video-games-with-the-click-of-a-button/, by: TechCrunch, date: 2026-06-09 }
+  - { title: 'Mollick and Mythos (well, Fable): a civilian review', url: https://www.forbes.com/sites/johnwerner/2026/06/29/mollick-and-mythos-well-fable--a-civilian-review/, by: Forbes, date: 2026-06-29 }
 
 screenshots:
   - image: ./landing.jpg

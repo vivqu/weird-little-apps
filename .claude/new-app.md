@@ -36,7 +36,7 @@ Fill `links`, `quotes`, `recs`:
 - Source → `links: source code`. Successor / fork → `a similar project` / `a fork`. Blog label page → `all the blog posts`.
 - Launch post on X / Threads, or the maker's YouTube video → `quote` with `embed: true` (text / video title as fallback).
   Embeds render blank headless; check in a real browser.
-- Coverage → `recs: { title, url, by, date }`, `by` = "Author for Outlet". HN threads, press, personal blogs. Skip link-only
+- Coverage → `recs: { title, url, by, date }`, `by` = the outlet only ("The Verge", never "Author for The Verge"). HN threads, press, personal blogs. Skip link-only
   posts.
 - Facts with no field (models used, etc.) go in as a maker's quote, not a new field.
 

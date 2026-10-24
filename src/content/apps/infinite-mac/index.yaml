@@ -29,10 +29,10 @@ quotes:
 
 recs:
   - { title: Infinite Mac, url: https://news.ycombinator.com/item?id=31168646, by: Hacker News, date: 2022-04-26 }
-  - { title: Take the very first Mac for a full test drive with this amazing emulator, url: https://www.macworld.com/article/1675940/infinte-mac-system-1-mac-os-emulator-browser.html, by: Roman Loyola for Macworld, date: 2023-03-29 }
+  - { title: Take the very first Mac for a full test drive with this amazing emulator, url: https://www.macworld.com/article/1675940/infinte-mac-system-1-mac-os-emulator-browser.html, by: Macworld, date: 2023-03-29 }
   - { title: A Website Full of Web-Based Mac Emulators, url: https://blog.alexseifert.com/2024/05/12/a-website-full-of-web-based-mac-emulators/, by: Alex Seifert, date: 2024-05-12 }
-  - { title: 'InfiniteMac: A Browser-Based Journey into classic MacOS and NeXTStep Operating Systems', url: https://eshop.macsales.com/blog/97134-infinitemac-a-browser-based-journey-into-classic-macos-and-nextstep-operating-systems/, by: Krishna Sadasivam for OWC, date: 2025-02-21 }
-  - { title: Run every version of Classic Mac OS in your browser, url: https://www.cultofmac.com/how-to/infinite-mac, by: D. Griffin Jones for Cult of Mac, date: 2025-03-17 }
+  - { title: 'InfiniteMac: A Browser-Based Journey into classic MacOS and NeXTStep Operating Systems', url: https://eshop.macsales.com/blog/97134-infinitemac-a-browser-based-journey-into-classic-macos-and-nextstep-operating-systems/, by: OWC, date: 2025-02-21 }
+  - { title: Run every version of Classic Mac OS in your browser, url: https://www.cultofmac.com/how-to/infinite-mac, by: Cult of Mac, date: 2025-03-17 }
   - { title: Infinite Mac OS X, url: https://news.ycombinator.com/item?id=44323719, by: Hacker News, date: 2025-06-20 }
 
 screenshots:

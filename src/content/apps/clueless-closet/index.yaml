@@ -1,0 +1,33 @@
+name: Clueless Closet
+tagline: real clueless closet
+url: https://jessiechar.com/closet
+form_factor: web
+by:
+  - name: Jessie Char
+    url: https://jessiechar.com
+why: making the closet that little girls dream about a reality
+collected: 2026-08-22
+
+created: 2025-03
+quotes:
+  - text: "Clueless came out in 1995 and presented us with the most iconic closet of all, years ahead of its time. Cher Horowitz's wardrobe didn't try to sell her new products or make AI-powered suggestions. The background was leopard print, the buttons were gigantic, this computer probably wasn't even connected to the internet. It just helped her put together killer outfits and get ready for school a little faster."
+    url: https://jessiechar.com/closet
+recs:
+  - { title: "An Oral History Of Cher's Closet In 'Clueless'", url: https://www.nylon.com/fashion/cher-closet-clueless-an-oral-history, by: NYLON, date: 2020-07-16 }
+  - { title: "The beautiful, retro tech of two theatrical sound designers", url: https://www.theverge.com/tech/631922/sound-design-interview-hardware-music-home, by: The Verge, date: 2025-03-19 }
+  - { title: Coding the smart closet from Clueless, url: https://www.theverge.com/news/633286/b, by: The Verge, date: 2025-03-20 }
+  - { title: Cher’s Computerized Closet, url: https://interfacelineage.com/chers-computerized-closet, by: Interface Lineage }
+
+screenshots:
+  - image: ./landing.jpg
+    alt: a leopard-print page with a skims tank, an mcq holographic zip skirt and rick owens sandals stacked in three white panels, each with rewind, play and fast-forward buttons
+    caption: start dressing
+    taken: 2026-10-23
+  - image: ./browse.jpg
+    alt: another spin of the wardrobe, an ali express sweatshirt, issey miyake pleats please pants and maison margiela sneakers, with browse and about buttons at the sides
+    caption: another spin
+    taken: 2026-10-24
+  - image: ./about.jpg
+    alt: the about panel open over the wardrobe, a paragraph on cher horowitz's 1995 closet computer above three stills from the film
+    caption: about
+    taken: 2026-10-24

@@ -30,10 +30,10 @@ quotes:
 
 recs:
   - { title: 'Show HN: isometric.nyc – giant isometric pixel art map of NYC', url: https://news.ycombinator.com/item?id=46721802, by: Hacker News, date: 2026-01-22 }
-  - { title: Software engineer creates isometric city map of NYC, using AI, url: https://www.pcgamer.com/software/ai/software-engineer-creates-classic-simcity-style-map-of-nyc-and-argues-that-ai-is-good-for-creatives-actually/, by: Jess Kinghorn for PC Gamer, date: 2026-01-23 }
+  - { title: Software engineer creates isometric city map of NYC, using AI, url: https://www.pcgamer.com/software/ai/software-engineer-creates-classic-simcity-style-map-of-nyc-and-argues-that-ai-is-good-for-creatives-actually/, by: PC Gamer, date: 2026-01-23 }
   - { title: "'Isometric NYC' creates a bird's-eye view of New York using pixel art", url: https://gigazine.net/gsc_news/en/20260123-isometric-nyc/, by: Gigazine, date: 2026-01-23 }
   - { title: isometric-nyc, url: https://rogerwong.me/2026/02/isometric-nyc, by: Roger Wong, date: 2026-02-06 }
-  - { title: An Interactive Isometric Pixel Art Map of New York City, url: https://laughingsquid.com/isometric-nyc-map/, by: Lori Dorn for Laughing Squid, date: 2026-02-26 }
+  - { title: An Interactive Isometric Pixel Art Map of New York City, url: https://laughingsquid.com/isometric-nyc-map/, by: Laughing Squid, date: 2026-02-26 }
 
 screenshots:
   - image: ./landing.jpg
