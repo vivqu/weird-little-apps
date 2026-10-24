@@ -1,14 +1,42 @@
 name: RecipeTables
-tagline: any recipe, converted to a table you can cook from
+tagline: recipes redesigned as tables
 url: https://recipetables.com/
 form_factor: web
-by: maker unknown
-why: it deletes the grandmother anecdote and gives you the cooking for engineers grid. less scrolling, more cooking.
+by:
+  - name: Juan Buis
+    url: https://juanbuis.com
+why: recipes designed for engineers 🔧
 collected: 2026-08-20
-hidden: true
 
+created: 2026-07-28
+links:
+  - { label: writeup, url: https://recipetables.com/why }
+  - { label: the original format, url: https://www.cookingforengineers.com/ }
+quotes:
+  - text: i can’t believe someone solved recipe design decades ago and everyone just decided to ignore it
+    url: https://x.com/juanbuis/status/2082162851553398821
+    date: 2026-07-28
+    embed: true
+
+recs:
+  - { title: "Cooking for Engineers...recipe infographics! (and interview)", url: https://coolinfographics.com/blog/2010/4/26/cooking-for-engineersrecipe-infographics-and-interview.html, by: Cool Infographics, date: 2010-04-26 }
+  - { title: Engineers redesigned the recipe to make it easier to follow, url: https://www.fastcompany.com/91582535/recipe-table-design, by: Fast Company, date: 2026-07-31 }
+  - { title: This 22-Year-Old Recipe Hack Is Going Mega Viral, url: https://www.buzzfeed.com/arsheenkaur44/viral-forgotten-recipe-hack, by: BuzzFeed,  date: 2026-07-31 }
+  - { title: "Engineer’s Forgotten Recipe Hack Becomes A Viral Sensation", url: https://www.boredpanda.com/vintage-forgotten-recipe-hack/, by: Bored Panda, date: 2026-08-10 }
 screenshots:
   - image: ./landing.jpg
-    alt: a long recipe blog post next to the same recipe as a compact table
-    caption: before and after
-    taken: 2026-10-23
+    alt: the headline less scrolling, more cooking above a recipe blog post beside the same sunday pancakes recipe as a table, with a box to paste a link below
+    caption: how recipe tables work
+    taken: 2026-10-24
+  - image: ./bottom.jpg
+    alt: the bottom of the home page with the paste box, a get pro offer, a newsletter signup and a footer crediting michael chu of cookingforengineers.com
+    caption: bottom of the page
+    taken: 2026-10-24
+  - image: ./library.jpg
+    alt: the library page searched for soup, with filter chips by dish and 237 results shown as photo cards of chicken meatball, red lentil, broccoli cheddar and soba noodle soups
+    caption: library
+    taken: 2026-10-24
+  - image: ./detail.jpg
+    alt: an oyako don recipe as a table, nine ingredients down the left with merged step cells for combine seasonings, simmer, pour in eggs and slide over rice, above buttons to scale, switch to grams and translate
+    caption: detail page
+    taken: 2026-10-24
