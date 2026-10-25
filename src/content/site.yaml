@@ -14,4 +14,13 @@ motto: Make the weird thing. The right people will find it.
 
 # the status block on the about page; {apps} becomes "43 apps", linked to the index
 status: collected {apps}
-next: add filtering and tagging
+next: a suggestion box
+
+# the suggestion box at /suggest/ (see .claude/FORM.md). `endpoint` is the Apps Script web app's /exec url;
+# until it's set the page says the box isn't out yet and nothing links to it
+suggest:
+  endpoint: https://script.google.com/macros/s/AKfycbwPrmBQCSSncmRJstdjV0ZGDS5Fw914iVnjy2bqCtYZLjsTDGb9mwWz0vasNPzKOj5j/exec
+  invite: know a weird little app? we're always looking for more curators to contribute.
+  thanks: we're excited to check out this weird app!
+  reach: we'll send you an update once it's reviewed.
+  noreach: check back to see if it gets added.

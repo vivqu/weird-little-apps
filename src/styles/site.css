@@ -12,7 +12,7 @@
   /* ink is indigo, never black; shadows are deep aqua, never grey */
   --ink: #2b2d6b; --ink-muted: #7379ad; --rule: #2b2d6b; --shadow: #6fbcc0; --shadow-hover: #4aa3a8; --tape: #c3c8ff;
   /* riso accents, each belonging to one object */
-  --riso-blue: #3d9be6; --riso-pink: #ffa8ca; --riso-yellow: #ffe45c; --riso-mint: #aaf0d2; --riso-sky: #9fd8f8; --riso-lime: #b5ee5a; --note: #fff6ae;
+  --riso-blue: #3d9be6; --riso-pink: #ffa8ca; --riso-yellow: #ffe45c; --riso-mint: #aaf0d2; --riso-sky: #9fd8f8; --riso-lime: #b5ee5a; --riso-red: #f15060; --note: #fff6ae;
   --serif: 'Instrument Serif', 'Iowan Old Style', 'Times New Roman', serif;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -350,3 +350,129 @@ footer.site .heart { color: var(--riso-pink); }
 /* no screenshot: the note sits below the "no picture yet" card instead of on a mat corner that isn't there */
 .detail.bare .hero { display: grid; justify-items: center; gap: 2.8rem; }
 .detail.bare .why { position: static; margin: 0; justify-self: end; }
+
+/* suggest: the suggestion box (src/pages/suggest.astro, ported from the prototype in .claude/FORM.md). A postcard: the
+   heading and two notes on the left, the address lines on the right at a fixed height, a sheet of four stamps beside
+   the card to pick from, the picked one in the corner, and a red postmark over it once sent */
+[hidden] { display: none !important; }
+.suggest { padding-top: 1rem; }
+.desk { position: relative; width: min(100%, 46rem); margin: 0 auto; display: flex; flex-direction: column; } /* the card is centred by its desk; the sheet hangs off the desk's edge, so hiding it never moves the card */
+.postcard { position: relative; width: 100%; padding: 1.7rem 1.8rem 1.5rem; background: var(--paper-2); border: 2px solid var(--rule); border-radius: 4px; box-shadow: 6px 6px 0 var(--shadow); transform: rotate(-1deg); }
+/* desktop: the head and the message stack in the left column; the address spans both rows at the card's rest height and draws the divider */
+.postcard form { display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: auto minmax(0, 1fr) auto; align-items: start; gap: 0; }
+.postcard .head { grid-column: 1; grid-row: 1; padding-right: 2rem; }
+/* both halves share one rest height (--card-h), so the last underline on each side ends level. the message side's
+   textareas split the slack and can be dragged taller, which grows the card; the address side keeps its height */
+.postcard { --card-h: 25rem; }
+.postcard .message { grid-column: 1; grid-row: 2; align-self: stretch; display: flex; flex-direction: column; padding-right: 2rem; }
+.postcard .message label:has(textarea) { display: flex; flex-direction: column; flex: 1 1 auto; }
+.postcard .message label:has(textarea) textarea { flex: 1 1 auto; }
+.postcard .message > label:last-of-type, .postcard .address > label:last-of-type { margin-bottom: 0; }
+.postcard h1 { font: italic 400 clamp(1.8rem, 4vw, 2.4rem)/1.1 var(--serif); margin: 0 0 0.5rem; text-wrap: balance; }
+.postcard .invite { margin: 0 0 1.6rem; font-size: 0.82rem; color: var(--ink-muted); }
+.postcard label { display: block; margin: 0 0 1.2rem; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); }
+.postcard :is(input[type=text], input[type=url], textarea) { display: block; width: 100%; margin-top: 0.25rem; padding: 0.25rem 0; border: 0; border-bottom: 1.5px solid var(--ink-muted); border-radius: 0; background: none; color: var(--ink); font: 400 0.92rem/1.5 var(--mono); letter-spacing: 0; text-transform: none; }
+.postcard textarea[name] { resize: vertical; min-height: 5.6rem; }
+.postcard :is(input, textarea):focus { outline: none; }
+.postcard :is(input[type=text], input[type=url], textarea):focus { border-bottom: 2px solid var(--riso-blue); margin-bottom: -0.5px; }
+.postcard ::placeholder { color: color-mix(in srgb, var(--ink-muted) 55%, transparent); }
+.postcard .address { grid-column: 2; grid-row: 1 / 3; display: flex; flex-direction: column; justify-content: flex-end; height: var(--card-h); padding-left: 2rem; border-left: 1.5px dashed var(--ink-muted); }
+.postcard .address .kind { display: block; margin: 0 0 auto; font-size: 0.66rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-muted); }
+.postcard .maker { display: flex; align-items: center; gap: 0.55rem; margin: -0.3rem 0 1.2rem; font-size: 0.82rem; letter-spacing: 0; text-transform: none; color: var(--ink); cursor: pointer; }
+.postcard .maker input { width: 1rem; height: 1rem; margin: 0; accent-color: var(--riso-blue); }
+/* the stamps. a loose sheet of four beside the card (radio buttons underneath); the card's corner is blank until
+   one is picked, then that stamp lands there and fades on the sheet. once sent, a postmark goes over the corner */
+.stamp { position: relative; display: block; width: 3.9rem; height: 4.5rem; padding: 0.22rem; background: var(--paper-2); color: var(--ink);
+  /* perforations: a grid of holes on a 0.3rem pitch, centred on the edges (the size is a multiple of the pitch); the content box covers the interior ones */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, radial-gradient(circle, transparent 1.1px, #000 1.5px) -0.15rem -0.15rem / 0.3rem 0.3rem;
+  mask: linear-gradient(#000 0 0) content-box, radial-gradient(circle, transparent 1.1px, #000 1.5px) -0.15rem -0.15rem / 0.3rem 0.3rem; }
+.stamp .art { position: absolute; inset: 0.22rem; overflow: hidden; outline: 1px solid color-mix(in srgb, var(--ink) 55%, transparent); outline-offset: -3px; }
+.stamp .art svg { position: absolute; color: var(--ink); }
+.stamp b, .stamp i { position: absolute; font-style: normal; font-weight: 500; line-height: 1; }
+.stamp b { font-size: 0.62rem; }
+.stamp i { font-size: 0.4rem; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; }
+.stamp.lime .art { background: var(--riso-lime); }
+.stamp.sky .art { background: var(--riso-sky); }
+.stamp.pink .art { background: var(--riso-pink); }
+.stamp.yellow .art { background: var(--riso-yellow); }
+/* each one printed a little differently, like a sheet from four countries */
+.stamp.lime svg { width: 3.3rem; left: 0.15rem; bottom: -0.25rem; transform: rotate(-14deg); }
+.stamp.lime b { top: 0.3rem; right: 0.3rem; }
+.stamp.lime i { left: 0.3rem; top: 0.35rem; writing-mode: vertical-rl; }
+.stamp.sky svg { width: 4.2rem; left: -0.3rem; top: -0.3rem; }
+.stamp.sky b { top: 0.3rem; left: 0.3rem; }
+.stamp.sky i { left: 0; right: 0; bottom: 0.3rem; text-align: center; }
+.stamp.pink svg { width: 3rem; left: -0.45rem; top: 0.1rem; transform: rotate(12deg); }
+.stamp.pink b { bottom: 0.3rem; left: 0.3rem; }
+.stamp.pink i { right: 0.3rem; top: 0.35rem; writing-mode: vertical-rl; }
+.stamp.yellow svg { width: 3.8rem; right: -1.2rem; bottom: -1.3rem; }
+.stamp.yellow b { top: 0.3rem; left: 0.3rem; }
+.stamp.yellow i { left: 0.3rem; bottom: 0.3rem; writing-mode: vertical-rl; transform: rotate(180deg); }
+.sheet { position: absolute; left: calc(100% + 1.8rem); top: 0.4rem; display: grid; grid-template-columns: repeat(2, auto); gap: 0.9rem 0.7rem; margin: 0; padding: 0; border: 0; }
+.sheet label { margin: 0; cursor: pointer; }
+.sheet input { position: absolute; opacity: 0; width: 0; height: 0; }
+.sheet label { filter: drop-shadow(2px 2px 0 var(--shadow)); } /* on the label, so the shadow follows the perforations */
+.sheet label:nth-child(1) .stamp { transform: rotate(-4deg); }
+.sheet label:nth-child(2) .stamp { transform: rotate(3deg); }
+.sheet label:nth-child(3) .stamp { transform: rotate(2deg); }
+.sheet label:nth-child(4) .stamp { transform: rotate(-3deg); }
+.sheet label:hover .stamp { transform: translateY(-3px); }
+.sheet label:has(input:checked) { filter: none; }
+.sheet label:has(input:checked) .stamp { opacity: 0.25; }
+.sheet label:has(input:focus-visible) { outline: 2px solid var(--riso-blue); outline-offset: 3px; }
+.postcard .corner { position: absolute; top: 1.1rem; right: 1.2rem; width: 3.9rem; height: 4.5rem; }
+.postcard .corner::before { content: 'stamp'; position: absolute; inset: 0; display: grid; place-items: center; border: 1.5px dashed var(--ink-muted); border-radius: 2px; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); opacity: 0.7; }
+.postcard .corner .stamp { display: none; position: absolute; inset: 0; } /* square, exactly on the placeholder's outline */
+.suggest:has(.sheet input:checked) .corner { filter: drop-shadow(2px 2px 0 var(--shadow)); }
+.suggest:has(.sheet input:checked) .corner::before { display: none; }
+.suggest:has(.sheet input[value="star"]:checked) .corner .lime,
+.suggest:has(.sheet input[value="squiggle"]:checked) .corner .sky,
+.suggest:has(.sheet input[value="heart"]:checked) .corner .pink,
+.suggest:has(.sheet input[value="sun"]:checked) .corner .yellow { display: block; }
+/* once sent: the card stays as filled in, locked, with a postmark hand-stamped under the post card label and over the stamp, and the way back */
+.postcard .postmark { display: none; position: absolute; top: 2.9rem; right: 2.6rem; width: 12rem; color: var(--riso-red); opacity: 0.85; mix-blend-mode: multiply; transform: rotate(-9deg); }
+.postcard.is-sent .postmark { display: block; }
+.postcard.is-sent ~ .sheet { visibility: hidden; }
+.postcard .thanks, .postcard.is-sent .ask { display: none; }
+.postcard.is-sent .thanks { display: block; }
+/* the promise depends on whether they left a way to reach them */
+.postcard .thanks .reach { display: none; }
+.postcard.has-contact .thanks .reach { display: inline; }
+.postcard.has-contact .thanks .noreach { display: none; }
+.postcard.is-sent :is(input, textarea) { pointer-events: none; }
+.postcard.is-sent :is(input[type=text], input[type=url], textarea) { border-bottom-color: transparent; }
+.postcard.is-sent textarea { resize: none; flex: 0 0 auto; min-height: 0; }
+.postcard.is-sent label.empty { display: none; }
+.postcard.is-sent .maker input { display: none; }
+.postcard.is-sent .maker::before { content: '✓'; font-weight: 500; }
+.postcard.is-sent .oops, .postcard.is-sent button { display: none; }
+.postcard .back { display: none; }
+.postcard.is-sent .back { display: inline-block; }
+.postcard .send { grid-column: 1 / -1; grid-row: 3; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; margin: 1rem 0 0; }
+.postcard .oops { font-size: 0.8rem; font-weight: 500; color: var(--riso-red); }
+.postcard :is(button, .back) { text-decoration: none; cursor: pointer; white-space: nowrap; padding: 0.45rem 1.1rem; border: 2px solid var(--rule); border-radius: 99px; background: var(--riso-sky); box-shadow: 3px 3px 0 var(--shadow); color: var(--ink); font: 500 0.9rem/1.5 var(--mono); }
+.postcard :is(button, .back):hover { background: var(--riso-blue); color: var(--paper-2); }
+.postcard :is(button, .back):focus-visible { outline: 2px solid var(--riso-blue); outline-offset: 3px; }
+.postcard button:disabled { opacity: 0.6; cursor: wait; }
+.postcard .hp { position: absolute; left: -200vw; width: 1px; height: 1px; overflow: hidden; }
+
+@media (max-width: 68rem) {
+  .sheet { position: static; order: -1; grid-template-columns: repeat(4, auto); justify-content: flex-end; margin: 0 0.4rem 1rem 0; }
+}
+@media (max-width: 48rem) {
+  .postcard { padding: 1.4rem 1.2rem 1.3rem; transform: rotate(-0.6deg); }
+  /* stacked: the heading, then the address half ("post card", the stamp, room for the postmark, the lines), then the message */
+  .postcard form { grid-template-columns: 1fr; grid-template-rows: none; }
+  .postcard :is(.head, .message, .address, .send) { grid-column: 1; grid-row: auto; }
+  .postcard .head { padding-right: 0; }
+  .postcard .address { order: 1; height: auto; padding-left: 0; border-left: 0; }
+  .postcard .message { order: 2; padding: 1.1rem 0 0; border-top: 1.5px dashed var(--ink-muted); }
+  .postcard .message > label:last-of-type { margin-bottom: 1.2rem; }
+  .postcard .send { order: 3; justify-content: flex-start; }
+  .postcard .address .kind { margin: 0 0 0.5rem; }
+  .postcard .corner { position: relative; top: auto; right: auto; margin: 0 0 0 auto; }
+  /* the postmark keeps its room in the flow on both the blank and the sent card, and prints over the stamp's corner once sent */
+  .postcard .postmark { display: block; position: static; visibility: hidden; width: 10rem; margin: -3.6rem 2.4rem 0.8rem auto; }
+  .postcard.is-sent .postmark { visibility: visible; }
+}
+@media (prefers-reduced-motion: no-preference) { .postcard button { transition: background .15s, color .15s; } .sheet .stamp { transition: opacity .15s, transform .15s; } }

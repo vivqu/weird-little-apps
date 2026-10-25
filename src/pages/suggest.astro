@@ -1,0 +1,117 @@
+---
+// The suggestion box: a postcard. The heading, the message half (two notes) and the address half
+// (the app, who sent it), with a sheet of four stamps beside the card to pick from. It posts to the
+// Apps Script web app in site.yaml → suggest.endpoint (.claude/FORM.md), which appends a row to the
+// curator's Sheet. Without JS the browser lands on the script's one-line reply; with it the card locks
+// as filled in, a postmark lands over the stamp, and the button becomes the way back. Ported from the
+// prototype linked in .claude/FORM.md.
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Stamp from '../components/Stamp.astro';
+import { getSite } from '../lib/site';
+const site = await getSite();
+const box = site.suggest;
+const endpoint = box?.endpoint ?? undefined;
+
+// the sheet: `value` is what the row records as `stamp`
+const stamps = [
+  { value: 'star', tone: 'lime', den: '5¢', text: 'priority' },
+  { value: 'squiggle', tone: 'sky', den: '10¢', text: 'air mail' },
+  { value: 'heart', tone: 'pink', den: '1¢', text: 'first class' },
+  { value: 'sun', tone: 'yellow', den: '3¢', text: 'postage' },
+] as const;
+---
+
+<Base title="suggest an app" description={box?.invite}>
+  <SiteHeader />
+  <main class="suggest">
+    <div class="desk">
+      <section class="postcard">
+        {endpoint && box ? (
+          <form id="card-form" method="post" action={endpoint}>
+            <div class="head">
+              <h1 class="ask">suggest an app</h1>
+              <h1 class="thanks">got it. thank you.</h1>
+              <p class="invite ask">{box.invite}</p>
+              <p class="invite thanks">{box.thanks} <span class="reach">{box.reach}</span><span class="noreach">{box.noreach}</span></p>
+            </div>
+            <div class="message">
+              <label>what's weird about it or what impressed you<textarea name="note" rows="4"></textarea></label>
+              <label>links where the maker talks about it: a launch post, a writeup<textarea name="links" rows="3"></textarea></label>
+              <p class="hp" aria-hidden="true"><label>website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+            </div>
+            <div class="address">
+              <span class="kind" aria-hidden="true">post card</span>
+              <span class="corner" aria-hidden="true">{stamps.map((s) => <Stamp shape={s.value} tone={s.tone} den={s.den} text={s.text} />)}</span>
+              <svg class="postmark" viewBox="0 0 130 70" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+                <circle cx="96" cy="35" r="29" stroke-dasharray="4 3" />
+                <text x="96" y="39" fill="currentColor" stroke="none" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="2" text-anchor="middle">SENT</text>
+                <path d="M6 22c6-6 10-6 16 0s10 6 16 0 10-6 16 0 10 6 12 0" />
+                <path d="M6 35c6-6 10-6 16 0s10 6 16 0 10-6 16 0 10 6 12 0" />
+                <path d="M6 48c6-6 10-6 16 0s10 6 16 0 10-6 16 0 10 6 12 0" />
+              </svg>
+              <label>the app<input type="url" name="url" required placeholder="https://" inputmode="url" /></label>
+              <label class="maker"><input type="checkbox" name="maker" value="yes" />i made it</label>
+              <label>your name or handle<input type="text" name="from" autocomplete="nickname" /></label>
+              <label>a way to reach you or a site to credit<input type="text" name="contact" autocomplete="off" /></label>
+              <input type="hidden" name="ref" value="" />
+            </div>
+            <p class="send"><span class="oops" hidden>sorry that didn't go through. try again?</span><button type="submit">send it ↗</button><a class="back" href="/">back to the apps</a></p>
+          </form>
+        ) : (
+          <div class="head">
+            <h1>suggest an app</h1>
+            <p class="invite">the suggestion box isn't out yet. <a href="/about/">about the site</a></p>
+          </div>
+        )}
+      </section>
+      {endpoint && (
+        <fieldset class="sheet" aria-label="pick a stamp">
+          {stamps.map((s) => (
+            <label><input type="radio" name="stamp" value={s.value} form="card-form" /><Stamp shape={s.value} tone={s.tone} den={s.den} text={s.text} /></label>
+          ))}
+        </fieldset>
+      )}
+    </div>
+  </main>
+  <SiteFooter />
+  {endpoint && (
+    <script is:inline>
+      /* the site's second piece of client JS (CLAUDE.md → Keep it small): post the card in the background
+         and lock it in place with the postmark, instead of landing on the script's plain reply */
+      const card = document.querySelector('.postcard');
+      const form = document.getElementById('card-form');
+      const oops = card.querySelector('.oops');
+      form.ref.value = new URLSearchParams(location.search).get('ref') || '';
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const button = form.querySelector('button');
+        button.disabled = true;
+        oops.hidden = true;
+        /* the radios sit on the sheet, outside the form (they post through their form attribute): no pick means the star */
+        if (!document.querySelector('.sheet input:checked')) document.querySelector('.sheet input').checked = true;
+        const data = new FormData(form);
+        data.set('format', 'json');
+        try {
+          const r = await fetch(form.action, { method: 'POST', body: data });
+          if (!(await r.json()).ok) throw new Error();
+        } catch {
+          oops.hidden = false;
+          button.disabled = false;
+          return;
+        }
+        /* sent: the card stays as filled in, locked; blank lines drop out; the thanks depends on a way to reach them */
+        card.classList.add('is-sent');
+        card.classList.toggle('has-contact', !!form.contact.value.trim());
+        form.querySelectorAll('input, textarea').forEach((el) => { el.readOnly = true; el.tabIndex = -1; });
+        form.maker.disabled = true;
+        form.querySelectorAll('label').forEach((l) => {
+          const el = l.querySelector('input, textarea');
+          l.classList.toggle('empty', !!el && (el.type === 'checkbox' ? !el.checked : !el.value.trim()));
+        });
+        form.querySelectorAll('textarea').forEach((t) => { t.rows = 1; t.style.height = t.scrollHeight + 'px'; });
+      });
+    </script>
+  )}
+</Base>

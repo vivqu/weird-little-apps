@@ -37,8 +37,8 @@ The step-by-step (screenshots, compression, alt text, research, created date, fr
 - **Stale dev content.** After changing `src/content.config.ts` (a new field, a new collection), the running dev server keeps its old parsed entries and new fields don't show up. Fix: `npx astro dev stop && rm -f .astro/data-store.json && npx astro dev`. The build is unaffected.
 - **Stale dev CSS.** The dev server can keep serving an old `<style>` block after an edit (HTML updates, CSS doesn't). If a style change doesn't appear, restart with `npx astro dev stop && npx astro dev` before debugging the CSS, and tell the user to hard-refresh.
 - **Content is config.** Adding an app must never require code changes; it's one YAML file plus an optional screenshot. If a feature would break that, rethink it. Site-wide words (subtitle, lede, motto, the about page's status and next lines) live in `src/content/site.yaml`, not in templates.
-- **Keep it small.** No third-party integrations, frameworks, or client JS unless the plan actually calls for them. The only client JS is eight inline lines on the detail page (arrow-key paging), and the only integration is the inline image-pruning hook in `astro.config.mjs`. The one exception is embeds: a quote with `embed: true` loads the Threads or X embed script on that detail page only, on viewports of 616px and up, with the quote text as the fallback; for a YouTube url it renders the player as a plain iframe instead.
-- **No third-party requests at runtime.** Fonts are self-hosted in `public/fonts/` and preloaded with `font-display: block` so text never flashes in a fallback face. Don't add Google Fonts `<link>`s back. Post embeds (above) are the only exception.
+- **Keep it small.** No third-party integrations, frameworks, or client JS unless the plan actually calls for them. The only client JS is eight inline lines on the detail page (arrow-key paging) and the suggest page's submit handler (posts the postcard in the background and locks it with a postmark; the form works without it), and the only integration is the inline image-pruning hook in `astro.config.mjs`. The one exception is embeds: a quote with `embed: true` loads the Threads or X embed script on that detail page only, on viewports of 616px and up, with the quote text as the fallback; for a YouTube url it renders the player as a plain iframe instead.
+- **No third-party requests at runtime.** Fonts are self-hosted in `public/fonts/` and preloaded with `font-display: block` so text never flashes in a fallback face. Don't add Google Fonts `<link>`s back. Post embeds (above) and the suggest page's submit (a POST to the Apps Script endpoint in `site.yaml`, only when the visitor presses send) are the only exceptions.
 
 ## Screenshots
 
@@ -96,8 +96,8 @@ rather than in a design tool.
 ### How to apply it here
 
 - Ground is pale aqua (#d3f0f1) with a faint teal dot grid. Paper is a whisper of peach (#fffaf7) with a slightly deeper peach title bar (#fff0e8). Ink is indigo (#2b2d6b), never black. Shadows are deep aqua (#6fbcc0, #4aa3a8 on hover), never black or grey.
-- Each accent belongs to one object: azure (#3d9be6 / tint #9fd8f8) for "little", the title underline, the view switch, the visit button and link hovers; pink for the admission ticket; yellow for sticky notes (the motto, the curator's note); periwinkle for tape and quote rules; lime for the star; mint for the compact view's row stripes. Don't add an accent without giving it a new object, and don't reuse one on a second object.
-- New elements should be things: a card, a label, a note, a stamp. The site already has a retro window (index tiles, the detail frame, the about page), a drawn phone, a paper mat, a printout with sprocket holes, a perforated pager strip, a museum label, a sticky note, a ticket and tape. If a new component would be a bordered box with a heading, rethink it as an object from a desk.
+- Each accent belongs to one object: azure (#3d9be6 / tint #9fd8f8) for "little", the title underline, the view switch, the visit button and link hovers; pink for the admission ticket; yellow for sticky notes (the motto, the curator's note); periwinkle for tape and quote rules; lime for the star; mint for the compact view's row stripes; red for the postal marks (the suggest page's postmark and its error line). Don't add an accent without giving it a new object, and don't reuse one on a second object.
+- New elements should be things: a card, a label, a note, a stamp. The site already has a retro window (index tiles, the detail frame, the about page), a drawn phone, a paper mat, a printout with sprocket holes, a perforated pager strip, a museum label, a sticky note, a ticket, tape, and a postcard with a sheet of stamps and a postmark. If a new component would be a bordered box with a heading, rethink it as an object from a desk.
 - Keep the hand-placed feel: rotations of one to six degrees, offsets that break the grid slightly, one or two doodles per view. More than that stops reading as doodling.
 - Fonts are Instrument Serif (display) and IBM Plex Mono (everything else), self-hosted in `public/fonts/`. Don't introduce a third.
 - Light only. The page declares `color-scheme: light` and has no dark variant.
@@ -109,6 +109,7 @@ Tokens live in `:root` in `src/styles/site.css`, the one stylesheet, imported by
 ```
 .claude/PLAN.md                 architecture + roadmap
 .claude/registry-plan.md        the registry's spec, schema, measurements and design record
+.claude/FORM.md                 the suggestion box: the Apps Script, the curator's setup steps, the page spec and its prototype
 .github/workflows/deploy.yml    build with withastro/action, publish with deploy-pages
 UPLOAD.md                       how screenshots are captured, flagged and framed (browser vs mobile)
 astro.config.mjs                site: https://weirdlittleapps.com, static output, /page/1 redirects, image pruning hook
@@ -128,8 +129,8 @@ src/lib/site.ts                 getSite(): site.yaml as the pages see it
 src/lib/fixtures.ts             WLA_FIXTURES filler
 src/layouts/Base.astro          document shell (head, fonts, stylesheet)
 src/styles/site.css             the one stylesheet; tokens in :root
-src/components/                 SiteHeader, SiteFooter, Doodles, Pager, ViewSwitch, Tile
-src/pages/                      [...page] (index), compact/[...page], apps/[id], about
+src/components/                 SiteHeader, SiteFooter, Doodles, Pager, ViewSwitch, Tile, Stamp
+src/pages/                      [...page] (index), compact/[...page], apps/[id], about, suggest
 ```
 
 `public/CNAME` must contain `weirdlittleapps.com`; deleting it drops the custom domain.

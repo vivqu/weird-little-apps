@@ -1,0 +1,21 @@
+---
+// One postage stamp (class `stamp`; `.face` belongs to the about page's ticket) for the suggestion box: a perforated white margin (the mask is in site.css)
+// around a flat print carrying one of the four doodles, a denomination and a line of edge text.
+// The same four appear on the sheet beside the postcard and, once picked, in its corner.
+interface Props {
+  shape: 'star' | 'squiggle' | 'heart' | 'sun';
+  /** the print colour: lime, sky, pink or yellow */
+  tone: string;
+  den: string;
+  text: string;
+}
+const { shape, tone, den, text } = Astro.props;
+const svg = {
+  star: '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4l3.8 10.4L35 15l-8.6 6.8 3 10.8L20 26.6l-9.4 6 3-10.8L5 15l11.2-.6z"/></svg>',
+  squiggle: '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M2 14c4-9 7-9 11 0s7 9 11 0 7-9 11 0 7 9 11 0"/><path d="M2 26c4-9 7-9 11 0s7 9 11 0 7-9 11 0 7 9 11 0"/></svg>',
+  heart: '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 34S5 24.5 5 14.5A7.5 7.5 0 0 1 20 11a7.5 7.5 0 0 1 15 3.5C35 24.5 20 34 20 34z"/></svg>',
+  sun: '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="20" cy="20" r="6.5"/><path d="M20 4v5M20 31v5M4 20h5M31 20h5M8.7 8.7l3.5 3.5M27.8 27.8l3.5 3.5M8.7 31.3l3.5-3.5M27.8 12.2l3.5-3.5"/></svg>',
+}[shape];
+---
+
+<span class:list={['stamp', tone]}><span class="art"><Fragment set:html={svg} /><b>{den}</b><i>{text}</i></span></span>

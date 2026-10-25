@@ -43,6 +43,8 @@ Optional:
   - a year `2024`, a month `2024-06`, or a date `2024-06-01`
   - shown as "2024", "jun 2024" or "1 jun 2024"; "date unknown" when absent
 - `curator`: defaults to Vivian Qu; omit
+- `submitted_by`: who sent it in through the suggestion box, when that wasn't the curator; a name or `{ name, url }`
+  - shown as "suggested by" on the museum label's credit line
 - `price`: what it costs, written as shown: `$2.99`, `£1.49`
   - changes the visit button: `$2.99 on the App Store ↗`, `$2.99 on Google Play ↗`; for any other url, `visit · $2.99 ↗`
   - omit when free
@@ -120,3 +122,8 @@ The simplest valid entry is the seven required fields with `by: someone` and `fo
 - `status`: the about page's status line
   - `{apps}` becomes "43 apps", linked to the index
 - `next`: the about page's next line; optional
+- `suggest`: the suggestion box at `/suggest/` (see `.claude/FORM.md`); optional. Without it, or without `endpoint`, the page says the box isn't out yet and nothing links to it
+  - `endpoint`: the Apps Script web app's `/exec` url the postcard posts to
+  - `invite`: the line under the heading
+  - `thanks`: the first sentence of the sent card's line
+  - `reach` / `noreach`: its second sentence, depending on whether the sender left a way to reach them

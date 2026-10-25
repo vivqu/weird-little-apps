@@ -146,7 +146,7 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.
       {also.length ? (
         <p class="links">also: {also.map((l, i) => <>{i > 0 && ' · '}<a href={l.url}>{l.label} ↗</a></>)}</p>
       ) : null}
-      <p class="credit">collected by {app.curator.name}<br />no. {app.accession}</p>
+      <p class="credit">collected by {app.curator.name}{app.submitted_by && <><br />suggested by {app.submitted_by.url ? <a href={app.submitted_by.url}>{app.submitted_by.name}</a> : app.submitted_by.name}</>}<br />no. {app.accession}</p>
     </article>
   </main>
   <SiteFooter />

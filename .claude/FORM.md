@@ -14,11 +14,12 @@ Web3Forms (250/mo, no Sheet), Astro Actions (needs a server adapter; GitHub Page
 3. Optional: set `NOTIFY` to your email.
 4. Deploy → New deployment → Web app. Execute as: Me. Who has access: Anyone. Authorize
    (Advanced → Go to project → Allow).
-5. Copy the `/exec` URL into `src/content/site.yaml` as `suggest.endpoint`.
+5. Copy the `/exec` URL into `src/content/site.yaml` as `suggest.endpoint`. (Done 2026-10-25.)
 6. Test, then delete the row:
 
    ```sh
-   curl -sL -X POST '<exec url>' -d url=https://example.com -d note=test -d format=json
+   curl -sL '<exec url>' -d url=https://example.com -d note=test -d format=json
+   # no -X POST: Apps Script answers with a 302 and curl must follow it as a GET, which -X would override
    # {"ok":true}; a "suggestions" tab appears with a header row and one row
    ```
 
@@ -33,7 +34,7 @@ The URL does not change.
 ```js
 const SHEET = 'suggestions';
 const NOTIFY = '';   // email for an alert per row, or ''
-const FIELDS = ['url', 'note', 'links', 'maker', 'from', 'contact', 'ref'];
+const FIELDS = ['url', 'note', 'links', 'maker', 'from', 'contact', 'stamp', 'ref'];
 const MAX = 2000;
 const SITE = 'https://weirdlittleapps.com/';
 
@@ -78,16 +79,24 @@ function reply(ok, json, error) {
 ## Site side (agent)
 
 Design record: the clickable prototype at https://claude.ai/artifact/R9HW1cV82R9CT7UdjDtWEe (private
-Artifact; form, sent and error states). The page is ported from it once it's approved.
+Artifact, version 19, ~26 rounds of comments; form, sent and error states). The page was ported from it on
+2026-10-25: `src/pages/suggest.astro`, `src/components/Stamp.astro`, the `suggest:` section of
+`src/styles/site.css`. Change the page, not the prototype.
 
 - `src/pages/suggest.astro`, linked from the footer and about page. Copy in `site.yaml`
   (`suggest.*`). A static page always builds; without `suggest.endpoint` it says the box isn't out
   yet and nothing links to it.
 - Styled as a postcard (ink outline, hard shadow, askew), per CLAUDE.md → Style direction.
 - Fields, only `url` required: `url` (`type="url"`), `note` (textarea: what's weird about it or
-  what impressed you), `links` (textarea: writeup, source, launch post), `maker` (checkbox: are you
-  the maker?), `from` (name or handle), `contact` (a way to reach you or a site to credit); `ref`
-  hidden, filled from `?ref=`. No uploads, no tags (the curator derives tags from `links`).
+  what impressed you), `links` (textarea: a launch post, a writeup), `maker` (checkbox: i made it),
+  `from` (name or handle), `contact` (a way to reach you or a site to credit), `stamp` (radio: which
+  of the four stamps they picked; `star` if none), `ref` hidden, filled from `?ref=`. No uploads, no
+  tags (the curator derives tags from `links`).
+- The card: heading and two notes on the left, "post card", the stamp corner and the address lines
+  on the right at a fixed height; a sheet of four stamps beside the card (above it under 68rem); on
+  phones the heading, then the address half, then the notes. Sent: the card locks as filled in with
+  blank lines dropped, a red postmark over the stamp, "back to the apps" in place of the button, and
+  the second sentence of the thanks depends on whether `contact` was given.
 - `<form method="post" action={endpoint}>` works without JS (lands on the script's fallback
   page). Inline JS: intercept submit, append `format=json`, `fetch` with the `FormData` body,
   on `ok` replace the form with a thank-you; on failure show the error and keep the form.
@@ -106,3 +115,15 @@ Artifact; form, sent and error states). The page is ported from it once it's app
 - "Anyone" means anyone can post. The Sheet's own sharing is unchanged.
 - Quotas: ~20k web-app calls/day, 100 `MailApp` mails/day on a personal account. Rows still
   land when mail is exhausted.
+
+## About page (open)
+
+The site footer lost "made by vivian qu" (2026-10-25) and now reads "est. 2026 · about · suggest an app". The
+maker credit and a way to the suggestion box still need a home on the about page, as an object rather than a
+second footer or a row in the window's status block (tried both, rejected). Experiments at https://claude.ai/artifact/VrGyPwG7zSZ5tkSDVLc9MH (private
+Artifact, version 4). Settled there: the way to the box is a small postcard on its own peach paper peeking out
+from under the window's right edge, with a mono "suggest an app" under an arrow (the suggest page's own
+object). Still open: a section below everything for the maker credit (with a link to vivqu.com) and whatever
+else needs a home later (method, fine print), four shapes to switch between: A a colophon under the note,
+B index cards with tabs, C a second plainer window (about#notes), D footnotes on the window's own lines.
+Rejected: a second footer, a row in the status block, a signature on the sticky note, a calling card.

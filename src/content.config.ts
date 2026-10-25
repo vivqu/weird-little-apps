@@ -58,6 +58,8 @@ const apps = defineCollection({
       // yaml gives `2024` as a number, `2024-06` as a string and `2024-06-01` as a Date
       created: z.union([z.number().int(), z.string().regex(/^\d{4}(-\d{2})?$/), z.date()]).optional(),
       curator: person.default({ name: 'Vivian Qu' }),
+      // who sent it in through /suggest/, when that wasn't the curator; shown on the museum label's credit line
+      submitted_by: person.optional(),
       // shown on the visit button as written: "$2.99", "£1.49", "free trial"; omit when free
       price: z.string().min(1).optional(),
       // not reviewed yet: left out of the build, except in `astro dev` or a build with WLA_SHOW_HIDDEN=1 (never on CI)
@@ -111,6 +113,17 @@ const site = defineCollection({
     motto: z.string().min(1),
     status: z.string().min(1),
     next: z.string().optional(),
+    // the suggestion box at /suggest/ (.claude/FORM.md). Without `endpoint` the page says the box isn't out yet and nothing links to it
+    suggest: z
+      .object({
+        endpoint: z.url().nullish(),
+        invite: z.string().min(1),
+        thanks: z.string().min(1),
+        // the second sentence of the thanks: one when they left a way to reach them, one when they didn't
+        reach: z.string().min(1),
+        noreach: z.string().min(1),
+      })
+      .optional(),
   }),
 });
 
