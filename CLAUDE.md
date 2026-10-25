@@ -20,6 +20,7 @@ node scripts/bezel.mjs src/content/apps/<id>/*.jpg   # does a phone-shaped image
 node scripts/capture.mjs <id> [--stale]              # take the landing screenshot (1512x860 at 2x, shrunk to 1512 JPEG), matching hand captures
 node scripts/shrink.mjs src/content/apps/<id>        # compress an entry's screenshots to 1x JPEGs and repoint index.yaml (see .claude/new-app.md)
 node scripts/screenshot.mjs /apps/<id> --all         # after a build: screenshot every capture in the frame and check it's centred
+node scripts/morph.mjs /apps/<id> 3 4                # after a build: the window ⇄ phone morph between two slides as a slowed-down contact sheet
 ```
 
 ## Adding an app
@@ -55,6 +56,21 @@ node scripts/screenshot.mjs /apps/foo --dist dist-dev   # screenshot a hidden en
 ```
 
 Always check desktop and mobile after a visual change (there is no dark mode). `screenshots/` is gitignored.
+
+**The frame morph.** On a detail page with both window and phone captures, the frame changes shape when you pick a
+thumbnail. Every duration in it keys off `--morph` (.35s, in `:root`). To check it after touching the frame CSS:
+
+```sh
+node scripts/morph.mjs /apps/bingebrowse 3 4 --dist dist-dev    # slide 3 (window) → slide 4 (phone); 12 frames over 3s
+node scripts/morph.mjs /apps/bingebrowse 4 3 --dist dist-dev    # and back
+```
+
+It overrides `--morph` at runtime, so the stylesheet stays at production speed; `--seconds 6` slows it further. Read
+the sheet for: ink lines keeping their weight throughout (never thickening, fading or re-drawing), the peach body
+thinning and the corners rounding, the title bar's lines / dots / url fading in over the second half, the island fading
+in last, and the capture cropped from its centre while the shape is wrong for it. To watch it live, in the browser
+console: `document.documentElement.style.setProperty('--morph', '3s')`. BingeBrowse is the test entry (three window
+captures and one phone capture).
 
 ## Style direction
 
@@ -99,6 +115,7 @@ astro.config.mjs                site: https://weirdlittleapps.com, static output
 public/                         copied verbatim: CNAME (custom domain), favicon.svg, robots.txt
 public/fonts/                   self-hosted woff2 (Instrument Serif, IBM Plex Mono); preloaded, font-display: block
 scripts/screenshot.mjs          playwright screenshot helper
+scripts/morph.mjs               the detail frame's window ⇄ phone morph, slowed down, as a contact sheet
 scripts/bezel.mjs               heuristic: does a phone-shaped image already contain a rendered device?
 scripts/capture.mjs             playwright landing capture of an entry's url at the hand-capture size (1512x860 @2x → 1512 JPEG)
 scripts/shrink.mjs              compress an entry's screenshots for storage (1512 / 804 wide JPEGs), repoint index.yaml

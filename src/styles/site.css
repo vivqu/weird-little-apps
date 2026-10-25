@@ -6,6 +6,7 @@
 @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: block; src: url('/fonts/IBMPlexMono-500.woff2') format('woff2'); }
 
 :root {
+  --morph: .35s; /* how long the detail frame changes shape between window and phone; every part of the morph keys off it. To watch it, override it to 3s (see CLAUDE.md → Screenshots) rather than editing this */
   /* ground + paper: pale aqua with a faint dot grid; the window is a whisper of peach */
   --paper: #d3f0f1; --paper-2: #fffaf7; --bar: #fff0e8; --grid: rgba(20, 110, 118, 0.18);
   /* ink is indigo, never black; shadows are deep aqua, never grey */
@@ -144,20 +145,32 @@ main { max-width: 72rem; margin: 0 auto; }
 /* the frame takes the picked capture's own shape (--r, one per shot, set on the mat from the image's dimensions): as wide
    as the stage or as tall as it, whichever the shape allows, and centred. Sizes are percentages of the stage, never
    pixel-resolving units: a transition on a px-resolving width would animate every viewport change (phone toolbars
-   collapsing, first-load viewport settling). The height is auto: title bar + a screen with the capture's aspect ratio */
-.detail .frame { grid-area: 1 / 1; --r: var(--shot); display: flex; flex-direction: column; width: min(100%, calc(100% / var(--shot) * var(--r))); overflow: hidden; padding: 2px; border: 0 solid var(--rule); border-radius: 5px; background: var(--rule); text-decoration: none; transition: width .35s ease, border-radius .35s ease, padding .35s ease; }
+   collapsing, first-load viewport settling). The height is explicit too, so both axes tween when the shape changes
+   (an auto height snaps, which made the phone start wide and three stages tall): a percentage of the stage's height,
+   inverting the sizer's sum above, so the screen below the title bar ends up at the capture's own aspect ratio.
+   The ink edge is the same 2px border in both shapes, so the morph only thickens the peach body (padding) and rounds
+   the corners; lines never change weight. The inner line is an overlay (.screen::before) whose edges travel, see below */
+.detail .frame { grid-area: 1 / 1; --r: var(--shot); display: flex; flex-direction: column; width: min(100%, calc(100% / var(--shot) * var(--r))); height: calc(1.6rem + 4px + ((100% - 1.6rem - 4px) * min(var(--shot), var(--r)) - 4px) / var(--r)); overflow: hidden; padding: 0; border: 2px solid var(--rule); border-radius: 5px; background: var(--bar); text-decoration: none; transition: width var(--morph) ease, height var(--morph) ease, border-radius var(--morph) ease, padding var(--morph) ease, border-width var(--morph) ease; }
 .detail .mat:has(.pick:nth-of-type(1):checked) .frame { --r: var(--r1); }
 .detail .mat:has(.pick:nth-of-type(2):checked) .frame { --r: var(--r2); }
 .detail .mat:has(.pick:nth-of-type(3):checked) .frame { --r: var(--r3); }
 .detail .mat:has(.pick:nth-of-type(4):checked) .frame { --r: var(--r4); }
-.detail .frame .bar { border-radius: 3px 3px 0 0; position: relative; flex: none; display: flex; align-items: center; gap: 0.25rem; height: 1.6rem; padding: 0 0.5rem; border-bottom: 2px solid var(--rule); font-size: 0.7rem; background: repeating-linear-gradient(180deg, transparent 0 3px, color-mix(in srgb, var(--rule) 22%, transparent) 3px 4px), var(--bar); transition: height .35s ease; }
-.detail .frame .bar i { width: 0.5rem; height: 0.5rem; border: 1.5px solid var(--rule); border-radius: 50%; background: var(--riso-pink); transition: opacity .2s; }
+.detail .frame .bar { border-radius: 3px 3px 0 0; position: relative; flex: none; display: flex; align-items: center; gap: 0.25rem; height: 1.6rem; padding: 0 0.5rem; font-size: 0.7rem; background: var(--bar); transition: height var(--morph) ease; }
+/* the ruled lines are their own layer so they can fade with the dots and the url instead of riding the bar as it grows */
+.detail .frame .bar::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(180deg, transparent 0 3px, color-mix(in srgb, var(--rule) 22%, transparent) 3px 4px); transition: opacity calc(var(--morph) * 0.5) ease calc(var(--morph) * 0.5); }
+.detail .frame .bar :is(i, em) { position: relative; z-index: 1; }
+.detail .frame .bar i { width: 0.5rem; height: 0.5rem; border: 1.5px solid var(--rule); border-radius: 50%; background: var(--riso-pink); transition: opacity calc(var(--morph) * 0.5) ease calc(var(--morph) * 0.5); }
 .detail .frame .bar i:nth-child(2) { background: var(--riso-yellow); }
 .detail .frame .bar i:nth-child(3) { background: var(--riso-mint); }
-.detail .frame .bar em { flex: 1; font-style: normal; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: var(--bar); margin: 0 0.3rem; transition: opacity .2s; }
-.detail .screen::after { content: ''; position: absolute; z-index: 1; top: 0.7rem; left: 50%; width: 30%; height: 1.05rem; translate: -50% 0; border-radius: 99px; background: var(--ink); opacity: 0; transition: opacity .2s; }
-.detail .screen { position: relative; flex: 1; min-height: 0; aspect-ratio: var(--r, var(--shot)); overflow: hidden; border-radius: 0 0 3px 3px; transition: border-radius .35s ease; }
-.detail .screen .cover { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; opacity: 0; transition: opacity .3s ease; }
+.detail .frame .bar em { flex: 1; font-style: normal; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: var(--bar); margin: 0 0.3rem; transition: opacity calc(var(--morph) * 0.5) ease calc(var(--morph) * 0.5); }
+.detail .screen::after { content: ''; position: absolute; z-index: 1; top: 0.7rem; left: 50%; width: 30%; height: 1.05rem; translate: -50% 0; border-radius: 99px; background: var(--ink); opacity: 0; transition: opacity calc(var(--morph) * 0.3) ease; }
+.detail .screen { position: relative; flex: 1; min-height: 0; overflow: hidden; border-radius: 0 0 3px 3px; transition: border-radius var(--morph) ease; }
+/* one inner line in both shapes: on the phone it outlines the screen inside the body; in the window its sides and bottom
+   sit 2px outside the screen, under the frame's own border, and its top edge is the divider below the title bar. So the
+   morph slides the phone's outline out into the window's edge as the body thins, with the line never fading or re-drawing */
+.detail .screen::before { content: ''; position: absolute; z-index: 2; inset: 0 -2px -2px; pointer-events: none; border: 2px solid var(--rule); border-radius: inherit; transition: inset var(--morph) ease, opacity calc(var(--morph) * 0.3) ease; }
+/* centred, not left-top like the index tiles: mid-morph the screen is briefly the wrong shape for the capture, and a crop from the middle reads as the picture settling, not sliding */
+.detail .screen .cover { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-position: center; opacity: 0; transition: opacity var(--morph) ease; }
 .detail .caps .cap { display: none; margin: 0; }
 .detail .mat:has(.pick:nth-of-type(1):checked) :is(.screen .cover:nth-child(1), .cap:nth-child(1)),
 .detail .mat:has(.pick:nth-of-type(2):checked) :is(.screen .cover:nth-child(2), .cap:nth-child(2)),
@@ -166,20 +179,24 @@ main { max-width: 72rem; margin: 0 auto; }
 /* phone-shaped capture picked: same frame, new shape (same 2px ink line and peach body, just phone-shaped) */
 /* the phone fills the stage's height (see .stage::before for the same sum); its screen is 9:19.5 and the body (padding +
    border) sits outside it, so the width is the screen's height x 9/19.5, as a percentage of the stage like the window */
-.detail .mat:has(.pick.tall:checked) .frame { --pp: calc(0.3rem + 2px); box-sizing: content-box; width: calc((100% / var(--shot) + 1.6rem + 4px - 2 * var(--pp)) * 9 / 19.5); aspect-ratio: 9 / 19.5; border-width: 2px; border-radius: 2.6rem; padding: 0.3rem; background: var(--bar); }
-.detail .mat:has(.pick.tall:checked) .screen { aspect-ratio: auto; }
-.detail .mat:has(.pick.tall:checked) .bar { height: 0; border-bottom-width: 0; background: none; overflow: hidden; }
-.detail .mat:has(.pick.tall:checked) .bar :is(i, em) { opacity: 0; }
-.detail .mat:has(.pick.tall:checked) .screen::after { opacity: 1; transition-delay: .25s; }
-.detail .mat:has(.pick.tall:checked) .screen { border: 2px solid var(--rule); border-radius: 2.25rem; }
+.detail .mat:has(.pick.tall:checked) .frame { --pp: calc(0.3rem + 2px); box-sizing: content-box; width: calc((100% / var(--shot) + 1.6rem + 4px - 2 * var(--pp)) * 9 / 19.5); height: calc(100% - 2 * var(--pp)); border-width: 2px; border-radius: 2.6rem; padding: 0.3rem; background: var(--bar); }
+.detail .mat:has(.pick.tall:checked) .bar { height: 0; overflow: hidden; }
+/* the dots and the url fade out at once as the bar collapses, and fade back in over the second half as it regrows */
+.detail .mat:has(.pick.tall:checked) .bar :is(i, em), .detail .mat:has(.pick.tall:checked) .bar::before { opacity: 0; transition: opacity calc(var(--morph) * 0.3) ease 0s; }
+/* the island fades in over the last part of the morph, once the phone has its shape, and fades out fast when it leaves */
+.detail .mat:has(.pick.tall:checked) .screen::after { opacity: 1; transition: opacity calc(var(--morph) * 0.4) ease calc(var(--morph) * 0.6); }
+.detail .mat:has(.pick.tall:checked) .screen { border-radius: 2.25rem; }
+.detail .mat:has(.pick.tall:checked) .screen::before { inset: 0; }
 /* the capture already contains a rendered device: drop our frame and let its own bezel show.
    multiply melts the image's white ground into the paper mat */
 .detail .mat:has(.pick.bare:checked) .frame { padding: 0; border-color: transparent; border-radius: 0; background: none; }
-.detail .mat:has(.pick.bare:checked) .screen { border: 0; border-radius: 0; }
+.detail .mat:has(.pick.bare:checked) .screen { border-radius: 0; }
+.detail .mat:has(.pick.bare:checked) .screen::before { opacity: 0; transition-delay: 0s; }
 .detail .mat:has(.pick.bare:checked) .screen::after { opacity: 0; transition-delay: 0s; }
 .detail .mat:has(.pick.bare:checked) .screen .cover { object-fit: contain; mix-blend-mode: multiply; transform: scale(1.08); /* trims the listing image's empty margin and edge lines */ }
 .detail .mat:has(.pick.panel:checked) .frame { padding: 2px; border-width: 0; border-radius: 0.8rem; background: var(--rule); }
-.detail .mat:has(.pick.panel:checked) .screen { border: 0; border-radius: calc(0.8rem - 2px); }
+.detail .mat:has(.pick.panel:checked) .screen { border-radius: calc(0.8rem - 2px); }
+.detail .mat:has(.pick.panel:checked) .screen::before { opacity: 0; transition-delay: 0s; }
 .detail .mat:has(.pick.panel:checked) .screen::after { opacity: 0; transition-delay: 0s; }
 /* under the frame: caption line with the visit button on its right, thumbnails beneath. On a phone the
    button moves under the thumbnails (see the 48rem query), so it's last in the markup and pulled up here */
