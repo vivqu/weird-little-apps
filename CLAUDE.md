@@ -109,6 +109,7 @@ Tokens live in `:root` in `src/styles/site.css`, the one stylesheet, imported by
 ```
 .claude/PLAN.md                 architecture + roadmap
 .claude/registry-plan.md        the registry's spec, schema, measurements and design record
+.claude/ANALYTICS.md            the analytics plan: GoatCounter via a counting pixel and a /go/ hop for the visit buttons
 .claude/FORM.md                 the suggestion box: the Apps Script, the curator's setup steps, the page spec and its prototype
 .github/workflows/deploy.yml    build with withastro/action, publish with deploy-pages
 UPLOAD.md                       how screenshots are captured, flagged and framed (browser vs mobile)
