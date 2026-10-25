@@ -1,16 +1,40 @@
 name: Eigendrum
-tagline: draw any shape and hear it as a real drum
+tagline: any shape as a drum
 url: https://eigendrum.com/
 form_factor: web
 by:
   - name: Basel Ashraf
     url: https://baselashraf.com
-why: it solves the actual physics of your doodle. a star sounds different from a blob, and now i know how.
+why: complicated physics in an intuitive interface 🥁
 collected: 2026-09-01
-hidden: true
 
+created: 2026-07-31
+links:
+  - { label: source code, url: https://github.com/BaselAshraf81/eigendrum }
+  - { label: the theorem, url: https://en.wikipedia.org/wiki/Hearing_the_shape_of_a_drum }
+quotes:
+  - text: |-
+      Eigendrum treats whatever you draw as an ideal drumhead clamped at its rim, solves the Laplacian eigenvalue problem on that exact region using real finite elements, and synthesises the frequencies it finds. Nothing is sampled and no overtone is faked: draw a circle and the overtones come out as ratios of Bessel function zeros, because that's what a circular drum actually does.
+    url: https://github.com/BaselAshraf81/eigendrum
+recs:
+  - { title: "Show HN: Eigendrum – Draw any shape and hear what it sounds like as a drum", url: https://news.ycombinator.com/item?id=49246366, by: Hacker News, date: 2026-08-10 }
+  - { title: "“Draw any shape and hear it as a drum.”", url: https://kottke.org/26/08/0049489-eigendrum, by: Jason Kottke, date: 2026-08-13 }
+  - { title: "Eigendrum — Site of the Day, 9.0/10", url: https://websitedesignawards.com/site/66fd320f-c593-40c5-9092-c9a90143f1a6, by: Website Design Awards, date: 2026-08-17 }
+  - { title: "Linkfest #48: The MouthPad, “Volitional Reconsumption”, and The Genetics of Giant Pumpkins", url: https://buttondown.com/clivethompson/archive/linkfest-48-the-mouthpad-volitional-reconsumption/, by: Clive Thompson, date: 2026-08-29 }
 screenshots:
   - image: ./landing.jpg
-    alt: a red circular drumhead with vibration rings and a table of frequencies
+    alt: a red circular drumhead drawn in contour rings, its lowest mode at 130 hz, with an overtone ruler, a list of 16 computed modes and a red control bar for pitch, ring-out and mallet
     caption: a circle, vibrating
     taken: 2026-10-23
+  - image: ./star.jpg
+    alt: a five-pointed star drum showing mode 9 at 618.7 hz, red and blue lobes separated by pale nodal lines, with the mode list beside it
+    caption: star
+    taken: 2026-10-25
+  - image: ./custom.jpg
+    alt: a hand-drawn blob covered in its triangle mesh, mode 4 at 458.8 hz, under the draw your own button
+    caption: custom
+    taken: 2026-10-25
+  - image: ./about.jpg
+    alt: the how it works panel over the star, giving the equation, minus the laplacian of u equals lambda u, and explaining the finite element solve and why the numbers can be trusted
+    caption: about
+    taken: 2026-10-25
