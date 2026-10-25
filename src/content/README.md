@@ -127,3 +127,5 @@ The simplest valid entry is the seven required fields with `by: someone` and `fo
   - `invite`: the line under the heading
   - `thanks`: the first sentence of the sent card's line
   - `reach` / `noreach`: its second sentence, depending on whether the sender left a way to reach them
+- `stats`: the counting pixel (see `.claude/ANALYTICS.md`); optional
+  - `goatcounter`: the GoatCounter site, `https://<code>.goatcounter.com`. Page views and visit-button clicks are counted with a 1×1 image, no script. Without it nothing is sent. Only production builds include the pixel (CI, or `WLA_STATS=1 npm run build`)

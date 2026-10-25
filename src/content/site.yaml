@@ -24,3 +24,8 @@ suggest:
   thanks: we're excited to check out this weird app!
   reach: we'll send you an update once it's reviewed.
   noreach: check back to see if it gets added.
+
+# the counting pixel (see .claude/ANALYTICS.md): page views and visit-button clicks are counted at this GoatCounter site.
+# Leave it out and nothing is sent. Only production builds render it (CI, or WLA_STATS=1 npm run build)
+stats:
+  goatcounter: https://vivqu.goatcounter.com

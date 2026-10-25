@@ -123,9 +123,9 @@ maker credit and a way to the suggestion box still need a home on the about page
 second footer or a row in the window's status block (tried both, rejected). Experiments at https://claude.ai/artifact/VrGyPwG7zSZ5tkSDVLc9MH (private
 Artifact, version 4). Settled there: the way to the box is a small postcard on its own peach paper peeking out
 from under the window's right edge, with a mono "suggest an app" under an arrow (the suggest page's own
-object). The maker credit (with a link to vivqu.com) is still being placed. In
-the experiment, four objects to switch between, none a receipt: A a playbill tucked behind the window under
-the admission ticket, B a hang tag on a string from the window's corner, C a rubber stamp pressed on the desk,
-D a little shop sign hanging from the window's bottom edge. Rejected: a second footer, a row in the status
-block, a signature on the sticky note, a calling card, a colophon, index cards, a second window, footnotes,
-a receipt. A section for method and fine print is not needed now; add it when there is something to say.
+object). The maker credit is a rubber stamp: "made by vivian / vivqu.com" in the
+muted ink, a rounded rectangle pressed a little askew, linking to vivqu.com, at the foot of the page a long way
+under the sticky note, about thirteen rems of air (decided 2026-10-25, version 15 of the Artifact). Rejected along the way: a second footer,
+a row in the status block, a signature on the sticky note, a calling card, a label strip, a status bar, a
+colophon, index cards, a second window, footnotes, a receipt, a playbill, a hang tag, a shop sign. A section
+for method and fine print is not needed now; add it when there is something to say.

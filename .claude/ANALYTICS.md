@@ -1,5 +1,7 @@
 # analytics
 
+Status: built 2026-10-25; the site url is in `site.yaml` → `stats.goatcounter`.
+
 Goal: site visits, and clicks per app. Tool: GoatCounter (goatcounter.com), hosted, free for
 non-commercial sites. Counts via a 1×1 image request, so no client JS; the same endpoint records
 events, so outbound clicks can be counted too. No cookies or persistent identifiers, so no consent
@@ -29,7 +31,7 @@ later: ~3 inline first-party lines that set the `src` with `r` and `s`, `<noscri
 **Pixel.** `Base.astro`, before `</body>`:
 
 ```html
-<img class="beacon" src="https://weirdlittleapps.goatcounter.com/count?p=%2Fapps%2Fbingebrowse%2F&t=BingeBrowse" alt="" width="1" height="1" aria-hidden="true">
+<img class="beacon" src="https://<code>.goatcounter.com/count?p=%2Fapps%2Fbingebrowse%2F&t=BingeBrowse" alt="" width="1" height="1" aria-hidden="true">
 ```
 
 `p` = `Astro.url.pathname`, `t` = page title, URL-encoded. `.beacon`: `position: absolute; width: 1px;
@@ -44,7 +46,7 @@ button label). `src/pages/go/[...slug].astro` builds one page per button from `g
 <meta http-equiv="refresh" content="0; url=https://bingebrowse.net/">
 <meta name="robots" content="noindex">
 <p>off to <a href="https://bingebrowse.net/">bingebrowse.net ↗</a></p>
-<img class="beacon" src="https://weirdlittleapps.goatcounter.com/count?p=visit%2Fbingebrowse&e=1" ...>
+<img class="beacon" src="https://<code>.goatcounter.com/count?p=visit%2Fbingebrowse&e=1" ...>
 ```
 
 `refresh` fires only after the document has completely loaded, images included, so the hit is
@@ -61,7 +63,7 @@ Not chosen: `<a ping>` (Firefox default off, uBlock blocks it, POST recording un
 ```yaml
 # counting pixel endpoint (.claude/ANALYTICS.md). Omit to send nothing
 stats:
-  goatcounter: https://weirdlittleapps.goatcounter.com
+  goatcounter: https://<code>.goatcounter.com
 ```
 
 Schema: `stats: z.object({ goatcounter: z.url().nullish() }).optional()`.
@@ -85,10 +87,10 @@ so dev, local builds, screenshots and the `WLA_SHOW_HIDDEN` build send nothing.
 
 ## Setup (curator, once)
 
-1. https://www.goatcounter.com/signup, code `weirdlittleapps`. No card.
+1. https://www.goatcounter.com/signup. No card. (Done.)
 2. Settings → Ignore IPs: home IP.
 3. `site.yaml` → `stats.goatcounter`, push, load the live site, confirm a row.
-4. Optional: custom domain. Namecheap `stats` CNAME → `weirdlittleapps.goatcounter.com`; GoatCounter
+4. Optional: custom domain. Namecheap `stats` CNAME → `<code>.goatcounter.com`; GoatCounter
    Settings → Custom domain `stats.weirdlittleapps.com`; `site.yaml` → `https://stats.weirdlittleapps.com`.
    `*.goatcounter.com` is on EasyPrivacy; expect ~⅓ undercount without this.
 5. Optional: Settings → public dashboard, plus a `stats` footer link.

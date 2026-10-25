@@ -16,6 +16,7 @@ npm run check        # type-check .astro files
 npm run screenshot   # build, then screenshot / into screenshots/index.png
 WLA_FIXTURES=2000 npm run build   # pad the collection with filler for a stress test (nothing written to disk)
 WLA_SHOW_HIDDEN=1 npm run build   # include `hidden: true` entries, as the dev server always does; builds into dist-dev/ so dist/ stays production (CI ignores this)
+WLA_STATS=1 npm run build         # render the counting pixel, as CI does; a plain local build sends nothing (see .claude/ANALYTICS.md)
 node scripts/bezel.mjs src/content/apps/<id>/*.jpg   # does a phone-shaped image already contain a device? (see UPLOAD.md)
 node scripts/capture.mjs <id> [--stale]              # take the landing screenshot (1512x860 at 2x, shrunk to 1512 JPEG), matching hand captures
 node scripts/shrink.mjs src/content/apps/<id>        # compress an entry's screenshots to 1x JPEGs and repoint index.yaml (see .claude/new-app.md)
@@ -38,7 +39,7 @@ The step-by-step (screenshots, compression, alt text, research, created date, fr
 - **Stale dev CSS.** The dev server can keep serving an old `<style>` block after an edit (HTML updates, CSS doesn't). If a style change doesn't appear, restart with `npx astro dev stop && npx astro dev` before debugging the CSS, and tell the user to hard-refresh.
 - **Content is config.** Adding an app must never require code changes; it's one YAML file plus an optional screenshot. If a feature would break that, rethink it. Site-wide words (subtitle, lede, motto, the about page's status and next lines) live in `src/content/site.yaml`, not in templates.
 - **Keep it small.** No third-party integrations, frameworks, or client JS unless the plan actually calls for them. The only client JS is eight inline lines on the detail page (arrow-key paging) and the suggest page's submit handler (posts the postcard in the background and locks it with a postmark; the form works without it), and the only integration is the inline image-pruning hook in `astro.config.mjs`. The one exception is embeds: a quote with `embed: true` loads the Threads or X embed script on that detail page only, on viewports of 616px and up, with the quote text as the fallback; for a YouTube url it renders the player as a plain iframe instead.
-- **No third-party requests at runtime.** Fonts are self-hosted in `public/fonts/` and preloaded with `font-display: block` so text never flashes in a fallback face. Don't add Google Fonts `<link>`s back. Post embeds (above) and the suggest page's submit (a POST to the Apps Script endpoint in `site.yaml`, only when the visitor presses send) are the only exceptions.
+- **No third-party requests at runtime.** Fonts are self-hosted in `public/fonts/` and preloaded with `font-display: block` so text never flashes in a fallback face. Don't add Google Fonts `<link>`s back. Post embeds (above), the suggest page's submit (a POST to the Apps Script endpoint in `site.yaml`, only when the visitor presses send) and the counting pixel (a 1×1 GIF from the GoatCounter site in `site.yaml`, on every page, production builds only; the visit buttons go through a counted `/go/<id>/` hop; `.claude/ANALYTICS.md`) are the only exceptions.
 
 ## Screenshots
 
@@ -130,8 +131,8 @@ src/lib/site.ts                 getSite(): site.yaml as the pages see it
 src/lib/fixtures.ts             WLA_FIXTURES filler
 src/layouts/Base.astro          document shell (head, fonts, stylesheet)
 src/styles/site.css             the one stylesheet; tokens in :root
-src/components/                 SiteHeader, SiteFooter, Doodles, Pager, ViewSwitch, Tile, Stamp
-src/pages/                      [...page] (index), compact/[...page], apps/[id], about, suggest
+src/components/                 SiteHeader, SiteFooter, Doodles, Pager, ViewSwitch, Tile, Stamp, Beacon (the counting pixel)
+src/pages/                      [...page] (index), compact/[...page], apps/[id], about, suggest, go/[...slug] (the counted hop behind a visit button)
 ```
 
 `public/CNAME` must contain `weirdlittleapps.com`; deleting it drops the custom domain.

@@ -476,3 +476,9 @@ footer.site .heart { color: var(--riso-pink); }
   .postcard.is-sent .postmark { visibility: visible; }
 }
 @media (prefers-reduced-motion: no-preference) { .postcard button { transition: background .15s, color .15s; } .sheet .stamp { transition: opacity .15s, transform .15s; } }
+
+/* the counting pixel (.claude/ANALYTICS.md): present, 1×1, invisible. Not display: none, which some browsers don't fetch */
+.beacon { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+/* the hop behind a visit button (/go/<id>/): one line in the noshot block's dress while the pixel loads, then the refresh leaves */
+.hop { display: grid; place-items: center; min-height: 100dvh; }
+.hop main { max-width: 22rem; padding: 2rem 1.5rem; text-align: center; border: 2px dashed var(--ink); background: color-mix(in srgb, var(--paper-2) 60%, transparent); transform: rotate(-2deg); }

@@ -70,7 +70,7 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.
             />
           ))}
           <div class="stage">
-            <a class="frame" href={app.url}>
+            <a class="frame" href={buttons[0].go}>
               <span class="bar"><i></i><i></i><i></i><em>{host(app)}</em></span>
               <span class="screen">
                 {shots.map((s, j) => <Image class="cover" src={s.image} alt={s.alt} loading={j === 0 ? 'eager' : 'lazy'} />)}
@@ -92,7 +92,7 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.
                 ))}
               </div>
             )}
-            <span class="visits">{buttons.map((b) => <a class="visit" href={b.href}>{b.label}</a>)}</span>
+            <span class="visits">{buttons.map((b) => <a class="visit" href={b.go}>{b.label}</a>)}</span>
           </div>
         </div>
       ) : (
@@ -101,7 +101,7 @@ const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.
           <i class="tape"></i>
           <p>no picture yet.</p>
           <p>go and look at the real thing ↓</p>
-          <span class="visits">{buttons.map((b) => <a class="visit" href={b.href}>{b.label}</a>)}</span>
+          <span class="visits">{buttons.map((b) => <a class="visit" href={b.go}>{b.label}</a>)}</span>
         </div>
       )}
       <aside class="why"><i class="tape"></i><h2>curator’s note</h2><p>{app.why}</p></aside>

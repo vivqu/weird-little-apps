@@ -124,6 +124,8 @@ const site = defineCollection({
         noreach: z.string().min(1),
       })
       .optional(),
+    // the counting pixel (.claude/ANALYTICS.md): the GoatCounter site, https://<code>.goatcounter.com. Without it nothing is sent
+    stats: z.object({ goatcounter: z.url().nullish() }).optional(),
   }),
 });
 

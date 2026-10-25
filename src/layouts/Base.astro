@@ -3,15 +3,18 @@
 // themselves (the about page has neither).
 import '../styles/site.css';
 import { getSite } from '../lib/site';
+import Beacon from '../components/Beacon.astro';
 
 interface Props {
   /** the page's own part of the title; the site name is appended */
   title?: string;
   description?: string;
   class?: string;
+  /** what the counting pixel records instead of this page's path: an event, for the /go/ hop */
+  count?: { path: string; event?: boolean };
 }
 const site = await getSite();
-const { title, description = site.description, class: cls } = Astro.props;
+const { title, description = site.description, class: cls, count } = Astro.props;
 const fullTitle = title ? `${title} · ${site.name}` : site.name;
 ---
 
@@ -30,8 +33,10 @@ const fullTitle = title ? `${title} · ${site.name}` : site.name;
     <link rel="preload" href="/fonts/InstrumentSerif-400-italic.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/IBMPlexMono-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/IBMPlexMono-500.woff2" as="font" type="font/woff2" crossorigin />
+    <slot name="head" />
   </head>
   <body class={cls}>
     <slot />
+    <Beacon path={count?.path ?? Astro.url.pathname} title={fullTitle} event={count?.event} />
   </body>
 </html>

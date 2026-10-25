@@ -1,0 +1,23 @@
+---
+// The counting pixel (.claude/ANALYTICS.md): a 1×1 GIF requested from the GoatCounter site named in site.yaml, no
+// script. `path` is the page's path, or an event name when `event` is set. Rendered only in a production build (CI,
+// or WLA_STATS=1), so the dev server, local builds, previews and screenshots send nothing.
+import { getSite } from '../lib/site';
+
+interface Props {
+  path: string;
+  title?: string;
+  event?: boolean;
+}
+const { path, title, event = false } = Astro.props;
+const origin = (await getSite()).stats?.goatcounter;
+const live = !!origin && !!(process.env.CI || process.env.WLA_STATS);
+const src = origin ? new URL('/count', origin) : undefined;
+if (src) {
+  src.searchParams.set('p', path);
+  if (title) src.searchParams.set('t', title);
+  if (event) src.searchParams.set('e', '1');
+}
+---
+
+{live && src && <img class="beacon" src={src.href} alt="" width="1" height="1" aria-hidden="true" />}

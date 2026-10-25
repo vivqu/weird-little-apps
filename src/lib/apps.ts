@@ -119,9 +119,17 @@ export const visitLabel = (a: App, url = a.url, short = false) => {
 // "also". Two or more buttons use the short labels ("website", "app store", "play store") so they fit on one line
 const APP_STORE = /(^|\.)(apps\.apple\.com|play\.google\.com|chromewebstore\.google\.com)$/;
 const isStoreLink = (url: string) => APP_STORE.test(new URL(url).hostname);
+// `go` is the counted hop in front of `href` (/go/<id>/ for `url`, /go/<id>/app-store/ for a store; .claude/ANALYTICS.md)
+const STORE_SLUG: [RegExp, string][] = [[/apps\.apple\.com$/, 'app-store'], [/play\.google\.com$/, 'play-store'], [/chromewebstore\.google\.com$/, 'chrome-web-store']];
 export const visits = (a: App) => {
   const hrefs = [a.url, ...(a.links ?? []).map((l) => l.url).filter((u) => u !== a.url && isStoreLink(u))];
-  return hrefs.map((href) => ({ href, label: visitLabel(a, href, hrefs.length > 1) }));
+  const slugs = new Set<string>();
+  return hrefs.map((href, i) => {
+    let slug = i === 0 ? '' : (STORE_SLUG.find(([re]) => re.test(new URL(href).hostname))?.[1] ?? 'store');
+    if (slugs.has(slug)) slug = `${slug}-${i}`;
+    slugs.add(slug);
+    return { href, label: visitLabel(a, href, hrefs.length > 1), go: `/go/${a.id}/${slug && slug + '/'}` };
+  });
 };
 export const alsoLinks = (a: App) => (a.links ?? []).filter((l) => l.url === a.url || !isStoreLink(l.url));
 

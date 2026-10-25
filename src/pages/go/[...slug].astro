@@ -1,0 +1,28 @@
+---
+// The hop behind a visit button (.claude/ANALYTICS.md): the counting pixel records a `visit/<id>` event (or
+// `visit/<id>/app-store`), then a meta refresh sends the visitor on. The refresh waits for the document to
+// load completely, pixel included. The one line is for browsers with refresh turned off.
+import Base from '../../layouts/Base.astro';
+import { getApps, visits, type App } from '../../lib/apps';
+
+export async function getStaticPaths() {
+  const apps = await getApps();
+  return apps.flatMap((app) => visits(app).map((b) => ({ params: { slug: b.go.slice('/go/'.length, -1) }, props: { app, href: b.href } })));
+}
+
+interface Props {
+  app: App;
+  href: string;
+}
+const { app, href } = Astro.props;
+const event = 'visit' + Astro.url.pathname.slice('/go'.length).replace(/\/$/, '');
+const to = new URL(href).hostname.replace(/^www\./, '');
+---
+
+<Base title={app.name} count={{ path: event, event: true }} class="hop">
+  <meta slot="head" http-equiv="refresh" content={`0; url=${href}`} />
+  <meta slot="head" name="robots" content="noindex" />
+  <main>
+    <p>off to <a href={href}>{to} ↗</a></p>
+  </main>
+</Base>
