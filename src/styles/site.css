@@ -117,7 +117,8 @@ main { max-width: 72rem; margin: 0 auto; }
 /* on a phone tile the tag sits on the phone's top-left corner: same grid cell, centred, then shifted left by half the phone's width */
 .wall .phonebox > .phone, .wall .phonebox > .draft { grid-area: 1 / 1; }
 .wall .phonebox > .draft { position: static; justify-self: center; align-self: start; margin-left: -29%; translate: 30% -0.45rem; }
-.ledger .acc .draft { position: static; display: inline-flex; margin-left: 0.5rem; transform: none; }
+.ledger .acc .draft { position: static; display: inline-flex; margin: 0.2rem 0 0; transform: none; }
+.ledger .acc { display: flex; flex-direction: column; align-items: flex-start; }
 /* on the detail page it sits on the top-left corner of the paper mat (or the "no picture yet" card) */
 .detail .mat .draft, .detail .noshot .draft { top: -0.7rem; left: 1.2rem; }
 /* three across; frames keep browser proportions (1512:860) */

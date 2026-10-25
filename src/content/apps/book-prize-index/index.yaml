@@ -1,14 +1,44 @@
 name: The Book Prize Index
-tagline: every nonfiction book prize and the books that won them, searchable
+tagline: index of nonfiction book prizes
 url: https://book-prize-index.vercel.app/
 form_factor: web
-by: maker unknown
-why: someone wanted to know what wins prizes and ended up cataloguing thousands of books to find out.
+by:
+  - name: Benjamin Breen
+    url: https://benjaminpbreen.com/
+why: more ways to find good books? yes please!
 collected: 2026-08-30
-hidden: true
 
+created: 2026-05-09
+tags: [vibe-coded, claude, codex, gpt, gpt-5-5, gpt-5-6, next-js]
+links:
+  - { label: writeup, url: https://resobscura.substack.com/p/quality-non-fiction-books-are-the }
+  - { label: how it was built, url: https://book-prize-index.vercel.app/methodology }
+  - { label: about, url: https://book-prize-index.vercel.app/about }
+  - { label: source code, url: https://github.com/benjaminbreen/BookPrizeIndex }
+quotes:
+  - text: |-
+      But one thing that has remained consistently good throughout my life is the books themselves — non-fiction books, I mean. Even now, as readership of non-fiction declines amid competition from AI chatbots and podcasts, I feel like we are living through a golden age of the form that rarely gets recognized as such.
+
+      Which is why I set aside some time this summer to create — or, rather, induce Claude Code to create — a free platform for searching in the long tail of high-quality non-fiction books. Quality is difficult to define, but it’s been my experience that books that win or achieve the short-list of the major non-fiction prizes are almost always noticeably good, so that was the litmus test I used.
+    url: https://resobscura.substack.com/p/quality-non-fiction-books-are-the
+    date: 2026-07-22
+recs:
+  - { title: Quality non-fiction books are the antithesis of AI slop, url: https://news.ycombinator.com/item?id=49007247, by: Hacker News, date: 2026-07-22 }
+  - { title: The Book Prize Index, url: https://news.ycombinator.com/item?id=49032756, by: Hacker News, date: 2026-07-24 }
 screenshots:
   - image: ./landing.jpg
-    alt: a search page with subjects and prizes listed beneath
+    alt: the home page, a searchable index of nonfiction book prizes, with a semantic search box, a region toggle, and browse lists by subject from history to war and by prize from the national book awards to the edgars
     caption: browse by subject or prize
-    taken: 2026-10-23
+    taken: 2026-10-25
+  - image: ./detail.jpg
+    alt: a book record panel for empire of ai by karen hao over the books table, with wins, lists, score and year, publisher and imprint, and find this book buttons
+    caption: books by prizes
+    taken: 2026-10-25
+  - image: ./awards.jpg
+    alt: the awards page listing 86 prizes with type, region, subject, years and entry window, from the ackerley prize to the an post irish book awards
+    caption: nonfiction awards
+    taken: 2026-10-25
+  - image: ./trends.jpg
+    alt: the trends page, an imprint leaderboard over time as a bump chart with w. w. norton leading, and a current ranking of norton, princeton, farrar straus and giroux and harpercollins
+    caption: imprints over time
+    taken: 2026-10-25
