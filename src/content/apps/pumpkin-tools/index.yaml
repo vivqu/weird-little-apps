@@ -2,13 +2,36 @@ name: Giant Pumpkin Statistics and Grower Resource
 tagline: the genetics and rankings of 50,593 giant pumpkins
 url: https://tools.pumpkinfanatic.com/index.php
 form_factor: web
-by: Pumpkin Fanatic
-why: you can trace the family tree of a 2,907 pound pumpkin. software made by and for exactly one community.
+by:
+  - name: Andy Corbin
+    url: https://www.pumpkinfanatic.com/
+why: niche tools for serious ventures 🎃
 collected: 2026-09-02
-hidden: true
 
+created: 2011
+links:
+  - { label: about the grower, url: https://www.pumpkinfanatic.com/about/ }
+  - { label: the seed auctions, url: https://www.wsj.com/lifestyle/meet-the-giant-pumpkin-geneticists-pushing-for-a-3-000-pounder-ead979a2 }
+quotes:
+  - text: This site provides the grower of Pumpkins with a resource to get them to the next level and grow a giant Pumpkin. You will be able to compare, look at their world rank, and determine which genetic line of the Pumpkin will grow the next world record Pumpkin.
+    url: https://tools.pumpkinfanatic.com/index.php
+recs:
+  - { title: "Cheyenne man breaks state record with 1,491-pound pumpkin", url: https://luskherald.com/stories/cheyenne-man-breaks-state-record-with-1491-pound-pumpkin,19003, by: Lusk Herald, date: 2019-10-19 }
+  - { title: "Linkfest #48: The MouthPad, “Volitional Reconsumption”, and The Genetics of Giant Pumpkins", url: https://buttondown.com/clivethompson/archive/linkfest-48-the-mouthpad-volitional-reconsumption/, by: Clive Thompson, date: 2026-08-29 }
 screenshots:
   - image: ./landing.jpg
-    alt: an orange page listing the ten biggest pumpkins on record
+    alt: the orange home page, pumpkin genetics and statistics, analyzing 50,593 giant pumpkin seeds, with a search box for weight or grower and a top 10 biggest pumpkins table led by 2907 paton 2022
     caption: top 10 biggest pumpkins
     taken: 2026-10-23
+  - image: ./detail.jpg
+    alt: the giant pumpkin family tree for 2907 paton 2022, yellow cards for each seed and pollinator branching down four generations with weight, heaviness and colour on each
+    caption: detailed geneology of the pumpkin
+    taken: 2026-10-25
+  - image: ./pic.jpg
+    alt: a photo of five people holding a union jack behind a vast orange pumpkin on a warehouse floor, with a go back button
+    caption: picture proof
+    taken: 2026-10-25
+  - image: ./largest.jpg
+    alt: the 500 largest pumpkins grown, a table of names, photos, weights and growers from 2819.3 paton 2025 down, with checkboxes to include damaged and non-gpc pumpkins
+    caption: top 500 ever
+    taken: 2026-10-25
