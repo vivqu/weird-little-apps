@@ -77,8 +77,12 @@ function reply(ok, json, error) {
 
 ## Site side (agent)
 
+Design record: the clickable prototype at https://claude.ai/artifact/R9HW1cV82R9CT7UdjDtWEe (private
+Artifact; form, sent and error states). The page is ported from it once it's approved.
+
 - `src/pages/suggest.astro`, linked from the footer and about page. Copy in `site.yaml`
-  (`suggest.*`). Page is not built when `suggest.endpoint` is empty.
+  (`suggest.*`). A static page always builds; without `suggest.endpoint` it says the box isn't out
+  yet and nothing links to it.
 - Styled as a postcard (ink outline, hard shadow, askew), per CLAUDE.md → Style direction.
 - Fields, only `url` required: `url` (`type="url"`), `note` (textarea: what's weird about it or
   what impressed you), `links` (textarea: writeup, source, launch post), `maker` (checkbox: are you
