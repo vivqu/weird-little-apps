@@ -1,16 +1,51 @@
 name: Every train, a note
-tagline: a jazz combo played in real time by every nyc subway train
+tagline: every nyc subway train as a jazz note
 url: https://www.trainjazz.com/
 form_factor: web
 by:
   - name: Joshua Wolk
     url: https://www.joshuawolk.com
-why: at 3 a.m. the silences grow longer. the most beautiful use of a transit feed i have seen.
+why: jazz and data viz is the best combo
 collected: 2026-08-29
-hidden: true
 
+created: 2026-04-10
+tags: [next-js]
+quotes:
+  - text: Every dot is a real subway train. Eight hundred of them, give or take, form a small jazz combo (walking bass, piano, sax, vibes, brushes) that has been playing without pause for over a hundred years.
+    url: https://www.trainjazz.com/
+  - text: My rule for making Train Jazz was, is this something I could listen to for 3 hours straight without finding it super annoying? And when I finally got to that point, it did become something that I would listen to.
+    url: https://www.npr.org/2026/08/09/nx-s1-5917185/a-website-makes-music-using-the-real-time-new-york-city-subway-schedule
+    date: 2026-08-09
+  - text: |-
+      Introducing Train Jazz, a live experience from Amtrak and @away, turning every active train in the country into a musical note.
+
+      Web Design by Joshua Wolk/@joshuawolk
+    url: https://x.com/Amtrak/status/2086890457221476648
+    by: Amtrak
+    date: 2026-08-10
+    embed: true
+recs:
+  - { title: I gave every train in New York an instrument, url: https://news.ycombinator.com/item?id=47719490, by: Hacker News, date: 2026-04-10 }
+  - { title: Listen to the NYC Subway play some Train Jazz, url: https://kottke.org/26/04/0048730-listen-to-the-nyc-subway, by: Jason Kottke, date: 2026-04-15 }
+  - { title: This website takes the cacophony of NYC's subway and turns it into jazz music, url: https://www.fastcompany.com/91534877/this-website-takes-the-cacophony-of-nycs-subway-and-turns-it-into-jazz-music, by: Fast Company, date: 2026-05-04 }
+  - { title: What does it sound like when you give every train in New York City an instrument?, url: https://www.wbur.org/hereandnow/2026/05/25/new-york-train-music, by: "Here & Now, WBUR", date: 2026-05-25 }
+  - { title: A website makes music using the real-time New York City subway schedule, url: https://www.npr.org/2026/08/09/nx-s1-5917185/a-website-makes-music-using-the-real-time-new-york-city-subway-schedule, by: NPR, date: 2026-08-09 }
+  - { title: "The Rhythm of the Rails: Making Music From Data in Real Time", url: https://www.nytimes.com/2026/09/03/arts/music/jazz-train-amtrak-josh-wolk.html, by: The New York Times, date: 2026-09-03 }
+  - { title: "Every train, a note", url: https://adaptivesoftware.substack.com/p/every-train-a-note, by: Adaptive Software, date: 2026-10-22 }
 screenshots:
   - image: ./landing.jpg
-    alt: the subway map drawn in thin lines with a few coloured dots for trains
+    alt: the subway drawn as thin grey lines with a few coloured dots for trains, a line legend top left, 494 trains running, and a banner reading i found a new planet, it plays chopin
     caption: 800 trains, give or take
-    taken: 2026-10-23
+    taken: 2026-10-25
+  - image: ./bars.jpg
+    alt: the bars view, one horizontal staff per line from the 1 to the si with trains as dots along each and a count at the right, one red bar on the 3 sounding
+    caption: as musical chords
+    taken: 2026-10-25
+  - image: ./map.jpg
+    alt: the same train dots over a pale street map of new york, from paterson and hackensack to queens and staten island, 503 trains running
+    caption: map overlay
+    taken: 2026-10-25
+  - image: ./dark-mode.jpg
+    alt: the map in dark mode, the city's streets in charcoal with a handful of coloured train dots across manhattan and queens, 499 trains running
+    caption: dark mode
+    taken: 2026-10-25
