@@ -1,14 +1,44 @@
 name: BingeBrowse
-tagline: your streaming services as a walkable 3d video store
+tagline: explore streaming like an old blockbuster
 url: https://bingebrowse.net/
-form_factor: web
-by: maker unknown
-why: i missed wandering the aisles more than i missed the films. this gives the aisles back.
+form_factor: [web, ios, android]
+by:
+  - Oliver Evans
+  - Patrick Evans
+why: throwback to the GOAT blockbuster
 collected: 2026-08-27
-hidden: true
 
+created: 2026-07
+links:
+  - { label: app store, url: https://apps.apple.com/us/app/bingebrowse/id6797298126 }
+  - { label: play store, url: https://play.google.com/store/apps/details?id=net.bingebrowse.app }
+  - { label: launch post, url: https://www.reddit.com/r/nextfuckinglevel/comments/1wdr2yb/i_made_a_90s_video_store_as_a_website_walk_the/ }
+  - { label: their criterion closet, url: https://thecriterioncloset.com }
+quotes:
+  - text: "“Originally we were drawn to the idea of creating something which mixed the physical and the digital world.”"
+    url: https://www.whats-on-netflix.com/what-to-watch/bingebuster-3d-virtual-blockbuster-netflix-browser/
+    date: 2026-07-31
+  - text: "‘Our audience has really responded to the nostalgia of revisiting the video stores of their past, but also to having a chance to browse streaming sites without the constant invisible hand of the algorithm. It's something both Patrick and I have fond memories of as children too – being 27 years old we just about remember the last days of video stores here in the UK.’"
+    url: https://www.timeout.com/news/bingebrowse-online-video-store-081826
+    date: 2026-08-18
+recs:
+  - { title: This digital Blockbuster clone is a beautiful nostalgia trip, url: https://www.pcworld.com/article/3211823/this-digital-blockbuster-clone-is-a-beautiful-nostalgia-trip.html, by: PCWorld, date: 2026-08-13 }
+  - { title: Browse streaming movies like you’re in a video store with this cool new website, url: https://www.timeout.com/news/bingebrowse-online-video-store-081826, by: Time Out, date: 2026-08-18 }
+  - { title: "Nostalgic fans are resurrecting the Blockbuster video store — free DVD and Blu-ray drop-boxes are multiplying on streets as a new 3D website turns Netflix into a retro rental store", url: https://www.techradar.com/streaming/blockbuster-is-making-an-unlikely-comeback-neighborhood-free-blockbuster-boxes-are-multiplying-for-dvd-and-blu-ray-fans-as-new-website-turns-netflix-into-a-3d-video-store, by: TechRadar, date: 2026-08-19 }
 screenshots:
   - image: ./landing.jpg
-    alt: a neon video store sign in front of shelves of film covers
+    alt: the bingebrowse sign over a blurred store, with netflix, prime video and disney+ selected, a theme and resize store row and an enter bingebrowse button
     caption: your video store
-    taken: 2026-10-23
+    taken: 2026-10-25
+  - image: ./new-releases.jpg
+    alt: inside the store facing the new releases wall, rows of vhs-style cases for wicked, joker, captain america and the housemaid under sci-fi and action signs, with a tooltip saying click a cover to pick it up
+    caption: enter the store
+    taken: 2026-10-25
+  - image: ./detail.jpg
+    alt: the wicked case picked up, with synopsis, cast and genre on the left, stream on netflix and watch trailer buttons on the right, and more like this suggestions
+    caption: movie box
+    taken: 2026-10-25
+  - image: ./store.jpg
+    alt: a view down the aisles under fluorescent lights, with drama, tv shows, staff picks, horror and romance signs, a family stand and an everything stand
+    caption: explore the rest
+    taken: 2026-10-25
