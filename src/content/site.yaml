@@ -4,6 +4,7 @@ subtitle: purveyors of fine apps
 established: 2026
 by:
   name: vivian qu
+  short: vivian   # the about page's rubber stamp: "made by vivian"
   url: https://vivqu.com/
 lede: Apps built with purpose. Tiny by design. Made with love.
 description: a hand-picked collection of small, strange software.
@@ -14,7 +15,7 @@ motto: Make the weird thing. The right people will find it.
 
 # the status block on the about page; {apps} becomes "43 apps", linked to the index
 status: collected {apps}
-next: a suggestion box
+next: filtering and searching
 
 # the suggestion box at /suggest/ (see .claude/FORM.md). `endpoint` is the Apps Script web app's /exec url;
 # until it's set the page says the box isn't out yet and nothing links to it

@@ -18,5 +18,5 @@ const views = [
   <nav class="viewswitch" aria-label="view">
     {views.map(([label, href]) => (label === view ? <b aria-current="true">{label}</b> : <a href={href}>{label}</a>))}
   </nav>
-  <p class="count">{total.toLocaleString('en')} apps · newest first</p>
+  <p class="count">{total.toLocaleString('en')} apps · latest added first</p>
 </div>

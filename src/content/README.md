@@ -114,7 +114,7 @@ The simplest valid entry is the seven required fields with `by: someone` and `fo
 - `name`: the site name, used in page titles
 - `subtitle`: the line under the wordmark on every page
 - `established`: the year in "est. 2026"
-- `by`: who made the site, `{ name, url }`; the footer's "made with ♥ by" link
+- `by`: who made the site, `{ name, url, short }`; the about page's rubber stamp reads "made by `short`" (or `name`) over the url's host, and links to the url
 - `lede`: the one-line description on the about page
 - `description`: the default meta description
 - `post`: the post the site grew out of ("read the post" on the about page)

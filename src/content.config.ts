@@ -106,7 +106,8 @@ const site = defineCollection({
     name: z.string().min(1),
     subtitle: z.string().min(1),
     established: z.number().int(),
-    by: z.object({ name: z.string().min(1), url: z.url().optional() }),
+    // `short` is the first name the about page's rubber stamp uses ("made by vivian"); the stamp's second line is the url's host
+    by: z.object({ name: z.string().min(1), url: z.url().optional(), short: z.string().min(1).optional() }),
     lede: z.string().min(1),
     description: z.string().min(1),
     post: z.url(),

@@ -34,7 +34,7 @@ The URL does not change.
 ```js
 const SHEET = 'suggestions';
 const NOTIFY = '';   // email for an alert per row, or ''
-const FIELDS = ['url', 'note', 'links', 'maker', 'from', 'contact', 'stamp', 'ref'];
+const FIELDS = ['url', 'note', 'links', 'maker', 'from', 'contact', 'ref'];
 const MAX = 2000;
 const SITE = 'https://weirdlittleapps.com/';
 
@@ -89,9 +89,9 @@ Artifact, version 19, ~26 rounds of comments; form, sent and error states). The 
 - Styled as a postcard (ink outline, hard shadow, askew), per CLAUDE.md → Style direction.
 - Fields, only `url` required: `url` (`type="url"`), `note` (textarea: what's weird about it or
   what impressed you), `links` (textarea: a launch post, a writeup), `maker` (checkbox: i made it),
-  `from` (name or handle), `contact` (a way to reach you or a site to credit), `stamp` (radio: which
-  of the four stamps they picked; `star` if none), `ref` hidden, filled from `?ref=`. No uploads, no
-  tags (the curator derives tags from `links`).
+  `from` (name or handle), `contact` (a way to reach you or a site to credit), `ref` hidden, filled
+  from `?ref=`. No uploads, no tags (the curator derives tags from `links`). The stamp the visitor picks is
+  decoration only: it isn't posted or recorded.
 - The card: heading and two notes on the left, "post card", the stamp corner and the address lines
   on the right at a fixed height; a sheet of four stamps beside the card (above it under 68rem); on
   phones the heading, then the address half, then the notes. Sent: the card locks as filled in with
@@ -116,16 +116,23 @@ Artifact, version 19, ~26 rounds of comments; form, sent and error states). The 
 - Quotas: ~20k web-app calls/day, 100 `MailApp` mails/day on a personal account. Rows still
   land when mail is exhausted.
 
-## About page (open)
+## About page
 
-The site footer lost "made by vivian qu" (2026-10-25) and now reads "est. 2026 · about · suggest an app". The
-maker credit and a way to the suggestion box still need a home on the about page, as an object rather than a
-second footer or a row in the window's status block (tried both, rejected). Experiments at https://claude.ai/artifact/VrGyPwG7zSZ5tkSDVLc9MH (private
-Artifact, version 4). Settled there: the way to the box is a small postcard on its own peach paper peeking out
-from under the window's right edge, with a mono "suggest an app" under an arrow (the suggest page's own
-object). The maker credit is a rubber stamp: "made by vivian / vivqu.com" in the
-muted ink, a rounded rectangle pressed a little askew, linking to vivqu.com, at the foot of the page a long way
-under the sticky note, about thirteen rems of air (decided 2026-10-25, version 15 of the Artifact). Rejected along the way: a second footer,
-a row in the status block, a signature on the sticky note, a calling card, a label strip, a status bar, a
-colophon, index cards, a second window, footnotes, a receipt, a playbill, a hang tag, a shop sign. A section
-for method and fine print is not needed now; add it when there is something to say.
+Ported 2026-10-25 from version 16 of the Artifact at https://claude.ai/artifact/VrGyPwG7zSZ5tkSDVLc9MH
+(the design record; sixteen rounds of comments). Two objects, both in `src/pages/about.astro` with their CSS
+in the about section of `src/styles/site.css`:
+
+- **The way to the box**: a small postcard tucked under the window's right edge, on the title bar's deeper
+  peach, "post card" from its left edge with its first letter under the window, a yellow sun stamp, the
+  divider and three address rules; "suggest an app" in mono above it with an arrow pointing down. Links to
+  `/suggest/`; rendered only when `suggest.endpoint` is set. On phones it pokes out under the window's corner
+  with the label beneath, and the sticky note moves down to make room.
+- **The maker's credit**: a rubber stamp at the foot of the page, about thirteen rems under the note (ten on
+  phones), "made by vivian" over "vivqu.com" in the muted ink, pressed a little askew, linking to `by.url`.
+  The first name is `by.short` in `site.yaml`; the second line is the url's host.
+
+The site footer reads "est. 2026 · about · suggest an app"; the maker credit lives only on the about page.
+Tried and rejected on the way: a second footer, a row in the status block, a signature on the sticky note, a
+calling card, a label strip, a status bar, a colophon, index cards, a second window, footnotes (on a dashed
+divider and on four kinds of paper), a receipt, a playbill, a hang tag, a shop sign. A section for method and
+fine print is not needed now; add it when there is something to say.

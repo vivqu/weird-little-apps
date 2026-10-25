@@ -14,7 +14,7 @@ const site = await getSite();
 const box = site.suggest;
 const endpoint = box?.endpoint ?? undefined;
 
-// the sheet: `value` is what the row records as `stamp`
+// the sheet of stamps beside the card. Decoration only: the radios sit outside the form and aren't posted
 const stamps = [
   { value: 'star', tone: 'lime', den: '5¢', text: 'priority' },
   { value: 'squiggle', tone: 'sky', den: '10¢', text: 'air mail' },
@@ -67,9 +67,9 @@ const stamps = [
         )}
       </section>
       {endpoint && (
-        <fieldset class="sheet" aria-label="pick a stamp">
+        <fieldset class="stampsheet" aria-label="pick a stamp">
           {stamps.map((s) => (
-            <label><input type="radio" name="stamp" value={s.value} form="card-form" /><Stamp shape={s.value} tone={s.tone} den={s.den} text={s.text} /></label>
+            <label><input type="radio" name="stamp" value={s.value} /><Stamp shape={s.value} tone={s.tone} den={s.den} text={s.text} /></label>
           ))}
         </fieldset>
       )}
@@ -90,7 +90,7 @@ const stamps = [
         button.disabled = true;
         oops.hidden = true;
         /* the radios sit on the sheet, outside the form (they post through their form attribute): no pick means the star */
-        if (!document.querySelector('.sheet input:checked')) document.querySelector('.sheet input').checked = true;
+        if (!document.querySelector('.stampsheet input:checked')) document.querySelector('.stampsheet input').checked = true;
         const data = new FormData(form);
         data.set('format', 'json');
         try {

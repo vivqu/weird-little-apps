@@ -38,13 +38,13 @@ For the content model: every entry should answer *why does this exist* and *what
 | `/`, `/page/N/` | the index: a screenshot wall, 24 apps a page, newest first |
 | `/compact/`, `/compact/page/N/` | the same list as a text-only printout |
 | `/apps/<id>/` | detail page per app, with newer / older |
-| `/about/` | origin story, in the original work-in-progress page's design (copy is a draft) |
+| `/about/` | origin story, in the original work-in-progress page's design (copy is a draft), with a postcard to the suggestion box tucked under the window and the maker's rubber stamp at the foot (`.claude/FORM.md` → About page) |
 | `/go/<id>/` | the hop behind a visit button: the counting pixel records a `visit/<id>` event, a meta refresh sends the visitor to the app (`.claude/ANALYTICS.md`) |
 | `/suggest/` | the suggestion box: a postcard that posts to a Google Apps Script web app, which appends a row to the curator's Sheet (`.claude/FORM.md`) |
 
 Pages are `src/pages/*.astro` on `src/layouts/Base.astro`, with the header, footer, pager, view switch and wall tile in `src/components/`. Images go through `astro:assets` (`<Image>`): every screenshot is served as webp at the size each place needs, and an inline integration in `astro.config.mjs` prunes the unreferenced originals from `dist/`. Client JS is two inline scripts: the detail page's arrow-key paging (eight lines; the thumbnails work without it) and the suggest page's submit handler (posts the postcard in the background and locks it with a postmark; without it the form posts natively and lands on the script's one-line reply).
 
-**Visual identity.** Defined in `CLAUDE.md` → Style direction. Light only. Fonts self-hosted in `public/fonts/`. Design tokens are in `:root` in `src/styles/site.css`, which is the prototype's stylesheet ported as is. The design record is the commentable prototype linked from `.claude/registry-plan.md`.
+**Visual identity.** Defined in `CLAUDE.md` → Style direction. Light only. Fonts self-hosted in `public/fonts/`. Design tokens are in `:root` in `src/styles/site.css`, which is the prototype's stylesheet ported as is. It is one global stylesheet with no scoping, so a class name is site-wide: a new page's rules must use names no other page uses (the suggest page's stamp sheet was `.sheet` for a day and pulled the compact register's `.ledger .sheet` paper off the page). After adding a page or a component, screenshot `/` and `/compact/` as well as the new page. The design record is the commentable prototype linked from `.claude/registry-plan.md`.
 
 **Hosting.** GitHub Pages. Every push to `main` runs `.github/workflows/deploy.yml`: `withastro/action` builds, `actions/deploy-pages` publishes. Pages source is "GitHub Actions". Repo: `vivqu/weird-little-apps` (public).
 

@@ -265,7 +265,7 @@ footer.site .heart { color: var(--riso-pink); }
 .wavy:hover { color: var(--riso-blue); }
 
 /* about: the original home page's objects (window, admission ticket, motto sticky note), new words */
-.s-about { display: grid; place-items: center; min-height: 100vh; padding-block: 4rem; font-size: 15px; line-height: 1.55; }
+.s-about { display: grid; place-items: center; min-height: 100vh; padding-block: 7rem 5rem; font-size: 15px; line-height: 1.55; }
 .about { width: min(100%, 36rem); }
 .about .frame { position: relative; }
 .about .window { position: relative; z-index: 1; overflow: hidden; background: var(--paper-2); border: 2px solid var(--rule); border-radius: 6px; box-shadow: 6px 6px 0 var(--shadow); }
@@ -308,6 +308,23 @@ footer.site .heart { color: var(--riso-pink); }
 .about .motto { margin: 0; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
 .about .motto q { display: block; quotes: '\201C' '\201D'; line-height: 1.5; }
 .about .motto a { align-self: flex-end; font-size: 0.78rem; color: #5f64a3; }
+/* the way to the suggestion box: a small postcard tucked under the window's right edge (the title bar's deeper peach, so it reads
+   as its own paper), "post card" from its left edge with a letter under the window, a sun stamp, the divider and address rules;
+   labelled in mono from above, arrow pointing down at it */
+.about .minicard { position: absolute; z-index: 0; right: -8.5rem; bottom: 1.6rem; width: 9.6rem; height: 6rem; background: var(--bar); border: 2px solid var(--rule); border-radius: 3px; box-shadow: 4px 4px 0 var(--shadow); transform: rotate(7deg); text-decoration: none; color: var(--ink); }
+.about .minicard .mstamp { position: absolute; top: 0.45rem; right: 0.5rem; width: 1.8rem; height: 2.1rem; display: grid; place-items: center; background: var(--riso-yellow); border: 1.5px dashed var(--rule); }
+.about .minicard .mstamp svg { width: 1.2rem; color: var(--ink); }
+.about .minicard em { position: absolute; left: 0.7rem; top: 0.6rem; font: italic 400 0.95rem/1 var(--serif); color: var(--ink-muted); white-space: nowrap; }
+.about .minicard .line { position: absolute; top: 0.6rem; bottom: 0.6rem; left: 48%; border-left: 1.5px dashed var(--ink-muted); }
+.about .minicard .rule { position: absolute; left: 56%; right: 0.7rem; border-bottom: 1px solid var(--ink-muted); opacity: 0.6; }
+.about .minicard .r1 { bottom: 2.9rem; } .about .minicard .r2 { bottom: 1.8rem; } .about .minicard .r3 { bottom: 0.7rem; }
+.about .minicard:hover { transform: rotate(7deg) translate(0.4rem, -0.3rem); }
+.about .minilabel { position: absolute; right: -7.8rem; bottom: 8.3rem; display: flex; flex-direction: column-reverse; align-items: center; gap: 0.05rem; font: 400 0.72rem/1.3 var(--mono); letter-spacing: 0.06em; color: var(--ink-muted); white-space: nowrap; transform: rotate(-3deg); pointer-events: none; }
+.about .minilabel .arrow { width: 1.4rem; transform: scaleY(-1); }
+/* the maker's credit: a rubber stamp pressed a little askew at the foot of the page, a long way under the note */
+.about .inkstamp { display: block; width: fit-content; margin: 13rem auto 0; padding: 0.5rem 0.9rem 0.45rem; border: 2px solid var(--ink-muted); border-radius: 4px; color: var(--ink-muted); mix-blend-mode: multiply; opacity: 0.85; transform: rotate(-4deg); text-align: center; text-decoration: none; font: 500 0.62rem/1.5 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; }
+.about .inkstamp b { display: block; font-size: 0.78rem; letter-spacing: 0.12em; }
+.about .inkstamp:hover { color: var(--riso-blue); border-color: var(--riso-blue); }
 
 @media (max-width: 72rem) {
   .detail .hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; }
@@ -317,7 +334,12 @@ footer.site .heart { color: var(--riso-pink); }
 @media (max-width: 48rem) {
   .about .doodle.star { left: -0.3rem; top: -3.2rem; width: 2.4rem; }
   .about .doodle.squiggle { display: none; }
-  .about .note { margin: 4.5rem auto 0; }
+  /* stacked: the postcard pokes out under the window's corner with its label beneath, and the note moves down to make room */
+  .about .minicard { right: 0.2rem; bottom: -6.1rem; }
+  .about .minilabel { right: 2.2rem; bottom: -9.1rem; flex-direction: column; transform: rotate(-2deg); }
+  .about .minilabel .arrow { width: 1.3rem; transform: none; }
+  .about .note { margin: 11.2rem auto 0; }
+  .about .inkstamp { margin-top: 10rem; }
   .wall { grid-template-columns: 1fr; }
   .detail .below { grid-template-columns: 1fr; row-gap: 0.2rem; }
   .detail .below .visits { grid-column: 1; grid-row: auto; justify-self: start; justify-content: flex-start; margin-top: 1.1rem; }
@@ -408,31 +430,31 @@ footer.site .heart { color: var(--riso-pink); }
 .stamp.yellow svg { width: 3.8rem; right: -1.2rem; bottom: -1.3rem; }
 .stamp.yellow b { top: 0.3rem; left: 0.3rem; }
 .stamp.yellow i { left: 0.3rem; bottom: 0.3rem; writing-mode: vertical-rl; transform: rotate(180deg); }
-.sheet { position: absolute; left: calc(100% + 1.8rem); top: 0.4rem; display: grid; grid-template-columns: repeat(2, auto); gap: 0.9rem 0.7rem; margin: 0; padding: 0; border: 0; }
-.sheet label { margin: 0; cursor: pointer; }
-.sheet input { position: absolute; opacity: 0; width: 0; height: 0; }
-.sheet label { filter: drop-shadow(2px 2px 0 var(--shadow)); } /* on the label, so the shadow follows the perforations */
-.sheet label:nth-child(1) .stamp { transform: rotate(-4deg); }
-.sheet label:nth-child(2) .stamp { transform: rotate(3deg); }
-.sheet label:nth-child(3) .stamp { transform: rotate(2deg); }
-.sheet label:nth-child(4) .stamp { transform: rotate(-3deg); }
-.sheet label:hover .stamp { transform: translateY(-3px); }
-.sheet label:has(input:checked) { filter: none; }
-.sheet label:has(input:checked) .stamp { opacity: 0.25; }
-.sheet label:has(input:focus-visible) { outline: 2px solid var(--riso-blue); outline-offset: 3px; }
+.stampsheet { position: absolute; left: calc(100% + 1.8rem); top: 0.4rem; display: grid; grid-template-columns: repeat(2, auto); gap: 0.9rem 0.7rem; margin: 0; padding: 0; border: 0; }
+.stampsheet label { margin: 0; cursor: pointer; }
+.stampsheet input { position: absolute; opacity: 0; width: 0; height: 0; }
+.stampsheet label { filter: drop-shadow(2px 2px 0 var(--shadow)); } /* on the label, so the shadow follows the perforations */
+.stampsheet label:nth-child(1) .stamp { transform: rotate(-4deg); }
+.stampsheet label:nth-child(2) .stamp { transform: rotate(3deg); }
+.stampsheet label:nth-child(3) .stamp { transform: rotate(2deg); }
+.stampsheet label:nth-child(4) .stamp { transform: rotate(-3deg); }
+.stampsheet label:hover .stamp { transform: translateY(-3px); }
+.stampsheet label:has(input:checked) { filter: none; }
+.stampsheet label:has(input:checked) .stamp { opacity: 0.25; }
+.stampsheet label:has(input:focus-visible) { outline: 2px solid var(--riso-blue); outline-offset: 3px; }
 .postcard .corner { position: absolute; top: 1.1rem; right: 1.2rem; width: 3.9rem; height: 4.5rem; }
 .postcard .corner::before { content: 'stamp'; position: absolute; inset: 0; display: grid; place-items: center; border: 1.5px dashed var(--ink-muted); border-radius: 2px; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); opacity: 0.7; }
 .postcard .corner .stamp { display: none; position: absolute; inset: 0; } /* square, exactly on the placeholder's outline */
-.suggest:has(.sheet input:checked) .corner { filter: drop-shadow(2px 2px 0 var(--shadow)); }
-.suggest:has(.sheet input:checked) .corner::before { display: none; }
-.suggest:has(.sheet input[value="star"]:checked) .corner .lime,
-.suggest:has(.sheet input[value="squiggle"]:checked) .corner .sky,
-.suggest:has(.sheet input[value="heart"]:checked) .corner .pink,
-.suggest:has(.sheet input[value="sun"]:checked) .corner .yellow { display: block; }
+.suggest:has(.stampsheet input:checked) .corner { filter: drop-shadow(2px 2px 0 var(--shadow)); }
+.suggest:has(.stampsheet input:checked) .corner::before { display: none; }
+.suggest:has(.stampsheet input[value="star"]:checked) .corner .lime,
+.suggest:has(.stampsheet input[value="squiggle"]:checked) .corner .sky,
+.suggest:has(.stampsheet input[value="heart"]:checked) .corner .pink,
+.suggest:has(.stampsheet input[value="sun"]:checked) .corner .yellow { display: block; }
 /* once sent: the card stays as filled in, locked, with a postmark hand-stamped under the post card label and over the stamp, and the way back */
 .postcard .postmark { display: none; position: absolute; top: 2.9rem; right: 2.6rem; width: 12rem; color: var(--riso-red); opacity: 0.85; mix-blend-mode: multiply; transform: rotate(-9deg); }
 .postcard.is-sent .postmark { display: block; }
-.postcard.is-sent ~ .sheet { visibility: hidden; }
+.postcard.is-sent ~ .stampsheet { visibility: hidden; }
 .postcard .thanks, .postcard.is-sent .ask { display: none; }
 .postcard.is-sent .thanks { display: block; }
 /* the promise depends on whether they left a way to reach them */
@@ -457,7 +479,7 @@ footer.site .heart { color: var(--riso-pink); }
 .postcard .hp { position: absolute; left: -200vw; width: 1px; height: 1px; overflow: hidden; }
 
 @media (max-width: 68rem) {
-  .sheet { position: static; order: -1; grid-template-columns: repeat(4, auto); justify-content: flex-end; margin: 0 0.4rem 1rem 0; }
+  .stampsheet { position: static; order: -1; grid-template-columns: repeat(4, auto); justify-content: flex-end; margin: 0 0.4rem 1rem 0; }
 }
 @media (max-width: 48rem) {
   .postcard { padding: 1.4rem 1.2rem 1.3rem; transform: rotate(-0.6deg); }
@@ -475,7 +497,7 @@ footer.site .heart { color: var(--riso-pink); }
   .postcard .postmark { display: block; position: static; visibility: hidden; width: 10rem; margin: -3.6rem 2.4rem 0.8rem auto; }
   .postcard.is-sent .postmark { visibility: visible; }
 }
-@media (prefers-reduced-motion: no-preference) { .postcard button { transition: background .15s, color .15s; } .sheet .stamp { transition: opacity .15s, transform .15s; } }
+@media (prefers-reduced-motion: no-preference) { .postcard button { transition: background .15s, color .15s; } .stampsheet .stamp { transition: opacity .15s, transform .15s; } }
 
 /* the counting pixel (.claude/ANALYTICS.md): present, 1×1, invisible. Not display: none, which some browsers don't fetch */
 .beacon { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
