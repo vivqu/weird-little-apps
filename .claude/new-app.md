@@ -37,7 +37,7 @@ Fill `links`, `quotes`, `recs`:
 - Launch post on X / Threads, or the maker's YouTube video → `quote` with `embed: true` (text / video title as fallback).
   Embeds render blank headless; check in a real browser.
 - Coverage → `recs: { title, url, by, date }`, `by` = the outlet only ("The Verge", never "Author for The Verge"). Oldest first; undated ones last. HN threads, press, personal blogs. Skip link-only
-  posts.
+  posts. English only: a rec, quote or link in another language is left out, however good the outlet.
 - Facts with no field (models used, etc.) go in as a maker's quote, not a new field; tags come last, step 7.
 
 Fetching (WebFetch is blocked for most of these):

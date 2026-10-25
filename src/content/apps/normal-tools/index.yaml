@@ -1,14 +1,41 @@
 name: Normal Tools
-tagline: open a tool, do the thing, leave
+tagline: simple no-fuss tools
 url: https://www.normaltools.com/
 form_factor: web
-by: maker unknown
-why: 193 tiny utilities and not one of them wants my email. the name is the whole manifesto.
+by:
+  - name: markup
+    url: https://www.trashcan.co/
+why: tiny software utilities without any bloat or unnecessary ux, as god intended
 collected: 2026-08-31
-hidden: true
 
+created: 2026-08-18
+tags: [next-js]
+links:
+  - { label: source code, url: https://github.com/markuppp/normal-tools }
+quotes:
+  - text: Open a tool, do the thing, leave. No account, no download, and nothing between you and the answer.
+    url: https://www.normaltools.com/
+  - text: normaltools.com
+    url: https://x.com/markup/status/2089565966749323481
+    date: 2026-08-18
+    embed: true
+
+recs:
+  - { title: "Normal Tools – Useful online tools, no nonsense", url: https://news.ycombinator.com/item?id=49994107, by: Hacker News, date: 2026-10-07 }
 screenshots:
   - image: ./landing.jpg
-    alt: a plain index of small online tools
+    alt: the home page, normal tools for normal tasks, with a find a tool box, 193 tools, and the text and files columns starting with word counter and image resizer
     caption: normal tools for normal tasks
     taken: 2026-10-23
+  - image: ./bottom.jpg
+    alt: the end of the list, fee calculators for grailed, reverb and discogs beside a names column of podcast, band, clan and d&d name generators, and the private by default note
+    caption: private by default
+    taken: 2026-10-25
+  - image: ./detail.jpg
+    alt: the word counter tool, a text box on the left and a result box on the right counting 14 words and 77 characters, marked works locally
+    caption: use the tool
+    taken: 2026-10-25
+  - image: ./search.jpg
+    alt: the list filtered by png, showing 5 of 193 tools, a favicon generator and four converters between jpg, png, svg and psd
+    caption: search
+    taken: 2026-10-25
