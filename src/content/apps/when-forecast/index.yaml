@@ -1,0 +1,37 @@
+name: WHEN
+tagline: prediction markets timeline of the future
+url: https://when.val.run/
+form_factor: web
+by:
+  - name: Charlie Molthrop
+    url: https://x.com/CharlieMolthrop
+why: turning bets into something like a farmer's almanac
+collected: 2026-08-25
+
+created: 2025-07-25
+tags: [react]
+links:
+  - { label: writeup, url: https://www.val.town/x/dcm31/when }
+  - { label: source code, url: https://www.val.town/x/dcm31/when/code/index.ts }
+  - { label: the markets, url: https://manifold.markets }
+  - { label: grant proposal, url: https://manifund.org/projects/normie-friendly-prediction-market-interfaces }
+quotes:
+  - text: |-
+      I want to continue my exploration of normie-friendly packaging for prediction market probabilities.
+
+      Most prediction market platform UI's are trader-centric. This makes sense because without traders, markets are no good. However, prediction markets have a second, much larger 'lurker' audience that I believe is underserved by the major platforms.
+    url: https://manifund.org/projects/normie-friendly-prediction-market-interfaces
+    date: 2025-10-29
+screenshots:
+  - image: ./landing.jpg
+    alt: the headline when above a timeline that starts at today, 23 oct 2026, with a years rail from 2026 to 2042 and bets that video games come back and polymarket launches a token
+    caption: betting markets today
+    taken: 2026-10-23
+  - image: ./november.jpg
+    alt: november 2026 on the timeline, with emoji-tagged forecasts for brave's leo agent, a microhotel at próspera, robot cooks and the next press secretary
+    caption: november predictions
+    taken: 2026-10-25
+  - image: ./2251.jpg
+    alt: the far end of the timeline, 2114, 2175 and 2251, ending with a robotic system operating in another star system
+    caption: end of the timeline
+    taken: 2026-10-25
