@@ -1,14 +1,38 @@
 name: Make My Drive Fun
-tagline: oddities and roadside detours along your next drive
+tagline: fun roadside detours for your next roadtrip
 url: https://makemydrivefun.com/
 form_factor: web
-by: maker unknown
-why: the scenic-ish route. it assumes the point of a drive is the giant ball of twine, and it is right.
+by:
+  - name: Zack Scholl
+    url: https://schollz.com
+why: always take the scenic route 🚗
 collected: 2026-08-26
-hidden: true
 
+created: 2017-11
+links:
+  - { label: road notes, url: https://makemydrivefun.com/blog }
+  - { label: product hunt, url: https://www.producthunt.com/products/make-my-drive-fun/launches/make-my-drive-fun-2 }
+quotes:
+  - text: This was a fun weekend project that I made because I will soon be moving and wanted to find some cool places to stop. [...] It is written in Go and it relies heavily on the amazing Open Source Routing Machine backend.
+    url: https://news.ycombinator.com/item?id=15685404
+    date: 2017-11-13
+recs:
+  - { title: Makemydrivefun Helps You Find the Best Sights to See on Your Road Trip, url: https://matadornetwork.com/read/makemydrivefun-video/, by: Matador Network, date: 2022-07-25 }
+  - { title: "Make My Drive Fun, An Interactive Map That Plots Interesting Sites to See While on a Road Trip", url: https://laughingsquid.com/make-my-drive-fun/, by: Laughing Squid, date: 2022-08-11 }
 screenshots:
   - image: ./landing.jpg
-    alt: a route planner beside a map of the united states
-    caption: there is always something strange just off the highway
-    taken: 2026-10-23
+    alt: the planner with start and destination boxes, a find fun stops button and classic routes, beside a map of north america and a card reading there's always something strange just off the highway
+    caption: what can i see on my route?
+    taken: 2026-10-25
+  - image: ./route.jpg
+    alt: a san francisco to new york route drawn across the map with ten stop markers, 2,910 miles and 51 hours, and a copy route link button
+    caption: from sf to nyc
+    taken: 2026-10-25
+  - image: ./bottom.jpg
+    alt: the best 10 stops list for the route, the tree of utah, cowboy on a bulldozer, bats of yolo causeway, armpit of america and a 76-foot corn stalk, each a fraction of a mile off route
+    caption: list of stops
+    taken: 2026-10-25
+  - image: ./stop.jpg
+    alt: the tree of utah selected, the map zoomed to the salt flats west of salt lake city with a popup photo of the 90-foot psychedelic tree and open in maps and read more buttons
+    caption: weird tree
+    taken: 2026-10-25
