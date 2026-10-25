@@ -2,13 +2,51 @@ name: in progress works
 tagline: a weekly journal and gentle accountability club for side projects
 url: https://www.inprogress.works/
 form_factor: web
-by: maker unknown
-why: built on the theory that doing anything every week for a year is bound to change something. i believe it.
+by:
+  - name: Connie Liu
+    url: https://www.connieliu.work/
+why: i love the small-scale community and lovely supportive comments
 collected: 2026-09-03
 hidden: true
 
+created: 2026-01
+tags: [next-js]
+links:
+  - { label: writeup, url: https://waves.connie.surf/p/small-networks }
+  - { label: the case study, url: https://www.connieliu.work/inprogressworks }
+quotes:
+  - text: |-
+      In the depths of winter, I created inprogress.works as a reaction to the slow decline of social media.
+
+      The manifestation of these beliefs was inprogress.works, a website for people to post their side projects on a weekly basis. More importantly, you wouldn’t be able to see others’ posts unless you posted yourself.
+    url: https://waves.connie.surf/p/small-networks
+    date: 2026-03-28
+  - text: "Instagram and Twitter are still the public townsquares and inprogress.works is like the indie cafe that opened just down the street."
+    url: https://waves.connie.surf/p/small-networks
+    date: 2026-03-28
+  - text: |-
+      homepage refresh to show more posts from the community!
+
+      it's never too late to start a WIP journal for your creative projects, come and check it out :^)
+    url: https://x.com/connie_surf/status/2057679065646010721
+    date: 2026-05-22
+    embed: true
+recs:
+  - { title: Connie Liu, url: https://naiveweekly.com/people/connie-liu, by: Naive Weekly }
 screenshots:
   - image: ./landing.jpg
-    alt: a grid of weekly updates from people making things
+    alt: the home page, a lightweight accountability community for your side projects, with a grid of recent makes tagged digital, physical and research, a year of weeks below, and a featured post of the week
     caption: what people made this week
     taken: 2026-10-23
+  - image: ./welcome.jpg
+    alt: the welcome dialog for a new account, a weekly social accountability log for your passion projects, each week has an image that animates when you fill a row, with a sounds good button
+    caption: welcome
+    taken: 2026-10-25
+  - image: ./add.jpg
+    alt: the create new weekly update form with category websites and project weird little apps, a note about collecting vibe-coded apps, and a screenshot of this site attached
+    caption: add a new update
+    taken: 2026-10-25
+  - image: ./gallery.jpg
+    alt: the explore grid for the week of oct 19 to 25, thirteen posts including sketchbook pages, a cat plate, a five years of everydays sign, a font site and a works in progress poster
+    caption: what other people made
+    taken: 2026-10-25
