@@ -1,7 +1,9 @@
 ---
-// The counting pixel (.claude/ANALYTICS.md): a 1×1 GIF requested from the GoatCounter site named in site.yaml, no
-// script. `path` is the page's path, or an event name when `event` is set. Rendered only in a production build (CI,
-// or WLA_STATS=1), so the dev server, local builds, previews and screenshots send nothing.
+// The counting pixel (.claude/ANALYTICS.md): a 1×1 GIF requested from the GoatCounter site named in site.yaml.
+// `path` is the page's path, or an event name when `event` is set. A few inline lines add the referrer (`r`) and
+// screen size (`s`), which only the browser knows; without JS the <noscript> image counts the view, referrer-less.
+// Rendered only in a production build (CI, or WLA_STATS=1), so the dev server, local builds, previews and screenshots
+// send nothing.
 import { getSite } from '../lib/site';
 
 interface Props {
@@ -20,4 +22,24 @@ if (src) {
 }
 ---
 
-{live && src && <img class="beacon" src={src.href} alt="" width="1" height="1" aria-hidden="true" />}
+{
+  live && src && (
+    <>
+      <script is:inline data-count={src.href}>
+        (() => {
+          const s = document.currentScript;
+          const u = new URL(s.dataset.count);
+          u.searchParams.set('r', document.referrer);
+          u.searchParams.set('s', [screen.width, screen.height, devicePixelRatio || 1].join(','));
+          const i = new Image(1, 1);
+          i.className = 'beacon';
+          i.alt = '';
+          i.setAttribute('aria-hidden', 'true');
+          i.src = u.href;
+          s.after(i);
+        })();
+      </script>
+      <noscript><img class="beacon" src={src.href} alt="" width="1" height="1" aria-hidden="true" /></noscript>
+    </>
+  )
+}
