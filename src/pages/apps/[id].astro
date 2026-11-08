@@ -3,7 +3,7 @@
 // capture (the thumbnails are their labels), the image cross-fades inside the frame, and the frame
 // morphs between window, phone and bare as the picked capture requires. No JS needed; the arrow
 // keys are a courtesy.
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -43,9 +43,13 @@ const matVars = [`--shot: ${shot.toFixed(4)}`, ...shots.map((s, j) => `--r${j + 
 // its iframe is ready) and an inline width (the script copies the inline style onto the iframe)
 const embeds = (app.quotes ?? []).map((q) => embedFor(app, q));
 const embedScripts = [...new Set(embeds.flatMap((e) => (e && 'script' in e ? [e.script] : [])))];
+// the share card: the capture that sizes the stage (a landscape one, else the first), as a plain JPEG for the unfurlers
+const cover = wide ?? shots[0];
+const card = cover && (await getImage({ src: cover.image, width: Math.min(1200, cover.image.width), format: 'jpg' })); // never enlarged
+const image = card && { src: card.src, width: Number(card.attributes.width), height: Number(card.attributes.height), alt: cover.alt };
 ---
 
-<Base title={app.name} description={app.tagline}>
+<Base title={app.name} description={app.tagline} image={image}>
   <SiteHeader home={pageHref(pageOf(app))}>
     <nav class="pager around" aria-label="previous and next app">
       {newer ? <a rel="prev" href={`/apps/${newer.id}/`} title={newer.name}>‹ newer</a> : <span class="off">‹ newest</span>}

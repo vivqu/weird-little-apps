@@ -22,6 +22,7 @@ node scripts/capture.mjs <id> [--stale]              # take the landing screensh
 node scripts/shrink.mjs src/content/apps/<id>        # compress an entry's screenshots to 1x JPEGs and repoint index.yaml (see .claude/new-app.md)
 node scripts/screenshot.mjs /apps/<id> --all         # after a build: screenshot every capture in the frame and check it's centred
 node scripts/morph.mjs /apps/<id> 3 4                # after a build: the window ⇄ phone morph between two slides as a slowed-down contact sheet
+node scripts/social.mjs                              # after a build: recapture the share card (public/social.jpg) when the home page's look changes
 ```
 
 ## Adding an app
@@ -117,10 +118,11 @@ Tokens live in `:root` in `src/styles/site.css`, the one stylesheet, imported by
 .github/workflows/deploy.yml    build with withastro/action, publish with deploy-pages
 UPLOAD.md                       how screenshots are captured, flagged and framed (browser vs mobile)
 astro.config.mjs                site: https://weirdlittleapps.com, static output, /page/1 redirects, image pruning hook
-public/                         copied verbatim: CNAME (custom domain), favicon.svg, robots.txt
+public/                         copied verbatim: CNAME (custom domain), favicon.svg, robots.txt, social.jpg (the share card)
 public/fonts/                   self-hosted woff2 (Instrument Serif, IBM Plex Mono); preloaded, font-display: block
 scripts/screenshot.mjs          playwright screenshot helper
 scripts/morph.mjs               the detail frame's window ⇄ phone morph, slowed down, as a contact sheet
+scripts/social.mjs              the share card: the top of the home page at 1200x630, written to public/social.jpg (committed; rerun after a home-page change)
 scripts/bezel.mjs               heuristic: does a phone-shaped image already contain a rendered device?
 scripts/capture.mjs             playwright landing capture of an entry's url at the hand-capture size (1512x860 @2x → 1512 JPEG)
 scripts/shrink.mjs              compress an entry's screenshots for storage (1512 / 804 wide JPEGs), repoint index.yaml
@@ -131,7 +133,7 @@ src/content/apps/<id>/          one app: index.yaml + screenshots
 src/lib/apps.ts                 the collection in index order with derived fields, pagination, display helpers
 src/lib/site.ts                 getSite(): site.yaml as the pages see it
 src/lib/fixtures.ts             WLA_FIXTURES filler
-src/layouts/Base.astro          document shell (head, fonts, stylesheet)
+src/layouts/Base.astro          document shell (head, fonts, stylesheet, the Open Graph / Twitter card tags; an `image` prop overrides the card)
 src/styles/site.css             the one stylesheet; tokens in :root
 src/components/                 SiteHeader, SiteFooter, Doodles, Pager, ViewSwitch, Tile, Stamp, Beacon (the counting pixel)
 src/pages/                      [...page] (index), compact/[...page], apps/[id], about, suggest, go/[...slug] (the counted hop behind a visit button)

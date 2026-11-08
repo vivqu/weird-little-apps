@@ -12,10 +12,16 @@ interface Props {
   class?: string;
   /** what the counting pixel records instead of this page's path: an event, for the /go/ hop */
   count?: { path: string; event?: boolean };
+  /** the picture a link to this page unfurls with (Open Graph / Twitter card); a site-relative or absolute url */
+  image?: { src: string; width: number; height: number; alt?: string };
 }
+// the site-wide share card: the top of the home page, captured by `node scripts/social.mjs` into public/social.jpg
+const SOCIAL = { src: '/social.jpg', width: 1200, height: 630, alt: 'weird little apps: a row of small browser windows on graph paper' };
 const site = await getSite();
-const { title, description = site.description, class: cls, count } = Astro.props;
+const { title, description = site.description, class: cls, count, image = SOCIAL } = Astro.props;
 const fullTitle = title ? `${title} · ${site.name}` : site.name;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image.src, Astro.site);
 ---
 
 <!doctype html>
@@ -27,7 +33,22 @@ const fullTitle = title ? `${title} · ${site.name}` : site.name;
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={canonical} />
+    {/* link previews (iMessage, Slack, Bluesky, X, Mastodon...): without these a share shows the title and nothing else */}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content={String(image.width)} />
+    <meta property="og:image:height" content={String(image.height)} />
+    {image.alt && <meta property="og:image:alt" content={image.alt} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    {image.alt && <meta name="twitter:image:alt" content={image.alt} />}
     {/* preloaded, and font-display: block, so the page never paints in a fallback face and then swaps */}
     <link rel="preload" href="/fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/InstrumentSerif-400-italic.woff2" as="font" type="font/woff2" crossorigin />
