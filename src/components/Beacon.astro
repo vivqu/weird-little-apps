@@ -1,7 +1,8 @@
 ---
 // The counting pixel (.claude/ANALYTICS.md): a 1×1 GIF requested from the GoatCounter site named in site.yaml.
-// `path` is the page's path, or an event name when `event` is set. A few inline lines add the referrer (`r`) and
-// screen size (`s`), which only the browser knows; without JS the <noscript> image counts the view, referrer-less.
+// `path` is the page's path, or an event name when `event` is set. A few inline lines add the referrer (`r`), the
+// screen size (`s`) and the page's query string (`q`, so a `?ref=…` link is credited as the referrer), which only the
+// browser knows; without JS the <noscript> image counts the view, referrer-less.
 // Rendered only in a production build (CI, or WLA_STATS=1), so the dev server, local builds, previews and screenshots
 // send nothing.
 import { getSite } from '../lib/site';
@@ -31,6 +32,7 @@ if (src) {
           const u = new URL(s.dataset.count);
           u.searchParams.set('r', document.referrer);
           u.searchParams.set('s', [screen.width, screen.height, devicePixelRatio || 1].join(','));
+          if (location.search) u.searchParams.set('q', location.search);
           const i = new Image(1, 1);
           i.className = 'beacon';
           i.alt = '';

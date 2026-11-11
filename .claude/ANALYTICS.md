@@ -29,6 +29,14 @@ the `<img>` request's own `Referer` header is always our page, so a plain pixel 
 still count, referrer-less, through the `<noscript>` image. Hits on `/go/<id>/` carry our own
 detail page as the referrer, which GoatCounter treats as none.
 
+**Tagged links.** The script also sends the page's query string as `q`. GoatCounter reads
+`ref` (or `utm_source`, `src`, `source`) from it and records that value as the referrer in place of
+the real one, and `utm_campaign` (or `campaign`) as a campaign. So a link the curator posts can be
+credited even where browsers strip referrers (in-app browsers, chat, mail, noreferrer links):
+`https://weirdlittleapps.com/?ref=vivqu-blog`. Keep the value short and lowercase; it is the row's
+label. Untagged links from ordinary websites are credited anyway, by referrer. Events (`/go/`)
+ignore `q`.
+
 ## Mechanism
 
 **Pixel.** `Base.astro`, before `</body>`, renders `Beacon.astro`: an inline script with the pixel url
@@ -36,8 +44,8 @@ in `data-count`, and the same url in a `<noscript>` image.
 
 ```html
 <script data-count="https://<code>.goatcounter.com/count?p=%2Fapps%2Fbingebrowse%2F&t=BingeBrowse">
-  // reads data-count, appends r=document.referrer and s=screen.width,screen.height,devicePixelRatio,
-  // creates a 1×1 .beacon <img> with that src and inserts it after the script
+  // reads data-count, appends r=document.referrer, s=screen.width,screen.height,devicePixelRatio and
+  // q=location.search (when any), creates a 1×1 .beacon <img> with that src and inserts it after the script
 </script>
 <noscript><img class="beacon" src="https://<code>.goatcounter.com/count?p=%2Fapps%2Fbingebrowse%2F&t=BingeBrowse" alt="" width="1" height="1" aria-hidden="true"></noscript>
 ```
@@ -117,5 +125,6 @@ npm run build && grep -rl goatcounter dist | wc -l    # 0
 After deploy: click a visit button in Safari and Firefox, confirm the event row. Arrive from a link on
 another site and confirm the referrer shows on the dashboard. To check the request locally: serve
 `dist/` with `scripts/screenshot.mjs`'s `serveDist` in a Playwright script that routes
-`*.goatcounter.com/**`, load `/apps/<id>/` with a `referer`, then `/go/<id>/`; the two requests
-should carry `r` and `s`, and with `javaScriptEnabled: false` the same two without them.
+`*.goatcounter.com/**`, load `/apps/<id>/?ref=test` with a `referer`, then `/go/<id>/`; the two
+requests should carry `r` and `s` (the first also `q`), and with `javaScriptEnabled: false` the
+same two without them.
