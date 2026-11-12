@@ -61,14 +61,17 @@ height: 1px; opacity: 0`. Not `display: none` (some browsers skip the fetch). Th
 button label). `src/pages/go/[...slug].astro` builds one page per button from `getApps()`:
 
 ```html
-<meta http-equiv="refresh" content="0; url=https://bingebrowse.net/">
+<meta http-equiv="refresh" content="0; url=https://bingebrowse.net/?ref=weirdlittleapps">
 <meta name="robots" content="noindex">
-<p>off to <a href="https://bingebrowse.net/">bingebrowse.net ↗</a></p>
+<p>off to <a href="https://bingebrowse.net/?ref=weirdlittleapps">bingebrowse.net ↗</a></p>
 <img class="beacon" src="https://<code>.goatcounter.com/count?p=visit%2Fbingebrowse&e=1" ...>
 ```
 
 `refresh` fires only after the document has completely loaded, images included, so the hit is
-recorded before navigation. Cost: one round trip (~100 ms). The `<p>` is the fallback when refresh
+recorded before navigation. The entry's `url` is tagged `?ref=weirdlittleapps` (`visits()` in `apps.ts`,
+appended to any query the url already has) so the maker's stats can see the traffic even where the
+referrer is stripped; Chromium sends `https://weirdlittleapps.com/` as the Referer on the refresh anyway.
+Store links are left untagged (the stores ignore it, and Play Store's own query would be mangled). Cost: one round trip (~100 ms). The `<p>` is the fallback when refresh
 is disabled. `public/robots.txt`: `Disallow: /go/`.
 
 Not chosen: `<a ping>` (Firefox default off, uBlock blocks it, POST recording untested) and
