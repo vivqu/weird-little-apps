@@ -362,11 +362,18 @@ footer.site .heart { color: var(--riso-pink); }
   .doodle.star { left: calc(100% + 0.1rem); top: -0.95rem; width: 1.9rem; }
   .doodle.squiggle { display: none; }
   .wordmark { font-size: 2.5rem; }
-  .ledger .feed { flex-basis: 0.9rem; background-size: 0.9rem 1.5rem; }
+  /* the strip narrows, so the holes scale with it (same hole-to-strip ratio as the desktop strip) */
+  .ledger .feed { flex-basis: 1.1rem; background: radial-gradient(circle, var(--paper) 0 0.2rem, var(--rule) 0.2rem 0.28rem, transparent 0.3rem) center top / 1.1rem 1.1rem repeat-y; }
   .ledger .sheet { padding: 1rem 0.6rem; }
-  .ledger li a { grid-template-columns: 1fr auto; gap: 0.1rem 0.6rem; }
-  .ledger .acc, .ledger .date, .ledger .form { display: none; }
-  .ledger .who { grid-column: -2; color: var(--ink-muted); }
+  /* rows stack instead of running in columns: the name, then maker and platform on one line, then the tagline */
+  .ledger li a { grid-template-columns: 1fr auto; gap: 0.1rem 0.6rem; padding: 0.55rem 0.5rem; }
+  .ledger .acc, .ledger .date { display: none; }
+  .ledger .what { display: contents; }
+  .ledger .name { grid-column: 1 / -1; grid-row: 1; }
+  .ledger .who { grid-column: 1; grid-row: 2; color: var(--ink-muted); }
+  .ledger .form { grid-column: 2; grid-row: 2; text-align: right; color: var(--ink-muted); }
+  .ledger .tagline { grid-column: 1 / -1; grid-row: 3; margin-top: 0.15rem; }
+  .ledger .head .range, .ledger .tail .thanks { display: none; } /* keeps the head and tail on one line each */
 }
 
 /* no screenshot: the note sits below the "no picture yet" card instead of on a mat corner that isn't there */

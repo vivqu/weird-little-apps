@@ -32,7 +32,7 @@ const range = items.length ? `${fmtDate(items[0].collected)} to ${fmtDate(items[
     <div class="ledger">
       <div class="feed"></div>
       <div class="sheet">
-        <p class="head"><b>register of holdings</b><span>page {page.n} of {page.pages} · {range}</span></p>
+        <p class="head"><b>register of holdings</b><span>page {page.n} of {page.pages}<span class="range"> · {range}</span></span></p>
         <ol>
           {items.map((a) => (
             <li class:list={{ hidden: a.hidden }}>
@@ -49,7 +49,7 @@ const range = items.length ? `${fmtDate(items[0].collected)} to ${fmtDate(items[
             </li>
           ))}
         </ol>
-        <p class="tail">*** {items.length} items · thank you · come again ***</p>
+        <p class="tail">*** {items.length} items · <span class="thanks">thank you · </span>come again ***</p>
       </div>
       <div class="feed"></div>
     </div>
