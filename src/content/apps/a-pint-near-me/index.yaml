@@ -1,16 +1,42 @@
-name: 'A Pint Near Me: UK Pub Finder & Pub Density Map'
-tagline: nearly 50,000 pubs, and which constituency has the most per person
+name: 'A Pint Near Me'
+tagline: UK pub finder and density map
 url: https://knowwhereconsulting.co.uk/maps/pubs/
 form_factor: web
 by:
-  - name: Know Where Consulting
-    url: https://knowwhereconsulting.co.uk
-why: a serious gis consultancy answering the only question that matters. cities of london and westminster wins, by a lot.
-collected: 2026-11-21
-hidden: true
+  - name: Steven Feldman
+    url: https://knowwhereconsulting.co.uk/about/
+why: giving people what they need... finding the nearest pub 🍻
+collected: 2026-11-15
 
+created: 2026-05
+tags: [vibe-coded, claude-code, claude]
+links:
+  - { label: writeup, url: https://knowwhereconsulting.co.uk/blog/a-pint-near-me/ }
+  - { label: the first version, url: https://knowwhereconsulting.co.uk/blog/nearest-pint-pub-density-map/ }
+  - { label: pub name facts, url: https://knowwhereconsulting.co.uk/blog/playing-with-pub-names/ }
+quotes:
+  - text: |-
+      There has been quite a bit in the news recently about 2 pubs per day closing according to the British Beer and Pub Association. That got me thinking about which areas of the country were best served and where were the dry zones?
+    url: https://knowwhereconsulting.co.uk/blog/nearest-pint-pub-density-map/
+    date: 2026-05-11
+  - text: |-
+      After I had got over my 15 seconds of relative fame, I wondered whether I could do something better mapping pubs in the UK. I asked my new friend Claude Code what we could do with the FHRS data and the pubs data on OSM, a good bit of whirring and numerous back and forths and data testing/verification and we had a data pipeline.
+    url: https://knowwhereconsulting.co.uk/blog/a-pint-near-me/
+    date: 2026-09-08
+recs:
+  - { title: "Nearest pint, pub density map", url: https://tildes.net/~food/1uxy/nearest_pint_pub_density_map, by: Tildes, date: 2026-07-02 }
+  - { title: Nearest Pint, url: https://news.ycombinator.com/item?id=49174017, by: Hacker News, date: 2026-08-04 }
+  - { title: UK pub density map, url: https://boingboing.net/2026/08/10/uk-pub-density-map.html, by: Boing Boing, date: 2026-08-10 }
 screenshots:
   - image: ./landing.jpg
-    alt: a map of the uk shaded by pubs per 10,000 people
+    alt: a map of the uk shaded by pubs per 10,000 people, beside a constituency ranking led by cities of london and westminster
     caption: pubs per 10,000 population
     taken: 2026-10-23
+  - image: ./kingscross.jpg
+    alt: "zoomed in to king's cross and somers town, with pubs as beer-glass markers, numbered clusters and a pub confidence legend"
+    caption: zoomed in around king's cross
+    taken: 2026-11-15
+  - image: ./parcelyard.jpg
+    alt: "a detail card for the parcel yard, a fuller's pub at king's cross confirmed on openstreetmap, listing its opening hours and real ales"
+    caption: the parcel yard, confirmed on openstreetmap
+    taken: 2026-11-15
