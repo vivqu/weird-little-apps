@@ -28,6 +28,11 @@ const { shots } = app;
 const many = shots.length > 1;
 const pickId = (j: number) => `pick-${j + 1}`;
 const buttons = visits(app); // `url`, plus any store listing among the links
+// The curator's note may link a phrase: `[reading habit](https://…)`. Everything else is plain text.
+const note = app.why.split(/(\[[^\]]+\]\([^)\s]+\))/).map((part) => {
+  const m = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
+  return m ? { text: m[1], url: m[2] } : part;
+});
 const also = alsoLinks(app);
 // the window frame takes the shape of the app's own browser captures (the first landscape one), so a
 // Retina capture isn't cropped to 16:10; clamped so an odd capture can't make the frame a strip or a square
@@ -108,7 +113,7 @@ const image = card && { src: card.src, width: Number(card.attributes.width), hei
           <span class="visits">{buttons.map((b) => <a class="visit" href={b.go}>{b.label}</a>)}</span>
         </div>
       )}
-      <aside class="why"><i class="tape"></i><h2>curator’s note</h2><p>{app.why}</p></aside>
+      <aside class="why"><i class="tape"></i><h2>curator’s note</h2><p>{note.map((part) => (typeof part === 'string' ? part : <a href={part.url}>{part.text}</a>))}</p></aside>
     </div>
 
     <article class="label">

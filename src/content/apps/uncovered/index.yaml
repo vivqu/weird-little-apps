@@ -1,14 +1,42 @@
 name: Uncovered
-tagline: read first pages blind. no cover, no name, no hype
+tagline: don't judge a book by it's cover
 url: https://uncovered.ink/
 form_factor: web
-by: maker unknown
-why: i fell for a book i would never have picked up. that is the entire pitch and it worked.
-collected: 2026-11-21
-hidden: true
+by:
+  - name: Nathaniel Peters
+    url: https://uncovered.ink/about
+why: I'm always on the hunt for new ways of discovering good books to fuel my [reading habit](https://vivqu.com/blog/2026/01/12/reading-habit/)
+collected: 2026-11-15
+
+created: 2026-06
+tags: [vibe-coded, claude-code, claude]
+quotes:
+  - text: |-
+      I built Uncovered because I was tired of being sold books.
+
+      So I made the simplest version of that feeling I could. One real opening at a time, with the cover, title, and author hidden.
+    url: https://uncovered.ink/about
+recs:
+  - { title: Red card, url: https://www.morningbrew.com/issues/red-card, by: Morning Brew, date: 2026-07-02 }
+  - { title: "Uncovered, a site for judging books by their first pages", url: https://kottke.org/26/07/0049336-uncovered, by: Jason Kottke, date: 2026-07-16 }
+  - { title: Judge a book by its first pages, url: https://news.ycombinator.com/item?id=48962893, by: Hacker News, date: 2026-07-18 }
+  - { title: Judge a Book by Its First Page, url: https://joshuamorris.info/notes/2026/07/20/judge-a-book-by-its-first-page/, by: Joshua Morris, date: 2026-07-20 }
+  - { title: "Uncovered.ink — Site of the Day, 8.8/10", url: https://websitedesignawards.com/site/uncovered-ink, by: Website Design Awards, date: 2026-07-23 }
+  - { title: A delightfully smart tool for discovering new books, url: https://theintelligence.com/43866/discover-books/, by: The Intelligence, date: 2026-09-02 }
+  - { title: Judge a Book by Its Words at Book Discovery Website uncovered.ink, url: https://raymundeich.com/book-discovery-website-uncovered-ink/, by: Raymund Eich, date: 2026-10-06 }
+  - { title: "The Download: reviving frozen pig kidneys and boosting nuclear power", url: https://www.technologyreview.com/2026/10/15/1146755/the-download-reviving-frozen-pig-kidneys-boosting-nuclear-power/, by: MIT Technology Review, date: 2026-10-15 }
+  - { title: "Don’t use Kindle to find your next great read—use this free app instead", url: https://www.fastcompany.com/91613574/find-kindle-ebooks-uncovered, by: Fast Company, date: 2026-10-17 }
 
 screenshots:
   - image: ./landing.jpg
-    alt: uncovered home page with an anonymous first page of a novel
-    caption: an opening, author hidden
+    alt: 'the uncovered home page: a headline reading judge a book by its writing, read and listen buttons, press logos and a blank book page'
+    caption: start your reading journey
     taken: 2026-10-23
+  - image: ./preview.jpg
+    alt: 'an opening read blind: a page of a novel narrated by a security robot that hacked its governor module, with a reveal button below'
+    caption: the first page
+    taken: 2026-11-15
+  - image: ./reveal.jpg
+    alt: 'the reveal: the cover of all systems red by martha wells, a thumbs up or down, and a view on bookshop.org button'
+    caption: revealed
+    taken: 2026-11-15

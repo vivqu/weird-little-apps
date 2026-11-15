@@ -32,6 +32,7 @@ Required:
 - `why`: the curator's note, 1–3 sentences, first person: why it was collected. Hand-written by the curator; agents don't touch it
   - shown on a sticky note on the detail page
   - voice: the curator off duty. Punchy, opinionated, a little snarky; the reaction, not the explanation. This is where the personality goes
+  - a phrase can link out, markdown-style: `my [reading habit](https://example.com/post)`. One link at most; the note is a sticky, not a bibliography
 - `collected`: the date it was added, `2026-09-20`
   - sets the index order (newest first; same-day ties by id) and the accession number
   - a timestamp (`2026-09-20T14:30:00Z`) works if the order within a day matters
