@@ -10,7 +10,7 @@ changes them.
   so mixing the two is fine.
 - Same dimensions within an app. The first landscape capture sizes the frame; others within 5% share it exactly, anything
   further off is letterboxed inside it.
-- Raw phone screens get the drawn phone automatically. `panel: true` only for store marketing images; `bezel: true` only when
+- Raw phone screens get the drawn phone automatically. `panel: true` only for store marketing images; `bare: true` only when
   the image contains a rendered device (`node scripts/bezel.mjs <images>`).
 - Index tile is 1512:860; a capture of another shape is cropped from the top left.
 

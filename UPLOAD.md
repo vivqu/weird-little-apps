@@ -31,7 +31,7 @@ opening image on the detail page. Up to 4 screenshots per app.
 - **The app's `url` is the store link**, so the visit button reads "open in App Store ↗" (or "open in Google Play ↗"). The label is derived from the url's host; a plain website gets "visit ↗". If the app also has its own website, keep it as a secondary link (`links: [{ label: website, url }]`), shown on the label as "also: website ↗". A second store listing (iOS and Android) goes in `links` too and becomes a second button beside the first.
 - **Phone-shaped is derived, not written.** An image taller than 1.6:1 is treated as a mobile screenshot at build time; nothing to set in the entry.
 - **Frame.** A phone-shaped screenshot is shown in a drawn phone in the same line style as the browser window: a thin 2px ink outline, a slim peach body, large rounded corners, a pill at the top of the screen, no side buttons. Proportions are 9:19.5.
-- **Images that already contain a phone are shown bare.** Store marketing images often include a rendered device. Framing those again puts a phone inside a phone, so flag them with `bezel: true` and the site drops its frame: the image is shown whole, its margin trimmed slightly, its white ground blended into the paper mat.
+- **Images that already contain a phone are shown bare.** Store marketing images often include a rendered device. Framing those again puts a phone inside a phone, so flag them with `bare: true` and the site drops its frame: the image is shown whole, its margin trimmed slightly, its white ground blended into the paper mat.
   - `node scripts/bezel.mjs src/content/apps/<id>/*.jpg` tells you which images to flag: it takes the corner colour as the background, then on five horizontal scan lines finds where the row leaves that background. A rendered device gives left and right edges that are inset, mirror each other, and sit at the same x on every line. Checked against the 43 seed apps: it flags Grug's three device renders and nothing else. (It's a script rather than a build step because Astro hands the build image dimensions but not pixels.)
 - **Store marketing panels get a thin border, not a phone.** A panel is a headline over a device on a full-bleed colour (Heliophilia, Lightpage, Cat Collector). Putting it in our drawn phone gives a phone inside a phone, and the bezel heuristic does not catch it, so flag it by hand with `panel: true`. It is shown as it is, phone-shaped, with a 2px ink edge and slightly rounded corners, plus the usual hard shadow on the index.
 
@@ -50,7 +50,7 @@ opening image on the detail page. Up to 4 screenshots per app.
 | `alt` | what is visible, for someone who cannot see it. Required |
 | `caption` | optional, lowercase, a few words |
 | `taken` | optional capture date |
-| `bezel` | `true` when a phone-shaped image already contains a rendered device |
+| `bare` | `true` when a phone-shaped image already contains a rendered device, so it is shown without the drawn phone |
 | `panel` | `true` for a store marketing panel |
 
 Size budget: up to 4 per app, 1600px wide at most, around 150 KB each as stored. The build converts every image to webp at the sizes the pages use (about 100 KB published per screenshot across all sizes; measured in `.claude/registry-plan.md`), so what matters is the stored original.

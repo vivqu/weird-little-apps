@@ -88,9 +88,9 @@ const apps = defineCollection({
             alt: z.string().min(1),
             caption: z.string().optional(),
             taken: z.coerce.date().optional(),
-            // phone-shaped captures only (see UPLOAD.md): the image already contains a rendered
-            // device, or is a store marketing panel. Both are shown without our drawn phone.
-            bezel: z.boolean().optional(),
+            // phone-shaped captures only (see UPLOAD.md). `bare`: the image already contains a rendered
+            // device, so it is shown bare. `panel`: a store marketing panel. Neither gets our drawn phone.
+            bare: z.boolean().optional(),
             panel: z.boolean().optional(),
           }),
         )

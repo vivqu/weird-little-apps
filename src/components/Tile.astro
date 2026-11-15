@@ -19,7 +19,7 @@ const tilt = TILTS[[...app.id].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 997
     {app.hidden && !shot?.tall && <i class="draft">hidden</i>}
     {shot?.tall ? (
       <span class="phonebox">
-        <span class:list={['phone', { bare: shot.bezel, panel: shot.panel }]} style={`--tilt: ${tilt}deg`}>
+        <span class:list={['phone', { bare: shot.bare, panel: shot.panel }]} style={`--tilt: ${tilt}deg`}>
           <Image class="cover" src={shot.image} alt={shot.alt} width={320} />
         </span>
         {app.hidden && <i class="draft">hidden</i>}

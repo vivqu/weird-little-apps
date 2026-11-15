@@ -22,7 +22,7 @@ export interface App extends Omit<Entry, 'screenshots'> {
 
 export function deriveShot(s: Entry['screenshots'][number]): Shot {
   const tall = s.image.height / s.image.width > 1.6;
-  return { ...s, tall, bezel: tall && s.bezel, panel: tall && s.panel };
+  return { ...s, tall, bare: tall && s.bare, panel: tall && s.panel };
 }
 
 // `hidden: true` entries are left out of the build. The dev server shows them (marked), as does a local build with

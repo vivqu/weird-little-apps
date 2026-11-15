@@ -76,7 +76,7 @@ Optional:
 | `links` | list of links | secondary links, shown on the label as "also: label ↗ · label ↗". A link is a URL string (labelled from its hostname at build time; `x.com` → "twitter") or `{label, url}` |
 | `quotes` | list of `{text, url, by?, date?}` | the maker's own words. `by` defaults to the first maker |
 | `recs` | list of `{title, url, by?, date?}` (or bare URLs) | where other people recommended or wrote about the app, listed under the maker's words |
-| `screenshots` | list of `{image, alt, caption?, taken?, bezel?, panel?}` | `image`: path relative to the entry, still or GIF. `alt` required. `taken`: capture date. First item is the index cover. Expected for every app; the schema allows none, and the build lists apps without one. `bezel` / `panel`: see `UPLOAD.md`; only meaningful on phone-shaped images |
+| `screenshots` | list of `{image, alt, caption?, taken?, bare?, panel?}` | `image`: path relative to the entry, still or GIF. `alt` required. `taken`: capture date. First item is the index cover. Expected for every app; the schema allows none, and the build lists apps without one. `bare` / `panel`: see `UPLOAD.md`; only meaningful on phone-shaped images |
 
 **Person:** a name string, or `{name, url?}`. Shown as the name, linked when `url` is present.
 
@@ -119,7 +119,7 @@ screenshots:
 
 - Config: `src/content.config.ts`. `defineCollection` from `astro:content`, `glob` from `astro/loaders`, `z` from `astro/zod` (zod 4: `z.url()`; `.default()` returns its value without parsing, so defaults are given in output shape).
 - YAML is parsed by js-yaml: `2026-08-04` → Date, `2024` → number, `2024-06` → string. `collected`, `taken` and quote dates use `z.coerce.date()`; `created` is a union formatted by `fmtCreated`.
-- `image()` works from YAML entries exactly as from Markdown frontmatter. At query time an image is `ImageMetadata` (`src`, `width`, `height`, `format`) with no filesystem path, which is why `bezel` is a hand flag rather than detected at build time (`scripts/bezel.mjs` runs the heuristic when adding an entry).
+- `image()` works from YAML entries exactly as from Markdown frontmatter. At query time an image is `ImageMetadata` (`src`, `width`, `height`, `format`) with no filesystem path, which is why `bare` is a hand flag rather than detected at build time (`scripts/bezel.mjs` runs the heuristic when adding an entry).
 - Pagination is hand-rolled (`paginate()` in `src/lib/apps.ts`) because Astro's `paginate()` can't put page 1 at `/` and the rest at `/page/N`. The routes are rest params: `[...page].astro` with `page` undefined or `page/N`.
 - Fixtures: `WLA_FIXTURES=2000 npm run build` pads the collection at query time (`import.meta.env.WLA_FIXTURES`); nothing is written to disk. Fixture covers borrow real screenshots; a fifth have none. Measured 2026-09-24: 2,169 pages in 1.5 s (images cached), index page 14 KB of HTML, first / last / newer / older correct at both ends.
 - Schema errors fail `astro build` with exit 1, naming the file and each bad field. No other validation tooling.

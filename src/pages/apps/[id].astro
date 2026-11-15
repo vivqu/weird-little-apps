@@ -65,7 +65,7 @@ const image = card && { src: card.src, width: Number(card.attributes.width), hei
           {app.hidden && <i class="draft">hidden</i>}
           {shots.map((s, j) => (
             <input
-              class:list={['pick', { tall: s.tall, bare: s.bezel, panel: s.panel }]}
+              class:list={['pick', { tall: s.tall, bare: s.bare, panel: s.panel }]}
               type="radio"
               name="shot"
               id={pickId(j)}
@@ -90,7 +90,7 @@ const image = card && { src: card.src, width: Number(card.attributes.width), hei
             {many && (
               <div class="thumbs">
                 {shots.map((s, j) => (
-                  <label for={pickId(j)} class:list={{ tall: s.tall, bare: s.bezel }} style={!s.tall && `--r: ${frameRatio(s).toFixed(4)}`}>
+                  <label for={pickId(j)} class:list={{ tall: s.tall, bare: s.bare }} style={!s.tall && `--r: ${frameRatio(s).toFixed(4)}`}>
                     <Image class="cover" src={s.image} alt="" width={200} />
                   </label>
                 ))}

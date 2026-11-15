@@ -1,37 +1,57 @@
 name: grug
-tagline: every sunrise, one small wisdom. maybe draw feeling. that all
+tagline: daily wisdom by grug
 url: https://apps.apple.com/app/grug/id6751649802
 form_factor: ios
 by:
   - name: Jip van der Velde
     url: https://x.com/jipvandervelde
   - name: Ocho
-    url: https://www.grug.so/
-why: no login. no cloud. no tracking. it won an apple design award by refusing to be more than it is.
-collected: 2026-11-21
-hidden: true
+    url: https://ocho.so/
+why: so much to love about this app, but my favorite tiny detail is the hand-drawn clock time and battery level in the top bar
+collected: 2026-11-15
 
-created: 2025
+created: 2025-09-04
+links:
+  - { label: website, url: https://grug.so/ }
+  - { label: writeup, url: https://x.com/jipvandervelde/status/2062258773264408583 }
 quotes:
-  - text: make unreasonable little things and see if the world cares
+  - text: Now designers like us can build the fun little things. Designers like us can ship the crazy ideas. Designers like us can make unreasonable little things and see if the world cares.
     url: https://x.com/jipvandervelde/status/2062258773264408583
+    date: 2026-06-03
+  - text: grug is probably the first Apple Design Award winner built by two designers using Codex to write the code.
+    url: https://x.com/jipvandervelde/status/2062258773264408583
+    date: 2026-06-03
+    embed: true
+  - text: |-
+      The first versions used existing handwritten fonts, but they looked too clean and polished. Almost as a joke, we asked: What if we draw the whole thing ourselves?
+
+      In this case, the joke became the technical foundation. We built a font-drawing canvas directly inside grug, then built a rendering engine that could use those drawings as a custom type system.
+    url: https://developer.apple.com/news/?id=ux44ymcr
+    date: 2026-05-16
+  - text: If we had compromised on the handwritten engine early, grug would probably feel like a quote app with a cute font. Instead, it feels like its own little world.
+    url: https://developer.apple.com/news/?id=ux44ymcr
+    by: Michel Elings
+    date: 2026-05-16
+recs:
+  - { title: "ADA Q&A: grug team make app good", url: https://developer.apple.com/news/?id=ux44ymcr, by: Apple Developer, date: 2026-05-16 }
+  - { title: Meet the 2026 Apple Design Award Finalists, url: https://apps.apple.com/us/story/id1896693038, by: App Store, date: 2026-05-22 }
+  - { title: Apple reveals winners of the 2026 Apple Design Awards, url: https://www.apple.com/newsroom/2026/06/apple-reveals-winners-of-the-2026-apple-design-awards/, by: Apple Newsroom, date: 2026-06-02 }
+  - { title: Making space for weirdness and fun, url: https://vivqu.substack.com/p/making-space-for-weirdness-and-fun, by: Simulated Annealing, date: 2026-08-03 }
+tags: [vibe-coded, codex]
 screenshots:
-  - image: ./screenshot-1.jpg
+  - image: ./sunrise.jpg
     alt: a hand-drawn sunrise above four lines of grug wisdom
     caption: sun rise every day
     taken: 2026-09-20
-  - image: ./screenshot-2.jpg
-    alt: app store screenshot two
+  - image: ./wisdom.jpg
+    alt: today's wisdom on cream paper, a hand-drawn vase bound with rope above the line build trust first, then make rule, with question marks for the two missed days below
     caption: today wisdom
-    taken: 2026-09-20
-    bezel: true
-  - image: ./screenshot-3.jpg
-    alt: app store screenshot three
-    caption: draw grug dream on wisdom
-    taken: 2026-09-20
-    bezel: true
-  - image: ./screenshot-4.jpg
-    alt: app store screenshot four
-    caption: widget show wisdom on cave
-    taken: 2026-09-20
-    bezel: true
+    taken: 2026-11-15
+  - image: ./story.jpg
+    alt: grug's story for wisdom eleven on a purple screen, three paragraphs about sharing fire with other grug before making rules
+    caption: grug tell story
+    taken: 2026-11-15
+  - image: ./settings.jpg
+    alt: the settings screen on blue, a column of doodled theme icons, a box offering grug make game with a number grid, then give grug stars, feedback and app by ocho
+    caption: change setting for grug
+    taken: 2026-11-15

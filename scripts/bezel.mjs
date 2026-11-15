@@ -1,5 +1,5 @@
 // Does a phone-shaped capture already contain a rendered device (App Store marketing images often do)?
-// Run it when adding an entry; a hit means `bezel: true` on that screenshot in index.yaml (see UPLOAD.md).
+// Run it when adding an entry; a hit means `bare: true` on that screenshot in index.yaml (see UPLOAD.md).
 // Usage: node scripts/bezel.mjs src/content/apps/<id>/*.jpg
 // Heuristic: take the corner colour as the background. On several horizontal scan lines, find where
 // the row first and last leaves that background for a sustained stretch. A rendered device gives
@@ -34,5 +34,5 @@ export async function hasBezel(path) {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  for (const f of process.argv.slice(2)) console.log((await hasBezel(f)) ? 'bezel   ' : 'no bezel', f);
+  for (const f of process.argv.slice(2)) console.log((await hasBezel(f)) ? 'bare: true  (has a device)' : 'no device  ', f);
 }

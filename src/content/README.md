@@ -67,11 +67,11 @@ Optional:
   - `alt`: what is visible, for someone who can't see it (required)
   - `caption`: a few lowercase words, shown under the frame
   - `taken`: when it was captured
-  - `bezel: true`: the image already contains a rendered phone, so it's shown bare rather than inside a drawn one
+  - `bare: true`: the image already contains a rendered phone, so it's shown bare rather than inside a drawn one
     - store marketing images often do; `node scripts/bezel.mjs <images>` tells you
   - `panel: true`: a store marketing panel (headline over a device on a full-bleed colour); shown with a thin border, no drawn phone
   - the first screenshot is the cover on the index; an app without any gets a "no picture yet" card
-  - phone-shaped (taller than 1.6:1) is detected from the image; `bezel` and `panel` only matter on those
+  - phone-shaped (taller than 1.6:1) is detected from the image; `bare` and `panel` only matter on those
   - capture rules and sizes: `UPLOAD.md` at the repo root
 
 Derived, never written: index position, accession number (`2026.0012`: year collected, then order
