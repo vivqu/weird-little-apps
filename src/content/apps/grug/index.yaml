@@ -3,10 +3,8 @@ tagline: daily wisdom by grug
 url: https://apps.apple.com/app/grug/id6751649802
 form_factor: ios
 by:
-  - name: Jip van der Velde
-    url: https://x.com/jipvandervelde
-  - name: Ocho
-    url: https://ocho.so/
+  name: Ocho
+  url: https://ocho.so/
 why: so much to love about this app, but my favorite tiny detail is the hand-drawn clock time and battery level in the top bar
 collected: 2026-11-15
 
@@ -17,9 +15,11 @@ links:
 quotes:
   - text: Now designers like us can build the fun little things. Designers like us can ship the crazy ideas. Designers like us can make unreasonable little things and see if the world cares.
     url: https://x.com/jipvandervelde/status/2062258773264408583
+    by: Jip van der Velde
     date: 2026-06-03
   - text: grug is probably the first Apple Design Award winner built by two designers using Codex to write the code.
     url: https://x.com/jipvandervelde/status/2062258773264408583
+    by: Jip van der Velde
     date: 2026-06-03
     embed: true
   - text: |-
@@ -27,6 +27,7 @@ quotes:
 
       In this case, the joke became the technical foundation. We built a font-drawing canvas directly inside grug, then built a rendering engine that could use those drawings as a custom type system.
     url: https://developer.apple.com/news/?id=ux44ymcr
+    by: Jip van der Velde
     date: 2026-05-16
   - text: If we had compromised on the handwritten engine early, grug would probably feel like a quote app with a cute font. Instead, it feels like its own little world.
     url: https://developer.apple.com/news/?id=ux44ymcr
