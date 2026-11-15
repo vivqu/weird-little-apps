@@ -1,14 +1,39 @@
 name: Reading Maps
-tagline: journeys from fiction, drawn on the real world
+tagline: mapping journeys from books
 url: https://readingmaps.com/maps
 form_factor: web
-by: maker unknown
-why: moby-dick as a route you could actually sail. a watercolour atlas for people who read with a finger on the map.
-collected: 2026-11-21
-hidden: true
+by:
+  - name: Aires Loutsaris
+    url: https://readingmaps.com/about
+  - Fabio Moreira
+why: i'm a visual thinker so mapping the journeys of fictional characters is such a brilliant idea!
+collected: 2026-11-15
+
+created: 2026-06
+quotes:
+  - text: Reading Maps came out of a nagging thought that every story has happened somewhere. Odysseus crossed a real sea. The Pequod sailed real water.
+    url: https://readingmaps.com/about
+  - text: Anyone can draw a line between two dots. The hard part is making sure the line doesn't sail through Florida.
+    url: https://readingmaps.com/about
+recs:
+  - { title: Plot Lines, url: https://www.futilitycloset.com/2026/08/03/plot-lines/, by: Futility Closet, date: 2026-08-03 }
+  - { title: "Reading Maps: Journeys from books & films", url: https://kottke.org/26/08/0049436-reading-maps, by: Jason Kottke, date: 2026-08-04 }
+  - { title: Reading Maps, url: https://www.maproomblog.com/2026/08/reading-maps/, by: The Map Room, date: 2026-08-07 }
+  - { title: This interactive atlas captures more than a thousand literary journeys., url: https://lithub.com/this-interactive-atlas-captures-more-than-a-thousand-literary-journeys/, by: Literary Hub, date: 2026-08-11 }
+  - { title: "351. Aires Loutsaris & Tom Armitage: Reading Maps", url: https://thegeomob.com/podcast/episode-351, by: Geomob Podcast, date: 2026-08-16 }
+  - { title: Reading Maps – Journeys from fiction drawn on the real world, url: https://news.ycombinator.com/item?id=49402107, by: Hacker News, date: 2026-08-22 }
+  - { title: Chart the journeys of classic novels, url: https://archive.recomendo.com/posts/chart-the-journeys-of-classic-novels, by: Recomendo, date: 2026-08-25 }
 
 screenshots:
   - image: ./landing.jpg
-    alt: a watercolour world map beside a list of novels and their routes
+    alt: 'the reading maps home: a watercolour world map beside a list of novels, moby-dick to the alchemist, each tagged book and sea or overland'
     caption: all routes
     taken: 2026-10-23
+  - image: ./moby-dick.jpg
+    alt: 'the pequod''s route from nantucket round the cape of good hope to the pacific, twelve numbered stops on a watercolour world map'
+    caption: hunting moby dick
+    taken: 2026-11-15
+  - image: ./odyssey.jpg
+    alt: 'odysseus''s thirteen stops from troy around the mediterranean, dashed lines looping past sicily to ithaca, with a little boat marker'
+    caption: odysseus's homecoming
+    taken: 2026-11-15

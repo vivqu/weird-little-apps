@@ -25,6 +25,8 @@ Read every image first.
   the image changes.
 - `caption`: a few lowercase words. Must match the image (retake centred on New York ≠ "from london").
 - `taken`: capture date. Files added today are dated today.
+- `collected`: today, the day the entry is worked on. Unreviewed imports carry a placeholder date; replace it. A
+  published entry keeps its date.
 - Drop flags that no longer apply.
 
 ## 3. Research the museum card (agent)
