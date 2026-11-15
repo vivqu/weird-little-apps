@@ -1,21 +1,27 @@
 name: Lost and Found
-tagline: thousands of accidental portraits of things people left behind at stadiums and airports
+tagline: archive of lost and found items from around the country
 url: https://walzr.com/lost-and-found
 form_factor: web
 by:
   - name: Riley Walz
     url: https://walzr.com
-why: a single glove, a retainer, a birthday card. nobody composed these photos and they are better for it.
-collected: 2026-11-21
-hidden: true
+why: an unexpected art piece on what people leave behind
+collected: 2026-11-15
 
+created: 2026-07
 quotes:
-  - text: 'Hundreds of places use one software tool for managing lost items, and I scraped their archives: thousands of accidental portraits of lost stuff.'
+  - text: |-
+      When something turns up at a stadium or an airport, staff photograph it, log it, and wait. Hundreds of places use one software tool for managing lost items, and I scraped their archives: thousands of accidental portraits of lost stuff.
     url: https://walzr.com/lost-and-found
+recs:
+  - { title: Lost and Found, url: https://news.ycombinator.com/item?id=48799624, by: Hacker News, date: 2026-07-05 }
+  - { title: "10 Steps, Button Stealer, Nobel Disease & Wind Knitter", url: https://newsletter.rishikeshs.com/p/10-steps-button-stealer-nobel-disease, by: 10+1 Things, date: 2026-08-05 }
+  - { title: "things, week 33, 2026", url: https://buttondown.com/things/archive/things-week-33-2026/, by: Things to Click, date: 2026-08-14 }
+  - { title: Webcurios 14/08/26, url: https://webcurios.co.uk/webcurios-14-08-26/, by: Web Curios, date: 2026-08-14 }
 screenshots:
   - image: ./landing.jpg
     alt: a grid of staff photos of lost items, each labelled with a venue
-    caption: the wall, september 2026
+    caption: the wall
     taken: 2026-10-23
   - image: ./screenshot-2.jpg
     alt: 'further down the wall: more lost phones, keys and books'
