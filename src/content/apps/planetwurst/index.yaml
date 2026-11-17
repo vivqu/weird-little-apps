@@ -1,14 +1,39 @@
 name: Planetwurst
-tagline: the world atlas of sausages
+tagline: world atlas of sausages
 url: https://planetwurst.com/
 form_factor: web
-by: maker unknown
-why: 111 sausages from 51 countries, written up with total sincerity. bierwurst contains no beer. now you know.
-collected: 2026-11-21
-hidden: true
+by: { name: Rade Kolbas, url: https://github.com/radekolbas }
+why: collecting things (sausages) is an innate human trait.
+created: 2026-03
+collected: 2026-11-17
+
+tags: [astro]
+
+links:
+  - { label: about, url: https://planetwurst.com/about/ }
+  - { label: launch post, url: https://www.reddit.com/r/InternetIsBeautiful/comments/1s905rx/planetwurst_the_world_atlas_of_sausages/ }
+
+quotes:
+  - text: |-
+      Planetwurst is a personal project — an atlas of sausages from around the world. The goal is simple: document what exists, where it comes from, how it is made, and where to find it.
+
+      The catalog started with AI-generated research and grows through community contributions.
+    url: https://planetwurst.com/about/
 
 screenshots:
   - image: ./landing.jpg
-    alt: planetwurst home page listing recently added sausages
-    caption: recently added
-    taken: 2026-10-23
+    alt: planetwurst home page with the headline the world atlas of sausages over a photo of a cured sausage and bread, with counts of 123 sausages, 78 producers and 192 restaurants
+    caption: search sausages
+    taken: 2026-11-17
+  - image: ./sausage.jpg
+    alt: the salchichón de vic entry, a sliced cured sausage on a board above a description of the catalan recipe, marked ai draft and ai-generated
+    caption: about sausage
+    taken: 2026-11-17
+  - image: ./map.jpg
+    alt: the explore the map page, a world map crowded with sausage pins over europe and scattered across the americas and asia
+    caption: global sausages
+    taken: 2026-11-17
+  - image: ./producers.jpg
+    alt: the producers page listing 78 producers as cards with miniature model storefronts, including goikoa, mesnica bebrinka and casa riera ordeix
+    caption: who makes sausages
+    taken: 2026-11-17
