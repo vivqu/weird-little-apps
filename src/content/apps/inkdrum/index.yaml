@@ -1,14 +1,32 @@
 name: INKDRUM
-tagline: a risograph print shop in your browser, misregistration included
+tagline: turn any image into a riso print
 url: https://www.inkdrum.app/
 form_factor: web
 by: Jackson Greathouse Fall
-why: real riso inks, paper stocks and wobble. misprints are part of the fun, which is also this site’s whole look.
+why: I have done a few riso printings and this tool really simulates the tactile process (including the shaking!) 🫨
 collected: 2026-11-21
-hidden: true
 
+created: 2026-07-29
+tags: [cursor, claude, claude-opus-4-8]
+links:
+  - { label: source code, url: https://github.com/jgfall/inkdrum }
+quotes:
+  - text: |-
+      A browser-based risograph studio. Upload a photo, load up to six ink drums with real Riso ink colors, and fine-tune separations, screens, registration, paper stock, and press condition in real time.
+
+      Registration — per-drum offset and skew, plus a SHAKE button, because riso never lines up twice.
+    url: https://github.com/jgfall/inkdrum
+  - text: 100% ORGANIC SOY INK · SHAKE WELL. MISPRINTS ARE PART OF THE FUN!
+    url: https://www.inkdrum.app/
+recs:
+  - { title: "WIP 004: Digital Risograph", url: https://wordsworld.substack.com/p/wip-004-digital-risograph, by: PRXMTY, date: 2026-07-30 }
+  - { title: INKDRUM Browser Risograph Print Simulator by Greathouse Fall, url: https://abduzeedo.com/inkdrum-browser-risograph-print-simulator-inkdrum-team, by: Abduzeedo, date: 2026-08-04 }
 screenshots:
   - image: ./landing.jpg
-    alt: a sunset poster being separated into yellow, pink, blue and black ink drums
-    caption: four drums loaded
+    alt: the sample sunset poster on the press, grainy orange sun over purple hills, with yellow, fluo pink, blue and black drums loaded and the yellow drum's density and halftone screen settings open
+    caption: riso sunset
     taken: 2026-10-23
+  - image: ./puppy.jpg
+    alt: a photo of a dog lying in tall grass printed as a four-drum halftone, with the zine classic and neon dusk house recipes listed on the left
+    caption: puppy photo
+    taken: 2026-11-21

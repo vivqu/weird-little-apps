@@ -4,6 +4,11 @@ One entry in `src/content/apps/<id>/`. Step 1 is the human's; 2-7 are the agent'
 Screenshot rules: `UPLOAD.md`. The user commits. **Never edit `tagline` or `why`**: they are hand-curated. Only the human
 changes them.
 
+**Never rewrite `index.yaml` from memory.** The human edits `tagline` and `why` while the agent is researching, so a copy
+read at the start of the session is stale by the time the research is done. Re-read the file immediately before every
+write, and make targeted edits (Edit tool, one field at a time) rather than writing the whole file back from a heredoc
+or a Write call. Every line the task doesn't add stays byte-for-byte as it is in the working tree.
+
 ## 1. Screenshots (human, or `node scripts/capture.mjs <id>` for the landing shot)
 
 - Hand captures: Retina MacBook browser content area (3024x~1720). `capture.mjs` produces the same shape (1512x860 at 2x),
