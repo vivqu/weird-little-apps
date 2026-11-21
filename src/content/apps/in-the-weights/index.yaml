@@ -1,16 +1,47 @@
 name: In the Weights
-tagline: type a name and see how strongly the ai models remember it
+tagline: how well-known are you to LLMs?
 url: https://intheweights.com/
 form_factor: web
 by:
-  - Thomas Dimson
-  - Joey Flynn
-why: vanity search for a new era. i am barely in there, which is a relief.
+  - { name: Thomas Dimson, url: https://x.com/turtlesoupy }
+  - { name: Joey Flynn, url: https://x.com/wjosephflynn }
+why: There is a famous "Vivian Qu" in the weights and she's not me. Should I be insulted or relieved?
 collected: 2026-11-21
-hidden: true
+
+created: 2026-06
+links:
+  - { label: how it works, url: https://intheweights.com/about }
+  - { label: discord, url: https://discord.gg/qYBbGmwBhr }
+quotes:
+  - text: did you make it into the superintelligences? are you in the weights?
+    url: https://x.com/turtlesoupy/status/2067660484963410361
+    by: Thomas Dimson
+    date: 2026-06-18
+    embed: true
+  - text: |-
+      With more traffic moving off-web and into LLMs, I got curious about what traces we leave "in the weights". My design partner and I built a site in the past few weeks that checks recognition across frontier and small models. It queries many of them in parallel, clusters the responses, and tells you how strongly they recognize you.
+    url: https://news.ycombinator.com/item?id=48591348
+    by: Thomas Dimson
+    date: 2026-06-18
+  - text: Not cheap for sure but it's all for fun! I have done some optimizations to try to get cost as low as possible; the final clustering actually uses Kimi K2 for this reason.
+    url: https://news.ycombinator.com/item?id=48592220
+    by: Thomas Dimson
+    date: 2026-06-18
+recs:
+  - { title: "Show HN: Are You in the Weights?", url: https://news.ycombinator.com/item?id=48591348, by: Hacker News, date: 2026-06-18 }
+  - { title: Website "In the Weights" shows whether AI models know who you are, url: https://the-decoder.com/website-in-the-weights-shows-whether-ai-models-know-who-you-are/, by: The Decoder, date: 2026-06-19 }
+  - { title: In the Weights is your new AI-centric vanity search, url: https://techcrunch.com/2026/06/20/in-the-weights-is-your-new-ai-centric-vanity-search/, by: TechCrunch, date: 2026-06-20 }
 
 screenshots:
   - image: ./landing.jpg
-    alt: a name field above a leaderboard of today’s heavyweights
-    caption: today’s heavyweights
+    alt: the headline are you in the weights over a name box, the list of eighteen models queried, and the first five of today's heavyweights as pixel-art portraits
+    caption: today's heavyweights
     taken: 2026-10-23
+  - image: ./search.jpg
+    alt: the name vivian qu typed in, with eighteen models listed as cached or sampled while clustering runs below
+    caption: is my name in there?
+    taken: 2026-11-21
+  - image: ./director.jpg
+    alt: a result card for vivian qu, chinese film director and producer, strength 227 and top 25 percent, with a recognition bar per model and a show 5 possible hallucinations link
+    caption: alas someone more famous than me
+    taken: 2026-11-21
