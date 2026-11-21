@@ -1,14 +1,42 @@
 name: clipart.studio
-tagline: cut up old magazines from the internet archive and collage them
+tagline: cut up old magazines and collage them
 url: https://clipart.studio/
 form_factor: web
-by: Sami Smith
-why: scissors, a cutting mat, and a 2012 issue of nintendo power. the scraps stay off the print.
+by: { name: Sami Smith, url: https://samismith.com/ }
+why: As a former teen girl, I love me some collage-making.
 collected: 2026-11-21
-hidden: true
+
+created: 2026-07
+links:
+  - { label: the gallery, url: https://clipart.studio/gallery }
+quotes:
+  - text: |-
+      I made a website that lets you cut out old magazines from the internet archive (or any PDFs you own) and make collage art out of them:
+
+      ✂️ clipart.studio
+    url: https://bsky.app/profile/hellosami.bsky.social/post/3mqalgodfbc2u
+    date: 2026-07-09
+recs:
+  - { title: clipart.studio, url: https://ethanmarcotte.com/stream/clipartstudio/, by: Ethan Marcotte, date: 2026-07-10 }
+  - { title: Clipart Studio lets you cut up magazines sourced from the Internet Archive, url: https://kottke.org/26/07/0049327-clipart-studio, by: kottke.org, date: 2026-07-14 }
+  - { title: Webcurios 17/07/26, url: https://webcurios.co.uk/webcurios-17-07-26/, by: Web Curios, date: 2026-07-17 }
+  - { title: This digital collage maker is pure nostalgic perfection, url: https://theintelligence.com/43982/digital-collage-maker/, by: The Intelligence, date: 2026-09-23 }
+  - { title: This free creative app is like Internet Archive meets Pinterest, url: https://www.fastcompany.com/91625523/clipart-studio, by: Fast Company }
 
 screenshots:
-  - image: ./landing.jpg
-    alt: a green cutting mat with a blank page and a rack of magazine covers
-    caption: the cutting mat
-    taken: 2026-10-23
+  - image: ./magazine.jpg
+    alt: a popstar magazine cover from april 2015 opened on the mat with a craft knife hovering over it, the rack filtered to music magazines
+    caption: pick a magazine
+    taken: 2026-11-21
+  - image: ./cutting.jpg
+    alt: a nintendo power cover zoomed in, one animal crossing villager already cut out leaving a white hole and a second being traced with the knife
+    caption: cut out what you want
+    taken: 2026-11-21
+  - image: ./collage.jpg
+    alt: a finished collage on the page, a pop star, a dancer in black and white, an ear of corn and two animal crossing villagers pasted together
+    caption: collage it together
+    taken: 2026-11-21
+  - image: ./gallery.jpg
+    alt: the public gallery wall, a scattered grid of other people's collages around an add yours card, with a shuffle button top right
+    caption: share your masterpiece
+    taken: 2026-11-21
