@@ -41,7 +41,8 @@ Fill `links`, `quotes`, `recs`:
 - Maker's writeup → `links: writeup` + 1-3 verbatim sentences as a `quote` (keep curly quotes; use `text: |-` when the text
   has a colon; blank line = paragraph break).
 - Source → `links: source code`. Successor / fork → `a similar project` / `a fork`. Blog label page → `all the blog posts`.
-- Launch post on X / Threads, or the maker's YouTube video → `quote` with `embed: true` (text / video title as fallback).
+- Launch post on X / Threads / Bluesky, or the maker's YouTube video → `quote` with `embed: true` (text / video title as
+  fallback). A Bluesky url must be the DID form (`/profile/did:plc:…/post/…`), which its oEmbed html contains.
   Embeds render blank headless; check in a real browser.
 - Coverage → `recs: { title, url, by, date }`, `by` = the outlet only ("The Verge", never "Author for The Verge"). Oldest first; undated ones last. HN threads, press, personal blogs. Skip link-only
   posts. English only: a rec, quote or link in another language is left out, however good the outlet.
@@ -50,7 +51,9 @@ Fill `links`, `quotes`, `recs`:
 Fetching (WebFetch is blocked for most of these):
 
 - HN: `hacker-news.firebaseio.com/v0/item/<id>.json`; maker comments under `kids`.
-- X / YouTube: oEmbed (`publish.twitter.com/oembed?url=`, `youtube.com/oembed?url=&format=json`).
+- X / YouTube / Bluesky: oEmbed (`publish.twitter.com/oembed?url=`, `youtube.com/oembed?url=&format=json`,
+  `embed.bsky.app/oembed?url=`). A maker's Bluesky posts: `public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=<handle>&limit=100`
+  (the search endpoint refuses).
 - Else `curl -sL -A "Mozilla/5.0 …"` → `og:title`, `article:published_time` / `datePublished`, `name="author"`. READMEs via
   `raw.githubusercontent.com`.
 - Reddit, Forbes, Boing Boing, Vercel/Cloudflare-fronted sites refuse: title and date from the URL, flag it in the report.

@@ -1,0 +1,34 @@
+name: International Pancakes
+tagline: secret pancakes everywhere in the world
+url: https://internationalpancakes.com/
+form_factor: web
+by: { name: Matt Kirkland, url: https://mattkirkland.com/ }
+why: is this just a recommendation platform for niche food websites (see [sausages](/apps/planetwurst/))? i think i'm ok with that 🥞
+collected: 2026-11-22
+
+created: 2024-07
+links:
+  - { label: writeup, url: https://attainablefelicity.mattkirkland.com/20240903/pancakes.html }
+  - { label: project page, url: https://www.studiokirkland.com/projects/international-pancakes/ }
+quotes:
+  - text: My favorite part is the entirely arbitrary categorization. Is Pannenkoek savory or sweet? Where does a ‘flat’ pancake end and a crepe begin? If you shape a pancake in a shaped round pan (like the aforesaid hoppers) does that make them… a waffle?
+    url: https://attainablefelicity.mattkirkland.com/20240903/pancakes.html
+    date: 2024-09-03
+  - text: In my ongoing war against BIG PANCAKE and their attempts to conceal delicious treats from us Americans, I've now added recipes to every secret pancake on internationalpancakes.com
+    url: https://bsky.app/profile/did:plc:62qskvryd6bjp2j43jqzhfyz/post/3lfid3hljss2z
+    embed: true
+    date: 2025-01-11
+
+screenshots:
+  - image: ./landing.jpg
+    alt: the international pancakes home page, a grid of pancake photos from appam to blueberry pancake under filters for flavor and morphology, each tile tagged with a flag
+    caption: pancakes galore
+    taken: 2026-11-22
+  - image: ./list.jpg
+    alt: the list view filtered to sweet and flat, a sortable table of baghrir, blueberry pancake, dorayaki, hotteok and kaiserschmarrn with their fillings and countries of origin
+    caption: filter 'em
+    taken: 2026-11-22
+  - image: ./detail.jpg
+    alt: the jianbing page, a fact table listing china, crepe, savory and a recipe link beside a large photo of a steaming pancake on a griddle
+    caption: read more about the pancake
+    taken: 2026-11-22

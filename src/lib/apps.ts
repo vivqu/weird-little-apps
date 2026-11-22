@@ -141,22 +141,31 @@ export const visits = (a: App) => {
 };
 export const alsoLinks = (a: App) => (a.links ?? []).filter((l) => l.url === a.url || !isStoreLink(l.url));
 
-// a quote with `embed: true` is shown as the post itself. For Threads and X the provider's script
+// a quote with `embed: true` is shown as the post itself. For Threads, X and Bluesky the provider's script
 // swaps our blockquote for its iframe; without it the quote stays as written. A YouTube url is an
-// iframe straight away (no script; the quote's text is the player's title). Only these three are known.
+// iframe straight away (no script; the quote's text is the player's title). Only these four are known.
 export type Embed = { cls: string; attrs: Record<string, string>; script: string } | { iframe: string };
 const videoId = (url: URL) => url.searchParams.get('v') ?? url.pathname.split('/').filter(Boolean).at(-1);
-const EMBEDS: [RegExp, (url: URL) => Embed][] = [
+// Bluesky's embed only takes the author's DID, not a handle, and resolving one would mean a network call at
+// build time; so the quote's url must be the DID form, https://bsky.app/profile/did:plc:…/post/<rkey>, which
+// embed.bsky.app/oembed?url=<the post> hands back in its html (bsky.app serves it like any other post url)
+const bskyUri = (a: App, url: URL) => {
+  const m = url.pathname.match(/^\/profile\/(did:[^/]+)\/post\/([^/]+)\/?$/);
+  if (!m) throw new Error(`${a.id}: a Bluesky embed needs the DID form of the post url (https://bsky.app/profile/did:plc:…/post/…), got ${url.href}`);
+  return `at://${m[1]}/app.bsky.feed.post/${m[2]}`;
+};
+const EMBEDS: [RegExp, (url: URL, a: App) => Embed][] = [
   [/(^|\.)threads\.(com|net)$/, (url) => ({ cls: 'text-post-media', attrs: { 'data-text-post-permalink': url.href, 'data-text-post-version': '0' }, script: 'https://www.threads.com/embed.js' })],
   [/(^|\.)(x|twitter)\.com$/, () => ({ cls: 'twitter-tweet', attrs: {}, script: 'https://platform.twitter.com/widgets.js' })],
+  [/(^|\.)bsky\.app$/, (url, a) => ({ cls: 'bluesky-embed', attrs: { 'data-bluesky-uri': bskyUri(a, url) }, script: 'https://embed.bsky.app/static/embed.js' })],
   [/(^|\.)(youtube\.com|youtu\.be)$/, (url) => ({ iframe: `https://www.youtube-nocookie.com/embed/${videoId(url)}` })],
 ];
 export const embedFor = (a: App, q: { url: string; embed?: boolean }): Embed | undefined => {
   if (!q.embed) return;
   const url = new URL(q.url);
   const hit = EMBEDS.find(([re]) => re.test(url.hostname));
-  if (!hit) throw new Error(`${a.id}: embed: true needs a Threads or X post url or a YouTube video url, got ${q.url}`);
-  return hit[1](url);
+  if (!hit) throw new Error(`${a.id}: embed: true needs a Threads, X or Bluesky post url or a YouTube video url, got ${q.url}`);
+  return hit[1](url, a);
 };
 
 /** snake_case names get a break opportunity after each underscore */

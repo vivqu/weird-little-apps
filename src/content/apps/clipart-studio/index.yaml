@@ -14,7 +14,8 @@ quotes:
       I made a website that lets you cut out old magazines from the internet archive (or any PDFs you own) and make collage art out of them:
 
       ✂️ clipart.studio
-    url: https://bsky.app/profile/hellosami.bsky.social/post/3mqalgodfbc2u
+    url: https://bsky.app/profile/did:plc:rhiwxop3l462yimhrlak7qit/post/3mqalgodfbc2u
+    embed: true
     date: 2026-07-09
 recs:
   - { title: clipart.studio, url: https://ethanmarcotte.com/stream/clipartstudio/, by: Ethan Marcotte, date: 2026-07-10 }
