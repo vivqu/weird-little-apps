@@ -1,0 +1,42 @@
+name: "Scratchbook: National Parks"
+tagline: collect national parks
+url: https://apps.apple.com/us/app/scratchbook-national-parks/id6790084669
+form_factor: ios
+by: { name: Small Trail Studio, url: https://smalltrailstudio.com/ }
+why: the perfect app for an outdoorsy family like mine
+collected: 2026-11-22
+
+created: 2026-09-08
+links:
+  - { label: website, url: https://scratchbookapp.com/ }
+
+quotes:
+  - text: |-
+      I’m excited to release the Sratchbook: National Parks app to help people build their US national parks and wildlife collection. Enjoy!
+    url: https://www.threads.com/@larry.chen/post/DdCR4f3mO_h
+    by: Larry Chen
+    embed: true
+    date: 2026-09-08
+  - text: "Great honor to have Scratchbook: National Parks featured on App Store trend of the year. Thank you!"
+    url: https://www.threads.com/@larry.chen/post/Df6Rb7-lJrI
+    by: Larry Chen
+    embed: true
+    date: 2026-11-19
+
+screenshots:
+  - image: ./detail.jpg
+    alt: the grand canyon national park page, a round illustrated badge of the canyon over a photo of it, a collected november 16, 2022 line, five stars and a strip of trip photos including a small dog in a red jacket
+    caption: log your parks
+    taken: 2026-11-22
+  - image: ./parks.jpg
+    alt: the parks tab, a carousel of poster styles with a 2 of 64 collection board in front, and a grid of badges below with acadia revealed and american samoa, arches, badlands and big bend still grey
+    caption: track how many
+    taken: 2026-11-22
+  - image: ./map.jpg
+    alt: the map tab, park badges scattered over a map of north america with the collected ones in colour, and a grand canyon national park card below reading az, a mile deep, november 16, 2022
+    caption: plan a trip
+    taken: 2026-11-22
+  - image: ./scratchbook.jpg
+    alt: the scratchbook tab, an unlock parks and wildlife banner with a bison patch, and a park ranks grid from a lit junior ranger badge through seasonal, trail and park ranger to the full 64
+    caption: get achievements
+    taken: 2026-11-22
