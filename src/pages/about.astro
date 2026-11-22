@@ -1,7 +1,8 @@
 ---
 // The origin story, in the original home page's design: a window, an admission ticket, the motto
-// on a sticky note, a postcard tucked under the window as the way to the suggestion box, and the maker's rubber stamp
-// at the foot. The words come from src/content/site.yaml. Design record: .claude/FORM.md → About page.
+// on a sticky note, a postcard tucked under the window as the way to the suggestion box, an 88×31 web button
+// above the postcard as the way to the feed, and the maker's rubber stamp at the foot. The words come from
+// src/content/site.yaml. Design record: .claude/FORM.md → About page; the button: .claude/PLAN.md → RSS.
 import Base from '../layouts/Base.astro';
 import Doodles from '../components/Doodles.astro';
 import { getApps } from '../lib/apps';
@@ -48,6 +49,8 @@ const byHost = by.url ? new URL(by.url).hostname.replace(/^www\./, '') : undefin
         </div>
       </section>
       <span class="sticker new" aria-hidden="true"><span class="face">admission free<span class="star">✶</span></span></span>
+      {/* the way to the feed: an 88×31 web button, the small web's own object, above the postcard's label (centred under the sticky note on a phone) */}
+      <a class="webbtn" href="/feed.xml" aria-label="new apps by rss"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9" /><path d="M4 4a16 16 0 0 1 16 16" /><circle cx="5" cy="19" r="1.6" fill="currentColor" stroke="none" /></svg><span>rss<br />feed</span></a>
     </div>
     <footer class="note">
       <span class="tape" aria-hidden="true"></span>

@@ -33,7 +33,9 @@ detail page as the referrer, which GoatCounter treats as none.
 `ref` (or `utm_source`, `src`, `source`) from it and records that value as the referrer in place of
 the real one, and `utm_campaign` (or `campaign`) as a campaign. So a link the curator posts can be
 credited even where browsers strip referrers (in-app browsers, chat, mail, noreferrer links):
-`https://weirdlittleapps.com/?ref=vivqu-blog`. Keep the value short and lowercase; it is the row's
+`https://weirdlittleapps.com/?ref=vivqu-blog`. The feed's links back to the site carry `?ref=feed`, so
+visits from feed readers show under that referrer (the nearest thing to a subscriber count GitHub Pages allows;
+feed fetches themselves are invisible, since no page runs). Keep the value short and lowercase; it is the row's
 label. Untagged links from ordinary websites are credited anyway, by referrer. Events (`/go/`)
 ignore `q`.
 

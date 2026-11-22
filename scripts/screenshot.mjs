@@ -20,7 +20,7 @@ const mobile = flag('--mobile');
 let url = opt('--url', null);
 const out = opt('--out', `screenshots/${path === '/' ? 'index' : path.replace(/\//g, '_')}${dark ? '-dark' : ''}${mobile ? '-mobile' : ''}.png`);
 
-const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.txt': 'text/plain', '.json': 'application/json' };
+const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2', '.txt': 'text/plain', '.json': 'application/json', '.xml': 'application/xml', '.xsl': 'application/xml' };
 export async function serveDist(dir = 'dist') {
   const root = resolve(dir);
   const server = createServer(async (req, res) => {
@@ -51,7 +51,15 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     colorScheme: dark ? 'dark' : 'light',
   });
   const page = await ctx.newPage();
-  await page.goto(url + path, { waitUntil: 'networkidle' });
+  // `load` first, then a best-effort wait for the network to settle (a page that keeps a request open would otherwise time out)
+  await page.goto(url + path, { waitUntil: 'load' });
+  await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => {});
+  // lazy images below the fold only start loading once scrolled to; walk the page, wait for every image, then go back up
+  await page.evaluate(async () => {
+    for (let y = 0; y < document.body.scrollHeight; y += innerHeight) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 50)); }
+    await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; })));
+    scrollTo(0, 0);
+  });
   await page.evaluate(() => document.fonts.ready);
   await page.screenshot({ path: out, fullPage: true });
   console.log(out);

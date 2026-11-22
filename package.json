@@ -12,6 +12,7 @@
     "screenshot": "npm run build && node scripts/screenshot.mjs"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.19",
     "astro": "^7.2.10"
   },
   "engines": {

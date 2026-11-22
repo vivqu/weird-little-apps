@@ -131,7 +131,15 @@ in the about section of `src/styles/site.css`:
   phones), "made by vivian" over "vivqu.com" in the muted ink, pressed a little askew, linking to `by.url`.
   The first name is `by.short` in `site.yaml`; the second line is the url's host.
 
-The site footer reads "est. 2026 · about · suggest an app"; the maker credit lives only on the about page.
+- **The way to the feed** (added 2026-11-22, from the Artifact at https://claude.ai/artifact/CDkQY6mycdvxahosEgy2ob,
+  the RSS design record; ten rounds of comments): an 88×31 web button, "rss feed" beside the orange rss mark, in the
+  blank space above the postcard's "suggest an app" label, beside the window's upper right, leaning +3° against the
+  note's -2° and the stamp's -4°, no label (the button explains itself). On phones it sits centred under the note
+  with even air above and below, then the stamp. Links to `/feed.xml`. Tried and moved on the way: a round sticker
+  on the window's corner, the button under the window's left edge with a pointer label, centred in the blank space
+  left of the note, to the right of the note below the postcard, resting on the postcard.
+
+The site footer reads "est. 2026 · about · suggest an app · rss"; the maker credit lives only on the about page.
 Tried and rejected on the way: a second footer, a row in the status block, a signature on the sticky note, a
 calling card, a label strip, a status bar, a colophon, index cards, a second window, footnotes (on a dashed
 divider and on four kinds of paper), a receipt, a playbill, a hang tag, a shop sign. A section for method and

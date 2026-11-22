@@ -34,6 +34,8 @@ const imageUrl = new URL(image.src, Astro.site);
     <meta name="color-scheme" content="light" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={canonical} />
+    {/* feed readers find the feed from any page */}
+    <link rel="alternate" type="application/rss+xml" title={site.name} href="/feed.xml" />
     {/* link previews (iMessage, Slack, Bluesky, X, Mastodon...): without these a share shows the title and nothing else */}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />

@@ -1,7 +1,8 @@
 ---
-// The way to the origin story and the suggestion box, on every page but about.
+// The way to the origin story, the suggestion box and the feed, on every page but about.
 import { getSite } from '../lib/site';
 const site = await getSite();
 ---
 
-<footer class="site">est. {site.established} <span aria-hidden="true">·</span> <a href="/about/">about</a>{site.suggest?.endpoint && <> <span aria-hidden="true">·</span> <a href="/suggest/">suggest an app</a></>}</footer>
+{/* each dot stays with the word before it, so a narrow screen breaks the line between words, never before a dot */}
+<footer class="site"><span class="nowrap">est. {site.established} <span aria-hidden="true">·</span></span> <span class="nowrap"><a href="/about/">about</a> <span aria-hidden="true">·</span></span> {site.suggest?.endpoint && <><span class="nowrap"><a href="/suggest/">suggest an app</a> <span aria-hidden="true">·</span></span> </>}<a href="/feed.xml">rss</a></footer>

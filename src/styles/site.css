@@ -12,7 +12,7 @@
   /* ink is indigo, never black; shadows are deep aqua, never grey */
   --ink: #2b2d6b; --ink-muted: #7379ad; --rule: #2b2d6b; --shadow: #6fbcc0; --shadow-hover: #4aa3a8; --tape: #c3c8ff;
   /* riso accents, each belonging to one object */
-  --riso-blue: #3d9be6; --riso-pink: #ffa8ca; --riso-yellow: #ffe45c; --riso-mint: #aaf0d2; --riso-sky: #9fd8f8; --riso-lime: #b5ee5a; --riso-red: #f15060; --note: #fff6ae;
+  --riso-blue: #3d9be6; --riso-pink: #ffa8ca; --riso-yellow: #ffe45c; --riso-mint: #aaf0d2; --riso-sky: #9fd8f8; --riso-lime: #b5ee5a; --riso-red: #f15060; --riso-orange: #f49a3d; --note: #fff6ae;
   --serif: 'Instrument Serif', 'Iowan Old Style', 'Times New Roman', serif;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -255,7 +255,7 @@ main { max-width: 72rem; margin: 0 auto; }
 .label .credit { margin: 2.6rem 0 0; padding-top: 1rem; border-top: 1.5px dashed var(--ink-muted); font-size: 0.76rem; color: var(--ink-muted); }
 
 /* footer: a short rule, only a little wider than the words, like the one under "register of holdings" */
-footer.site { width: max-content; max-width: 100%; margin: 4rem auto 0; padding: 0.9rem 1.2rem 0; border-top: 1.5px dashed var(--ink-muted); text-align: center; font-size: 0.8rem; letter-spacing: 0.06em; }
+footer.site { width: max-content; max-width: 100%; margin: 4rem auto 0; padding: 0.9rem 1.2rem 0; border-top: 1.5px dashed var(--ink-muted); text-align: center; font-size: 0.8rem; letter-spacing: 0.06em; text-wrap: balance; }
 footer.site a:hover { color: var(--riso-blue); }
 footer.site .heart { color: var(--riso-pink); }
 
@@ -321,6 +321,11 @@ footer.site .heart { color: var(--riso-pink); }
 .about .minicard:hover { transform: rotate(7deg) translate(0.4rem, -0.3rem); }
 .about .minilabel { position: absolute; right: -7.8rem; bottom: 8.3rem; display: flex; flex-direction: column-reverse; align-items: center; gap: 0.05rem; font: 400 0.72rem/1.3 var(--mono); letter-spacing: 0.06em; color: var(--ink-muted); white-space: nowrap; transform: rotate(-3deg); pointer-events: none; }
 .about .minilabel .arrow { width: 1.4rem; transform: scaleY(-1); }
+/* the way to the feed: an 88×31 web button (the size every personal homepage has used since 1998), in the blank space above the
+   postcard and its label, beside the window's upper right; the rss mark is the one orange thing on the site. No label: the button explains itself */
+.about .webbtn { position: absolute; z-index: 2; left: calc(100% + 1.6rem); bottom: 14rem; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 6px; width: 88px; height: 31px; padding: 0 7px 0 6px; background: var(--paper-2); border: 2px solid var(--rule); border-radius: 2px; box-shadow: 3px 3px 0 var(--shadow); color: var(--ink); text-decoration: none; font: 500 9px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; transform: rotate(3deg); } /* leans the other way from the note (-2deg) and the stamp (-4deg) */
+.about .webbtn svg { width: 13px; height: 13px; color: var(--riso-orange); }
+.about .webbtn:hover { transform: rotate(3deg) translate(0.3rem, -0.3rem); box-shadow: 3px 3px 0 var(--shadow-hover); }
 /* the maker's credit: a rubber stamp pressed a little askew at the foot of the page, a long way under the note */
 .about .inkstamp { display: block; width: fit-content; margin: 13rem auto 0; padding: 0.5rem 0.9rem 0.45rem; border: 2px solid var(--ink-muted); border-radius: 4px; color: var(--ink-muted); mix-blend-mode: multiply; opacity: 0.85; transform: rotate(-4deg); text-align: center; text-decoration: none; font: 500 0.62rem/1.5 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; }
 .about .inkstamp b { display: block; font-size: 0.78rem; letter-spacing: 0.12em; }
@@ -339,7 +344,9 @@ footer.site .heart { color: var(--riso-pink); }
   .about .minilabel { right: 2.2rem; bottom: -9.1rem; flex-direction: column; transform: rotate(-2deg); }
   .about .minilabel .arrow { width: 1.3rem; transform: none; }
   .about .note { margin: 11.2rem auto 0; }
-  .about .inkstamp { margin-top: 10rem; }
+  .about .webbtn { left: 50%; bottom: auto; top: calc(100% + 26rem); transform: translateX(-50%) rotate(3deg); } /* centred under the note (11.2rem down, 11rem tall), with even air above and below, then the stamp */
+  .about .webbtn:hover { transform: translateX(-50%) rotate(3deg) translate(0, -0.3rem); }
+  .about .inkstamp { margin-top: 11rem; }
   .wall { grid-template-columns: 1fr; }
   .detail .below { grid-template-columns: 1fr; row-gap: 0.2rem; }
   .detail .below .visits { grid-column: 1; grid-row: auto; justify-self: start; justify-content: flex-start; margin-top: 1.1rem; }
