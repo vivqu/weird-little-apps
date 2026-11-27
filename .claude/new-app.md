@@ -1,17 +1,22 @@
 # Adding or updating an app
 
-One entry in `src/content/apps/<id>/`. Step 1 is the human's; 2-7 are the agent's, in order. Fields: `src/content/README.md`.
-Screenshot rules: `UPLOAD.md`. The user commits. **Never edit `tagline` or `why`**: they are hand-curated. Only the human
+One entry in `src/content/apps/<id>/`. Step 1 is the creator's; 2-7 are the agent's, in order. Fields: `src/content/README.md`.
+Screenshot rules: `UPLOAD.md`. The user commits. **Never edit `tagline` or `why`**: they are hand-curated. Only the creator
 changes them.
 
-**Never rewrite `index.yaml` from memory.** The human edits `tagline` and `why` while the agent is researching, so a copy
+**Skeleton first.** For a new entry, before any research, write a minimal `index.yaml` so the creator can start adding
+screenshots and writing `tagline` / `why` while the agent works: `name`, `hidden: true`, `tagline: TODO`, `url`,
+`form_factor`, `by`, `why: TODO`, `collected` (today), plus `created` and `links` when they're already known from the
+first look (the App Store lookup, the home page). No `screenshots:` block. Everything after that is a targeted edit.
+
+**Never rewrite `index.yaml` from memory.** The creator edits `tagline` and `why` while the agent is researching, so a copy
 read at the start of the session is stale by the time the research is done. Re-read the file immediately before every
 write, and make targeted edits (Edit tool, one field at a time) rather than writing the whole file back from a heredoc
 or a Write call. Every line the task doesn't add stays byte-for-byte as it is in the working tree.
 
-## 1. Screenshots (human, or `node scripts/capture.mjs <id>` for the landing shot)
+## 1. Screenshots (creator, or `node scripts/capture.mjs <id>` for the landing shot)
 
-- **The agent never downloads screenshots.** App Store / Google Play images included: the human adds every screenshot
+- **The agent never downloads screenshots.** App Store / Google Play images included: the creator adds every screenshot
   file to the entry folder themselves. The agent leaves `screenshots:` for whatever is already in the folder, and
   writes the entry without it when the folder is empty (the build logs it, which is fine).
 - Hand captures: Retina MacBook browser content area (3024x~1720). `capture.mjs` produces the same shape (1512x860 at 2x),

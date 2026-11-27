@@ -1,0 +1,60 @@
+name: Highlighted
+tagline: save highlights from physical books
+url: https://apps.apple.com/us/app/book-tracker-highlighted/id1480216009
+form_factor: ios
+by:
+  - name: Damir Stuhec
+    url: https://x.com/stuhecdamir
+why: I've used this app for years to save quotes from my hardcopy books. The app is so simple and perfectly designed. I got 28+ books and counting!
+collected: 2026-11-27
+
+created: 2020-01-19
+links:
+  - label: website
+    url: https://usehighlighted.com/
+  - label: twitter
+    url: https://x.com/highlighted_app
+  - label: interview
+    url: https://indiedevmonday.com/issue-15
+  - label: instagram
+    url: https://www.instagram.com/highlighted.app/
+quotes:
+  - text: |-
+      Reading books is quite a substantial time investment. To make the best of it and retain important takeaways, I tried taking notes but never found a system that would work well for me. I had the idea for Highlighted for quite some time, but the text recognition technology was just not good enough until last year when Apple introduced the native, on-device OCR support for iOS. What followed was “Xcode → New → Project…”. 😄
+    url: https://indiedevmonday.com/issue-15
+    date: 2020-11-02
+  - text: "The most challenging part of highlighting text is accuracy. While Apple has done a great job with their OCR technology, there are still a lot of situations developers have to account for. Things like bad lighting, curved text (book pages), text formatting, etc. It’s quite challenging but very fun to work on at the same time."
+    url: https://indiedevmonday.com/issue-15
+    date: 2020-11-02
+  - text: "Something really cool coming to @highlighted_app 👀 auto-selection of marked text!"
+    url: https://x.com/stuhecdamir/status/2086043389347123233
+    date: 2026-08-08
+    embed: true
+  - text: |-
+      App of the Day in the US 🥳 thanks @Apple @AppStore
+
+      Stop forgetting what you read. @highlighted_app
+    url: https://x.com/stuhecdamir/status/2109618143949996130
+    date: 2026-10-12
+    embed: true
+recs:
+  - { title: Capture your favorite book quotes with this brilliant new app, url: https://ebookfriendly.com/highlighted-book-scanner-app-ipad-iphone/, by: Ebook Friendly, date: 2020-08-18 }
+  - { title: "Issue #15 - Oskar Groth and Damir Stuhec", url: https://indiedevmonday.com/issue-15, by: Indie Dev Monday, date: 2020-11-02 }
+  - { title: "Highlighted: Stop forgetting what you read.", url: https://www.producthunt.com/products/highlighted, by: Product Hunt, date: 2022-08-12 }
+screenshots:
+  - image: ./landing.jpg
+    alt: the library screen, a grid of book covers from storytelling and water, wood, and wild things to abroad in japan and ametora, each with its highlight count, and a blue highlight button at the bottom
+    caption: the library
+    taken: 2026-11-27
+  - image: ./quotes.jpg
+    alt: the page for field notes on science and nature by michael r. canfield, marked reading, with two saved passages about forgetting faster than you expect and not trusting your memory, the first tagged with its chapter
+    caption: quotes from field notes
+    taken: 2026-11-27
+  - image: ./search.jpg
+    alt: the add a book sheet with slaughterhouse typed in the search field, a list of matches with covers, authors and publishers starting with vonnegut's slaughterhouse-five, a barcode scanner button and an add manually button
+    caption: add new books
+    taken: 2026-11-27
+  - image: ./highlight.jpg
+    alt: a camera capture of an open paperback held in one hand, the text recognised line by line and a paragraph about echolalia selected in blue between two drag handles, with a continue button below
+    caption: highlight from your camera
+    taken: 2026-11-27
