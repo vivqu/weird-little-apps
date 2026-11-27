@@ -1,0 +1,47 @@
+name: The Lighthouse Directory
+tagline: 24,800 lighthouses around the world
+url: https://www.ibiblio.org/lighthouse/
+form_factor: web
+by:
+  - name: Russ Rowlett
+    url: https://ed.unc.edu/2011/06/23/russ-rowlett-quiet-champion-of-mathematics-education/
+why: I didn't know that the question "what is a lighthouse?" is subject to debate.
+collected: 2026-11-27T18:00:00Z
+
+created: 1999
+links:
+  - { label: bluesky, url: https://bsky.app/profile/lhdirectory.bsky.social }
+  - { label: the ratings key, url: https://www.ibiblio.org/lighthouse/ratingskey.html }
+quotes:
+  - text: |-
+      Founded in 1999 (during the relocation of North Carolina's Cape Hatteras lighthouse), the Lighthouse Directory is a tool for research and study concerning lighthouses and efforts to preserve those lighthouses. The Directory provides a brief compilation of basic data for each lighthouse with links to other reliable information available on the Internet. Since the addition of the Hainan page in February 2009 listings cover the entire world. However, this doesn't mean the Directory is complete, because new information continues to come to light.
+    url: https://www.ibiblio.org/lighthouse/
+  - text: |-
+      The Directory adopts this definition: a lighthouse is a tower, at least 4 m (13 ft) tall and more substantial in cross section than a post, mast, or pillar, carrying or designed originally to carry a light to guide mariners.
+    url: https://www.ibiblio.org/lighthouse/
+  - text: "I'm glad to hear from site visitors, especially if you have lighthouse news or photos of rarely-visited lighthouses."
+    url: https://www.ibiblio.org/lighthouse/
+recs:
+  - { title: A Candle On The Water, url: https://www.metafilter.com/71046/A-Candle-On-The-Water, by: MetaFilter, date: 2008-04-22 }
+  - { title: "\"The Lighthouse Directory\" moves to new digs", url: https://news.uslhs.org/2018/11/26/the-lighthouse-directory-moves-to-new-digs/, by: U.S. Lighthouse Society News, date: 2018-11-26 }
+  - { title: "Lighthouse Directory has 20,700 lighthouses in its database", url: https://graveslightstation.com/lighthouse-directory-has-20700-lighthouses-in-its-database/, by: Graves Light Station, date: 2018-11-29 }
+  - { title: "Light Hearted Ep 19 – Russ Rowlett of The Lighthouse Directory", url: https://news.uslhs.org/2019/08/05/light-hearted-ep-19-russ-rowlett-of-the-lighthouse-directory-jeff-zappen-waterways-management-specialist-in-wa-bob-muller-stepping-stones-ny/, by: U.S. Lighthouse Society, date: 2019-08-05 }
+  - { title: "Light Hearted Lite #30 – Russ Rowlett and The Lighthouse Directory", url: https://uslhs.org/podcast/light-hearted-lite-30-russ-rowlett-and-lighthouse-directory, by: U.S. Lighthouse Society, date: 2025-10-12 }
+  - { title: "rendezvous with cassidoo - Issue #436", url: https://cassidoo.co/newsletter/2025-12-21/, by: rendezvous with cassidoo, date: 2025-12-21 }
+screenshots:
+  - image: ./landing.jpg
+    alt: the lighthouse directory home page, a welcome line counting more than 24,800 lighthouses above a photo of niechorze light in poland and a red-striped list of northeastern united states pages
+    caption: all the lighthouses
+    taken: 2026-11-27
+  - image: ./below.jpg
+    alt: further down the home page, a photo of the striped harbor range front light in honiara beside lists of pages for portugal, spain and gibraltar, italy and malta
+    caption: across the world
+    taken: 2026-11-27
+  - image: ./maryland.jpg
+    alt: the maryland eastern shore page, an introduction to the chesapeake bay and john donahoo's lighthouses beside photos of two white cottage-style screwpile lights
+    caption: maryland eastern shore
+    taken: 2026-11-27
+  - image: ./england.jpg
+    alt: the southern england page, paragraphs on trinity house and the ceremonial counties beside a photo of the red-and-white portland bill light
+    caption: southern england
+    taken: 2026-11-27
