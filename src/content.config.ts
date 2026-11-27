@@ -78,6 +78,8 @@ const apps = defineCollection({
             date: z.coerce.date().optional(),
             // show the post itself (Threads or X, via the provider's script; the text stays as the fallback) or the video (YouTube; the text is the player's title)
             embed: z.boolean().optional(),
+            // the embedded post carries a picture or video, so its slot reserves the tall height while the card loads
+            media: z.boolean().optional(),
           }),
         )
         .optional(),

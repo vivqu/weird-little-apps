@@ -24,6 +24,7 @@ quotes:
     by: Amtrak
     date: 2026-08-10
     embed: true
+    media: true
 recs:
   - { title: I gave every train in New York an instrument, url: https://news.ycombinator.com/item?id=47719490, by: Hacker News, date: 2026-04-10 }
   - { title: Listen to the NYC Subway play some Train Jazz, url: https://kottke.org/26/04/0048730-listen-to-the-nyc-subway, by: Jason Kottke, date: 2026-04-15 }

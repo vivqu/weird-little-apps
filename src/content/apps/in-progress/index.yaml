@@ -30,6 +30,7 @@ quotes:
     url: https://x.com/connie_surf/status/2057679065646010721
     date: 2026-05-22
     embed: true
+    media: true
 recs:
   - { title: Connie Liu, url: https://naiveweekly.com/people/connie-liu, by: Naive Weekly }
 screenshots:

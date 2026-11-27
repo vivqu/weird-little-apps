@@ -18,6 +18,7 @@ quotes:
     by: Thomas Dimson
     date: 2026-06-18
     embed: true
+    media: true
   - text: |-
       With more traffic moving off-web and into LLMs, I got curious about what traces we leave "in the weights". My design partner and I built a site in the past few weeks that checks recognition across frontier and small models. It queries many of them in parallel, clusters the responses, and tells you how strongly they recognize you.
     url: https://news.ycombinator.com/item?id=48591348

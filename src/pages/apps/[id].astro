@@ -133,12 +133,19 @@ const image = card && { src: card.src, width: Number(card.attributes.width), hei
             if (e && 'iframe' in e)
               return <iframe class="video" src={e.iframe} title={q.text} loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>;
             const post = e && 'script' in e ? e : undefined;
-            return (
+            const quote = (
               <blockquote class={post?.cls} id={post && `embed-${i + 1}`} style={post && 'width: 100%; max-width: 540px'} {...post?.attrs}>
                 {q.text.trim().split(/\n+/).map((line) => <p>{line}</p>)}
                 <footer>{q.by ?? app.by[0].name}{q.date && `, ${fmtDate(q.date)}`} · <a href={q.url}>source</a></footer>
               </blockquote>
             );
+            if (!post) return quote;
+            // the slot holds the card's rough height while the provider swaps the blockquote for its iframe, so the
+            // page doesn't collapse and regrow; a post with a picture or video (`media: true` on the quote, or an X
+            // post whose text ends in its pic.twitter.com link) gets the tall one. Only an estimate: the real height
+            // arrives from the iframe once it has rendered
+            const kind = q.media || /pic\.twitter\.com\//.test(q.text) ? 'media' : 'text';
+            return <div class="embed-slot" data-kind={kind}>{quote}</div>;
           })}
         </section>
       ) : null}
@@ -164,8 +171,29 @@ const image = card && { src: card.src, width: Number(card.attributes.width), hei
     <script is:inline define:vars={{ embedScripts }}>
       /* post embeds only from 616px (38.5rem) up: below that the label squeezes the card under
          its 540px and the Threads header overlaps itself, so the quote stays as text */
-      if (matchMedia('(min-width: 38.5rem)').matches)
-        for (const src of embedScripts) document.body.append(Object.assign(document.createElement('script'), { src, async: true }));
+      if (matchMedia('(min-width: 38.5rem)').matches) {
+        /* `embeds` on <html> reserves each slot's height (site.css). Each slot also gets a ghost: a copy of the
+           fallback quote, stripped of the classes and data the providers look for, that stands in as the
+           placeholder card until the provider's iframe reports a height. The providers differ in what they do
+           with the original blockquote (X and Threads keep it until the card is ready, Bluesky removes it at once
+           and renders lazily, when scrolled into view), so the ghost is the one thing the page controls.
+           Everything comes off again if a provider's script doesn't load (blocked, offline), so the fallback
+           text isn't left sitting in an empty box */
+        document.documentElement.classList.add('embeds');
+        const ghosts = [];
+        for (const slot of document.querySelectorAll('.embed-slot')) {
+          const ghost = slot.querySelector('blockquote').cloneNode(true);
+          for (const a of [...ghost.attributes]) ghost.removeAttribute(a.name);
+          ghost.className = 'embed-ghost';
+          ghost.inert = true;
+          slot.prepend(ghost);
+          ghosts.push(ghost);
+          const ready = () => [...slot.querySelectorAll('iframe')].some((f) => parseFloat(f.style.height) > 0);
+          new MutationObserver((_, o) => { if (ready()) { ghost.remove(); o.disconnect(); } }).observe(slot, { subtree: true, childList: true, attributes: true, attributeFilter: ['style'] });
+        }
+        const bail = () => { document.documentElement.classList.remove('embeds'); for (const g of ghosts) g.remove(); };
+        for (const src of embedScripts) document.body.append(Object.assign(document.createElement('script'), { src, async: true, onerror: bail }));
+      }
     </script>
   )}
   {many && (

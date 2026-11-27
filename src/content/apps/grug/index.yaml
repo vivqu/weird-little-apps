@@ -22,6 +22,7 @@ quotes:
     by: Jip van der Velde
     date: 2026-06-03
     embed: true
+    media: true
   - text: |-
       The first versions used existing handwritten fonts, but they looked too clean and polished. Almost as a joke, we asked: What if we draw the whole thing ourselves?
 

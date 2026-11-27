@@ -19,6 +19,7 @@ quotes:
     url: https://x.com/juanbuis/status/2082162851553398821
     date: 2026-07-28
     embed: true
+    media: true
 
 recs:
   - { title: "Cooking for Engineers...recipe infographics! (and interview)", url: https://coolinfographics.com/blog/2010/4/26/cooking-for-engineersrecipe-infographics-and-interview.html, by: Cool Infographics, date: 2010-04-26 }

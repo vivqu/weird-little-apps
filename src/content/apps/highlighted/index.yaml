@@ -30,6 +30,7 @@ quotes:
     url: https://x.com/stuhecdamir/status/2086043389347123233
     date: 2026-08-08
     embed: true
+    media: true
   - text: |-
       App of the Day in the US 🥳 thanks @Apple @AppStore
 
@@ -37,6 +38,7 @@ quotes:
     url: https://x.com/stuhecdamir/status/2109618143949996130
     date: 2026-10-12
     embed: true
+    media: true
 recs:
   - { title: Capture your favorite book quotes with this brilliant new app, url: https://ebookfriendly.com/highlighted-book-scanner-app-ipad-iphone/, by: Ebook Friendly, date: 2020-08-18 }
   - { title: "Issue #15 - Oskar Groth and Damir Stuhec", url: https://indiedevmonday.com/issue-15, by: Indie Dev Monday, date: 2020-11-02 }

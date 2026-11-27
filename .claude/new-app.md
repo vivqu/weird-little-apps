@@ -52,6 +52,15 @@ Fill `links`, `quotes`, `recs`:
 - Launch post on X / Threads / Bluesky, or the maker's YouTube video → `quote` with `embed: true` (text / video title as
   fallback). A Bluesky url must be the DID form (`/profile/did:plc:…/post/…`), which its oEmbed html contains.
   Embeds render blank headless; check in a real browser.
+- **The placeholder.** While a post loads, the detail page draws a light card in its place (the quote text inside a
+  periwinkle outline) at a guessed height, so the page doesn't jump: 220px for a text-only post, and for one with a
+  picture or video 620px on X, 560px on Bluesky, 400px on Threads (its pictures are smaller), with a dashed box where
+  the picture will land. The page can't tell which from the url,
+  so every embedded post that carries a picture, video or link card needs `media: true` next to `embed: true`; without
+  it a tall card grows out of a short slot. Look at the post (the oEmbed html for X ends in a `pic.twitter.com` link
+  when there is one; Threads and Bluesky give nothing away, so open the post) and set it per quote. Guessed low on
+  purpose: when unsure, leave it off. Text-only posts (a sentence, no attachment) take nothing. YouTube needs nothing
+  either: the player is a fixed 16:9 box.
 - Coverage → `recs: { title, url, by, date }`, `by` = the outlet only ("The Verge", never "Author for The Verge"). Oldest first; undated ones last. HN threads, press, personal blogs. Skip link-only
   posts. English only: a rec, quote or link in another language is left out, however good the outlet.
 - Facts with no field (models used, etc.) go in as a maker's quote, not a new field; tags come last, step 7.

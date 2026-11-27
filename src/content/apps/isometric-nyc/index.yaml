@@ -28,6 +28,7 @@ quotes:
     url: https://x.com/_coenen/status/2014359718697799989
     date: 2026-01-22
     embed: true
+    media: true
 
 recs:
   - { title: 'Show HN: isometric.nyc – giant isometric pixel art map of NYC', url: https://news.ycombinator.com/item?id=46721802, by: Hacker News, date: 2026-01-22 }

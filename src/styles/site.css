@@ -251,9 +251,34 @@ main { max-width: 72rem; margin: 0 auto; }
 .label iframe { display: block; max-width: 100%; }
 .label div.bluesky-embed { max-width: 540px !important; }
 .label .video { width: 100%; max-width: 540px; aspect-ratio: 16 / 9; border: 2px solid var(--rule); border-radius: 5px; box-shadow: 4px 4px 0 var(--shadow); background: var(--bar); }
-.label :is(blockquote, iframe, .twitter-tweet-rendered, div.bluesky-embed) + :is(iframe, .twitter-tweet-rendered, div.bluesky-embed),
-.label :is(iframe, .twitter-tweet-rendered, div.bluesky-embed) + blockquote,
+.label :is(blockquote, iframe, .twitter-tweet-rendered, div.bluesky-embed, .embed-slot) + :is(iframe, .twitter-tweet-rendered, div.bluesky-embed, .embed-slot),
+.label :is(iframe, .twitter-tweet-rendered, div.bluesky-embed, .embed-slot) + blockquote,
 .label .video + *, .label * + .video { margin-top: 1.5rem !important; }
+/* the slot around an embedded post: once the page has decided to load the provider (html.embeds, set by the
+   detail page's inline script from 616px up) it holds a guessed height so the swap from blockquote to iframe
+   doesn't collapse the section. Guessed low on purpose: a short gap under the text while the card arrives, never
+   an empty band. The provider's own 10px margins are dropped inside it; the slot carries the gap */
+/* the fallback too: the sibling rule above would give it 1.5rem on top the moment the wrapper lands in front of
+   it (and it must outrank that rule, hence the long :is()) */
+.label .embed-slot > :is(blockquote, iframe, div.twitter-tweet-rendered, div.bluesky-embed) { margin: 0 !important; }
+/* while the slot holds its ghost (the detail page's inline script: a copy of the fallback quote that stays until
+   the provider's iframe reports a height) it is drawn as a light card the shape of the post to come: a periwinkle
+   outline with the words inside and, for a post with a picture, a dashed box where the picture will land.
+   Everything else in the slot (the original blockquote, the provider's wrapper and iframe while it loads) is
+   lifted out of the flow and faded out, not hidden: Bluesky's iframe only renders once it scrolls into view, so it
+   must keep its place on the page. When the ghost goes, the card is already there at full size */
+.embeds .label .embed-slot:has(> .embed-ghost) { position: relative; display: flex; flex-direction: column; box-sizing: border-box; max-width: 540px; padding: 0.9rem 1.1rem 1rem; border: 1.5px solid var(--tape); border-radius: 12px; background: #fff; }
+.embeds .label .embed-slot:has(> .embed-ghost) > :not(.embed-ghost) { position: absolute !important; top: 0; left: 0; width: 100%; opacity: 0; pointer-events: none; }
+.embeds .label .embed-slot > .embed-ghost { margin: 0; padding-left: 0; border-left: 0; }
+.embeds .label .embed-slot[data-kind='media']:has(> .embed-ghost)::after { content: ''; flex: 1; min-height: 160px; margin-top: 0.9rem; border: 1.5px dashed var(--tape); border-radius: 10px; }
+/* the reserved height lasts only as long as the ghost: once the card has reported its height it sets the slot's,
+   and a card shorter than the guess must not leave an empty band under itself */
+.embeds .label .embed-slot[data-kind='text']:has(> .embed-ghost) { min-height: 220px; }
+.embeds .label .embed-slot[data-kind='media']:has(> .embed-ghost) { min-height: 620px; } /* an X card with a picture or video measured ~780px at 540 wide */
+/* the other providers draw their pictures smaller (Threads ~410 to 550, Bluesky ~590 to 630); the slot tells them
+   apart by the provider's own class on the original blockquote (Threads keeps it) or wrapper (Bluesky's replaces it) */
+.embeds .label .embed-slot[data-kind='media']:has(> .embed-ghost):has(> .text-post-media) { min-height: 400px; }
+.embeds .label .embed-slot[data-kind='media']:has(> .embed-ghost):has(> .bluesky-embed) { min-height: 560px; }
 .label .credit { margin: 2.6rem 0 0; padding-top: 1rem; border-top: 1.5px dashed var(--ink-muted); font-size: 0.76rem; color: var(--ink-muted); }
 
 /* footer: a short rule, only a little wider than the words, like the one under "register of holdings" */

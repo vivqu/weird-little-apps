@@ -29,6 +29,7 @@ quotes:
     url: https://x.com/WarnerTeddy/status/2060018688645115964
     date: 2026-05-28
     embed: true
+    media: true
   - text: Track all the birds passing by your window!
     url: https://www.youtube.com/watch?v=CbiBXiwDwCE
     embed: true

@@ -61,6 +61,7 @@ Optional:
   - for line breaks write it as a block (`text: |`); each line becomes its own paragraph
   - `by` defaults to the first maker; `date` is optional
   - `embed: true` shows the post itself instead of the text, for a Threads, X or Bluesky post url; the text stays as the fallback when the provider's script doesn't load, and on viewports under 616px, where the cards don't fit. This is the site's one third-party script, loaded only on that page. A Bluesky url must be the DID form, `https://bsky.app/profile/did:plc:…/post/…` (the build says so otherwise): `embed.bsky.app/oembed?url=<the post>` returns it, and bsky.app opens it like the handle form. For a YouTube video url it shows the player instead (a plain iframe, no script, at every width); the text becomes the player's accessible title
+  - `media: true` with `embed: true`: the post carries a picture or video, so the page reserves the taller card height while it loads (an X post whose text ends in its `pic.twitter.com` link gets it without the flag)
 - `recs`: where other people recommended or wrote about the app, shown as a list under the maker's words
   - `{ title, url, by, date }`; `by` and `date` are optional. A bare url is titled from its hostname
 - `screenshots`: up to four, each with:
