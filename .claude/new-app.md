@@ -11,6 +11,9 @@ or a Write call. Every line the task doesn't add stays byte-for-byte as it is in
 
 ## 1. Screenshots (human, or `node scripts/capture.mjs <id>` for the landing shot)
 
+- **The agent never downloads screenshots.** App Store / Google Play images included: the human adds every screenshot
+  file to the entry folder themselves. The agent leaves `screenshots:` for whatever is already in the folder, and
+  writes the entry without it when the folder is empty (the build logs it, which is fine).
 - Hand captures: Retina MacBook browser content area (3024x~1720). `capture.mjs` produces the same shape (1512x860 at 2x),
   so mixing the two is fine.
 - Same dimensions within an app. The first landscape capture sizes the frame; others within 5% share it exactly, anything
