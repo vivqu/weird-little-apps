@@ -6,7 +6,9 @@ changes them.
 
 **Skeleton first.** For a new entry, before any research, write a minimal `index.yaml` so the creator can start adding
 screenshots and writing `tagline` / `why` while the agent works: `name`, `hidden: true`, `tagline: TODO`, `url`,
-`form_factor`, `by`, `why: TODO`, `collected` (today), plus `created` and `links` when they're already known from the
+`form_factor`, `by`, `why: TODO`, `collected` (the exact current time as a UTC timestamp, from `date -u +%Y-%m-%dT%H:%M:%SZ`,
+e.g. `2026-11-27T20:58:15Z`: the real minute, never a bare date or a round hour, so entries started the same day keep the
+order they were started instead of falling back to the id), plus `created` and `links` when they're already known from the
 first look (the App Store lookup, the home page). No `screenshots:` block. Everything after that is a targeted edit.
 
 **Never rewrite `index.yaml` from memory.** The creator edits `tagline` and `why` while the agent is researching, so a copy
@@ -38,7 +40,8 @@ Read every image first.
   the image changes.
 - `caption`: a few lowercase words. Must match the image (retake centred on New York ≠ "from london").
 - `taken`: capture date. Files added today are dated today.
-- `collected`: today, the day the entry is worked on. Unreviewed imports carry a placeholder date; replace it. A
+- `collected`: already set at skeleton time to the exact moment the entry was started; leave it. Unreviewed imports carry a
+  placeholder date; replace it with a timestamp (a bare date sorts as midnight and same-day ties fall back to the id). A
   published entry keeps its date.
 - Drop flags that no longer apply.
 
